@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>来場予約｜Ungallery 勝目町モデルハウス</title>
+<meta name="description" content="Ungallery（鹿児島県薩摩川内市）の勝目町モデルハウス来場予約ページ。グレーを基調にした落ち着きのある空間で、暮らしのための美しさを体感してください。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Ungallery LP 共通スタイル（WP移植時は .ug でスコープ済み） ===== */
+.ug{
+  --bg:#f5f4f2; --paper:#fff; --ink:#2a2a2a; --sub:#6f6c68; --mute:#9a968f;
+  --line:#dcd8d2; --stone:#e9e6e1; --char:#3b3b3b; --accent:#8c8579;
+  --serif-en:"Cormorant Garamond",serif; --serif:"Noto Serif JP",serif; --sans:"Noto Sans JP",sans-serif;
+  background:var(--bg); color:var(--ink); font-family:var(--sans); font-weight:300;
+  line-height:2; letter-spacing:.06em; font-size:15px; margin:0;
+}
+.ug *{box-sizing:border-box}
+.ug img{max-width:100%;display:block}
+.ug a{color:inherit}
+.ug .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.ug .narrow{max-width:760px;margin:0 auto;padding:0 24px}
+.ug section{padding:120px 0}
+.ug .en{font-family:var(--serif-en);font-weight:400;letter-spacing:.24em;text-transform:uppercase}
+.ug .ttl{text-align:center;margin:0 0 64px}
+.ug .ttl .en{display:block;font-size:13px;color:var(--accent)}
+.ug .ttl h2{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:.16em;margin:12px 0 0}
+.ug .ttl:after{content:"";display:block;width:1px;height:40px;background:var(--line);margin:28px auto 0}
+.ug .lead{text-align:center;font-family:var(--serif);font-size:17px;line-height:2.4}
+.ug .ph{background:linear-gradient(135deg,#d6d2cc,#bdb8b0);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em;text-align:center}
+.ug .btn{display:inline-block;padding:20px 56px;background:var(--char);color:#fff;text-decoration:none;font-size:14px;letter-spacing:.2em;border:1px solid var(--char);transition:.3s;cursor:pointer;font-family:var(--sans)}
+.ug .btn:hover{background:transparent;color:var(--char)}
+.ug .btn.ghost{background:transparent;color:var(--char)}
+.ug .btn.ghost:hover{background:var(--char);color:#fff}
+
+/* hero */
+.ug .hero{position:relative;height:88vh;min-height:560px;padding:0;overflow:hidden}
+.ug .hero .ph{position:absolute;inset:0;font-size:13px}
+.ug .hero .copy{position:absolute;left:8%;bottom:14%;color:#fff;text-shadow:0 0 24px rgba(0,0,0,.15)}
+.ug .hero .copy .en{font-size:15px}
+.ug .hero .copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.6vw,40px);letter-spacing:.18em;line-height:1.9;margin:16px 0 0}
+.ug .hero .scroll{position:absolute;right:5%;bottom:0;color:#fff;font-size:11px;writing-mode:vertical-rl;padding-bottom:90px}
+.ug .hero .scroll:after{content:"";position:absolute;bottom:0;left:50%;width:1px;height:80px;background:#fff;opacity:.7}
+
+/* intro / model */
+.ug .model{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+.ug .model .ph{aspect-ratio:4/5}
+.ug .model h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.14em;margin:0 0 24px}
+.ug .spec{border-top:1px solid var(--line);margin-top:32px}
+.ug .spec dl{display:grid;grid-template-columns:96px 1fr;margin:0;border-bottom:1px solid var(--line);padding:14px 0;font-size:14px}
+.ug .spec dt{color:var(--mute)} .ug .spec dd{margin:0}
+
+/* points */
+.ug .points{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.ug .point .ph{aspect-ratio:1/1;margin-bottom:24px}
+.ug .point .num{font-family:var(--serif-en);font-size:30px;color:var(--accent);line-height:1}
+.ug .point h4{font-family:var(--serif);font-weight:400;font-size:17px;margin:12px 0}
+.ug .point p{font-size:14px;color:var(--sub);margin:0}
+
+/* gift */
+.ug .gift{background:var(--paper)}
+.ug .giftbox{border:1px solid var(--line);padding:56px 40px;text-align:center;position:relative}
+.ug .giftbox .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 20px;font-size:13px;color:var(--accent)}
+.ug .giftbox strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.12em;margin-bottom:8px}
+.ug .note{font-size:12px;color:var(--mute);line-height:1.9}
+
+/* flow */
+.ug .flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:f}
+.ug .flow li{padding:0 20px;border-left:1px solid var(--line);counter-increment:f}
+.ug .flow li:last-child{border-right:1px solid var(--line)}
+.ug .flow li:before{content:"STEP " counter(f,decimal-leading-zero);display:block;font-family:var(--serif-en);letter-spacing:.2em;color:var(--accent);font-size:13px}
+.ug .flow h4{font-family:var(--serif);font-weight:400;font-size:16px;margin:8px 0}
+.ug .flow p{font-size:13px;color:var(--sub);margin:0;line-height:1.9}
+
+/* form */
+.ug .formsec{background:var(--stone)}
+.ug form{background:var(--paper);padding:64px 56px}
+.ug .row{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.ug .row:first-of-type{border-top:1px solid var(--line)}
+.ug .row > label,.ug .row > .lbl{font-size:14px;padding-top:10px}
+.ug .req,.ug .opt{display:inline-block;font-size:10px;padding:0 8px;margin-left:8px;line-height:20px;letter-spacing:.1em;vertical-align:2px}
+.ug .req{background:var(--char);color:#fff} .ug .opt{border:1px solid var(--line);color:var(--mute)}
+.ug input[type=text],.ug input[type=tel],.ug input[type=email],.ug input[type=date],.ug select,.ug textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--line);background:var(--bg);font:inherit;font-size:15px;color:var(--ink);border-radius:0;appearance:none}
+.ug select{background-image:linear-gradient(45deg,transparent 50%,var(--sub) 50%),linear-gradient(135deg,var(--sub) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.ug input:focus,.ug select:focus,.ug textarea:focus{outline:none;border-color:var(--char);background:#fff}
+.ug .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ug .pair small{display:block;font-size:12px;color:var(--mute)}
+.ug .chips{display:flex;flex-wrap:wrap;gap:8px}
+.ug .chips label{cursor:pointer}
+.ug .chips input{position:absolute;opacity:0;pointer-events:none}
+.ug .chips span{display:inline-block;padding:8px 18px;border:1px solid var(--line);font-size:13px;transition:.2s;background:var(--bg)}
+.ug .chips input:checked + span{background:var(--char);border-color:var(--char);color:#fff}
+.ug .chips input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.ug .agree{text-align:center;margin:40px 0 32px;font-size:14px}
+.ug .agree a{text-decoration:underline}
+.ug .submit{text-align:center}
+.ug .thanks{display:none;text-align:center;background:var(--paper);padding:80px 24px}
+.ug .thanks h3{font-family:var(--serif);font-weight:400;font-size:22px}
+
+/* faq */
+.ug .faq details{border-bottom:1px solid var(--line);padding:24px 0}
+.ug .faq details:first-child{border-top:1px solid var(--line)}
+.ug .faq summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:16px;position:relative;padding:0 40px 0 36px}
+.ug .faq summary::-webkit-details-marker{display:none}
+.ug .faq summary:before{content:"Q";position:absolute;left:0;font-family:var(--serif-en);color:var(--accent);font-size:20px;top:-3px}
+.ug .faq summary:after{content:"+";position:absolute;right:8px;color:var(--mute)}
+.ug .faq details[open] summary:after{content:"−"}
+.ug .faq p{margin:16px 0 0;padding-left:36px;font-size:14px;color:var(--sub)}
+
+/* access / cta */
+.ug .access{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ug .access .map{aspect-ratio:4/3}
+.ug .access iframe{width:100%;height:100%;border:0;filter:grayscale(1)}
+.ug .tel{font-family:var(--serif-en);font-size:34px;letter-spacing:.12em;text-decoration:none}
+.ug .closing{background:var(--char);color:#fff;text-align:center}
+.ug .closing .ttl .en{color:#bdb8b0}
+.ug .closing .ttl:after{background:#666}
+.ug .closing .btn{background:#fff;color:var(--char);border-color:#fff}
+.ug .closing .btn:hover{background:transparent;color:#fff}
+
+/* sticky CTA (SP) */
+.ug .sticky{display:none}
+
+@media (max-width:820px){
+  .ug{font-size:14px}
+  .ug section{padding:80px 0}
+  .ug .ttl{margin-bottom:44px}
+  .ug .ttl h2{font-size:21px}
+  .ug .lead{font-size:15px;text-align:left}
+  .ug .model,.ug .access{grid-template-columns:1fr;gap:40px}
+  .ug .points{grid-template-columns:1fr;gap:48px}
+  .ug .flow{grid-template-columns:1fr 1fr;row-gap:32px}
+  .ug .flow li:nth-child(2){border-right:1px solid var(--line)}
+  .ug form{padding:40px 20px}
+  .ug .row{grid-template-columns:1fr;gap:8px;padding:20px 0}
+  .ug .row > label,.ug .row > .lbl{padding-top:0}
+  .ug .giftbox{padding:48px 20px}
+  .ug .btn{padding:18px 40px}
+  .ug .hero .copy{left:24px;right:24px}
+  .ug br.pc{display:none}
+  .ug .sticky{display:grid;grid-template-columns:1fr 1.6fr;position:fixed;left:0;right:0;bottom:0;z-index:50;font-size:13px;letter-spacing:.14em}
+  .ug .sticky a{padding:16px 0;text-align:center;text-decoration:none;color:#fff;background:var(--accent)}
+  .ug .sticky a + a{background:var(--char)}
+  .ug footer{padding-bottom:72px}
+}
+.ug footer{text-align:center;font-size:11px;color:var(--mute);padding:40px 0;letter-spacing:.2em}
+body{margin:0;background:#f5f4f2}
+</style>
+</head>
+<body>
+<div class="ug">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <!-- WP: 勝目町モデルハウスの外観 or リビング写真（横長・暗めの余白がある写真推奨）に差し替え -->
+    <div class="ph">PHOTO ／ 勝目町モデルハウス 外観</div>
+    <div class="copy">
+      <span class="en">Model House Reservation</span>
+      <h1>見せるためではなく、<br>暮らすための美しさを。</h1>
+    </div>
+    <div class="scroll en">scroll</div>
+  </section>
+
+  <!-- ===== INTRO ===== -->
+  <section>
+    <div class="narrow">
+      <p class="lead">
+        写真では伝わらない、光の入り方、素材の手ざわり、<br class="pc">
+        ひとつの部屋から次の部屋へと移るときの空気の変化。<br class="pc">
+        家づくりで大切にしたいものは、<br class="pc">
+        実際の空間に身を置いたときに、はじめて見えてきます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== MODEL HOUSE ===== -->
+  <section style="padding-top:0">
+    <div class="wrap model">
+      <div class="ph">PHOTO ／ LDK 内観</div>
+      <div>
+        <span class="en" style="font-size:13px;color:var(--accent)">Katsume Model House</span>
+        <h3>勝目町モデルハウス</h3>
+        <p>グレーを基調とした、落ち着きのある外観とインテリア。<br>
+          飾るための空間ではなく、日々の暮らしにそっと馴染み、住まう人の感性を静かに支える。Ungalleryが考える「暮らしのための美しさ」を、そのままかたちにしたモデルハウスです。</p>
+        <div class="spec">
+          <dl><dt>所在地</dt><dd>鹿児島県薩摩川内市勝目町5115-5</dd></dl>
+          <dl><dt>営業時間</dt><dd>10:00 – 17:00</dd></dl>
+          <dl><dt>定休日</dt><dd>【要確認】水曜日</dd></dl>
+          <dl><dt>駐車場</dt><dd>【要確認】あり（◯台）</dd></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POINTS ===== -->
+  <section style="background:var(--paper)">
+    <div class="wrap">
+      <div class="ttl"><span class="en">What you can do</span><h2>ご来場でできること</h2></div>
+      <div class="points">
+        <div class="point">
+          <div class="ph">PHOTO ／ 素材・ディテール</div>
+          <div class="num">01</div>
+          <h4>空間の質感を、からだで確かめる</h4>
+          <p>天井高、窓の位置、床材や塗り壁の質感。図面やカタログでは分からない「居心地」を、実際の空間でご体感いただけます。</p>
+        </div>
+        <div class="point">
+          <div class="ph">PHOTO ／ 打合せ風景</div>
+          <div class="num">02</div>
+          <h4>暮らし方から、家を考える</h4>
+          <p>間取りの前に、どんな毎日を送りたいか。家事動線や収納、家族の過ごし方をうかがいながら、住まいのイメージを一緒に整理します。</p>
+        </div>
+        <div class="point">
+          <div class="ph">PHOTO ／ 資金・土地相談</div>
+          <div class="num">03</div>
+          <h4>資金・土地のご相談も</h4>
+          <p>「まだ何も決まっていない」段階でも大丈夫です。総予算の考え方や土地探しの進め方など、家づくりの順番からお伝えします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GIFT ===== -->
+  <section class="gift" style="padding-top:0">
+    <div class="narrow">
+      <div class="giftbox">
+        <span class="tag en">Special</span>
+        <!-- WP: 実際の来場特典に差し替え（特典がない場合はこのセクションごと削除） -->
+        <strong>ご予約来場の方へ ささやかなお土産を</strong>
+        <p style="margin:0 0 16px">【要確認：特典内容】例）オリジナル施工事例集／ギフトカード 等</p>
+        <p class="note">※ご予約のうえご来場いただいた方が対象です。<br>※1家族さま1回限り。内容は予告なく変更となる場合がございます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLOW ===== -->
+  <section>
+    <div class="wrap">
+      <div class="ttl"><span class="en">Flow</span><h2>ご来場までの流れ</h2></div>
+      <ol class="flow">
+        <li><h4>フォームから予約</h4><p>ご希望の日時を選び、下記フォームよりお申し込みください。（約1分）</p></li>
+        <li><h4>確認のご連絡</h4><p>担当者より、2営業日以内にお電話またはメールで日時を確定いたします。</p></li>
+        <li><h4>ご来場</h4><p>ご案内は1組ずつ、約60〜90分。小さなお子さま連れでもお気軽にどうぞ。</p></li>
+        <li><h4>ご提案・ご相談</h4><p>ご希望の方には、プランや資金計画のご提案へ。無理な営業はいたしません。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== FORM ===== -->
+  <section class="formsec" id="form">
+    <div class="wrap" style="max-width:920px">
+      <div class="ttl"><span class="en">Reservation</span><h2>来場予約フォーム</h2></div>
+
+      <!-- WP: このformタグ一式を Contact Form 7 のショートコードに置き換え（README参照） -->
+      <form id="ugForm" novalidate>
+        <div class="row">
+          <label for="d1">第1希望日<span class="req">必須</span></label>
+          <div class="pair">
+            <div><input type="date" id="d1" name="date1" required></div>
+            <div><select name="time1" required aria-label="第1希望時間">
+              <option value="">時間を選択</option>
+              <option>10:00〜</option><option>11:00〜</option><option>13:00〜</option>
+              <option>14:00〜</option><option>15:00〜</option><option>16:00〜</option>
+            </select></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="d2">第2希望日<span class="opt">任意</span></label>
+          <div class="pair">
+            <div><input type="date" id="d2" name="date2"></div>
+            <div><select name="time2" aria-label="第2希望時間">
+              <option value="">時間を選択</option>
+              <option>10:00〜</option><option>11:00〜</option><option>13:00〜</option>
+              <option>14:00〜</option><option>15:00〜</option><option>16:00〜</option>
+            </select></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="lbl">ご来場人数<span class="req">必須</span></div>
+          <div class="pair">
+            <div><small>大人</small><select name="adult" required aria-label="大人の人数"><option>1名</option><option selected>2名</option><option>3名</option><option>4名以上</option></select></div>
+            <div><small>お子さま</small><select name="child" aria-label="お子さまの人数"><option>0名</option><option>1名</option><option>2名</option><option>3名以上</option></select></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="nm">お名前<span class="req">必須</span></label>
+          <input type="text" id="nm" name="name" placeholder="例）山田 太郎" required autocomplete="name">
+        </div>
+        <div class="row">
+          <label for="kn">ふりがな<span class="req">必須</span></label>
+          <input type="text" id="kn" name="kana" placeholder="例）やまだ たろう" required>
+        </div>
+        <div class="row">
+          <label for="tl">電話番号<span class="req">必須</span></label>
+          <input type="tel" id="tl" name="tel" placeholder="例）090-1234-5678" required autocomplete="tel">
+        </div>
+        <div class="row">
+          <label for="ml">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="ml" name="email" placeholder="例）info@example.com" required autocomplete="email">
+        </div>
+        <div class="row">
+          <label for="ad">お住まいの地域<span class="opt">任意</span></label>
+          <select id="ad" name="area">
+            <option value="">選択してください</option>
+            <option>薩摩川内市</option><option>鹿児島市</option><option>姶良市</option><option>霧島市</option>
+            <option>いちき串木野市</option><option>出水市</option><option>阿久根市</option><option>さつま町</option><option>その他</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="lbl">土地について<span class="opt">任意</span></div>
+          <div class="chips">
+            <label><input type="radio" name="land" value="土地あり"><span>土地あり</span></label>
+            <label><input type="radio" name="land" value="土地探し中"><span>土地探し中</span></label>
+            <label><input type="radio" name="land" value="建て替え"><span>建て替え</span></label>
+            <label><input type="radio" name="land" value="未定"><span>まだ未定</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="lbl">建築予定時期<span class="opt">任意</span></div>
+          <div class="chips">
+            <label><input type="radio" name="when" value="半年以内"><span>半年以内</span></label>
+            <label><input type="radio" name="when" value="1年以内"><span>1年以内</span></label>
+            <label><input type="radio" name="when" value="2年以内"><span>2年以内</span></label>
+            <label><input type="radio" name="when" value="未定"><span>未定</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="lbl">ご相談したいこと<span class="opt">複数可</span></div>
+          <div class="chips">
+            <label><input type="checkbox" name="topic[]" value="デザイン・間取り"><span>デザイン・間取り</span></label>
+            <label><input type="checkbox" name="topic[]" value="資金計画・住宅ローン"><span>資金計画・住宅ローン</span></label>
+            <label><input type="checkbox" name="topic[]" value="土地探し"><span>土地探し</span></label>
+            <label><input type="checkbox" name="topic[]" value="性能・断熱"><span>性能・断熱</span></label>
+            <label><input type="checkbox" name="topic[]" value="見学のみ"><span>まずは見学だけ</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="src">当社を知ったきっかけ<span class="opt">任意</span></label>
+          <select id="src" name="source">
+            <option value="">選択してください</option>
+            <option>Instagram</option><option>Google検索</option><option>Googleマップ</option>
+            <option>チラシ</option><option>知人の紹介</option><option>通りがかり</option><option>その他</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="msg">ご質問・ご要望<span class="opt">任意</span></label>
+          <textarea id="msg" name="message" rows="5" placeholder="お子さま連れ・車いすでのご来場など、事前にお知らせいただけるとスムーズです。"></textarea>
+        </div>
+
+        <div class="agree">
+          <label><input type="checkbox" name="privacy" required> <a href="/privacy/" target="_blank">個人情報の取り扱い</a>に同意する</label>
+        </div>
+        <div class="submit"><button type="submit" class="btn">内容を確認して予約する</button></div>
+      </form>
+
+      <div class="thanks" id="ugThanks" role="status">
+        <span class="en" style="color:var(--accent);font-size:13px">Thank you</span>
+        <h3>ご予約を受け付けました</h3>
+        <p>担当者より2営業日以内にご連絡いたします。<br>当日お会いできることを楽しみにしております。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <div class="narrow">
+      <div class="ttl"><span class="en">Q&amp;A</span><h2>よくあるご質問</h2></div>
+      <div class="faq">
+        <details><summary>見学したら、しつこく営業されませんか？</summary><p>ご安心ください。ご来場後の無理なご連絡はいたしません。「今日は見るだけ」とお伝えいただければ、そのようにご案内します。</p></details>
+        <details><summary>まだ建てるか決めていなくても大丈夫ですか？</summary><p>はい。多くの方が「情報収集の段階」でいらっしゃいます。家づくりの進め方や費用の考え方など、基礎的なことからお話しします。</p></details>
+        <details><summary>子ども連れでも見学できますか？</summary><p>もちろんです。お子さま連れのご家族も多くいらっしゃいます。人数をフォームでお知らせいただければ準備してお待ちしています。</p></details>
+        <details><summary>所要時間はどれくらいですか？</summary><p>見学とご相談で約60〜90分が目安です。ご予定に合わせて短めのご案内も可能です。</p></details>
+        <details><summary>予約なしでも見学できますか？</summary><p>ご予約の方を優先してご案内しているため、当日はお待ちいただく場合や担当者が不在の場合がございます。確実にご案内するため、事前のご予約をおすすめします。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCESS ===== -->
+  <section style="background:var(--paper)">
+    <div class="wrap">
+      <div class="ttl"><span class="en">Access</span><h2>アクセス</h2></div>
+      <div class="access">
+        <div class="map">
+          <!-- WP: Googleマップの埋め込みiframeに差し替え（モノクロ表示はCSSで適用済み） -->
+          <iframe title="勝目町モデルハウス 地図" loading="lazy" src="https://www.google.com/maps?q=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E8%96%A9%E6%91%A9%E5%B7%9D%E5%86%85%E5%B8%82%E5%8B%9D%E7%9B%AE%E7%94%BA5115-5&output=embed"></iframe>
+        </div>
+        <div>
+          <h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 16px">勝目町モデルハウス</h3>
+          <p style="margin:0">〒【要確認】鹿児島県薩摩川内市勝目町5115-5<br>営業時間 10:00 – 17:00</p>
+          <p style="margin:32px 0 0;font-size:13px;color:var(--sub)">お電話でのご予約・お問い合わせ</p>
+          <a class="tel" href="tel:0996413938">0996-41-3938</a>
+          <p class="note" style="margin:0">受付時間 10:00 – 17:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSING CTA ===== -->
+  <section class="closing">
+    <div class="narrow">
+      <div class="ttl"><span class="en">Visit us</span><h2>まずは、空間に触れてみてください。</h2></div>
+      <p style="margin:0 0 40px">言葉や写真よりも、確かなものがあります。<br>ご家族そろってのご来場をお待ちしております。</p>
+      <a class="btn" href="#form">来場予約をする</a>
+    </div>
+  </section>
+
+  <footer class="en">© Ungallery</footer>
+
+  <div class="sticky">
+    <a href="tel:0996413938">電話する</a>
+    <a href="#form">来場予約</a>
+  </div>
+</div>
+
+<script>
+/* プレビュー用：送信の代わりにサンクス表示。WPではCF7に置き換えるため不要 */
+(function(){
+  var f=document.getElementById('ugForm'), t=document.getElementById('ugThanks');
+  var today=new Date(); today.setDate(today.getDate()+1);
+  var min=today.toISOString().slice(0,10);
+  f.querySelectorAll('input[type=date]').forEach(function(i){i.min=min});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.checkValidity()){f.reportValidity();return}
+    f.style.display='none'; t.style.display='block';
+    t.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

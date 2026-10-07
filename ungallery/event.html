@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>住まいづくりフェア｜Ungallery イベント</title>
+<meta name="description" content="Ungallery（鹿児島県薩摩川内市）の住まいづくりフェア。勝目町モデルハウスで、暮らしのための美しさを体感。完全予約制・各回1組限定。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Ungallery LP 共通スタイル（WP移植時は .ug でスコープ済み） ===== */
+.ug{
+  --bg:#f5f4f2; --paper:#fff; --ink:#2a2a2a; --sub:#6f6c68; --mute:#9a968f;
+  --line:#dcd8d2; --stone:#e9e6e1; --char:#3b3b3b; --accent:#8c8579;
+  --serif-en:"Cormorant Garamond",serif; --serif:"Noto Serif JP",serif; --sans:"Noto Sans JP",sans-serif;
+  background:var(--bg); color:var(--ink); font-family:var(--sans); font-weight:300;
+  line-height:2; letter-spacing:.06em; font-size:15px; margin:0;
+}
+.ug *{box-sizing:border-box}
+.ug img{max-width:100%;display:block}
+.ug a{color:inherit}
+.ug .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.ug .narrow{max-width:760px;margin:0 auto;padding:0 24px}
+.ug section{padding:120px 0}
+.ug .en{font-family:var(--serif-en);font-weight:400;letter-spacing:.24em;text-transform:uppercase}
+.ug .ttl{text-align:center;margin:0 0 64px}
+.ug .ttl .en{display:block;font-size:13px;color:var(--accent)}
+.ug .ttl h2{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:.16em;margin:12px 0 0}
+.ug .ttl:after{content:"";display:block;width:1px;height:40px;background:var(--line);margin:28px auto 0}
+.ug .lead{text-align:center;font-family:var(--serif);font-size:17px;line-height:2.4}
+.ug .ph{background:linear-gradient(135deg,#d6d2cc,#bdb8b0);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em;text-align:center}
+.ug .btn{display:inline-block;padding:20px 56px;background:var(--char);color:#fff;text-decoration:none;font-size:14px;letter-spacing:.2em;border:1px solid var(--char);transition:.3s;cursor:pointer;font-family:var(--sans)}
+.ug .btn:hover{background:transparent;color:var(--char)}
+.ug .btn.ghost{background:transparent;color:var(--char)}
+.ug .btn.ghost:hover{background:var(--char);color:#fff}
+
+/* hero */
+.ug .hero{position:relative;height:88vh;min-height:560px;padding:0;overflow:hidden}
+.ug .hero .ph{position:absolute;inset:0;font-size:13px}
+.ug .hero .copy{position:absolute;left:8%;bottom:14%;color:#fff;text-shadow:0 0 24px rgba(0,0,0,.15)}
+.ug .hero .copy .en{font-size:15px}
+.ug .hero .copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.6vw,40px);letter-spacing:.18em;line-height:1.9;margin:16px 0 0}
+.ug .hero .scroll{position:absolute;right:5%;bottom:0;color:#fff;font-size:11px;writing-mode:vertical-rl;padding-bottom:90px}
+.ug .hero .scroll:after{content:"";position:absolute;bottom:0;left:50%;width:1px;height:80px;background:#fff;opacity:.7}
+
+/* intro / model */
+.ug .model{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+.ug .model .ph{aspect-ratio:4/5}
+.ug .model h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.14em;margin:0 0 24px}
+.ug .spec{border-top:1px solid var(--line);margin-top:32px}
+.ug .spec dl{display:grid;grid-template-columns:96px 1fr;margin:0;border-bottom:1px solid var(--line);padding:14px 0;font-size:14px}
+.ug .spec dt{color:var(--mute)} .ug .spec dd{margin:0}
+
+/* points */
+.ug .points{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.ug .point .ph{aspect-ratio:1/1;margin-bottom:24px}
+.ug .point .num{font-family:var(--serif-en);font-size:30px;color:var(--accent);line-height:1}
+.ug .point h4{font-family:var(--serif);font-weight:400;font-size:17px;margin:12px 0}
+.ug .point p{font-size:14px;color:var(--sub);margin:0}
+
+/* gift */
+.ug .gift{background:var(--paper)}
+.ug .giftbox{border:1px solid var(--line);padding:56px 40px;text-align:center;position:relative}
+.ug .giftbox .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 20px;font-size:13px;color:var(--accent)}
+.ug .giftbox strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.12em;margin-bottom:8px}
+.ug .note{font-size:12px;color:var(--mute);line-height:1.9}
+
+/* flow */
+.ug .flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:f}
+.ug .flow li{padding:0 20px;border-left:1px solid var(--line);counter-increment:f}
+.ug .flow li:last-child{border-right:1px solid var(--line)}
+.ug .flow li:before{content:"STEP " counter(f,decimal-leading-zero);display:block;font-family:var(--serif-en);letter-spacing:.2em;color:var(--accent);font-size:13px}
+.ug .flow h4{font-family:var(--serif);font-weight:400;font-size:16px;margin:8px 0}
+.ug .flow p{font-size:13px;color:var(--sub);margin:0;line-height:1.9}
+
+/* form */
+.ug .formsec{background:var(--stone)}
+.ug form{background:var(--paper);padding:64px 56px}
+.ug .row{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.ug .row:first-of-type{border-top:1px solid var(--line)}
+.ug .row > label,.ug .row > .lbl{font-size:14px;padding-top:10px}
+.ug .req,.ug .opt{display:inline-block;font-size:10px;padding:0 8px;margin-left:8px;line-height:20px;letter-spacing:.1em;vertical-align:2px}
+.ug .req{background:var(--char);color:#fff} .ug .opt{border:1px solid var(--line);color:var(--mute)}
+.ug input[type=text],.ug input[type=tel],.ug input[type=email],.ug input[type=date],.ug select,.ug textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--line);background:var(--bg);font:inherit;font-size:15px;color:var(--ink);border-radius:0;appearance:none}
+.ug select{background-image:linear-gradient(45deg,transparent 50%,var(--sub) 50%),linear-gradient(135deg,var(--sub) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.ug input:focus,.ug select:focus,.ug textarea:focus{outline:none;border-color:var(--char);background:#fff}
+.ug .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ug .pair small{display:block;font-size:12px;color:var(--mute)}
+.ug .chips{display:flex;flex-wrap:wrap;gap:8px}
+.ug .chips label{cursor:pointer}
+.ug .chips input{position:absolute;opacity:0;pointer-events:none}
+.ug .chips span{display:inline-block;padding:8px 18px;border:1px solid var(--line);font-size:13px;transition:.2s;background:var(--bg)}
+.ug .chips input:checked + span{background:var(--char);border-color:var(--char);color:#fff}
+.ug .chips input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.ug .agree{text-align:center;margin:40px 0 32px;font-size:14px}
+.ug .agree a{text-decoration:underline}
+.ug .submit{text-align:center}
+.ug .thanks{display:none;text-align:center;background:var(--paper);padding:80px 24px}
+.ug .thanks h3{font-family:var(--serif);font-weight:400;font-size:22px}
+
+/* faq */
+.ug .faq details{border-bottom:1px solid var(--line);padding:24px 0}
+.ug .faq details:first-child{border-top:1px solid var(--line)}
+.ug .faq summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:16px;position:relative;padding:0 40px 0 36px}
+.ug .faq summary::-webkit-details-marker{display:none}
+.ug .faq summary:before{content:"Q";position:absolute;left:0;font-family:var(--serif-en);color:var(--accent);font-size:20px;top:-3px}
+.ug .faq summary:after{content:"+";position:absolute;right:8px;color:var(--mute)}
+.ug .faq details[open] summary:after{content:"−"}
+.ug .faq p{margin:16px 0 0;padding-left:36px;font-size:14px;color:var(--sub)}
+
+/* access / cta */
+.ug .access{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ug .access .map{aspect-ratio:4/3}
+.ug .access iframe{width:100%;height:100%;border:0;filter:grayscale(1)}
+.ug .tel{font-family:var(--serif-en);font-size:34px;letter-spacing:.12em;text-decoration:none}
+.ug .closing{background:var(--char);color:#fff;text-align:center}
+.ug .closing .ttl .en{color:#bdb8b0}
+.ug .closing .ttl:after{background:#666}
+.ug .closing .btn{background:#fff;color:var(--char);border-color:#fff}
+.ug .closing .btn:hover{background:transparent;color:#fff}
+
+/* sticky CTA (SP) */
+.ug .sticky{display:none}
+
+@media (max-width:820px){
+  .ug{font-size:14px}
+  .ug section{padding:80px 0}
+  .ug .ttl{margin-bottom:44px}
+  .ug .ttl h2{font-size:21px}
+  .ug .lead{font-size:15px;text-align:left}
+  .ug .model,.ug .access{grid-template-columns:1fr;gap:40px}
+  .ug .points{grid-template-columns:1fr;gap:48px}
+  .ug .flow{grid-template-columns:1fr 1fr;row-gap:32px}
+  .ug .flow li:nth-child(2){border-right:1px solid var(--line)}
+  .ug form{padding:40px 20px}
+  .ug .row{grid-template-columns:1fr;gap:8px;padding:20px 0}
+  .ug .row > label,.ug .row > .lbl{padding-top:0}
+  .ug .giftbox{padding:48px 20px}
+  .ug .btn{padding:18px 40px}
+  .ug .hero .copy{left:24px;right:24px}
+  .ug br.pc{display:none}
+  .ug .sticky{display:grid;grid-template-columns:1fr 1.6fr;position:fixed;left:0;right:0;bottom:0;z-index:50;font-size:13px;letter-spacing:.14em}
+  .ug .sticky a{padding:16px 0;text-align:center;text-decoration:none;color:#fff;background:var(--accent)}
+  .ug .sticky a + a{background:var(--char)}
+  .ug footer{padding-bottom:72px}
+}
+.ug footer{text-align:center;font-size:11px;color:var(--mute);padding:40px 0;letter-spacing:.2em}
+body{margin:0;background:#f5f4f2}
+/* ===== event 専用 ===== */
+.ug .datebadge{position:absolute;right:6%;top:12%;background:rgba(255,255,255,.92);padding:28px 32px;text-align:center;color:var(--ink)}
+.ug .datebadge .en{display:block;font-size:13px;color:var(--accent)}
+.ug .datebadge strong{display:block;font-family:var(--serif-en);font-weight:400;font-size:36px;letter-spacing:.06em;line-height:1.3;margin:4px 0 8px}
+.ug .datebadge small{font-size:13px;margin-left:4px;letter-spacing:.14em;text-transform:uppercase}
+.ug .datebadge i{font-style:normal;margin:0 10px;color:var(--mute)}
+.ug .datebadge > span:last-child{font-size:12px;letter-spacing:.14em}
+.ug .outline dl{grid-template-columns:110px 1fr}
+.ug .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ug .bnf{background:var(--paper);border:1px solid var(--line);padding:40px 24px;text-align:center}
+.ug .bnf .en{font-size:12px;color:var(--accent)}
+.ug .bnf h4{font-weight:400;font-size:14px;margin:12px 0 4px;color:var(--sub)}
+.ug .bnf strong{display:block;font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.1em}
+.ug .slots{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ug .day{background:var(--paper);padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ug .day .dh{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:8px}
+.ug .day .dh strong{font-family:var(--serif-en);font-weight:400;font-size:26px;letter-spacing:.06em}
+.ug .day .dh .en{font-size:13px;color:var(--accent)}
+.ug .day button{font-family:var(--serif-en);font-size:17px;letter-spacing:.06em;padding:12px 0;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;transition:.2s}
+.ug .day button:hover{border-color:var(--char)}
+.ug .day button.is-on{background:var(--char);border-color:var(--char);color:#fff}
+.ug .day button.is-full{color:var(--mute);cursor:not-allowed;background:var(--stone);position:relative}
+.ug .day button.is-full:after{content:"満";position:absolute;top:2px;right:4px;font-size:10px;font-family:var(--sans)}
+.ug input[readonly]{cursor:default}
+@media (max-width:820px){
+  .ug .datebadge{right:24px;left:24px;top:72px;padding:18px}
+  .ug .hero .copy h1 span{display:block;line-height:1.8;margin-top:8px}
+  .ug .datebadge strong{font-size:26px}
+  .ug .benefits,.ug .slots{grid-template-columns:1fr}
+  .ug .outline dl{grid-template-columns:80px 1fr}
+}
+</style>
+</head>
+<body>
+<div class="ug">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <!-- WP: イベント会場（モデルハウス）の写真に差し替え -->
+    <div class="ph">PHOTO ／ イベント会場 外観</div>
+    <div class="copy">
+      <span class="en">Event — Model House Fair</span>
+      <!-- WP: イベント名を差し替え -->
+      <h1>住まいづくりフェア<br><span style="font-size:.6em;letter-spacing:.2em">暮らしのための美しさに、触れる二日間。</span></h1>
+    </div>
+    <div class="datebadge">
+      <!-- WP: 開催日を差し替え -->
+      <span class="en">2026</span>
+      <strong>11.14<small>sat</small><i>—</i>11.15<small>sun</small></strong>
+      <span>10:00 – 17:00 ／ 完全予約制</span>
+    </div>
+  </section>
+
+  <!-- ===== INTRO ===== -->
+  <section>
+    <div class="narrow">
+      <p class="lead">
+        グレーを基調にした、静かで落ち着きのある空間。<br class="pc">
+        見せるために飾るのではなく、<br class="pc">
+        毎日の暮らしにそっと馴染む家とはどんなものか。<br class="pc">
+        モデルハウスを舞台に、ご家族でゆっくりと確かめていただく二日間です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== OUTLINE ===== -->
+  <section style="padding-top:0">
+    <div class="narrow">
+      <div class="spec outline">
+        <dl><dt>日時</dt><dd>【要確認】2026年11月14日（土）・15日（日）10:00 – 17:00</dd></dl>
+        <dl><dt>会場</dt><dd>勝目町モデルハウス<br>鹿児島県薩摩川内市勝目町5115-5</dd></dl>
+        <dl><dt>内容</dt><dd>モデルハウス見学／家づくり・資金計画の個別相談／お子さま向けキッズスペース</dd></dl>
+        <dl><dt>参加費</dt><dd>無料</dd></dl>
+        <dl><dt>予約</dt><dd>完全予約制・1組ずつのご案内（各回 先着【◯】組）</dd></dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENTS ===== -->
+  <section style="background:var(--paper)">
+    <div class="wrap">
+      <div class="ttl"><span class="en">Contents</span><h2>当日の内容</h2></div>
+      <div class="points">
+        <div class="point">
+          <div class="ph">PHOTO ／ LDK</div>
+          <div class="num">01</div>
+          <h4>モデルハウス見学</h4>
+          <p>素材の質感、光の入り方、動線の心地よさ。設計の意図を担当者が解説しながら、1組ずつゆっくりご案内します。</p>
+        </div>
+        <div class="point">
+          <div class="ph">PHOTO ／ 個別相談</div>
+          <div class="num">02</div>
+          <h4>家づくり・資金の個別相談</h4>
+          <p>「いくらの家なら無理なく建てられるか」。収入や暮らし方をもとに、総予算と月々の返済の目安を一緒に整理します。</p>
+        </div>
+        <div class="point">
+          <div class="ph">PHOTO ／ キッズスペース</div>
+          <div class="num">03</div>
+          <h4>キッズスペース完備</h4>
+          <p>小さなお子さま連れでも安心して見学いただけるよう、キッズスペースをご用意。ご家族そろってお越しください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFITS ===== -->
+  <section>
+    <div class="wrap">
+      <div class="ttl"><span class="en">Special</span><h2>ご来場特典</h2></div>
+      <!-- WP: 実際の特典内容に差し替え（以下は過去フェアを参考にしたサンプル） -->
+      <div class="benefits">
+        <div class="bnf">
+          <span class="en">Gift 01</span>
+          <h4>ご予約来場の方 全員に</h4>
+          <strong>【要確認】高級食パン</strong>
+          <p class="note">※先着【15】組さま限定</p>
+        </div>
+        <div class="bnf">
+          <span class="en">Gift 02</span>
+          <h4>お楽しみ抽選会</h4>
+          <strong>【要確認】ギフトカード</strong>
+          <p class="note">1等 10,000円分／2等 5,000円分 など</p>
+        </div>
+        <div class="bnf">
+          <span class="en">Gift 03</span>
+          <h4>アンケート回答の方へ</h4>
+          <strong>【要確認】施工事例集</strong>
+          <p class="note">Ungalleryの住まいをまとめた一冊</p>
+        </div>
+      </div>
+      <p class="note" style="text-align:center;margin-top:24px">※特典はご予約のうえご来場いただいた1家族さま1回限りです。<br>※住宅のご購入・建築をご検討中の方が対象です。同業者の方のご来場はご遠慮ください。</p>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE ===== -->
+  <section class="formsec" id="form">
+    <div class="wrap" style="max-width:920px">
+      <div class="ttl"><span class="en">Reservation</span><h2>ご予約</h2></div>
+      <p style="text-align:center;margin:-24px 0 40px">ご希望の日時をお選びください。<br class="pc">各回1組限定のため、お早めのご予約をおすすめします。</p>
+
+      <!-- WP: 枠の「満」は data-full 属性 or クラス is-full で手動管理（README参照） -->
+      <div class="slots" id="ugSlots">
+        <div class="day">
+          <div class="dh"><strong>11.14</strong><span class="en">sat</span></div>
+          <button type="button" data-v="11/14（土）10:00〜">10:00</button>
+          <button type="button" data-v="11/14（土）11:30〜">11:30</button>
+          <button type="button" data-v="11/14（土）13:30〜" class="is-full" disabled>13:30</button>
+          <button type="button" data-v="11/14（土）15:00〜">15:00</button>
+        </div>
+        <div class="day">
+          <div class="dh"><strong>11.15</strong><span class="en">sun</span></div>
+          <button type="button" data-v="11/15（日）10:00〜" class="is-full" disabled>10:00</button>
+          <button type="button" data-v="11/15（日）11:30〜">11:30</button>
+          <button type="button" data-v="11/15（日）13:30〜">13:30</button>
+          <button type="button" data-v="11/15（日）15:00〜">15:00</button>
+        </div>
+      </div>
+      <p class="note" style="text-align:center;margin:12px 0 48px">満 = 受付終了　／　ご都合が合わない方は備考欄に希望日時をご記入ください</p>
+
+      <!-- WP: このformタグ一式を Contact Form 7 のショートコードに置き換え -->
+      <form id="ugForm" novalidate>
+        <div class="row">
+          <label for="slot">ご希望日時<span class="req">必須</span></label>
+          <input type="text" id="slot" name="slot" placeholder="上の日程から選択してください" required readonly>
+        </div>
+        <div class="row">
+          <div class="lbl">ご来場人数<span class="req">必須</span></div>
+          <div class="pair">
+            <div><small>大人</small><select name="adult" required aria-label="大人の人数"><option>1名</option><option selected>2名</option><option>3名</option><option>4名以上</option></select></div>
+            <div><small>お子さま</small><select name="child" aria-label="お子さまの人数"><option>0名</option><option>1名</option><option>2名</option><option>3名以上</option></select></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="nm">お名前<span class="req">必須</span></label>
+          <input type="text" id="nm" name="name" placeholder="例）山田 太郎" required autocomplete="name">
+        </div>
+        <div class="row">
+          <label for="tl">電話番号<span class="req">必須</span></label>
+          <input type="tel" id="tl" name="tel" placeholder="例）090-1234-5678" required autocomplete="tel">
+        </div>
+        <div class="row">
+          <label for="ml">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="ml" name="email" placeholder="例）info@example.com" required autocomplete="email">
+        </div>
+        <div class="row">
+          <div class="lbl">土地について<span class="opt">任意</span></div>
+          <div class="chips">
+            <label><input type="radio" name="land" value="土地あり"><span>土地あり</span></label>
+            <label><input type="radio" name="land" value="土地探し中"><span>土地探し中</span></label>
+            <label><input type="radio" name="land" value="建て替え"><span>建て替え</span></label>
+            <label><input type="radio" name="land" value="未定"><span>まだ未定</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="lbl">当日相談したいこと<span class="opt">複数可</span></div>
+          <div class="chips">
+            <label><input type="checkbox" name="topic[]" value="デザイン・間取り"><span>デザイン・間取り</span></label>
+            <label><input type="checkbox" name="topic[]" value="資金計画・住宅ローン"><span>資金計画・住宅ローン</span></label>
+            <label><input type="checkbox" name="topic[]" value="土地探し"><span>土地探し</span></label>
+            <label><input type="checkbox" name="topic[]" value="見学のみ"><span>まずは見学だけ</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="msg">備考<span class="opt">任意</span></label>
+          <textarea id="msg" name="message" rows="4" placeholder="別日をご希望の方、ご質問などはこちらへ"></textarea>
+        </div>
+
+        <div class="agree">
+          <label><input type="checkbox" name="privacy" required> <a href="/privacy/" target="_blank">個人情報の取り扱い</a>に同意する</label>
+        </div>
+        <div class="submit"><button type="submit" class="btn">この内容で予約する</button></div>
+      </form>
+
+      <div class="thanks" id="ugThanks" role="status">
+        <span class="en" style="color:var(--accent);font-size:13px">Thank you</span>
+        <h3>ご予約を受け付けました</h3>
+        <p>確認のご連絡を担当者よりお送りいたします。<br>当日、会場でお待ちしております。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <div class="narrow">
+      <div class="ttl"><span class="en">Q&amp;A</span><h2>よくあるご質問</h2></div>
+      <div class="faq">
+        <details><summary>まだ家を建てるか決めていなくても参加できますか？</summary><p>はい、大歓迎です。情報収集の段階でご参加される方がほとんどです。無理な営業はいたしません。</p></details>
+        <details><summary>子ども連れでも大丈夫ですか？</summary><p>キッズスペースをご用意しています。お子さまの人数をフォームでお知らせください。</p></details>
+        <details><summary>駐車場はありますか？</summary><p>【要確認】会場に駐車スペースをご用意しています。</p></details>
+        <details><summary>予約のキャンセル・変更はできますか？</summary><p>お電話（0996-41-3938）にてご連絡ください。各回1組限定のため、早めにご連絡いただけると助かります。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCESS ===== -->
+  <section style="background:var(--paper)">
+    <div class="wrap">
+      <div class="ttl"><span class="en">Access</span><h2>会場</h2></div>
+      <div class="access">
+        <div class="map">
+          <iframe title="会場の地図" loading="lazy" src="https://www.google.com/maps?q=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E8%96%A9%E6%91%A9%E5%B7%9D%E5%86%85%E5%B8%82%E5%8B%9D%E7%9B%AE%E7%94%BA5115-5&output=embed"></iframe>
+        </div>
+        <div>
+          <h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 16px">勝目町モデルハウス</h3>
+          <p style="margin:0">鹿児島県薩摩川内市勝目町5115-5</p>
+          <p style="margin:32px 0 0;font-size:13px;color:var(--sub)">お電話でのご予約・お問い合わせ</p>
+          <a class="tel" href="tel:0996413938">0996-41-3938</a>
+          <p class="note" style="margin:0">受付時間 10:00 – 17:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section class="closing">
+    <div class="narrow">
+      <div class="ttl"><span class="en">Join us</span><h2>ご家族そろって、お越しください。</h2></div>
+      <p style="margin:0 0 40px">各回1組限定のご案内です。<br>ご希望の日時が埋まる前に、お早めにご予約ください。</p>
+      <a class="btn" href="#form">日時を選んで予約する</a>
+    </div>
+  </section>
+
+  <footer class="en">© Ungallery</footer>
+
+  <div class="sticky">
+    <a href="tel:0996413938">電話する</a>
+    <a href="#form">フェアを予約</a>
+  </div>
+</div>
+
+<script>
+/* 日程ボタン → フォームに反映。送信はプレビュー用（WPではCF7が処理） */
+(function(){
+  var f=document.getElementById('ugForm'), t=document.getElementById('ugThanks'), s=document.getElementById('slot');
+  document.querySelectorAll('#ugSlots button:not([disabled])').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#ugSlots button').forEach(function(x){x.classList.remove('is-on');x.setAttribute('aria-pressed','false')});
+      b.classList.add('is-on'); b.setAttribute('aria-pressed','true');
+      s.value=b.dataset.v;
+    });
+  });
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!s.value){document.getElementById('ugSlots').scrollIntoView({behavior:'smooth',block:'center'});alert('ご希望の日時を選択してください');return}
+    if(!f.checkValidity()){f.reportValidity();return}
+    f.style.display='none'; t.style.display='block';
+    t.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+})();
+</script>
+</body>
+</html>
