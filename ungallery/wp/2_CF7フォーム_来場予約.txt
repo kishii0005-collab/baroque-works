@@ -1,0 +1,15 @@
+<div class="row"><label>第1希望日<span class="req">必須</span></label><div class="pair"><div>[date* date1]</div><div>[select* time1 first_as_label "時間を選択" "10:00〜" "11:00〜" "13:00〜" "14:00〜" "15:00〜" "16:00〜"]</div></div></div>
+<div class="row"><label>第2希望日<span class="opt">任意</span></label><div class="pair"><div>[date date2]</div><div>[select time2 first_as_label "時間を選択" "10:00〜" "11:00〜" "13:00〜" "14:00〜" "15:00〜" "16:00〜"]</div></div></div>
+<div class="row"><div class="lbl">ご来場人数<span class="req">必須</span></div><div class="pair"><div><small>大人</small>[select* adult "1名" "2名" "3名" "4名以上"]</div><div><small>お子さま</small>[select child "0名" "1名" "2名" "3名以上"]</div></div></div>
+<div class="row"><label>お名前<span class="req">必須</span></label>[text* your-name autocomplete:name placeholder "例）山田 太郎"]</div>
+<div class="row"><label>ふりがな<span class="req">必須</span></label>[text* kana placeholder "例）やまだ たろう"]</div>
+<div class="row"><label>電話番号<span class="req">必須</span></label>[tel* tel placeholder "例）090-1234-5678"]</div>
+<div class="row"><label>メールアドレス<span class="req">必須</span></label>[email* your-email placeholder "例）info@example.com"]</div>
+<div class="row"><label>お住まいの地域<span class="opt">任意</span></label>[select area first_as_label "選択してください" "薩摩川内市" "鹿児島市" "姶良市" "霧島市" "いちき串木野市" "出水市" "阿久根市" "さつま町" "その他"]</div>
+<div class="row"><div class="lbl">土地について<span class="opt">任意</span></div><div class="chips">[radio land use_label_element "土地あり" "土地探し中" "建て替え" "まだ未定"]</div></div>
+<div class="row"><div class="lbl">建築予定時期<span class="opt">任意</span></div><div class="chips">[radio when use_label_element "半年以内" "1年以内" "2年以内" "未定"]</div></div>
+<div class="row"><div class="lbl">ご相談したいこと<span class="opt">複数可</span></div><div class="chips">[checkbox topic use_label_element "デザイン・間取り" "資金計画・住宅ローン" "土地探し" "性能・断熱" "まずは見学だけ"]</div></div>
+<div class="row"><label>当社を知ったきっかけ<span class="opt">任意</span></label>[select source first_as_label "選択してください" "Instagram" "Google検索" "Googleマップ" "チラシ" "知人の紹介" "通りがかり" "その他"]</div>
+<div class="row"><label>ご質問・ご要望<span class="opt">任意</span></label>[textarea message placeholder "お子さま連れ・車いすでのご来場など、事前にお知らせいただけるとスムーズです。"]</div>
+<div class="agree">[acceptance privacy] <a href="/privacy/" target="_blank">個人情報の取り扱い</a>に同意する [/acceptance]</div>
+<div class="submit">[submit class:btn "この内容で予約する"]</div>

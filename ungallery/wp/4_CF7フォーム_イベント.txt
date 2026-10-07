@@ -1,0 +1,10 @@
+<div class="row"><label>ご希望日時<span class="req">必須</span></label>[text* slot id:slot readonly placeholder "上の日程から選択してください"]</div>
+<div class="row"><div class="lbl">ご来場人数<span class="req">必須</span></div><div class="pair"><div><small>大人</small>[select* adult "1名" "2名" "3名" "4名以上"]</div><div><small>お子さま</small>[select child "0名" "1名" "2名" "3名以上"]</div></div></div>
+<div class="row"><label>お名前<span class="req">必須</span></label>[text* your-name autocomplete:name placeholder "例）山田 太郎"]</div>
+<div class="row"><label>電話番号<span class="req">必須</span></label>[tel* tel placeholder "例）090-1234-5678"]</div>
+<div class="row"><label>メールアドレス<span class="req">必須</span></label>[email* your-email placeholder "例）info@example.com"]</div>
+<div class="row"><div class="lbl">土地について<span class="opt">任意</span></div><div class="chips">[radio land use_label_element "土地あり" "土地探し中" "建て替え" "まだ未定"]</div></div>
+<div class="row"><div class="lbl">当日相談したいこと<span class="opt">複数可</span></div><div class="chips">[checkbox topic use_label_element "デザイン・間取り" "資金計画・住宅ローン" "土地探し" "まずは見学だけ"]</div></div>
+<div class="row"><label>備考<span class="opt">任意</span></label>[textarea message placeholder "別日をご希望の方、ご質問などはこちらへ"]</div>
+<div class="agree">[acceptance privacy] <a href="/privacy/" target="_blank">個人情報の取り扱い</a>に同意する [/acceptance]</div>
+<div class="submit">[submit class:btn "この内容で予約する"]</div>
