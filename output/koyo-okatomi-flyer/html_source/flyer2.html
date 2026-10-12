@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>岡富町 中古戸建 チラシ v2</title>
+<link rel="stylesheet" href="fonts/local.css">
+<style>
+  :root{--navy:#14306b;--red:#e0202a;--yel:#ffe23a;--yel2:#fff6b0;--gold:#c9a24a;--ink:#1a1a1a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:A4;margin:0}
+  body{font-family:"Noto Sans JP","IPAPGothic",sans-serif;color:var(--ink);font-feature-settings:"palt";-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .num{font-family:"Noto Serif JP",serif;font-weight:900}
+  .outline{paint-order:stroke fill;-webkit-text-stroke:0}
+  .ph{color:#c00}
+
+  /* ===== PAGE 1 ===== */
+  .p1{background:#fff}
+  .head{position:absolute;left:0;top:0;width:100%;height:30mm;background:var(--navy);
+    background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 2mm,transparent 2mm 4mm)}
+  .head .co{position:absolute;left:8mm;top:3mm;color:#fff}
+  .head .co b{font-size:15pt;letter-spacing:.1em;display:block}
+  .head .co small{font-size:6.5pt;letter-spacing:.2em;opacity:.9}
+  .head .ribbon{position:absolute;left:8mm;top:19mm;background:var(--yel);color:var(--navy);font-weight:900;font-size:10pt;padding:1.2mm 4mm;letter-spacing:.1em;clip-path:polygon(0 0,100% 0,97% 50%,100% 100%,0 100%,3% 50%)}
+  .head .new{position:absolute;right:10mm;top:-4mm;width:30mm;height:30mm;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;line-height:1;box-shadow:0 0 0 1.5mm #fff,0 0 0 2.3mm var(--red);transform:rotate(-8deg)}
+  .head .new span{font-size:7.5pt;letter-spacing:.1em}
+  .head .new b{font-size:16pt;font-family:"Noto Serif JP",serif;font-style:italic}
+
+  .catch{position:absolute;left:8mm;top:33mm;width:194mm}
+  .catch .l1{font-size:12pt;font-weight:900;color:var(--navy);letter-spacing:.06em}
+  .catch .l1 u{text-decoration:none;background:linear-gradient(transparent 55%,var(--yel) 55%);padding:0 .5mm}
+  .catch .l2{font-size:23pt;font-weight:900;line-height:1.2;color:var(--ink);letter-spacing:.01em;margin-top:1mm}
+  .catch .l2 .r{color:var(--red)}
+  .catch .l2 .b{color:var(--navy)}
+
+  .mainph{position:absolute;left:8mm;top:64mm;width:118mm;height:82mm;background:url(img/ldk.jpg) center/cover;border:1.2mm solid #fff;box-shadow:0 0 0 .4mm #999,2px 3px 6px rgba(0,0,0,.25)}
+  .mainph .cap{position:absolute;left:0;top:0;background:rgba(20,48,107,.9);color:#fff;font-size:8pt;font-weight:700;padding:1mm 3mm}
+  .subph{position:absolute;border:1.2mm solid #fff;box-shadow:0 0 0 .4mm #999,2px 3px 6px rgba(0,0,0,.25);background:center/cover}
+  .subph .cap{position:absolute;left:0;bottom:0;background:rgba(0,0,0,.6);color:#fff;font-size:6.8pt;font-weight:700;padding:.6mm 2mm}
+
+  .pricebox{position:absolute;left:130mm;top:64mm;width:72mm;height:56mm;background:var(--yel2);border:.8mm solid var(--navy);padding:3mm 3mm 2mm;text-align:center}
+  .pricebox .t{display:inline-block;background:var(--navy);color:#fff;font-size:9pt;font-weight:900;padding:.8mm 5mm;letter-spacing:.3em}
+  .pricebox .p{color:var(--red);font-size:44pt;line-height:1.05;margin-top:1mm;white-space:nowrap;text-shadow:1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+  .pricebox .p small{font-size:16pt}
+  .pricebox .d{font-size:8pt;font-weight:700;color:var(--navy);line-height:1.4;margin-top:.5mm}
+  .pricebox .d b{font-size:10pt}
+  .pricebox .ask{position:absolute;right:-3mm;top:-7mm;background:var(--red);color:#fff;font-size:7.5pt;font-weight:900;padding:1mm 3mm;transform:rotate(6deg);border:.5mm solid #fff;box-shadow:0 0 0 .4mm var(--red)}
+
+  .feat{position:absolute;left:130mm;top:121mm;width:72mm;height:25mm;display:flex;flex-wrap:wrap;gap:1.5mm;align-content:flex-start}
+  .feat span{background:var(--navy);color:#fff;font-size:7.5pt;font-weight:700;padding:1mm 2.2mm;border-radius:1mm}
+  .feat span.y{background:var(--red)}
+
+  .pts{position:absolute;left:8mm;top:150mm;width:194mm;height:46mm;border:.8mm solid var(--navy);background:#fff;padding:2.5mm 3mm 2mm 3mm}
+  .pts .ttl{position:absolute;left:-0.8mm;top:-6mm;background:var(--navy);color:var(--yel);font-size:10.5pt;font-weight:900;padding:1mm 5mm;letter-spacing:.2em}
+  .pts .row{display:flex;gap:3mm;margin-top:3mm}
+  .pt{flex:1;display:flex;gap:2mm;align-items:flex-start}
+  .pt .no{flex:none;width:11mm;height:11mm;border-radius:50%;background:var(--yel);border:.6mm solid var(--navy);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);font-size:7pt;line-height:1;text-align:center}
+  .pt .no b{display:block;font-size:12pt;font-family:"Noto Serif JP",serif}
+  .pt h3{font-size:10.5pt;font-weight:900;color:var(--red);line-height:1.25;margin-bottom:1mm}
+  .pt p{font-size:7.4pt;line-height:1.5}
+
+  .pay{position:absolute;left:8mm;top:200mm;width:194mm;height:42mm;background:var(--navy);color:#fff;padding:3mm 4mm}
+  .pay .ttl{position:absolute;left:4mm;top:-4mm;background:var(--red);color:#fff;font-weight:900;font-size:10pt;padding:1mm 5mm;letter-spacing:.2em;border:.5mm solid #fff}
+  .pay .cond{position:absolute;left:4mm;top:9mm;width:52mm;font-size:7.3pt;line-height:1.6;border-right:1px solid rgba(255,255,255,.4);padding-right:3mm}
+  .pay .cond b{color:var(--yel)}
+  .pay .calc{position:absolute;left:62mm;top:6mm;right:4mm;display:flex;align-items:flex-end;gap:2.5mm;white-space:nowrap}
+  .pay .calc > div{display:flex;flex-direction:column;align-items:center}
+  .pay .cap{font-size:7.2pt;font-weight:700;color:var(--yel);margin-bottom:1mm}
+  .pay .big{font-size:31pt;line-height:1}
+  .pay .big small{font-size:12pt}
+  .pay .mid{font-size:17pt;line-height:1.1;color:#fff;display:block}
+  .pay .mid small{font-size:8pt}
+  .pay .op{font-size:20pt;font-weight:900;color:var(--yel);padding-bottom:1mm}
+  .pay .res{background:var(--yel);color:var(--red);padding:1.5mm 4mm 2mm;border-radius:1.5mm}
+  .pay .res .cap{color:var(--navy)}
+  .pay .res .big{font-size:33pt}
+  .pay .warn{position:absolute;left:62mm;right:4mm;bottom:2mm;font-size:6.2pt;line-height:1.4;opacity:.95}
+
+  .spec1{position:absolute;left:8mm;top:245mm;width:122mm;font-size:7.3pt}
+  .spec1 table{width:100%;border-collapse:collapse}
+  .spec1 th,.spec1 td{border:1px solid #9aa;padding:.9mm 1.5mm;line-height:1.3;vertical-align:top;text-align:left}
+  .spec1 th{background:#e6ebf5;color:var(--navy);width:18mm;white-space:nowrap;font-weight:700}
+
+  .contact{position:absolute;left:133mm;top:245mm;width:69mm;height:40mm;border:.8mm solid var(--red);background:#fff;padding:2.5mm 3mm}
+  .contact .ttl{position:absolute;left:-0.8mm;top:-4.5mm;background:var(--red);color:#fff;font-weight:900;font-size:8.5pt;padding:.8mm 4mm;letter-spacing:.15em}
+  .contact .nm{font-size:13pt;font-weight:900;color:var(--navy);letter-spacing:.08em;margin-top:2mm}
+  .contact .tel{font-size:19pt;color:var(--red);line-height:1.1;margin-top:.5mm}
+  .contact .tel small{font-size:7pt;font-weight:900;margin-right:1mm;color:var(--navy)}
+  .contact .ad{font-size:6.6pt;line-height:1.45;margin-top:1mm}
+  .contact .tanto{position:absolute;right:3mm;bottom:3mm;background:var(--yel);color:var(--navy);font-weight:900;font-size:8pt;padding:1mm 3mm;border-radius:999px}
+  .contact .qr{position:absolute;right:3mm;top:3mm;width:14mm;height:14mm;border:1px dashed #999;font-size:5.5pt;color:#888;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+
+  .fn{position:absolute;left:8mm;right:8mm;bottom:3mm;font-size:5.7pt;line-height:1.4;color:#444}
+
+  /* ===== PAGE 2 ===== */
+  .h2bar{position:absolute;left:0;top:0;width:100%;height:14mm;background:var(--navy);color:#fff;display:flex;align-items:center;padding:0 8mm;justify-content:space-between}
+  .h2bar b{font-size:12pt;letter-spacing:.1em}
+  .h2bar b span{color:var(--yel);font-size:9pt;margin-left:3mm}
+  .h2bar small{font-size:8pt;letter-spacing:.1em}
+  .st{display:flex;align-items:center;gap:2mm;margin-bottom:2.5mm}
+  .st h3{background:var(--navy);color:var(--yel);font-size:10.5pt;font-weight:900;padding:1mm 4mm;letter-spacing:.15em}
+  .st small{font-size:7.5pt;color:#444}
+  .eq{position:absolute;left:8mm;top:19mm;width:194mm}
+  .eqg{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm}
+  .eqc{position:relative;height:33mm;background:#ddd center/cover;border:1mm solid #fff;box-shadow:0 0 0 .3mm #999}
+  .eqc .n{position:absolute;left:-2mm;top:-2mm;width:7mm;height:7mm;border-radius:50%;background:var(--red);color:#fff;font-size:8.5pt;font-weight:900;display:flex;align-items:center;justify-content:center;border:.5mm solid #fff}
+  .eqc .c{position:absolute;left:0;right:0;bottom:0;background:rgba(20,48,107,.9);color:#fff;font-size:7.3pt;font-weight:700;padding:.8mm 2mm}
+  .eqc.t{background:var(--yel2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:.6mm solid var(--navy);box-shadow:none}
+  .eqc.t .big{font-size:16pt;font-weight:900;color:var(--navy);line-height:1.1}
+  .eqc.t .big small{font-size:8pt}
+  .eqc.t .lb{font-size:7.5pt;font-weight:700;margin-top:1.2mm;color:var(--red);line-height:1.3}
+
+  .midrow{position:absolute;left:8mm;top:101mm;width:194mm;display:flex;gap:5mm}
+  .solar{width:94mm}
+  .solar .hl{background:var(--yel2);border:.6mm solid var(--navy);padding:2mm 3mm;margin-bottom:2mm;font-size:8.5pt;font-weight:900;color:var(--navy);line-height:1.5}
+  .solar .hl b{color:var(--red);font-size:14pt}
+  .solar table{width:100%;border-collapse:collapse;font-size:7pt}
+  .solar th,.solar td{border:1px solid #9aa;padding:.5mm 2mm;text-align:right}
+  .solar th{background:var(--navy);color:#fff;text-align:center}
+  .solar td:first-child{text-align:center;background:#e6ebf5;font-weight:700;color:var(--navy)}
+  .solar tr.tt td{background:var(--yel2);font-weight:900;color:var(--red)}
+  .solar .bar{display:inline-block;height:2.2mm;background:var(--red);vertical-align:middle;margin-right:1.5mm}
+  .solar td.bc{text-align:left;width:34mm;background:#fff}
+  .solar .cap{font-size:6.3pt;color:#444;line-height:1.45;margin-top:1.5mm}
+  .rt{flex:1;display:flex;flex-direction:column;gap:3mm}
+  .box{border:.6mm solid var(--navy);background:#fff;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#777;font-size:7.5pt;line-height:1.6}
+  .box .pin{position:absolute;left:-0.6mm;top:-0.6mm;background:var(--navy);color:var(--yel);font-size:7.5pt;font-weight:900;padding:.8mm 3mm}
+  .acc{background:#e6ebf5;padding:2mm 3mm;font-size:7.6pt;line-height:1.6}
+  .acc b{color:var(--navy)}
+
+  .full{position:absolute;left:8mm;top:213mm;width:194mm}
+  .full table{width:100%;border-collapse:collapse;font-size:7.2pt}
+  .full th,.full td{border:1px solid #9aa;padding:1mm 1.8mm;text-align:left;vertical-align:top;line-height:1.3}
+  .full th{width:21mm;background:#e6ebf5;color:var(--navy);font-weight:700;white-space:nowrap}
+  .full td{width:42mm}
+
+  .f2{position:absolute;left:0;bottom:0;width:100%;height:21mm;background:var(--navy);color:#fff;padding:0 8mm;display:flex;align-items:center;justify-content:space-between}
+  .f2 .nm{font-size:13pt;font-weight:900;letter-spacing:.08em}
+  .f2 .nm small{display:block;font-size:6.5pt;font-weight:400;opacity:.85;letter-spacing:.12em}
+  .f2 .tel{font-size:19pt;line-height:1;color:var(--yel)}
+  .f2 .tel small{font-size:7pt;font-weight:900;margin-right:1.5mm;color:#fff}
+  .f2 .info{font-size:6.8pt;line-height:1.5;text-align:right}
+  .f2 .ph{color:#ffd1d1}
+  .n2{position:absolute;left:8mm;right:8mm;bottom:22.5mm;font-size:5.7pt;color:#444;line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1 ===== -->
+<section class="page p1">
+  <div class="head">
+    <div class="co"><b>向洋ハウジング</b><small>KOYO HOUSING ／ 延岡市の工務店</small></div>
+    <div class="ribbon">延岡市岡富町　中古戸建　3LDK</div>
+    <div class="new"><span>一条工務店</span><b>施工</b><span>の家</span></div>
+  </div>
+
+  <div class="catch">
+    <div class="l1"><u>延岡インター近く</u>　×　<u>イオンまで徒歩2分</u>　×　<u>区画整理地内</u></div>
+    <div class="l2"><span class="b">太陽光6.72kW・床暖房・全館空調</span>つき。<br>光熱費を抑えて暮らす、<span class="r">吹き抜けの3LDK。</span></div>
+  </div>
+
+  <div class="mainph"><div class="cap">開放的な吹き抜けLDK・対面キッチン</div></div>
+  <div class="subph" style="left:8mm;top:112mm;width:38mm;height:34mm;background-image:url(img/exterior.jpg);background-position:center 30%"><div class="cap">外観</div></div>
+  <div class="subph" style="left:48mm;top:124mm;width:30mm;height:22mm;background-image:url(img/void.jpg)"><div class="cap">吹き抜け</div></div>
+  <div class="subph" style="left:80mm;top:124mm;width:30mm;height:22mm;background-image:url(img/kitchen.jpg)"><div class="cap">キッチン</div></div>
+
+  <div class="pricebox">
+    <div class="ask">内覧受付中！</div>
+    <div class="t">販売価格</div>
+    <div class="p num">3,850<small>万円</small></div>
+    <div class="d">木造2階建て　<b>3LDK</b><br>延床 <b>31.80坪</b>（105.13㎡）<br>オール電化</div>
+  </div>
+  <div class="feat">
+    <span class="y">太陽光 6.72kW</span><span class="y">床暖房</span><span>全館さらぽか空調</span><span>エアコン2台付</span><span>オール電化</span><span>吹き抜け</span><span>区画整理地内</span><span>延岡IC近く</span>
+  </div>
+
+  <div class="pts">
+    <div class="ttl">ここがおすすめ！</div>
+    <div class="row">
+      <div class="pt"><div class="no">ポイント<b>1</b></div><div><h3>延岡インター近く<br>人気の岡富町・区画整理地内</h3><p>延岡市で人気の延岡インター近く。整った区画と道路で、通勤も休日のお出かけもスムーズです。</p></div></div>
+      <div class="pt"><div class="no">ポイント<b>2</b></div><div><h3>イオンショッピングモール<br>まで徒歩2分</h3><p>毎日の買い物、外食、急な用事まで歩いて完結。お子さまのいるご家庭にうれしい立地です。</p></div></div>
+      <div class="pt"><div class="no">ポイント<b>3</b></div><div><h3>太陽光6.72kW搭載<br>床暖房・全館空調つき</h3><p>電気を使いながら売電も。床暖房と全館さらぽか空調で、冬あたたかく夏さらっと快適に。</p></div></div>
+    </div>
+  </div>
+
+  <div class="pay">
+    <div class="ttl">お支払い例</div>
+    <div class="cond">借入金 <b>3,850万円</b>／自己資金 <b>0円</b><br>宮崎銀行　変動金利 <b>1.6%</b><br>返済期間 <b>40年</b>（480回）<br>元利均等返済・ボーナス払いなし</div>
+    <div class="calc">
+      <div><div class="cap">月々のお支払い額</div><div class="big num">108,646<small>円</small></div></div>
+      <div><div class="op">−</div></div>
+      <div><div class="cap">売電収入（月平均）※</div><div class="mid num">9,095<small>円</small></div></div>
+      <div><div class="op">＝</div></div>
+      <div class="res"><div class="cap">実質のご負担（目安）</div><div class="big num">99,551<small>円</small></div></div>
+    </div>
+    <div class="warn">※返済額はローン内容・審査結果により異なります。諸費用は別途。※売電収入は当物件の2025年実績（年間109,149円）の月平均。日照等により変動し、将来の金額をお約束するものではありません。</div>
+  </div>
+
+  <div class="spec1">
+    <table>
+      <tr><th>所在地</th><td>宮崎県延岡市岡富町2147番</td><th>構造</th><td>木造2階建て</td></tr>
+      <tr><th>間取り</th><td>3LDK（吹き抜けLDK）</td><th>延床面積</th><td>105.13㎡（31.80坪）</td></tr>
+      <tr><th>設備</th><td colspan="3">オール電化／太陽光パネル6.72kW／床暖房／全館さらぽか空調／エアコン2台</td></tr>
+      <tr><th>築年月</th><td class="ph">【要記入】○○年○月</td><th>土地面積</th><td class="ph">【要記入】○○㎡</td></tr>
+      <tr><th>取引態様</th><td class="ph">【要記入】仲介／売主</td><th>施工</th><td>一条工務店</td></tr>
+    </table>
+  </div>
+
+  <div class="contact">
+    <div class="ttl">お問い合わせ・内覧予約</div>
+    <div class="qr">QR<br>物件<br>ページ</div>
+    <div class="nm">向洋ハウジング</div>
+    <div class="tel num"><small>TEL</small><span class="ph">0982-00-0000</span></div>
+    <div class="ad"><span class="ph">【要記入】住所／営業時間／定休日<br>宅地建物取引業　免許番号</span></div>
+    <div class="tanto">担当：松尾</div>
+  </div>
+
+  <div class="fn">※掲載の写真は撮影時のものです。家具・家電等は販売価格に含まれません。※表示価格に消費税は含まれておりません。※本チラシの内容は作成時点の情報であり、成約の際はご容赦ください。※太陽光発電の固定価格買取期間の残存年数については担当者にお尋ねください。</div>
+</section>
+
+<!-- ===== PAGE 2 ===== -->
+<section class="page">
+  <div class="h2bar"><b>延岡市岡富町　中古戸建<span>3LDK ／ 木造2階建て ／ 3,850万円</span></b><small>向洋ハウジング</small></div>
+
+  <div class="eq">
+    <div class="st"><h3>設備・仕様</h3><small>一条工務店施工の住まいに、暮らしを快適にする設備がそろっています</small></div>
+    <div class="eqg">
+      <div class="eqc" style="background-image:url(img/ldk2.jpg)"><div class="n">1</div><div class="c">吹き抜けLDK</div></div>
+      <div class="eqc" style="background-image:url(img/kitchen.jpg)"><div class="n">2</div><div class="c">対面アイランドキッチン</div></div>
+      <div class="eqc" style="background-image:url(img/void.jpg)"><div class="n">3</div><div class="c">高窓で明るい吹き抜け</div></div>
+      <div class="eqc" style="background-image:url(img/dining.jpg)"><div class="n">4</div><div class="c">エアコン2台付き</div></div>
+      <div class="eqc t"><div class="n">5</div><div class="big">6.72<small>kW</small></div><div class="lb">太陽光パネル搭載</div></div>
+      <div class="eqc t"><div class="n">6</div><div class="big">床暖房</div><div class="lb">冬もあたたかなLDK</div></div>
+      <div class="eqc t"><div class="n">7</div><div class="big" style="font-size:13pt">全館さらぽか空調</div><div class="lb">全館空調システム</div></div>
+      <div class="eqc t"><div class="n">8</div><div class="big">オール電化</div><div class="lb">IHクッキングヒーター等</div></div>
+    </div>
+  </div>
+
+  <div class="midrow">
+    <div class="solar">
+      <div class="st"><h3>太陽光 売電実績</h3><small>2025年1〜12月（当物件の実績）</small></div>
+      <div class="hl">年間売電額 <b class="num">109,149円</b>／月平均 約9,095円<br><span style="font-weight:400;font-size:7.5pt">晴天の多い延岡の日照を活かし、電気を使いながら売電収入も。</span></div>
+      <table>
+        <tr><th>月</th><th>売電額（円）</th><th></th></tr>
+        <tr><td>1月</td><td>1,826</td><td class="bc"><span class="bar" style="width:3.4mm"></span></td></tr>
+        <tr><td>2月</td><td>4,945</td><td class="bc"><span class="bar" style="width:9.1mm"></span></td></tr>
+        <tr><td>3月</td><td>10,671</td><td class="bc"><span class="bar" style="width:19.6mm"></span></td></tr>
+        <tr><td>4月</td><td>17,940</td><td class="bc"><span class="bar" style="width:33mm"></span></td></tr>
+        <tr><td>5月</td><td>14,977</td><td class="bc"><span class="bar" style="width:27.6mm"></span></td></tr>
+        <tr><td>6月</td><td>11,259</td><td class="bc"><span class="bar" style="width:20.7mm"></span></td></tr>
+        <tr><td>7月</td><td>14,470</td><td class="bc"><span class="bar" style="width:26.6mm"></span></td></tr>
+        <tr><td>8月</td><td>14,042</td><td class="bc"><span class="bar" style="width:25.8mm"></span></td></tr>
+        <tr><td>9月</td><td>9,041</td><td class="bc"><span class="bar" style="width:16.6mm"></span></td></tr>
+        <tr><td>10〜12月</td><td>9,979</td><td class="bc"><span class="bar" style="width:18.4mm"></span><span style="font-size:6pt;color:#777">3か月合計</span></td></tr>
+        <tr class="tt"><td>合計</td><td>109,150</td><td class="bc"></td></tr>
+      </table>
+      <div class="cap">※売電額はモニター表示値（円未満四捨五入）。10〜12月は合計から1〜9月を差し引いた金額。日照・使用状況により変動し、将来の売電額を保証するものではありません。</div>
+    </div>
+    <div class="rt">
+      <div class="box" style="height:44mm"><span class="pin">現地案内図</span>【Canvaで差し替え】<br>延岡IC・イオン延岡ショッピングセンター・現地を入れた地図</div>
+      <div class="acc"><b>アクセス</b>　イオン延岡ショッピングセンター 徒歩2分（約<span class="ph">【○○】</span>m）／ 延岡IC 車で約<span class="ph">【○】</span>分<br><span style="font-size:6.4pt;color:#555">※徒歩分数は80mを1分として算出（端数切上げ）。小・中学校区は要記入。</span></div>
+      <div class="box" style="height:38mm"><span class="pin">間取り図</span>【Canvaで差し替え】<br>1F：LDK（吹き抜け）・水まわり ／ 2F：洋室3室</div>
+    </div>
+  </div>
+
+  <div class="full">
+    <div class="st"><h3>物件概要</h3></div>
+    <table>
+      <tr><th>物件種目</th><td>中古一戸建て</td><th>所在地</th><td>宮崎県延岡市岡富町2147番</td><th>価格</th><td><b>3,850万円</b></td></tr>
+      <tr><th>間取り</th><td>3LDK</td><th>建物面積</th><td>105.13㎡（31.80坪）</td><th>土地面積</th><td class="ph">【要記入】○○㎡（○○坪）</td></tr>
+      <tr><th>構造・階数</th><td>木造2階建て</td><th>築年月</th><td class="ph">【要記入】○○年○月</td><th>施工会社</th><td>一条工務店</td></tr>
+      <tr><th>設備</th><td colspan="3">オール電化／太陽光発電6.72kW／床暖房／全館さらぽか空調／エアコン2台／吹き抜け</td><th>駐車場</th><td class="ph">【要記入】○台</td></tr>
+      <tr><th>用途地域</th><td class="ph">【要記入】</td><th>接道状況</th><td class="ph">【要記入】</td><th>土地権利</th><td class="ph">【要記入】所有権</td></tr>
+      <tr><th>現況</th><td class="ph">【要記入】居住中／空家</td><th>引渡し</th><td class="ph">【要記入】相談</td><th>取引態様</th><td class="ph">【要記入】仲介／売主</td></tr>
+    </table>
+  </div>
+
+  <div class="n2">※掲載の写真は撮影時のものです。家具・家電等は販売価格に含まれません。※表示価格に消費税は含まれておりません。※本チラシの内容は作成時点の情報であり、成約の際はご容赦ください。</div>
+  <div class="f2">
+    <div class="nm">向洋ハウジング<small>KOYO HOUSING ／ 宮崎県延岡市</small></div>
+    <div class="tel num"><small>お問い合わせ</small><span class="ph">0982-00-0000</span></div>
+    <div class="info"><span class="ph">【要記入】住所　／　営業時間 ○:○○〜○:○○　定休日 ○曜<br>宅地建物取引業　宮崎県知事（○）第○○○○号</span><br>担当：松尾</div>
+  </div>
+</section>
+</body>
+</html>
