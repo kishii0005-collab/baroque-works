@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>株式会社エッジアセット｜地域の工務店・住宅会社の事業承継</title>
+<meta name="description" content="株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、長く経営していく会社です。社名、社員、施主様へのアフターのお約束をそのまま引き継ぎます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4f1ea;
+  --paper-2:#ebe6db;
+  --ink:#1d1e20;
+  --ink-2:#4a4b4e;
+  --ink-3:#7a7a76;
+  --rule:#cfc8b8;
+  --ai:#25364b;      /* 藍 */
+  --bengara:#8f3b22; /* 弁柄 */
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --w:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.95;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 16px}body{font-size:15px}}
+
+/* header */
+header.site{border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:10}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--serif);font-weight:700;text-decoration:none;display:flex;align-items:baseline;gap:12px}
+.logo .ja{font-size:19px;letter-spacing:.12em}
+.logo .en{font-family:var(--sans);font-size:10px;letter-spacing:.28em;color:var(--ink-3)}
+nav.gnav{display:flex;gap:28px;font-size:13.5px}
+nav.gnav a{text-decoration:none;color:var(--ink-2)}
+nav.gnav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:6px}
+nav.gnav a.cta{color:var(--paper);background:var(--ai);padding:8px 18px}
+nav.gnav a.cta:hover{text-decoration:none;background:var(--ink)}
+@media (max-width:900px){nav.gnav a:not(.cta){display:none}}
+
+/* hero */
+.hero{padding:96px 0 88px;border-bottom:1px solid var(--rule)}
+.hero .grid{display:grid;grid-template-columns:1.35fr 1fr;gap:64px;align-items:end}
+.kicker{font-size:12.5px;letter-spacing:.22em;color:var(--bengara);margin:0 0 28px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.55;letter-spacing:.06em;margin:0 0 36px}
+.hero p.lead{font-size:16.5px;color:var(--ink-2);max-width:34em;margin:0}
+.hero figure{margin:0}
+.hero figcaption{font-size:11.5px;color:var(--ink-3);margin-top:10px;letter-spacing:.1em}
+@media (max-width:900px){.hero{padding:64px 0}.hero .grid{grid-template-columns:1fr;gap:40px}}
+
+/* sections */
+section.block{padding:104px 0;border-bottom:1px solid var(--rule)}
+@media (max-width:640px){section.block{padding:72px 0}}
+.sec{display:grid;grid-template-columns:220px 1fr;gap:48px}
+@media (max-width:900px){.sec{grid-template-columns:1fr;gap:20px}}
+.label{font-size:12px;letter-spacing:.2em;color:var(--ink-3);padding-top:14px;border-top:2px solid var(--ink);align-self:start}
+.label b{display:block;font-family:var(--serif);font-size:15px;color:var(--ink);letter-spacing:.14em;font-weight:600;margin-top:4px}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,2.8vw,32px);line-height:1.7;letter-spacing:.06em;margin:0 0 32px}
+h1,h2,h3{word-break:auto-phrase}
+h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.7;letter-spacing:.05em;margin:0 0 10px}
+p{margin:0 0 1.2em}
+.note{font-size:12.5px;color:var(--ink-3)}
+.todo{background:#efe1c4;color:#5a3d10;padding:0 .35em;font-size:.9em;white-space:nowrap}
+
+/* letter */
+.letter{max-width:40em;font-size:16.5px}
+.letter p{text-indent:1em}
+.letter .sign{text-indent:0;text-align:right;margin-top:40px;font-family:var(--serif)}
+.letter .sign .sub{display:block;font-size:13px;color:var(--ink-3);font-family:var(--sans)}
+
+/* promises */
+ol.promises{list-style:none;margin:0;padding:0;counter-reset:p}
+ol.promises li{counter-increment:p;display:grid;grid-template-columns:72px 1fr;gap:8px 24px;padding:30px 0;border-top:1px solid var(--rule)}
+ol.promises li:last-child{border-bottom:1px solid var(--rule)}
+ol.promises li::before{content:counter(p,decimal-leading-zero);font-family:var(--serif);font-size:30px;line-height:1.2;color:var(--ai)}
+ol.promises p{margin:0;color:var(--ink-2)}
+@media (max-width:640px){ol.promises li{grid-template-columns:48px 1fr}ol.promises li::before{font-size:22px}}
+
+.honest{margin-top:56px;background:var(--paper-2);padding:36px 40px;border-left:3px solid var(--bengara)}
+.honest h3{margin-bottom:16px}
+.honest ul{margin:0;padding-left:1.2em;color:var(--ink-2)}
+.honest li{margin-bottom:.6em}
+@media (max-width:640px){.honest{padding:28px 20px}}
+
+/* change table */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:18px 16px 18px 0;border-bottom:1px solid var(--rule)}
+thead th{font-size:12px;letter-spacing:.18em;color:var(--ink-3);font-weight:500;border-bottom:2px solid var(--ink)}
+tbody th{font-family:var(--serif);font-weight:600;width:22%;white-space:nowrap}
+td.keep{color:var(--ink-2)}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:640px){
+  .stack thead{display:none}
+  .stack tr{display:block;border-bottom:1px solid var(--rule);padding:16px 0}
+  .stack th,.stack td{display:block;border:0;padding:4px 0;width:auto}
+  .stack td::before{content:attr(data-h);display:block;font-size:11px;letter-spacing:.16em;color:var(--ink-3)}
+}
+
+/* criteria */
+dl.criteria{display:grid;grid-template-columns:200px 1fr;margin:0;border-top:2px solid var(--ink)}
+dl.criteria dt,dl.criteria dd{margin:0;padding:20px 0;border-bottom:1px solid var(--rule)}
+dl.criteria dt{font-family:var(--serif);font-weight:600}
+@media (max-width:640px){dl.criteria{grid-template-columns:1fr}dl.criteria dt{border-bottom:0;padding-bottom:0}dl.criteria dd{padding-top:4px}}
+
+/* process */
+ol.process{list-style:none;margin:0;padding:0;position:relative}
+ol.process li{position:relative;padding:0 0 40px 64px}
+ol.process li::before{content:"";position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--rule)}
+ol.process li:last-child::before{display:none}
+ol.process .n{position:absolute;left:0;top:2px;width:31px;height:31px;border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--serif);font-size:14px;background:var(--paper)}
+ol.process .t{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+ol.process .t h3{margin:0}
+ol.process .dur{font-size:12.5px;color:var(--bengara);letter-spacing:.08em}
+ol.process p{color:var(--ink-2);margin:6px 0 0}
+
+/* faq */
+.faq details{border-top:1px solid var(--rule);padding:4px 0}
+.faq details:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-family:var(--serif);font-weight:600;font-size:17px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";position:absolute;right:4px;top:20px;color:var(--ink-3);font-family:var(--sans)}
+.faq details[open] summary::after{content:"－"}
+.faq .a{padding:0 0 24px;color:var(--ink-2);max-width:42em}
+
+/* contact */
+.contact{background:var(--ai);color:#e9e6de;border-bottom:0}
+.contact .label{border-color:#e9e6de;color:#a9b0ba}
+.contact .label b{color:#fff}
+.contact h2{color:#fff}
+.contact p{color:#c9ccd1}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:8px}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
+form label{display:block;font-size:12.5px;letter-spacing:.12em;color:#a9b0ba;margin:0 0 6px}
+form input,form select,form textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #6d7a8a;color:#fff;font:inherit;padding:8px 0;margin-bottom:22px;border-radius:0}
+form select option{color:var(--ink)}
+form textarea{min-height:110px;resize:vertical}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-bottom-color:#fff}
+form button{background:#f4f1ea;color:var(--ai);border:0;font:inherit;font-weight:700;letter-spacing:.14em;padding:14px 36px;cursor:pointer}
+form button:hover{background:#fff}
+.direct{border-top:1px solid #4f5f74;padding-top:24px}
+.direct dt{font-size:12px;letter-spacing:.16em;color:#a9b0ba}
+.direct dd{margin:2px 0 20px;font-family:var(--serif);font-size:20px;color:#fff}
+
+/* company + footer */
+.company dl.criteria{grid-template-columns:160px 1fr}
+@media (max-width:640px){.company dl.criteria{grid-template-columns:1fr}}
+footer{padding:40px 0 56px;font-size:12px;color:var(--ink-3)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="ja">エッジアセット</span><span class="en">EDGE ASSET</span></a>
+    <nav class="gnav" aria-label="メインメニュー">
+      <a href="#message">代表より</a>
+      <a href="#promise">お約束</a>
+      <a href="#change">グループ入り後</a>
+      <a href="#criteria">対象となる会社</a>
+      <a href="#process">進め方</a>
+      <a href="#faq">よくあるご質問</a>
+      <a class="cta" href="#contact">ご相談</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <p class="kicker">工務店・住宅会社の事業承継</p>
+      <h1>建てた家の点検に、<br>三十年後も伺える<br>会社であるために。</h1>
+      <p class="lead">株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営していくための会社です。社名も、社員も、施主様へのアフターのお約束も、そのまま引き継ぎます。</p>
+    </div>
+    <figure>
+      <!-- 矩計図風の線画。実写が用意できたら差し替え -->
+      <svg viewBox="0 0 420 320" role="img" aria-label="木造住宅の断面線画">
+        <g fill="none" stroke="#1d1e20" stroke-width="1.2" stroke-linejoin="round">
+          <path d="M40 150 L210 40 L380 150"/>
+          <path d="M28 158 L210 32 L392 158" stroke-width=".6" stroke="#7a7a76"/>
+          <path d="M70 131 V290 H350 V131"/>
+          <path d="M70 210 H350"/>
+          <path d="M100 150 h60 v40 h-60z M260 150 h60 v40 h-60z"/>
+          <path d="M100 230 h50 v60 M290 230 h40 v40 h-40z"/>
+          <path d="M210 40 V290" stroke-dasharray="3 5" stroke="#7a7a76" stroke-width=".7"/>
+          <path d="M20 290 H400" stroke-width="1.6"/>
+          <path d="M60 300 H360" stroke="#7a7a76" stroke-width=".6"/>
+          <path d="M70 300 V310 M350 300 V310 M210 300 V310" stroke="#7a7a76" stroke-width=".6"/>
+        </g>
+        <g font-family="Noto Sans JP, sans-serif" font-size="9" fill="#7a7a76" letter-spacing="1">
+          <text x="200" y="316">7,280</text>
+          <text x="360" y="206">2F FL</text>
+          <text x="360" y="286">1F FL</text>
+        </g>
+        <path d="M150 290 v-60" stroke="#8f3b22" stroke-width="1.6"/>
+      </svg>
+      <figcaption>矩計図 ― 家は建てた後の三十年のほうが長い</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="block" id="message">
+  <div class="wrap sec">
+    <div class="label">01<b>代表より</b></div>
+    <div class="letter">
+      <h2>会社を売る、という言葉に<br>抵抗がある方へ。</h2>
+      <p>工務店の社長から事業承継のご相談を受けると、最初に出てくるのは自分の今後ではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検は誰が行くのか」。この問いに答えられないまま、廃業や、相手をよく知らない会社への譲渡を選ぶケースを見てきました。</p>
+      <p>私たちは、買って、整えて、数年で売る会社ではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。そのために、短期の利回りではなく、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が続く状態をつくることを目標にしています。</p>
+      <p>一方で、きれいごとだけを言うつもりもありません。グループに入れば変わることもあります。何を変えずに、何を変えるのか。このページにはそれをできる限り具体的に書きました。読んだうえで、まずは話だけでも聞いてみたいと思っていただければ幸いです。</p>
+      <p class="sign">株式会社エッジアセット<br>代表取締役　<span class="todo">氏名</span><span class="sub">※ 代表者名・経歴は確定後に差し替え</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="promise">
+  <div class="wrap sec">
+    <div class="label">02<b>お約束</b></div>
+    <div>
+      <h2>グループに入っていただく会社に、<br>契約書でお約束すること。</h2>
+      <ol class="promises">
+        <li>
+          <div><h3>社名・屋号・ブランドは変えません</h3>
+          <p>地域で積み上げてきた名前が、いちばんの資産です。看板も、ホームページも、職人さんが着る作業着もそのままです。</p></div>
+        </li>
+        <li>
+          <div><h3>社員の雇用と給与水準を守ります</h3>
+          <p>グループ入りを理由にした人員削減や給与の引き下げは行いません。最低<span class="todo">○年間</span>は株式譲渡契約に明記します。</p></div>
+        </li>
+        <li>
+          <div><h3>施主様への保証・定期点検を引き継ぎます</h3>
+          <p>これまでに建てた家の保証、定期点検、アフター対応はすべて引き継ぎます。施主様にとっては、窓口も担当者も変わりません。</p></div>
+        </li>
+        <li>
+          <div><h3>協力業者・職人さんとの取引を続けます</h3>
+          <p>長年一緒に現場をつくってきた大工・設備・板金などの協力業者さんとの関係は、グループ入り後も変えません。支払条件も改悪しません。</p></div>
+        </li>
+        <li>
+          <div><h3>経営者の個人保証の解除に取り組みます</h3>
+          <p>借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除・差し替えを目指します。</p></div>
+        </li>
+      </ol>
+
+      <div class="honest">
+        <h3>逆に、お約束できないこと</h3>
+        <ul>
+          <li>赤字が続く事業を、改善の見通しがないまま無期限に支え続けることはできません。数字は毎月一緒に見ます。</li>
+          <li>経理・労務・情報管理のルールは、グループ共通のものに合わせていただきます。どんぶり勘定のままではお預かりできません。</li>
+          <li>譲渡価格は、純資産と収益力にもとづいて算定します。相場から大きく外れた金額はお出しできません。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="change">
+  <div class="wrap sec">
+    <div class="label">03<b>グループ入り後</b></div>
+    <div>
+      <h2>現場は変えずに、<br>一社では手が回らないところを支えます。</h2>
+      <p style="max-width:40em;color:var(--ink-2)">家づくりの中身、設計の考え方、お施主様との向き合い方には口を出しません。そのかわり、規模が小さいほど負担が重くなる仕事を、グループでまとめて引き受けます。</p>
+      <div class="tbl-scroll" style="margin-top:32px">
+        <table class="stack">
+          <thead><tr><th>領域</th><th>グループで担うこと</th><th>各社に残すこと</th></tr></thead>
+          <tbody>
+            <tr><th>集客</th><td data-h="グループで担うこと">Google・Meta広告の運用、SEO・Googleマップ対策、反響の計測と分析</td><td class="keep" data-h="各社に残すこと">見学会・イベントの企画、施主様の紹介づくり</td></tr>
+            <tr><th>採用</th><td data-h="グループで担うこと">新卒・中途の合同採用、求人媒体の一括契約、研修</td><td class="keep" data-h="各社に残すこと">配属後の育成、現場での指導</td></tr>
+            <tr><th>仕入</th><td data-h="グループで担うこと">建材・住設の共同購買、物流の集約</td><td class="keep" data-h="各社に残すこと">仕様の選定、地元の材木店との取引</td></tr>
+            <tr><th>管理部門</th><td data-h="グループで担うこと">経理・給与・労務手続き、月次決算、建設業許可の更新事務</td><td class="keep" data-h="各社に残すこと">現場の原価管理、工程管理</td></tr>
+            <tr><th>資金</th><td data-h="グループで担うこと">運転資金・モデルハウス・分譲用地への投資判断と資金手当て</td><td class="keep" data-h="各社に残すこと">個別案件の受注判断</td></tr>
+            <tr><th>業務の仕組み</th><td data-h="グループで担うこと">見積・工程・顧客管理のシステム統一、AIによる事務作業の削減</td><td class="keep" data-h="各社に残すこと">お施主様との打ち合わせ、現場での判断</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="criteria">
+  <div class="wrap sec">
+    <div class="label">04<b>対象となる会社</b></div>
+    <div>
+      <h2>こんな会社のご相談をお待ちしています。</h2>
+      <dl class="criteria">
+        <dt>事業内容</dt><dd>注文住宅、規格住宅、リフォーム・リノベーションを主とする工務店・住宅会社</dd>
+        <dt>エリア</dt><dd><span class="todo">首都圏・東海・関西など</span>　※ それ以外の地域もご相談ください</dd>
+        <dt>規模の目安</dt><dd>年間売上 <span class="todo">3億〜30億円</span>、年間引渡し <span class="todo">10〜100棟</span></dd>
+        <dt>収益</dt><dd>直近3期のうち2期以上で営業黒字。一時的な赤字は理由をお聞かせください</dd>
+        <dt>ご状況</dt><dd>後継者が決まっていない／数年以内に引退を考えている／成長のための資金や人材が足りない</dd>
+      </dl>
+      <p class="note" style="margin-top:18px">上記に当てはまらなくても、お話を伺ったうえで判断します。条件に合わない場合も、その理由はきちんとお伝えします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="process">
+  <div class="wrap sec">
+    <div class="label">05<b>進め方</b></div>
+    <div>
+      <h2>初回のご相談から引き継ぎ完了まで、<br>通常は半年ほどかかります。</h2>
+      <ol class="process">
+        <li><span class="n">1</span><div class="t"><h3>初回面談</h3><span class="dur">1〜2時間</span></div><p>会社のこと、ご家族や社員のこと、ご自身の今後について伺います。決算書は不要です。費用はかかりません。</p></li>
+        <li><span class="n">2</span><div class="t"><h3>秘密保持契約・資料のご提供</h3><span class="dur">2〜4週間</span></div><p>秘密保持契約を結んだうえで、決算書・受注残・社員構成などを拝見します。</p></li>
+        <li><span class="n">3</span><div class="t"><h3>意向表明</h3><span class="dur">2〜3週間</span></div><p>譲渡価格の考え方、雇用や役員の処遇、引き継ぎ期間などを書面でご提示します。</p></li>
+        <li><span class="n">4</span><div class="t"><h3>デューデリジェンス（詳細調査）</h3><span class="dur">1〜2ヶ月</span></div><p>財務・税務・法務・労務に加え、施工中物件、保証の履歴、建設業許可の状況を確認します。現場の負担が最小になるよう日程を組みます。</p></li>
+        <li><span class="n">5</span><div class="t"><h3>最終契約・クロージング</h3><span class="dur">1ヶ月</span></div><p>株式譲渡契約の締結、代金のお支払い、個人保証の解除手続きを行います。</p></li>
+        <li><span class="n">6</span><div class="t"><h3>引き継ぎ</h3><span class="dur">6ヶ月〜数年</span></div><p>社員・協力業者・施主様へのご説明は、時期と伝え方を一緒に決めます。社長に残っていただく期間は、ご希望に合わせて調整します。</p></li>
+      </ol>
+      <p class="note">ご相談の事実は、社員の方・取引先・金融機関に知られないよう配慮します。仲介会社・顧問税理士を通じたご相談も承ります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="block faq" id="faq">
+  <div class="wrap sec">
+    <div class="label">06<b>よくあるご質問</b></div>
+    <div>
+      <h2>実際によく聞かれることです。</h2>
+      <details><summary>社員にはいつ、どう伝えればいいですか。</summary><div class="a">原則として最終契約の後です。幹部の方に先に伝えるか、全社員に一度に伝えるかは会社の状況によって変わるため、伝える順番と話す内容を一緒に準備します。私たちも説明の場に同席します。</div></details>
+      <details><summary>施工中の現場や、引渡し後のクレームはどうなりますか。</summary><div class="a">施工中の物件も、引渡し済みの物件の保証・点検もそのまま会社に残り、グループ入り後も同じ担当者が対応します。過去のクレームや係争の有無は詳細調査の段階で確認し、譲渡契約の中で扱いを決めます。</div></details>
+      <details><summary>建設業許可はそのまま使えますか。</summary><div class="a">株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。ただし経営業務の管理責任者や専任技術者が退任される場合は、後任の手当てが必要です。誰がいつ交代するかを事前に設計します。</div></details>
+      <details><summary>社長は辞めなければいけませんか。</summary><div class="a">いいえ。引き継ぎ期間だけ残っていただく形も、社長を続けていただく形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。</div></details>
+      <details><summary>仲介会社に相談中ですが、直接話を聞いてもいいですか。</summary><div class="a">はい。仲介会社との契約内容によっては直接交渉が制限されている場合がありますので、その場合は仲介会社を通じてご連絡ください。</div></details>
+      <details><summary>数年後に別の会社へ売られることはありませんか。</summary><div class="a">私たちは買った会社を売却して利益を得ることを前提にしていません。<span class="todo">資金の性質・保有方針を確定後に具体的な記載へ差し替え</span></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="block company" id="company">
+  <div class="wrap sec">
+    <div class="label">07<b>会社概要</b></div>
+    <div>
+      <dl class="criteria">
+        <dt>社名</dt><dd>株式会社エッジアセット</dd>
+        <dt>代表者</dt><dd>代表取締役　<span class="todo">氏名</span></dd>
+        <dt>所在地</dt><dd><span class="todo">住所</span></dd>
+        <dt>設立</dt><dd><span class="todo">年月</span></dd>
+        <dt>資本金</dt><dd><span class="todo">金額</span></dd>
+        <dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営、グループ会社の経営支援</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="block contact" id="contact">
+  <div class="wrap sec">
+    <div class="label">08<b>ご相談</b></div>
+    <div>
+      <h2>まずは、話を聞いてみるだけで構いません。</h2>
+      <p>お名前を伏せたままのご相談も可能です。いただいた内容は、ご本人の同意なく第三者に開示することはありません。</p>
+      <div class="cgrid">
+        <form onsubmit="event.preventDefault();this.querySelector('button').textContent='送信しました（デモ）';">
+          <label for="f-name">お名前</label><input id="f-name" name="name" autocomplete="name">
+          <label for="f-co">会社名（任意）</label><input id="f-co" name="company" autocomplete="organization">
+          <label for="f-mail">メールアドレス</label><input id="f-mail" name="email" type="email" autocomplete="email" required>
+          <label for="f-role">ご立場</label>
+          <select id="f-role" name="role">
+            <option>経営者・オーナー</option>
+            <option>ご家族・役員</option>
+            <option>仲介会社・金融機関・士業</option>
+            <option>その他</option>
+          </select>
+          <label for="f-msg">ご相談内容（任意）</label><textarea id="f-msg" name="message"></textarea>
+          <button type="submit">送信する</button>
+        </form>
+        <div>
+          <dl class="direct">
+            <dt>お電話</dt><dd><span class="todo">03-0000-0000</span></dd>
+            <dt>受付時間</dt><dd style="font-size:16px">平日 9:00〜18:00　（夜間・土日の面談も調整します）</dd>
+            <dt>面談場所</dt><dd style="font-size:16px">貴社以外の場所、またはオンラインで行います</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 株式会社エッジアセット</span>
+    <span>プライバシーポリシー</span>
+  </div>
+</footer>
+
+</body>
+</html>
