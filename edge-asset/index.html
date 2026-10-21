@@ -12,7 +12,7 @@
 /* layout: photo-led corporate page; navy blocks for CTAs, white body, one sans family throughout */
 :root{
   --bg:#ffffff;--bg-2:#f3f5f7;--bg-3:#e8ecf0;
-  --ink:#141a21;--ink-2:#4b5560;--ink-3:#87909a;
+  --ink:#141a21;--ink-2:#36404b;--ink-3:#6b7580;
   --rule:#dde2e7;
   --navy:#1c2c3e;--navy-2:#263a50;
   --accent:#9a4a2c;
@@ -21,7 +21,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:2;letter-spacing:.04em;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:2;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 p{margin:0 0 1.3em}
@@ -38,8 +38,7 @@ h1,h2,h3,h4{word-break:auto-phrase;text-wrap:balance}
 /* section heads */
 section{padding-block:120px}
 @media (max-width:800px){section{padding-block:80px}}
-.label{font-size:12px;font-weight:700;letter-spacing:.26em;color:var(--accent);margin:0 0 18px;display:flex;align-items:center;gap:12px}
-.label::before{content:"";width:24px;height:2px;background:currentColor}
+.label{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--accent);margin:0 0 14px}
 .h2{font-size:clamp(24px,2.6vw,34px);font-weight:700;line-height:1.6;letter-spacing:.06em;margin:0 0 24px}
 .lead{color:var(--ink-2);max-width:40em;margin:0}
 .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:64px}
@@ -68,13 +67,13 @@ header.site .w{max-width:none;display:flex;justify-content:space-between;align-i
 .brand{display:flex;flex-direction:column;line-height:1.2}
 .brand b{font-weight:700;font-size:21px;letter-spacing:.14em}
 .brand small{font-size:10px;letter-spacing:.28em;opacity:.85}
-header nav{display:flex;align-items:center;gap:28px;font-size:13px;letter-spacing:.08em}
+header nav{display:flex;align-items:center;gap:28px;font-size:14px;letter-spacing:.08em}
 header nav a.nl{opacity:.9}
 header nav a.nl:hover{opacity:1;text-decoration:underline;text-underline-offset:6px}
 .htel{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}
 .htel b{font-size:19px;font-weight:700;letter-spacing:.04em}
 .htel small{font-size:10px;opacity:.8}
-header .btn{padding:12px 22px;font-size:13px}
+header .btn{padding:12px 22px;font-size:14px}
 @media (max-width:1180px){header nav a.nl{display:none}}
 @media (max-width:640px){.htel{display:none}header .btn{padding:10px 14px}}
 
@@ -94,26 +93,26 @@ header .btn{padding:12px 22px;font-size:13px}
 @media (max-width:800px){.dots{top:auto;bottom:auto;right:16px;top:110px;flex-direction:row}.dots button{width:28px;height:3px}.dots button::after{transform:scaleX(0);transform-origin:left}@keyframes fill{to{transform:scaleX(1)}}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,18,26,.72) 0%,rgba(12,18,26,.35) 48%,rgba(12,18,26,.1) 100%),linear-gradient(0deg,rgba(12,18,26,.55),rgba(12,18,26,0) 40%);pointer-events:none}
 .hero .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
-.hero .kick{font-size:13px;font-weight:700;letter-spacing:.3em;margin:0 0 26px;opacity:.9}
+.hero .kick{font-size:14px;font-weight:700;letter-spacing:.3em;margin:0 0 26px;opacity:.9}
 .hero h1{font-weight:700;font-size:clamp(30px,4vw,54px);line-height:1.55;letter-spacing:.06em;margin:0 0 28px;max-width:13em}
 .hero .sub{font-size:16px;max-width:32em;opacity:.92;margin:0 0 40px}
 .hero .meta{position:absolute;z-index:2;left:0;right:0;bottom:0}
 .trust{display:grid;grid-template-columns:repeat(3,1fr)}
 .trust>div{border-top:1px solid rgba(255,255,255,.35)}
-.trust div{padding:22px 24px 26px 0;font-size:13px;line-height:1.7}
+.trust div{padding:22px 24px 26px 0;font-size:14px;line-height:1.7}
 .trust div+div{padding-left:24px;border-left:1px solid rgba(255,255,255,.25)}
 .trust b{display:block;font-size:17px;letter-spacing:.06em}
 @media (max-width:800px){.hero{height:auto;min-height:0}.hero .inner{padding-block:150px 40px}.hero .meta{position:relative}.trust{grid-template-columns:1fr}.trust div,.trust div+div{padding:14px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.2)}}
 
 /* market */
 .market{background:var(--bg-2)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:2px solid var(--ink)}
 .stat{padding:36px 32px 32px 0}
 .stat+.stat{padding-left:32px;border-left:1px solid var(--rule)}
 .stat .num{font-weight:700;letter-spacing:0;font-size:clamp(46px,5vw,68px);line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
 .stat .num small{font-size:.42em;margin-left:4px}
 .stat h3{font-size:16px;margin:18px 0 8px;letter-spacing:.06em}
-.stat p{font-size:13.5px;color:var(--ink-2);margin:0}
+.stat p{font-size:14.5px;color:var(--ink-2);margin:0}
 .src{font-size:11.5px;color:var(--ink-3);margin-top:28px}
 @media (max-width:900px){.stats{grid-template-columns:1fr}.stat,.stat+.stat{padding:28px 0;border-left:0;border-bottom:1px solid var(--rule)}}
 
@@ -126,11 +125,24 @@ header .btn{padding:12px 22px;font-size:13px}
 .about .pics .ph:last-child{aspect-ratio:1/1;margin-bottom:60px}
 @media (max-width:900px){.about .grid{grid-template-columns:1fr;gap:48px}}
 
+/* to each */
+.to{background:var(--bg-2)}
+.center{text-align:center}
+.to .h2{margin-bottom:56px}
+.to-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg)}
+.to-grid article{padding:34px 28px;border-left:1px solid var(--rule)}
+.to-grid article:first-child{border-left:0}
+.to-grid .who{font-size:13px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--navy);display:inline-block;padding:2px 12px;margin:0 0 16px}
+.to-grid h3{font-size:17px;line-height:1.7;margin:0 0 12px}
+.to-grid p{font-size:14.5px;color:var(--ink-2);margin:0}
+@media (max-width:1000px){.to-grid{grid-template-columns:1fr 1fr}.to-grid article:nth-child(3){border-left:0}.to-grid article:nth-child(n+3){border-top:1px solid var(--rule)}}
+@media (max-width:560px){.to-grid{grid-template-columns:1fr}.to-grid article{border-left:0;border-top:1px solid var(--rule)}.to .h2{text-align:left}}
+
 /* compare */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table.cmp{width:100%;min-width:820px;border-collapse:collapse;font-size:14px}
 table.cmp th,table.cmp td{padding:18px 14px;border-bottom:1px solid var(--rule);text-align:center;vertical-align:middle}
-table.cmp thead th{font-size:13px;font-weight:700;background:var(--bg-2);border-bottom:2px solid var(--ink);line-height:1.5}
+table.cmp thead th{font-size:14px;font-weight:700;background:var(--bg-2);border-bottom:2px solid var(--ink);line-height:1.5}
 table.cmp tbody th{text-align:left;font-weight:700;white-space:nowrap;background:var(--bg-2)}
 table.cmp .us{background:var(--navy);color:#fff;font-weight:700}
 table.cmp thead .us{background:var(--navy);border-bottom-color:var(--navy)}
@@ -154,7 +166,7 @@ table.cmp td.us small{color:#b9c4cf}
 .plist li+li{padding-left:22px}
 .plist li:last-child{border-right:0}
 .plist h3{font-size:16.5px;line-height:1.6;margin:0 0 12px}
-.plist p{font-size:13.5px;color:var(--ink-2);margin:0}
+.plist p{font-size:14.5px;color:var(--ink-2);margin:0}
 @media (max-width:1000px){.plist{grid-template-columns:1fr 1fr}.plist li,.plist li+li{padding:26px 18px 18px 0;border-right:0;border-bottom:1px solid var(--rule)}}
 @media (max-width:560px){.plist{grid-template-columns:1fr}}
 .ask{margin-top:56px;display:grid;grid-template-columns:260px 1fr;gap:28px 40px;background:var(--bg-2);padding:36px 40px}
@@ -164,7 +176,7 @@ table.cmp td.us small{color:#b9c4cf}
 @media (max-width:800px){.ask{grid-template-columns:1fr;padding:28px 20px}}
 .inline-cta{margin-top:56px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--rule);padding:28px 32px}
 .inline-cta p{margin:0;font-weight:700;font-size:16px}
-.inline-cta p small{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+.inline-cta p small{display:block;font-weight:400;font-size:14px;color:var(--ink-2)}
 
 /* cta band */
 .band-cta{position:relative;color:#fff;padding-block:100px;overflow:hidden}
@@ -180,33 +192,17 @@ table.cmp td.us small{color:#b9c4cf}
 .svc{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
 .svc-pic{position:sticky;top:40px}
 .svc-pic .ph{aspect-ratio:4/5}
-.svc-cap{font-size:12.5px;color:var(--ink-3);margin:12px 0 0}
+.svc-cap{font-size:13px;color:var(--ink-3);margin:12px 0 0}
 .svc-row{display:grid;grid-template-columns:150px 1fr;gap:12px 32px;padding:30px 0;border-top:1px solid var(--rule)}
 .svc-row:first-child{border-top:2px solid var(--ink)}
 .svc-row:last-child{border-bottom:1px solid var(--rule)}
 .svc-row h3{font-size:18px;margin:0;line-height:1.6}
 .svc-row p{margin:0 0 14px;font-size:14.5px}
-.svc-row dl{display:grid;grid-template-columns:7.5em 1fr;gap:6px 16px;margin:0;font-size:13px;color:var(--ink-2)}
+.svc-row dl{display:grid;grid-template-columns:7.5em 1fr;gap:6px 16px;margin:0;font-size:14px;color:var(--ink-2)}
 .svc-row dt{font-weight:700;color:var(--navy)}
 .svc-row dd{margin:0}
 @media (max-width:900px){.svc{grid-template-columns:1fr;gap:36px}.svc-pic{position:static}.svc-pic .ph{aspect-ratio:16/10}}
 @media (max-width:560px){.svc-row{grid-template-columns:1fr}.svc-row dl{grid-template-columns:1fr;gap:0}.svc-row dd{margin-bottom:8px}}
-
-/* quote band */
-.qband{position:relative;height:560px;color:#fff;overflow:hidden;padding:0}
-.qband>.ph{position:absolute;inset:0}
-.qband::after{content:"";position:absolute;inset:0;background:rgba(10,14,20,.32)}
-.qband blockquote{position:absolute;z-index:2;left:0;right:0;bottom:80px;margin:0}
-.qband p{font-weight:700;font-size:clamp(20px,2.2vw,28px);letter-spacing:.08em;line-height:1.9;margin:0}
-
-/* to each */
-.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:36px}
-.cols .ph{aspect-ratio:4/5;margin-bottom:24px}
-.who{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--accent);margin:0 0 6px}
-.cols h3{font-size:17px;line-height:1.7;margin:0 0 12px}
-.cols p{font-size:13.5px;color:var(--ink-2);margin:0}
-@media (max-width:1000px){.cols{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.cols{grid-template-columns:1fr}}
 
 /* cases */
 .cases{background:var(--bg-2)}
@@ -216,10 +212,10 @@ table.cmp td.us small{color:#b9c4cf}
 .case .in{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
 .case .tag{font-size:11.5px;font-weight:700;letter-spacing:.14em;color:var(--navy);background:var(--bg-3);padding:3px 10px;align-self:flex-start;margin-bottom:14px}
 .case h3{font-size:17px;line-height:1.7;margin:0 0 16px}
-.case dl{margin:0 0 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px}
+.case dl{margin:0 0 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
 .case dt{color:var(--ink-3)}
 .case dd{margin:0}
-.case p{font-size:13.5px;color:var(--ink-2);margin:0;padding-top:16px;border-top:1px solid var(--rule)}
+.case p{font-size:14.5px;color:var(--ink-2);margin:0;padding-top:16px;border-top:1px solid var(--rule)}
 .note{font-size:12px;color:var(--ink-3);margin-top:22px}
 @media (max-width:1000px){.case-grid{grid-template-columns:1fr}}
 
@@ -239,22 +235,23 @@ ol.steps li::after{content:"";position:absolute;left:19.5px;top:46px;bottom:6px;
 ol.steps li:last-child::after{display:none}
 ol.steps h4{font-size:15.5px;margin:6px 0 2px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
 ol.steps h4 span{font-size:12px;font-weight:500;color:var(--accent)}
-ol.steps p{font-size:13.5px;color:var(--ink-2);margin:0}
+ol.steps p{font-size:14.5px;color:var(--ink-2);margin:0}
 @media (max-width:900px){.flow .grid{grid-template-columns:1fr;gap:64px}}
 
 /* message */
 .msg{background:var(--bg-2)}
 .msg .grid{display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:start}
 .msg .ph{aspect-ratio:4/5}
-.msg .name{margin-top:18px;font-size:13px;color:var(--ink-2)}
+.msg .name{margin-top:18px;font-size:14px;color:var(--ink-2)}
 .msg .name b{display:block;font-size:21px;letter-spacing:.16em;color:var(--ink);font-weight:700}
-.msg .career{list-style:none;padding:0;margin:20px 0 0;font-size:13px;color:var(--ink-2);border-top:1px solid var(--rule)}
+.msg .career{list-style:none;padding:0;margin:20px 0 0;font-size:14px;color:var(--ink-2);border-top:1px solid var(--rule)}
 .msg .career li{padding:9px 0;border-bottom:1px solid var(--rule)}
 .msg .letter p{font-size:15.5px}
 .msg .letter .lede{font-weight:700;font-size:clamp(21px,2vw,26px);line-height:1.8;letter-spacing:.06em;margin-bottom:28px}
 @media (max-width:900px){.msg .grid{grid-template-columns:1fr;gap:40px}.msg .ph{max-width:360px}}
 
 /* faq */
+.faq{background:var(--bg-2)}
 .faq .grid{display:grid;grid-template-columns:320px 1fr;gap:64px}
 details{border-bottom:1px solid var(--rule)}
 details:first-of-type{border-top:2px solid var(--ink)}
@@ -275,30 +272,30 @@ details p{color:var(--ink-2);font-size:14px;padding:0 0 12px 40px;max-width:44em
 .route:hover{background:var(--navy-2);border-color:rgba(255,255,255,.6)}
 .route .en{font-size:11.5px;font-weight:700;letter-spacing:.2em;color:#d9a88f}
 .route h3{font-size:19px;margin:0}
-.route p{font-size:13.5px;color:#c9d2db;margin:0;flex:1}
-.route .go{font-size:13px;font-weight:700;letter-spacing:.1em;display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.25);padding-top:14px}
+.route p{font-size:14.5px;color:#c9d2db;margin:0;flex:1}
+.route .go{font-size:14px;font-weight:700;letter-spacing:.1em;display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.25);padding-top:14px}
 @media (max-width:900px){.routes{grid-template-columns:1fr}}
 .cform{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;padding-top:56px;border-top:1px solid rgba(255,255,255,.2)}
 .tel-big{font-weight:700;font-size:clamp(34px,3.6vw,46px);letter-spacing:.02em;line-height:1.1;display:block}
-.tel-note{font-size:12.5px;color:#c9d2db;margin:8px 0 0}
+.tel-note{font-size:13px;color:#c9d2db;margin:8px 0 0}
 form .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-form label{display:block;font-size:12.5px;font-weight:700;letter-spacing:.1em;margin:0 0 6px;color:#e5eaef}
+form label{display:block;font-size:13px;font-weight:700;letter-spacing:.1em;margin:0 0 6px;color:#e5eaef}
 form label em{font-style:normal;font-size:10.5px;background:var(--accent);color:#fff;padding:1px 6px;margin-left:8px;letter-spacing:.06em}
 form input,form select,form textarea{width:100%;background:#fff;border:1px solid transparent;color:var(--ink);font:inherit;padding:12px 14px;margin-bottom:20px;border-radius:0}
 form textarea{min-height:110px;resize:vertical}
 form input:focus,form select:focus,form textarea:focus{outline:2px solid #d9a88f;outline-offset:0}
-.chk{display:flex;align-items:center;gap:10px;font-size:13px;color:#c9d2db;margin:0 0 24px}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;color:#c9d2db;margin:0 0 24px}
 .chk input{width:auto;margin:0}
 .sent{border:1px solid rgba(255,255,255,.4);padding:28px}
 @media (max-width:900px){.cform{grid-template-columns:1fr;gap:40px}form .row{grid-template-columns:1fr;gap:0}}
 
 /* footer */
-footer{background:#0f1720;color:#9aa5b1;font-size:13px;padding-block:72px 32px}
+footer{background:#0f1720;color:#9aa5b1;font-size:14px;padding-block:72px 32px}
 .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px}
 footer .brand b{color:#fff;font-size:24px}
 footer .brand small{color:#9aa5b1}
 footer address{font-style:normal;margin-top:22px;line-height:1.9}
-footer h4{color:#fff;font-size:12.5px;letter-spacing:.2em;margin:0 0 16px}
+footer h4{color:#fff;font-size:13px;letter-spacing:.2em;margin:0 0 16px}
 footer ul{list-style:none;margin:0;padding:0}
 footer li{margin-bottom:8px}
 footer a:hover{color:#fff}
@@ -310,21 +307,18 @@ footer a:hover{color:#fff}
 @media (max-width:560px){.fgrid{grid-template-columns:1fr}}
 
 /* floating CTA */
-.fcta{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;width:300px;background:var(--bg);box-shadow:0 12px 40px rgba(14,22,32,.22);transform:translateY(calc(100% + 40px));transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.fcta{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:18px;background:var(--navy);color:#fff;padding:12px 44px 12px 22px;box-shadow:0 10px 30px rgba(14,22,32,.25);transform:translateY(calc(100% + 40px));transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .fcta.show{transform:none}
-.fcta .top{background:var(--navy);color:#fff;padding:14px 44px 14px 18px;font-size:12.5px;font-weight:700;letter-spacing:.08em;line-height:1.6}
-.fcta .top small{display:block;font-weight:400;font-size:11.5px;color:#c9d2db}
-.fcta .x{position:absolute;right:8px;top:8px;width:30px;height:30px;background:none;border:0;color:#fff;font-size:18px;cursor:pointer}
-.fcta .body{padding:16px 18px 18px;display:grid;gap:10px}
-.fcta .btn{width:100%;padding:13px;font-size:13.5px}
-.fcta .tel{text-align:center;font-size:12px;color:var(--ink-2)}
-.fcta .tel b{font-size:17px;font-weight:700;color:var(--ink);margin-left:6px}
+.fcta p{margin:0;font-size:14px;font-weight:700;line-height:1.5}
+.fcta p small{display:block;font-weight:400;font-size:12px;color:#c9d2db}
+.fcta .btn{padding:11px 20px;font-size:14.5px}
+.fcta .x{position:absolute;right:6px;top:6px;width:28px;height:28px;background:none;border:0;color:#c9d2db;font-size:16px;cursor:pointer}
 .mbar{display:none}
 @media (max-width:760px){
   .fcta{display:none}
   .mbar{display:grid;grid-template-columns:1fr 1.6fr;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));gap:8px;background:var(--bg);box-shadow:0 -6px 20px rgba(14,22,32,.12);transform:translateY(110%);transition:transform .4s}
   .mbar.show{transform:none}
-  .mbar .btn{padding:13px 8px;font-size:13.5px}
+  .mbar .btn{padding:13px 8px;font-size:14.5px}
   body{padding-bottom:76px}
 }
 .proto{position:fixed;left:12px;bottom:12px;z-index:30;background:rgba(20,26,33,.86);color:#eee;font-size:11px;letter-spacing:.06em;padding:5px 10px}
@@ -361,7 +355,7 @@ footer a:hover{color:#fff}
   </div>
   <div class="dots" id="dots" role="tablist" aria-label="写真の切り替え"></div>
   <div class="w inner">
-    <p class="kick">工務店・住宅会社の事業承継</p>
+    <p class="kick">後継者が決まっていない工務店・住宅会社の経営者さまへ</p>
     <h1>建てた家の点検に、三十年後も伺える会社であるために。</h1>
     <p class="sub">エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、そのまま引き継ぎます。</p>
     <div class="btns">
@@ -390,9 +384,8 @@ footer a:hover{color:#fff}
     <div class="stats">
       <div class="stat"><div class="num">57.3<small>%</small></div><h3>建設業の後継者不在率</h3><p>業種別で最も高い水準。全国平均を7ポイント上回ります。</p></div>
       <div class="stat"><div class="num">50.1<small>%</small></div><h3>全国企業の後継者不在率</h3><p>改善傾向にあるものの、いまも2社に1社は後継者が決まっていません。</p></div>
-      <div class="stat"><div class="num">30<small>年</small></div><h3>一棟の家と付き合う期間</h3><p>引渡し後の定期点検・メンテナンスは、建てた会社が続いて初めて守られます。</p></div>
     </div>
-    <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」。30年は長期優良住宅の維持保全計画期間を目安とした表記です。</p>
+    <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
   </div>
 </section>
 
@@ -405,7 +398,6 @@ footer a:hover{color:#fff}
         <p>工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検には誰が行くのか」。</p>
         <p>エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった「一社では手が回らない仕事」をグループで支えます。</p>
       </div>
-      <a class="btn btn-line" href="#support">グループの支援内容を見る <span class="arw">→</span></a>
     </div>
     <div class="pics">
       <div class="ph" data-alt="上棟中の木造住宅"><img src="img/frame.jpg" data-fallback="https://unsplash.com/photos/QtF2v8BP46I/download?force=true&w=1400" alt="建築中の木造の骨組み" loading="lazy"></div>
@@ -414,31 +406,6 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section id="compare" style="padding-top:0">
-  <div class="w">
-    <div class="sec-head">
-      <div>
-        <p class="label">WHY EDGE ASSET</p>
-        <h2 class="h2">事業承継の選択肢を、<br>比べてみてください。</h2>
-      </div>
-      <p class="lead">どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢をご案内することもあります。</p>
-    </div>
-    <div class="tbl-wrap">
-      <table class="cmp">
-        <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
-        <tbody>
-          <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
-          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
-          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
-          <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
-          <tr><th>数年後の再売却</th><td><span class="mk">—</span></td><td><span class="mk">—</span></td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td><span class="mk">—</span></td></tr>
-          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td><span class="mk">—</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">一般的な傾向を整理したもので、個別の案件により異なります。</p>
-  </div>
-</section>
 
 <section class="split">
   <div class="ph" data-alt="古い町並み"><img src="img/street.jpg" data-fallback="https://unsplash.com/photos/yRGrPNnMKB0/download?force=true&w=1800" alt="木造の家が並ぶ静かな通り" loading="lazy"></div>
@@ -447,7 +414,28 @@ footer a:hover{color:#fff}
     <p class="big">売らない。</p>
     <p>私たちは、買った会社を数年で売却して利益を得るファンドではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。</p>
     <p>目指すのは、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が続く会社であることです。</p>
-    <div class="btns" style="margin-top:12px"><a class="btn btn-white" href="#contact">考え方を直接聞いてみる <span class="arw">→</span></a></div>
+  </div>
+</section>
+
+<section class="msg" id="message">
+  <div class="w grid">
+    <div>
+      <div class="ph" data-alt="代表写真"><img src="img/ceo.jpg" alt="代表取締役の写真" loading="lazy"></div>
+      <p class="name">代表取締役<b>〇〇 〇〇</b></p>
+      <ul class="career">
+        <li>住宅会社にて集客・採用部門を統括</li>
+        <li>住宅業界向けSaaS企業 CFO室</li>
+        <li>工務店・住宅会社の経営支援</li>
+      </ul>
+    </div>
+    <div class="letter">
+      <p class="label">MESSAGE</p>
+      <p class="lede">会社を売る、という言葉に<br>抵抗がある方へ。</p>
+      <p>これまで多くの工務店の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を何人も見てきました。</p>
+      <p>大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。</p>
+      <p>私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を聞かせてください。</p>
+      <div class="btns" style="margin-top:28px"><a class="btn btn-primary" href="#contact">代表と話してみる <span class="arw">→</span></a></div>
+    </div>
   </div>
 </section>
 
@@ -522,26 +510,41 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="qband">
-  <div class="ph" data-alt=""><img src="img/street2.jpg" data-fallback="https://unsplash.com/photos/vTIfBkvquMw/download?force=true&w=2400" alt="" loading="lazy"></div>
-  <blockquote class="w"><p>地域で積み上げた名前は、<br>帳簿に載らない、いちばんの資産です。</p></blockquote>
+<section class="to" id="to">
+  <div class="w">
+    <h2 class="h2 center">社長・社員・施主様・協力業者さん、<br>それぞれにとって何が変わらないか。</h2>
+    <div class="to-grid">
+      <article><p class="who">社長</p><h3>辞める時期は、ご自身で決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と次の社長の育成を一緒に進めます。</p></article>
+      <article><p class="who">社員</p><h3>明日からの仕事は変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの選択肢が増えます。</p></article>
+      <article><p class="who">施主様</p><h3>点検に伺うのは同じ担当者です。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も契約どおりにお引渡しします。</p></article>
+      <article><p class="who">協力業者さん</p><h3>発注も支払条件もこれまでどおりです。</h3><p>グループ内の他社の現場をお願いできる機会も増えていきます。</p></article>
+    </div>
+  </div>
 </section>
 
-<section id="to">
+<section id="compare">
   <div class="w">
     <div class="sec-head">
       <div>
-        <p class="label">FOR EVERYONE</p>
-        <h2 class="h2">それぞれの方へ。</h2>
+        <p class="label">WHY EDGE ASSET</p>
+        <h2 class="h2">事業承継の選択肢を、<br>比べてみてください。</h2>
       </div>
-      <p class="lead">会社を引き継ぐとき、影響を受けるのは社長だけではありません。</p>
+      <p class="lead">どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢をご案内することもあります。</p>
     </div>
-    <div class="cols">
-      <article><div class="ph" data-alt="社長"><img src="img/to-ceo.jpg" data-fallback="https://unsplash.com/photos/fdFs1vOOLEY/download?force=true&w=900" alt="山を背にした町並み" loading="lazy"></div><p class="who">社長へ</p><h3>辞める時期は、ご自身で決めてください。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と、次の社長の育成を一緒に進めます。</p></article>
-      <article><div class="ph" data-alt="社員"><img src="img/to-staff.jpg" data-fallback="https://unsplash.com/photos/QtF2v8BP46I/download?force=true&w=900" alt="建築中の骨組み" loading="lazy"></div><p class="who">社員の皆さまへ</p><h3>明日からの仕事は、何も変わりません。</h3><p>職場も、上司も、名刺の社名もそのままです。変わるのは、事務作業が減ることと、研修やキャリアの選択肢が増えることです。</p></article>
-      <article><div class="ph" data-alt="施主様"><img src="img/to-owner.jpg" data-fallback="https://unsplash.com/photos/V6VxSgtVyco/download?force=true&w=900" alt="庭が見える和室" loading="lazy"></div><p class="who">施主様へ</p><h3>点検に伺うのは、これまでと同じ担当者です。</h3><p>保証も、定期点検も、窓口も変わりません。施工中の工事も、契約どおりにお引渡しします。</p></article>
-      <article><div class="ph" data-alt="協力業者さん"><img src="img/to-partner.jpg" data-fallback="https://unsplash.com/photos/W7sIS8Ms3bw/download?force=true&w=900" alt="木造の家が並ぶ通り" loading="lazy"></div><p class="who">協力業者さんへ</p><h3>現場で顔を合わせる相手は、変わりません。</h3><p>発注も支払条件もこれまでどおりです。グループ内の他社の現場をお願いできる機会も増えていきます。</p></article>
+    <div class="tbl-wrap">
+      <table class="cmp">
+        <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
+        <tbody>
+          <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
+          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
+          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
+          <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
+          <tr><th>数年後の再売却</th><td><span class="mk">—</span></td><td><span class="mk">—</span></td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td><span class="mk">—</span></td></tr>
+          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td><span class="mk">—</span></td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="note">一般的な傾向を整理したもので、個別の案件により異なります。</p>
   </div>
 </section>
 
@@ -619,35 +622,12 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="msg" id="message">
-  <div class="w grid">
-    <div>
-      <div class="ph" data-alt="代表写真"><img src="img/ceo.jpg" alt="代表取締役の写真" loading="lazy"></div>
-      <p class="name">代表取締役<b>〇〇 〇〇</b></p>
-      <ul class="career">
-        <li>住宅会社にて集客・採用部門を統括</li>
-        <li>住宅業界向けSaaS企業 CFO室</li>
-        <li>工務店・住宅会社の経営支援</li>
-      </ul>
-    </div>
-    <div class="letter">
-      <p class="label">MESSAGE</p>
-      <p class="lede">会社を売る、という言葉に<br>抵抗がある方へ。</p>
-      <p>これまで多くの工務店の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を何人も見てきました。</p>
-      <p>大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。</p>
-      <p>私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を聞かせてください。</p>
-      <div class="btns" style="margin-top:28px"><a class="btn btn-primary" href="#contact">代表と話してみる <span class="arw">→</span></a></div>
-    </div>
-  </div>
-</section>
-
 <section class="faq" id="faq">
   <div class="w grid">
     <div>
       <p class="label">FAQ</p>
       <h2 class="h2">よくあるご質問</h2>
       <p class="lead" style="font-size:14px">ここにない質問も、お気軽にお問い合わせください。</p>
-      <div class="btns" style="margin-top:24px"><a class="btn btn-line" href="#contact">質問する <span class="arw">→</span></a></div>
     </div>
     <div>
       <details><summary>相談したことが、社員や取引先に知られることはありませんか。</summary><p>ありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約は初回面談の段階から結べます。</p></details>
@@ -662,7 +642,7 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section id="company" style="padding-top:0">
+<section id="company">
   <div class="w">
     <div class="sec-head" style="margin-bottom:40px"><div><p class="label">COMPANY</p><h2 class="h2" style="margin:0">会社概要</h2></div></div>
     <dl class="spec co">
@@ -750,13 +730,9 @@ footer a:hover{color:#fff}
 </footer>
 
 <aside class="fcta" id="fcta" aria-label="ご相談窓口">
-  <div class="top">秘密厳守・無料のご相談<small>社名を伏せたままでも構いません</small></div>
+  <p>秘密厳守・無料のご相談<small>社名を伏せたままでも構いません</small></p>
+  <a class="btn btn-primary" href="#contact">相談する <span class="arw">→</span></a>
   <button class="x" id="fx" aria-label="閉じる">×</button>
-  <div class="body">
-    <a class="btn btn-primary" href="#contact">面談を予約する <span class="arw">→</span></a>
-    <a class="btn btn-line" href="#contact">事業承継ガイド（無料）</a>
-    <div class="tel">お電話<b>03-0000-0000</b></div>
-  </div>
 </aside>
 <div class="mbar" id="mbar">
   <a class="btn btn-line" href="#contact">電話する</a>
