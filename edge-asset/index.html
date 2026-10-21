@@ -80,9 +80,18 @@ header .btn{padding:12px 22px;font-size:13px}
 
 /* hero */
 .hero{position:relative;min-height:760px;height:100vh;max-height:980px;color:#fff;overflow:hidden;padding:0}
-.hero>.ph{position:absolute;inset:0}
-.hero>.ph img{transform:scale(1.05);animation:settle 7s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes settle{to{transform:scale(1)}}
+.slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.slide.on{opacity:1}
+.slide img{transform:scale(1.08)}
+.slide.on img{animation:zoom 8s linear forwards}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.dots{position:absolute;z-index:3;right:max(24px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.dots button{width:3px;height:36px;padding:0;border:0;background:rgba(255,255,255,.35);cursor:pointer;position:relative;overflow:hidden}
+.dots button::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:top}
+.dots button.on::after{animation:fill 6s linear forwards}
+@keyframes fill{to{transform:scaleY(1)}}
+@media (max-width:800px){.dots{top:auto;bottom:auto;right:16px;top:110px;flex-direction:row}.dots button{width:28px;height:3px}.dots button::after{transform:scaleX(0);transform-origin:left}@keyframes fill{to{transform:scaleX(1)}}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,18,26,.72) 0%,rgba(12,18,26,.35) 48%,rgba(12,18,26,.1) 100%),linear-gradient(0deg,rgba(12,18,26,.55),rgba(12,18,26,0) 40%);pointer-events:none}
 .hero .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
 .hero .kick{font-size:13px;font-weight:700;letter-spacing:.3em;margin:0 0 26px;opacity:.9}
@@ -344,7 +353,13 @@ footer a:hover{color:#fff}
 <main id="top">
 
 <section class="hero">
-  <div class="ph" data-alt="新築注文住宅の写真"><img src="img/hero.jpg" data-fallback="https://unsplash.com/photos/KqrbNYj7QJQ/download?force=true&w=2400" alt="新築の注文住宅の外観"></div>
+  <div class="slides" id="slides" aria-hidden="true">
+    <div class="ph slide on" data-alt="新築注文住宅の写真 1"><img src="img/hero1.jpg" data-fallback="https://unsplash.com/photos/KqrbNYj7QJQ/download?force=true&w=2400" alt=""></div>
+    <div class="ph slide" data-alt="新築注文住宅の写真 2"><img src="img/hero2.jpg" data-fallback="https://unsplash.com/photos/cyAhRBcVUso/download?force=true&w=2400" alt=""></div>
+    <div class="ph slide" data-alt="新築注文住宅の写真 3"><img src="img/hero3.jpg" data-fallback="https://unsplash.com/photos/mzkx33pU2go/download?force=true&w=2400" alt=""></div>
+    <div class="ph slide" data-alt="新築注文住宅の写真 4"><img src="img/hero4.jpg" data-fallback="https://unsplash.com/photos/G48h926L2qo/download?force=true&w=2400" alt=""></div>
+  </div>
+  <div class="dots" id="dots" role="tablist" aria-label="写真の切り替え"></div>
   <div class="w inner">
     <p class="kick">工務店・住宅会社の事業承継</p>
     <h1>建てた家の点検に、三十年後も伺える会社であるために。</h1>
@@ -653,7 +668,7 @@ footer a:hover{color:#fff}
     <dl class="spec co">
       <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
       <div><dt>代表者</dt><dd>代表取締役　〇〇 〇〇</dd></div>
-      <div><dt>所在地</dt><dd>〒000-0000　東京都〇〇区〇〇 0-0-0 〇〇ビル 0F</dd></div>
+      <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
       <div><dt>設立</dt><dd>20XX年X月</dd></div>
       <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／グループ会社の経営支援（集客・採用・財務・業務改善）</dd></div>
@@ -709,7 +724,7 @@ footer a:hover{color:#fff}
     <div class="fgrid">
       <div>
         <a class="brand" href="#top"><b>EDGE ASSET</b><small>株式会社エッジアセット</small></a>
-        <address>〒000-0000<br>東京都〇〇区〇〇 0-0-0 〇〇ビル 0F</address>
+        <address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address>
       </div>
       <div>
         <h4>会社について</h4>
@@ -760,6 +775,26 @@ footer a:hover{color:#fff}
     if (img.complete && !img.naturalWidth) fail();
     img.addEventListener('error', fail);
   });
+
+  // hero slideshow: crossfade every 6s, dots jump to a photo
+  const slides = [...document.querySelectorAll('.slide')], dots = document.getElementById('dots');
+  let cur = 0, timer;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', `写真 ${i + 1}`);
+    b.addEventListener('click', () => { go(i); });
+    dots.appendChild(b);
+  });
+  const go = i => {
+    slides[cur].classList.remove('on'); dots.children[cur].classList.remove('on');
+    cur = i;
+    slides[cur].classList.add('on');
+    const d = dots.children[cur]; d.classList.remove('on'); void d.offsetWidth; d.classList.add('on');
+    clearTimeout(timer);
+    if (!still) timer = setTimeout(() => go((cur + 1) % slides.length), 6000);
+  };
+  go(0);
 
   // floating CTA appears after the hero, hides near the contact section
   const hero = document.querySelector('.hero'), contact = document.getElementById('contact');
