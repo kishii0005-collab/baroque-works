@@ -4,160 +4,309 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>株式会社エッジアセット｜地域の工務店・住宅会社の事業承継</title>
-<meta name="description" content="株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、長く経営していく会社です。社名、社員、施主様へのアフターのお約束をそのまま引き継ぎます。">
+<meta name="description" content="株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営していく会社です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f4f1ea;
-  --paper-2:#ebe6db;
-  --ink:#1d1e20;
-  --ink-2:#4a4b4e;
-  --ink-3:#7a7a76;
-  --rule:#cfc8b8;
-  --ai:#25364b;      /* 藍 */
-  --bengara:#8f3b22; /* 弁柄 */
-  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  --w:1120px;
+  --paper:#f4f1ea;--paper-2:#ebe6db;--paper-3:#e2dccd;
+  --ink:#1d1e20;--ink-2:#4a4b4e;--ink-3:#7d7c77;
+  --rule:#d2cbbb;
+  --ai:#25364b;--ai-2:#34495f;
+  --bengara:#8f3b22;
+  --serif:"Shippori Mincho","Noto Serif CJK JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --w:1180px;--ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.95;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-img,svg{display:block;max-width:100%}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 32px}
+button{font:inherit;color:inherit}
+svg{display:block;max-width:100%}
+h1,h2,h3{word-break:auto-phrase}
+p{margin:0 0 1.2em}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 40px}
 @media (max-width:640px){.wrap{padding:0 16px}body{font-size:15px}}
+:focus-visible{outline:2px solid var(--bengara);outline-offset:3px}
+
+/* prototype banner */
+.proto{background:var(--ink);color:#d9d5cb;font-size:12px;letter-spacing:.1em;text-align:center;padding:7px 40px;position:relative}
+.proto button{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:0;color:#d9d5cb;cursor:pointer;font-size:16px;line-height:1}
 
 /* header */
-header.site{border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:10}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-family:var(--serif);font-weight:700;text-decoration:none;display:flex;align-items:baseline;gap:12px}
-.logo .ja{font-size:19px;letter-spacing:.12em}
-.logo .en{font-family:var(--sans);font-size:10px;letter-spacing:.28em;color:var(--ink-3)}
-nav.gnav{display:flex;gap:28px;font-size:13.5px}
-nav.gnav a{text-decoration:none;color:var(--ink-2)}
-nav.gnav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:6px}
-nav.gnav a.cta{color:var(--paper);background:var(--ai);padding:8px 18px}
-nav.gnav a.cta:hover{text-decoration:none;background:var(--ink)}
-@media (max-width:900px){nav.gnav a:not(.cta){display:none}}
+header.site{position:sticky;top:0;z-index:30;background:rgba(244,241,234,.94);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid transparent;transition:transform .35s var(--ease),border-color .3s}
+header.site.scrolled{border-bottom-color:var(--rule)}
+header.site.hide{transform:translateY(-100%)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px;line-height:1.25}
+.logo .mark{width:26px;height:26px}
+.logo .ja{font-family:var(--serif);font-weight:700;font-size:19px;letter-spacing:.14em}
+.logo .en{font-size:9.5px;letter-spacing:.3em;color:var(--ink-3);margin-top:3px}
+nav.gnav{display:flex;align-items:center;gap:30px;font-size:13.5px}
+nav.gnav a{text-decoration:none;color:var(--ink-2);position:relative;padding:4px 0}
+nav.gnav a:not(.cta)::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:var(--ink);transition:right .3s var(--ease)}
+nav.gnav a:not(.cta):hover::after,nav.gnav a.on::after{right:0}
+nav.gnav a.on{color:var(--ink)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ai);color:#fff!important;text-decoration:none;padding:10px 22px;font-size:13.5px;letter-spacing:.1em;transition:background .25s}
+.cta:hover{background:var(--ink)}
+.cta .arw{transition:transform .25s var(--ease)}
+.cta:hover .arw{transform:translateX(4px)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--ink);transition:transform .3s var(--ease),opacity .2s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:25px}
+.menu-open .burger span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){transform:translateY(-4px) rotate(-45deg)}
+@media (max-width:960px){nav.gnav a:not(.cta){display:none}.burger{display:block}nav.gnav .cta{display:none}}
+.drawer{position:fixed;inset:0;z-index:25;background:var(--paper);padding:110px 24px 40px;display:flex;flex-direction:column;gap:4px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.menu-open .drawer{opacity:1;visibility:visible}
+.drawer a{font-family:var(--serif);font-size:22px;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between}
+.drawer a small{font-family:var(--sans);font-size:11px;color:var(--ink-3);letter-spacing:.2em}
+.drawer .cta{margin-top:28px;justify-content:center;font-family:var(--sans);font-size:15px;padding:16px;border:0}
 
 /* hero */
-.hero{padding:96px 0 88px;border-bottom:1px solid var(--rule)}
-.hero .grid{display:grid;grid-template-columns:1.35fr 1fr;gap:64px;align-items:end}
-.kicker{font-size:12.5px;letter-spacing:.22em;color:var(--bengara);margin:0 0 28px}
-.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.55;letter-spacing:.06em;margin:0 0 36px}
-.hero p.lead{font-size:16.5px;color:var(--ink-2);max-width:34em;margin:0}
-.hero figure{margin:0}
-.hero figcaption{font-size:11.5px;color:var(--ink-3);margin-top:10px;letter-spacing:.1em}
-@media (max-width:900px){.hero{padding:64px 0}.hero .grid{grid-template-columns:1fr;gap:40px}}
+.hero{position:relative;padding:72px 0 0;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 40px;gap:48px;align-items:center}
+.kicker{display:flex;align-items:center;gap:14px;font-size:12.5px;letter-spacing:.24em;color:var(--bengara);margin:0 0 30px}
+.kicker::before{content:"";width:32px;height:1px;background:currentColor}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.2vw,50px);line-height:1.5;letter-spacing:.07em;margin:0 0 34px}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block;white-space:nowrap;transform:translateY(105%);animation:up 1s var(--ease) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .ln:nth-child(3)>span{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero .lead{font-size:16.5px;color:var(--ink-2);max-width:31em;margin:0 0 36px;opacity:0;animation:fade 1s .6s forwards}
+.hero .actions{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;opacity:0;animation:fade 1s .75s forwards}
+.textlink{font-size:14px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.textlink:hover{color:var(--bengara);border-color:var(--bengara)}
+.cta.lg{padding:15px 30px;font-size:14.5px}
+@keyframes fade{to{opacity:1}}
+.drawing path{stroke-dasharray:var(--len,900);stroke-dashoffset:var(--len,900);animation:draw 2.4s var(--ease) forwards}
+.drawing .late path{animation-delay:1s;animation-duration:1.6s}
+.drawing text{opacity:0;animation:fade .8s 2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.tate{writing-mode:vertical-rl;font-family:var(--serif);font-size:15px;letter-spacing:.42em;color:var(--ink-2);justify-self:end;padding-top:8px;border-right:1px solid var(--rule);padding-right:14px;opacity:0;animation:fade 1.2s 1.2s forwards}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:80px;border-top:1px solid var(--ink)}
+.facts div{padding:22px 24px 26px 0}
+.facts div+div{padding-left:24px;border-left:1px solid var(--rule)}
+.facts dt{font-size:11.5px;letter-spacing:.2em;color:var(--ink-3)}
+.facts dd{margin:4px 0 0;font-family:var(--serif);font-size:21px;letter-spacing:.06em}
+.facts dd small{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-left:6px;letter-spacing:.04em}
+@media (max-width:1060px){.hero .grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px}.tate{display:none}}
+@media (max-width:760px){
+  .hero{padding-top:44px}.hero .grid{grid-template-columns:1fr;gap:28px}
+  .hero figure{order:-1;max-width:300px}
+  .facts{grid-template-columns:1fr;margin-top:48px}
+  .facts div,.facts div+div{padding:16px 0;border-left:0;border-bottom:1px solid var(--rule)}
+  .facts div{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .facts dd{font-size:18px;text-align:right}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .hero h1 .ln>span{transform:none}.drawing path{stroke-dashoffset:0}
+}
 
 /* sections */
-section.block{padding:104px 0;border-bottom:1px solid var(--rule)}
-@media (max-width:640px){section.block{padding:72px 0}}
-.sec{display:grid;grid-template-columns:220px 1fr;gap:48px}
-@media (max-width:900px){.sec{grid-template-columns:1fr;gap:20px}}
-.label{font-size:12px;letter-spacing:.2em;color:var(--ink-3);padding-top:14px;border-top:2px solid var(--ink);align-self:start}
+section.block{padding:120px 0;border-top:1px solid var(--rule)}
+@media (max-width:640px){section.block{padding:76px 0}}
+.sec{display:grid;grid-template-columns:200px 1fr;gap:56px}
+@media (max-width:960px){.sec{grid-template-columns:1fr;gap:18px}}
+.label{position:sticky;top:110px;align-self:start;font-size:11.5px;letter-spacing:.22em;color:var(--ink-3);padding-top:14px;border-top:2px solid var(--ink)}
 .label b{display:block;font-family:var(--serif);font-size:15px;color:var(--ink);letter-spacing:.14em;font-weight:600;margin-top:4px}
-h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,2.8vw,32px);line-height:1.7;letter-spacing:.06em;margin:0 0 32px}
-h1,h2,h3{word-break:auto-phrase}
-h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.7;letter-spacing:.05em;margin:0 0 10px}
-p{margin:0 0 1.2em}
+@media (max-width:960px){.label{position:static;width:140px}}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,36px);line-height:1.65;letter-spacing:.06em;margin:0 0 36px}
+h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.7;letter-spacing:.05em;margin:0 0 8px}
+.intro{max-width:38em;color:var(--ink-2)}
 .note{font-size:12.5px;color:var(--ink-3)}
-.todo{background:#efe1c4;color:#5a3d10;padding:0 .35em;font-size:.9em;white-space:nowrap}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
 
 /* letter */
-.letter{max-width:40em;font-size:16.5px}
-.letter p{text-indent:1em}
-.letter .sign{text-indent:0;text-align:right;margin-top:40px;font-family:var(--serif)}
-.letter .sign .sub{display:block;font-size:13px;color:var(--ink-3);font-family:var(--sans)}
+.letter{display:grid;grid-template-columns:1fr 220px;gap:56px}
+.letter .body{max-width:36em;font-size:16.5px}
+.letter .body p{text-indent:1em}
+.letter aside{border-left:1px solid var(--rule);padding-left:28px;align-self:start;position:sticky;top:120px}
+.portrait{aspect-ratio:3/4;background:var(--paper-3);display:grid;place-items:center;color:var(--ink-3);font-size:12px;letter-spacing:.15em;margin-bottom:16px;background-image:repeating-linear-gradient(135deg,transparent 0 9px,rgba(0,0,0,.035) 9px 10px)}
+.letter aside .nm{font-family:var(--serif);font-size:18px;letter-spacing:.16em}
+.letter aside .ttl{font-size:12px;color:var(--ink-3)}
+.letter aside ul{list-style:none;padding:0;margin:16px 0 0;font-size:12.5px;color:var(--ink-2);line-height:1.8}
+.letter aside li{padding:6px 0;border-top:1px dashed var(--rule)}
+@media (max-width:860px){.letter{grid-template-columns:1fr}.letter aside{position:static;border-left:0;padding-left:0;display:grid;grid-template-columns:110px 1fr;gap:0 20px}.portrait{margin:0;grid-row:span 3}}
 
 /* promises */
 ol.promises{list-style:none;margin:0;padding:0;counter-reset:p}
-ol.promises li{counter-increment:p;display:grid;grid-template-columns:72px 1fr;gap:8px 24px;padding:30px 0;border-top:1px solid var(--rule)}
+ol.promises li{counter-increment:p;display:grid;grid-template-columns:90px 1fr 1.1fr;gap:8px 32px;padding:32px 0;border-top:1px solid var(--rule);align-items:baseline;transition:background .3s}
 ol.promises li:last-child{border-bottom:1px solid var(--rule)}
-ol.promises li::before{content:counter(p,decimal-leading-zero);font-family:var(--serif);font-size:30px;line-height:1.2;color:var(--ai)}
-ol.promises p{margin:0;color:var(--ink-2)}
-@media (max-width:640px){ol.promises li{grid-template-columns:48px 1fr}ol.promises li::before{font-size:22px}}
+ol.promises li::before{content:counter(p,decimal-leading-zero);font-family:var(--serif);font-size:34px;line-height:1;color:var(--ai)}
+ol.promises li:hover h3{color:var(--bengara)}
+ol.promises h3{margin:0;transition:color .25s}
+ol.promises p{margin:0;color:var(--ink-2);font-size:15px}
+@media (max-width:860px){ol.promises li{grid-template-columns:52px 1fr}ol.promises li::before{font-size:24px}ol.promises p{grid-column:2}}
+.honest{margin-top:64px;display:grid;grid-template-columns:200px 1fr;gap:24px 40px;background:var(--paper-2);padding:40px 44px;border-left:3px solid var(--bengara)}
+.honest h3{margin:0}
+.honest ul{margin:0;padding:0;list-style:none;color:var(--ink-2)}
+.honest li{padding:10px 0 10px 26px;position:relative;border-bottom:1px solid var(--rule)}
+.honest li:last-child{border-bottom:0}
+.honest li::before{content:"";position:absolute;left:0;top:23px;width:12px;height:1px;background:var(--bengara)}
+@media (max-width:760px){.honest{grid-template-columns:1fr;padding:28px 20px}}
 
-.honest{margin-top:56px;background:var(--paper-2);padding:36px 40px;border-left:3px solid var(--bengara)}
-.honest h3{margin-bottom:16px}
-.honest ul{margin:0;padding-left:1.2em;color:var(--ink-2)}
-.honest li{margin-bottom:.6em}
-@media (max-width:640px){.honest{padding:28px 20px}}
+/* stakeholder switcher */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--ink);margin-bottom:0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;cursor:pointer;padding:14px 22px 13px;font-size:14px;color:var(--ink-3);letter-spacing:.08em;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color .2s,border-color .2s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ai);font-weight:500}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:0;animation:fade .45s}
+.panel[hidden]{display:none}
+.col{padding:32px 32px 32px 0}
+.col+.col{padding:32px 0 32px 32px;border-left:1px solid var(--rule)}
+.col h4{margin:0 0 14px;font-size:12px;letter-spacing:.22em;color:var(--ink-3);font-weight:500;display:flex;align-items:center;gap:10px}
+.col h4 i{width:9px;height:9px;border-radius:50%;background:var(--ink-3);display:inline-block}
+.col.change h4 i{background:var(--bengara)}
+.col ul{list-style:none;margin:0;padding:0}
+.col li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.col li:last-child{border-bottom:0}
+.col li b{font-family:var(--serif);font-weight:600;display:block;font-size:16px}
+.col li span{color:var(--ink-2);font-size:14px}
+@media (max-width:760px){.panel{grid-template-columns:1fr}.col,.col+.col{padding:24px 0;border-left:0}.col+.col{border-top:1px solid var(--rule)}}
 
-/* change table */
-table{width:100%;border-collapse:collapse;font-size:15px}
-th,td{text-align:left;vertical-align:top;padding:18px 16px 18px 0;border-bottom:1px solid var(--rule)}
-thead th{font-size:12px;letter-spacing:.18em;color:var(--ink-3);font-weight:500;border-bottom:2px solid var(--ink)}
-tbody th{font-family:var(--serif);font-weight:600;width:22%;white-space:nowrap}
-td.keep{color:var(--ink-2)}
-.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-@media (max-width:640px){
-  .stack thead{display:none}
-  .stack tr{display:block;border-bottom:1px solid var(--rule);padding:16px 0}
-  .stack th,.stack td{display:block;border:0;padding:4px 0;width:auto}
-  .stack td::before{content:attr(data-h);display:block;font-size:11px;letter-spacing:.16em;color:var(--ink-3)}
+/* self check */
+.check{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start}
+.q{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.q:first-child{border-top:2px solid var(--ink)}
+.q p{margin:0;font-size:15px}
+.seg{display:inline-flex;border:1px solid var(--ink);flex-shrink:0}
+.seg button{background:none;border:0;padding:6px 16px;font-size:13px;cursor:pointer;min-width:58px}
+.seg button+button{border-left:1px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.result{position:sticky;top:120px;background:var(--ai);color:#e7e5df;padding:36px 34px}
+.result .meter{display:flex;gap:6px;margin:6px 0 22px}
+.result .meter i{flex:1;height:4px;background:rgba(255,255,255,.18);transition:background .3s}
+.result .meter i.on{background:#e9d9b8}
+.result .count{font-family:var(--serif);font-size:44px;line-height:1;color:#fff}
+.result .count small{font-size:14px;color:#a9b0ba;margin-left:6px;font-family:var(--sans)}
+.result h3{color:#fff;margin:20px 0 8px}
+.result p{font-size:14px;color:#c4c9cf;min-height:5.4em}
+.result .cta{background:#f4f1ea;color:var(--ai)!important}
+.result .cta:hover{background:#fff}
+.result .lbl{font-size:11.5px;letter-spacing:.22em;color:#a9b0ba}
+@media (max-width:860px){.check{grid-template-columns:1fr}.result{position:static}}
+@media (max-width:480px){.q{flex-direction:column;align-items:flex-start;gap:10px}}
+
+/* timeline */
+.gantt{border-top:2px solid var(--ink)}
+.scale{display:grid;grid-template-columns:240px repeat(7,1fr);font-size:11px;color:var(--ink-3);letter-spacing:.1em;border-bottom:1px solid var(--rule)}
+.scale span{padding:10px 0 8px 6px;border-left:1px dashed var(--rule)}
+.scale span:first-child{border-left:0;padding-left:0}
+.row{display:grid;grid-template-columns:240px 1fr;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .2s}
+.row:hover,.row.open{background:var(--paper-2)}
+.row .nm{padding:16px 12px 16px 0;display:flex;gap:14px;align-items:baseline}
+.row .nm em{font-style:normal;font-family:var(--serif);color:var(--ai);font-size:14px;width:18px}
+.row .nm h3{font-size:16px;margin:0}
+.row .track{position:relative;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/7 - 1px),var(--rule) calc(100%/7 - 1px),var(--rule) calc(100%/7));background-size:100% 100%}
+.row .bar{position:absolute;top:50%;height:10px;transform:translateY(-50%) scaleX(0);transform-origin:left;background:var(--ai);transition:transform 1s var(--ease)}
+.gantt.in .bar{transform:translateY(-50%) scaleX(1)}
+.row:nth-child(n) .bar{transition-delay:calc(var(--i)*.12s)}
+.row .bar.long{background:repeating-linear-gradient(90deg,var(--ai) 0 10px,transparent 10px 14px)}
+.row .dur{position:absolute;top:50%;transform:translateY(-50%);font-size:11.5px;color:var(--bengara);white-space:nowrap;padding-left:10px}
+.detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.detail p{margin:0;padding:0 0 18px 32px;color:var(--ink-2);font-size:14.5px;max-width:44em}
+.row.open .detail{max-height:220px}
+@media (max-width:760px){
+  .scale{display:none}
+  .row{grid-template-columns:1fr}
+  .row .track{height:22px;margin:0 0 12px 32px;background-image:none;background-color:var(--paper-3)}
 }
 
-/* criteria */
-dl.criteria{display:grid;grid-template-columns:200px 1fr;margin:0;border-top:2px solid var(--ink)}
-dl.criteria dt,dl.criteria dd{margin:0;padding:20px 0;border-bottom:1px solid var(--rule)}
-dl.criteria dt{font-family:var(--serif);font-weight:600}
-@media (max-width:640px){dl.criteria{grid-template-columns:1fr}dl.criteria dt{border-bottom:0;padding-bottom:0}dl.criteria dd{padding-top:4px}}
-
-/* process */
-ol.process{list-style:none;margin:0;padding:0;position:relative}
-ol.process li{position:relative;padding:0 0 40px 64px}
-ol.process li::before{content:"";position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--rule)}
-ol.process li:last-child::before{display:none}
-ol.process .n{position:absolute;left:0;top:2px;width:31px;height:31px;border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--serif);font-size:14px;background:var(--paper)}
-ol.process .t{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
-ol.process .t h3{margin:0}
-ol.process .dur{font-size:12.5px;color:var(--bengara);letter-spacing:.08em}
-ol.process p{color:var(--ink-2);margin:6px 0 0}
-
 /* faq */
-.faq details{border-top:1px solid var(--rule);padding:4px 0}
-.faq details:last-child{border-bottom:1px solid var(--rule)}
-.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-family:var(--serif);font-weight:600;font-size:17px;position:relative}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"＋";position:absolute;right:4px;top:20px;color:var(--ink-3);font-family:var(--sans)}
-.faq details[open] summary::after{content:"－"}
-.faq .a{padding:0 0 24px;color:var(--ink-2);max-width:42em}
+.faq-list{border-top:2px solid var(--ink)}
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-item button{width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:24px 56px 24px 0;font-family:var(--serif);font-weight:600;font-size:17px;position:relative;display:flex;gap:18px;line-height:1.7}
+.faq-item button em{font-style:normal;color:var(--bengara);font-family:var(--serif)}
+.faq-item button::after,.faq-item button::before{content:"";position:absolute;right:8px;top:50%;width:14px;height:1.5px;background:var(--ink);transition:transform .3s var(--ease)}
+.faq-item button::before{transform:rotate(90deg)}
+.faq-item.open button::before{transform:rotate(0)}
+.faq-item .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.faq-item.open .ans{grid-template-rows:1fr}
+.faq-item .ans>div{overflow:hidden}
+.faq-item .ans p{padding:0 0 26px 36px;margin:0;color:var(--ink-2);max-width:42em}
 
 /* contact */
-.contact{background:var(--ai);color:#e9e6de;border-bottom:0}
+.contact{background:var(--ai);color:#e9e6de;border-top:0}
 .contact .label{border-color:#e9e6de;color:#a9b0ba}
 .contact .label b{color:#fff}
 .contact h2{color:#fff}
-.contact p{color:#c9ccd1}
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:8px}
-@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
-form label{display:block;font-size:12.5px;letter-spacing:.12em;color:#a9b0ba;margin:0 0 6px}
-form input,form select,form textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #6d7a8a;color:#fff;font:inherit;padding:8px 0;margin-bottom:22px;border-radius:0}
-form select option{color:var(--ink)}
-form textarea{min-height:110px;resize:vertical}
-form input:focus,form select:focus,form textarea:focus{outline:none;border-bottom-color:#fff}
-form button{background:#f4f1ea;color:var(--ai);border:0;font:inherit;font-weight:700;letter-spacing:.14em;padding:14px 36px;cursor:pointer}
-form button:hover{background:#fff}
-.direct{border-top:1px solid #4f5f74;padding-top:24px}
-.direct dt{font-size:12px;letter-spacing:.16em;color:#a9b0ba}
-.direct dd{margin:2px 0 20px;font-family:var(--serif);font-size:20px;color:#fff}
+.contact .intro{color:#c4c9cf}
+.cgrid{display:grid;grid-template-columns:1.25fr 1fr;gap:64px;margin-top:20px}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr;gap:40px}}
+.steps{display:flex;gap:8px;margin-bottom:28px;font-size:12px;letter-spacing:.14em;color:#8e98a5}
+.steps span{flex:1;padding-top:10px;border-top:2px solid #4a5b70;transition:all .3s}
+.steps span.on{border-color:#e9d9b8;color:#fff}
+.fstep[hidden]{display:none}
+.fstep{animation:fade .4s}
+.fl{display:block;font-size:12.5px;letter-spacing:.12em;color:#a9b0ba;margin:0 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chips button{background:none;border:1px solid #6d7a8a;color:#e9e6de;padding:10px 18px;font-size:14px;cursor:pointer;transition:all .2s}
+.chips button:hover{border-color:#fff}
+.chips button[aria-pressed="true"]{background:#f4f1ea;color:var(--ai);border-color:#f4f1ea}
+.field{position:relative;margin-bottom:24px}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #6d7a8a;color:#fff;font:inherit;padding:22px 0 8px;border-radius:0}
+.field textarea{min-height:96px;resize:vertical}
+.field label{position:absolute;left:0;top:22px;font-size:14px;color:#a9b0ba;pointer-events:none;transition:all .2s var(--ease)}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:#fff}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label{top:0;font-size:11.5px;letter-spacing:.12em}
+.toggle{display:flex;align-items:center;gap:12px;font-size:14px;cursor:pointer;margin:4px 0 28px;color:#c4c9cf}
+.toggle input{appearance:none;width:40px;height:22px;border-radius:11px;background:#4a5b70;position:relative;cursor:pointer;transition:background .25s;margin:0}
+.toggle input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .25s var(--ease)}
+.toggle input:checked{background:#c9a86a}
+.toggle input:checked::after{transform:translateX(18px)}
+.fbtns{display:flex;gap:16px;align-items:center}
+.btn-light{background:#f4f1ea;color:var(--ai);border:0;font-weight:700;letter-spacing:.14em;padding:15px 34px;cursor:pointer;transition:background .2s}
+.btn-light:hover{background:#fff}
+.btn-light:disabled{opacity:.35;cursor:not-allowed}
+.btn-ghost{background:none;border:0;color:#a9b0ba;cursor:pointer;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+.done{border:1px solid #6d7a8a;padding:32px}
+.done h3{color:#fff}
+.direct dl{margin:0}
+.direct dt{font-size:11.5px;letter-spacing:.2em;color:#a9b0ba;border-top:1px solid #4a5b70;padding-top:18px}
+.direct dd{margin:4px 0 22px;font-family:var(--serif);font-size:22px;color:#fff}
+.direct dd.s{font-family:var(--sans);font-size:14.5px;color:#d5d8dc}
 
 /* company + footer */
-.company dl.criteria{grid-template-columns:160px 1fr}
-@media (max-width:640px){.company dl.criteria{grid-template-columns:1fr}}
-footer{padding:40px 0 56px;font-size:12px;color:var(--ink-3)}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+dl.tbl{display:grid;grid-template-columns:160px 1fr;margin:0;border-top:2px solid var(--ink)}
+dl.tbl dt,dl.tbl dd{margin:0;padding:18px 0;border-bottom:1px solid var(--rule)}
+dl.tbl dt{font-family:var(--serif);font-weight:600}
+@media (max-width:640px){dl.tbl{grid-template-columns:1fr}dl.tbl dt{border-bottom:0;padding-bottom:0}dl.tbl dd{padding-top:2px}}
+footer{background:var(--ink);color:#a3a29c;padding:56px 0 40px;font-size:12.5px}
+footer .wrap{display:grid;grid-template-columns:1fr auto;gap:28px}
+footer .logo .ja{color:#f4f1ea}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 26px}
+footer nav a{text-decoration:none}
+footer nav a:hover{color:#fff}
+footer .copy{grid-column:1/-1;border-top:1px solid #34363a;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+/* mobile sticky cta */
+.mcta{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;transform:translateY(140%);transition:transform .4s var(--ease)}
+.mcta.show{transform:none}
+.mcta .cta{width:100%;justify-content:center;padding:15px;font-size:15px;box-shadow:0 6px 24px rgba(29,30,32,.18)}
+@media (max-width:760px){.mcta{display:block}}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--bengara);z-index:40;width:0}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+<div class="proto" id="proto">デザイン確認用プロトタイプ ― 文言・数値・人物情報はすべて仮です<button aria-label="閉じる" onclick="this.parentNode.remove()">×</button></div>
 
-<header class="site">
+<header class="site" id="hdr">
   <div class="wrap">
-    <a class="logo" href="#top"><span class="ja">エッジアセット</span><span class="en">EDGE ASSET</span></a>
+    <a class="logo" href="#top" aria-label="株式会社エッジアセット トップへ">
+      <svg class="mark" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 12 L13 3 L24 12" fill="none" stroke="#1d1e20" stroke-width="1.6"/><path d="M5 10 V24 H21 V10" fill="none" stroke="#1d1e20" stroke-width="1.6"/><path d="M13 24 V15" stroke="#8f3b22" stroke-width="2"/></svg>
+      <span><span class="ja">エッジアセット</span><br><span class="en">EDGE ASSET</span></span>
+    </a>
     <nav class="gnav" aria-label="メインメニュー">
       <a href="#message">代表より</a>
       <a href="#promise">お約束</a>
@@ -165,44 +314,63 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <a href="#criteria">対象となる会社</a>
       <a href="#process">進め方</a>
       <a href="#faq">よくあるご質問</a>
-      <a class="cta" href="#contact">ご相談</a>
+      <a class="cta" href="#contact">ご相談 <span class="arw">→</span></a>
+      <button class="burger" id="burger" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
     </nav>
   </div>
 </header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a href="#message">代表より <small>01</small></a>
+  <a href="#promise">お約束 <small>02</small></a>
+  <a href="#change">グループ入り後 <small>03</small></a>
+  <a href="#criteria">対象となる会社 <small>04</small></a>
+  <a href="#process">進め方 <small>05</small></a>
+  <a href="#faq">よくあるご質問 <small>06</small></a>
+  <a class="cta" href="#contact">ご相談はこちら →</a>
+</div>
 
 <main id="top">
 
 <section class="hero">
-  <div class="wrap grid">
-    <div>
-      <p class="kicker">工務店・住宅会社の事業承継</p>
-      <h1>建てた家の点検に、<br>三十年後も伺える<br>会社であるために。</h1>
-      <p class="lead">株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営していくための会社です。社名も、社員も、施主様へのアフターのお約束も、そのまま引き継ぎます。</p>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="kicker">工務店・住宅会社の事業承継</p>
+        <h1><span class="ln"><span>建てた家の点検に、</span></span><span class="ln"><span>三十年後も伺える</span></span><span class="ln"><span>会社であるために。</span></span></h1>
+        <p class="lead">株式会社エッジアセットは、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営していくための会社です。社名も、社員も、施主様へのアフターのお約束も、そのまま引き継ぎます。</p>
+        <div class="actions">
+          <a class="cta lg" href="#contact">話を聞いてみる <span class="arw">→</span></a>
+          <a class="textlink" href="#criteria">対象になるか確認する</a>
+        </div>
+      </div>
+      <figure style="margin:0">
+        <svg class="drawing" viewBox="0 0 420 330" role="img" aria-label="木造住宅の矩計図風の線画">
+          <g fill="none" stroke="#1d1e20" stroke-width="1.2" stroke-linejoin="round">
+            <path d="M40 150 L210 40 L380 150" style="--len:420"/>
+            <path d="M70 131 V290 H350 V131" style="--len:640"/>
+            <path d="M70 210 H350" style="--len:280"/>
+            <path d="M20 290 H400" stroke-width="1.6" style="--len:380"/>
+          </g>
+          <g class="late" fill="none" stroke-linejoin="round">
+            <path d="M28 158 L210 32 L392 158" stroke="#7d7c77" stroke-width=".6" style="--len:450"/>
+            <path d="M100 150 h60 v40 h-60z M260 150 h60 v40 h-60z" stroke="#1d1e20" style="--len:400"/>
+            <path d="M290 230 h40 v40 h-40z" stroke="#1d1e20" style="--len:160"/>
+            <path d="M100 230 h50 v60" stroke="#8f3b22" stroke-width="1.6" style="--len:120"/>
+            <path d="M210 40 V290" stroke="#7d7c77" stroke-width=".7" style="--len:250"/>
+            <path d="M70 302 H350 M70 296 V308 M350 296 V308 M210 296 V308" stroke="#7d7c77" stroke-width=".6" style="--len:320"/>
+          </g>
+          <g font-family="Noto Sans JP, sans-serif" font-size="9" fill="#7d7c77" letter-spacing="1">
+            <text x="196" y="322">7,280</text><text x="358" y="206">2F FL</text><text x="358" y="286">1F FL</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="tate">家は、建てた後のほうが長い。</p>
     </div>
-    <figure>
-      <!-- 矩計図風の線画。実写が用意できたら差し替え -->
-      <svg viewBox="0 0 420 320" role="img" aria-label="木造住宅の断面線画">
-        <g fill="none" stroke="#1d1e20" stroke-width="1.2" stroke-linejoin="round">
-          <path d="M40 150 L210 40 L380 150"/>
-          <path d="M28 158 L210 32 L392 158" stroke-width=".6" stroke="#7a7a76"/>
-          <path d="M70 131 V290 H350 V131"/>
-          <path d="M70 210 H350"/>
-          <path d="M100 150 h60 v40 h-60z M260 150 h60 v40 h-60z"/>
-          <path d="M100 230 h50 v60 M290 230 h40 v40 h-40z"/>
-          <path d="M210 40 V290" stroke-dasharray="3 5" stroke="#7a7a76" stroke-width=".7"/>
-          <path d="M20 290 H400" stroke-width="1.6"/>
-          <path d="M60 300 H360" stroke="#7a7a76" stroke-width=".6"/>
-          <path d="M70 300 V310 M350 300 V310 M210 300 V310" stroke="#7a7a76" stroke-width=".6"/>
-        </g>
-        <g font-family="Noto Sans JP, sans-serif" font-size="9" fill="#7a7a76" letter-spacing="1">
-          <text x="200" y="316">7,280</text>
-          <text x="360" y="206">2F FL</text>
-          <text x="360" y="286">1F FL</text>
-        </g>
-        <path d="M150 290 v-60" stroke="#8f3b22" stroke-width="1.6"/>
-      </svg>
-      <figcaption>矩計図 ― 家は建てた後の三十年のほうが長い</figcaption>
-    </figure>
+    <dl class="facts">
+      <div><dt>保有の方針</dt><dd>売却を前提にしない<small>長期保有</small></dd></div>
+      <div><dt>対象となる規模</dt><dd>年商 3〜30億円<small>目安</small></dd></div>
+      <div><dt>ご相談から引き継ぎまで</dt><dd>約 6ヶ月<small>標準</small></dd></div>
+    </dl>
   </div>
 </section>
 
@@ -210,11 +378,22 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap sec">
     <div class="label">01<b>代表より</b></div>
     <div class="letter">
-      <h2>会社を売る、という言葉に<br>抵抗がある方へ。</h2>
-      <p>工務店の社長から事業承継のご相談を受けると、最初に出てくるのは自分の今後ではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検は誰が行くのか」。この問いに答えられないまま、廃業や、相手をよく知らない会社への譲渡を選ぶケースを見てきました。</p>
-      <p>私たちは、買って、整えて、数年で売る会社ではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。そのために、短期の利回りではなく、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が続く状態をつくることを目標にしています。</p>
-      <p>一方で、きれいごとだけを言うつもりもありません。グループに入れば変わることもあります。何を変えずに、何を変えるのか。このページにはそれをできる限り具体的に書きました。読んだうえで、まずは話だけでも聞いてみたいと思っていただければ幸いです。</p>
-      <p class="sign">株式会社エッジアセット<br>代表取締役　<span class="todo">氏名</span><span class="sub">※ 代表者名・経歴は確定後に差し替え</span></p>
+      <div class="body rv">
+        <h2>会社を売る、という言葉に<br>抵抗がある方へ。</h2>
+        <p>工務店の社長から事業承継のご相談を受けると、最初に出てくるのはご自身の今後ではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検は誰が行くのか」。この問いに答えられないまま、廃業や、相手をよく知らない会社への譲渡を選ぶケースを見てきました。</p>
+        <p>私たちは、買って、整えて、数年で売る会社ではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。目標は短期の利回りではなく、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が続く状態をつくることです。</p>
+        <p>一方で、きれいごとだけを言うつもりもありません。グループに入れば変わることもあります。何を変えずに、何を変えるのか。このページにはそれをできる限り具体的に書きました。</p>
+      </div>
+      <aside class="rv">
+        <div class="portrait">PHOTO</div>
+        <div class="ttl">代表取締役</div>
+        <div class="nm">〇〇 〇〇</div>
+        <ul>
+          <li>住宅会社にて集客・採用部門を統括</li>
+          <li>住宅業界向けSaaS企業 CFO室</li>
+          <li>工務店・住宅会社の経営支援</li>
+        </ul>
+      </aside>
     </div>
   </div>
 </section>
@@ -223,36 +402,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap sec">
     <div class="label">02<b>お約束</b></div>
     <div>
-      <h2>グループに入っていただく会社に、<br>契約書でお約束すること。</h2>
+      <h2 class="rv">グループに入っていただく会社に、<br>契約書でお約束すること。</h2>
       <ol class="promises">
-        <li>
-          <div><h3>社名・屋号・ブランドは変えません</h3>
-          <p>地域で積み上げてきた名前が、いちばんの資産です。看板も、ホームページも、職人さんが着る作業着もそのままです。</p></div>
-        </li>
-        <li>
-          <div><h3>社員の雇用と給与水準を守ります</h3>
-          <p>グループ入りを理由にした人員削減や給与の引き下げは行いません。最低<span class="todo">○年間</span>は株式譲渡契約に明記します。</p></div>
-        </li>
-        <li>
-          <div><h3>施主様への保証・定期点検を引き継ぎます</h3>
-          <p>これまでに建てた家の保証、定期点検、アフター対応はすべて引き継ぎます。施主様にとっては、窓口も担当者も変わりません。</p></div>
-        </li>
-        <li>
-          <div><h3>協力業者・職人さんとの取引を続けます</h3>
-          <p>長年一緒に現場をつくってきた大工・設備・板金などの協力業者さんとの関係は、グループ入り後も変えません。支払条件も改悪しません。</p></div>
-        </li>
-        <li>
-          <div><h3>経営者の個人保証の解除に取り組みます</h3>
-          <p>借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除・差し替えを目指します。</p></div>
-        </li>
+        <li class="rv"><h3>社名・屋号は変えません</h3><p>地域で積み上げてきた名前が、いちばんの資産です。看板も、ホームページも、職人さんの作業着もそのままです。</p></li>
+        <li class="rv"><h3>雇用と給与水準を守ります</h3><p>グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は株式譲渡契約に明記します。</p></li>
+        <li class="rv"><h3>施主様への保証・点検を引き継ぎます</h3><p>これまでに建てた家の保証、定期点検、アフター対応はすべて引き継ぎます。窓口も担当者も変わりません。</p></li>
+        <li class="rv"><h3>協力業者さんとの取引を続けます</h3><p>大工・設備・板金など、長年一緒に現場をつくってきた協力業者さんとの関係も、支払条件も変えません。</p></li>
+        <li class="rv"><h3>個人保証の解除に取り組みます</h3><p>借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除・差し替えを目指します。</p></li>
       </ol>
-
-      <div class="honest">
-        <h3>逆に、お約束できないこと</h3>
+      <div class="honest rv">
+        <h3>逆に、<br>お約束できないこと</h3>
         <ul>
-          <li>赤字が続く事業を、改善の見通しがないまま無期限に支え続けることはできません。数字は毎月一緒に見ます。</li>
-          <li>経理・労務・情報管理のルールは、グループ共通のものに合わせていただきます。どんぶり勘定のままではお預かりできません。</li>
-          <li>譲渡価格は、純資産と収益力にもとづいて算定します。相場から大きく外れた金額はお出しできません。</li>
+          <li>改善の見通しがないまま、赤字の事業を無期限に支え続けることはできません。数字は毎月一緒に見ます。</li>
+          <li>経理・労務・情報管理のルールは、グループ共通のものに合わせていただきます。</li>
+          <li>譲渡価格は純資産と収益力にもとづいて算定します。相場から大きく外れた金額はお出しできません。</li>
         </ul>
       </div>
     </div>
@@ -263,20 +426,53 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap sec">
     <div class="label">03<b>グループ入り後</b></div>
     <div>
-      <h2>現場は変えずに、<br>一社では手が回らないところを支えます。</h2>
-      <p style="max-width:40em;color:var(--ink-2)">家づくりの中身、設計の考え方、お施主様との向き合い方には口を出しません。そのかわり、規模が小さいほど負担が重くなる仕事を、グループでまとめて引き受けます。</p>
-      <div class="tbl-scroll" style="margin-top:32px">
-        <table class="stack">
-          <thead><tr><th>領域</th><th>グループで担うこと</th><th>各社に残すこと</th></tr></thead>
-          <tbody>
-            <tr><th>集客</th><td data-h="グループで担うこと">Google・Meta広告の運用、SEO・Googleマップ対策、反響の計測と分析</td><td class="keep" data-h="各社に残すこと">見学会・イベントの企画、施主様の紹介づくり</td></tr>
-            <tr><th>採用</th><td data-h="グループで担うこと">新卒・中途の合同採用、求人媒体の一括契約、研修</td><td class="keep" data-h="各社に残すこと">配属後の育成、現場での指導</td></tr>
-            <tr><th>仕入</th><td data-h="グループで担うこと">建材・住設の共同購買、物流の集約</td><td class="keep" data-h="各社に残すこと">仕様の選定、地元の材木店との取引</td></tr>
-            <tr><th>管理部門</th><td data-h="グループで担うこと">経理・給与・労務手続き、月次決算、建設業許可の更新事務</td><td class="keep" data-h="各社に残すこと">現場の原価管理、工程管理</td></tr>
-            <tr><th>資金</th><td data-h="グループで担うこと">運転資金・モデルハウス・分譲用地への投資判断と資金手当て</td><td class="keep" data-h="各社に残すこと">個別案件の受注判断</td></tr>
-            <tr><th>業務の仕組み</th><td data-h="グループで担うこと">見積・工程・顧客管理のシステム統一、AIによる事務作業の削減</td><td class="keep" data-h="各社に残すこと">お施主様との打ち合わせ、現場での判断</td></tr>
-          </tbody>
-        </table>
+      <h2 class="rv">誰にとって、何が変わり、<br>何が変わらないのか。</h2>
+      <p class="intro rv">グループ入りで影響を受けるのは社長だけではありません。立場ごとに整理しました。</p>
+      <div class="rv" style="margin-top:28px">
+        <div class="tabs" role="tablist" aria-label="立場を選ぶ">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="p-ceo" id="t-ceo">社長</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-staff" id="t-staff">社員</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-owner" id="t-owner">施主様</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-partner" id="t-partner">協力業者さん</button>
+        </div>
+        <div class="panel" role="tabpanel" id="p-ceo" aria-labelledby="t-ceo">
+          <div class="col"><h4><i></i>変わらないこと</h4><ul>
+            <li><b>家づくりの方針</b><span>設計・仕様・施主様への向き合い方には口を出しません</span></li>
+            <li><b>社長としての役割</b><span>ご希望に応じて続投も、段階的な引退も選べます</span></li>
+            <li><b>地域での評判と人間関係</b><span>社名も看板もそのままです</span></li></ul></div>
+          <div class="col change"><h4><i></i>変わること</h4><ul>
+            <li><b>個人保証・連帯保証</b><span>解除・差し替えに向けて金融機関と協議します</span></li>
+            <li><b>月次の数字の見方</b><span>月次決算と予実の確認を毎月一緒に行います</span></li>
+            <li><b>集客・採用・経理の負担</b><span>グループがまとめて引き受けます</span></li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-staff" aria-labelledby="t-staff" hidden>
+          <div class="col"><h4><i></i>変わらないこと</h4><ul>
+            <li><b>雇用と給与水準</b><span>グループ入りを理由に下げることはありません</span></li>
+            <li><b>職場と上司</b><span>勤務地・所属・日々の仕事はそのままです</span></li>
+            <li><b>会社の名前</b><span>名刺も作業着も変わりません</span></li></ul></div>
+          <div class="col change"><h4><i></i>変わること</h4><ul>
+            <li><b>研修と評価の仕組み</b><span>グループ共通の研修・評価制度を順次導入します</span></li>
+            <li><b>事務作業</b><span>見積・工程管理のシステム化で残業を減らします</span></li>
+            <li><b>キャリアの選択肢</b><span>グループ内の他社への異動・登用の道ができます</span></li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-owner" aria-labelledby="t-owner" hidden>
+          <div class="col"><h4><i></i>変わらないこと</h4><ul>
+            <li><b>保証と定期点検</b><span>引渡し済みの家の保証・点検はすべて継続します</span></li>
+            <li><b>窓口と担当者</b><span>これまでと同じ方が対応します</span></li>
+            <li><b>施工中の工事</b><span>契約内容・工期・仕様は変わりません</span></li></ul></div>
+          <div class="col change"><h4><i></i>変わること</h4><ul>
+            <li><b>会社の経営基盤</b><span>グループの資金力で、将来の点検・修繕にも備えます</span></li>
+            <li><b>アフター対応の記録</b><span>点検履歴をデータで管理し、引き継ぎ漏れを防ぎます</span></li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-partner" aria-labelledby="t-partner" hidden>
+          <div class="col"><h4><i></i>変わらないこと</h4><ul>
+            <li><b>取引と発注量</b><span>これまでの協力業者さんへの発注を続けます</span></li>
+            <li><b>支払条件</b><span>サイトの延長などの改悪はしません</span></li>
+            <li><b>現場の担当者</b><span>やり取りする相手は変わりません</span></li></ul></div>
+          <div class="col change"><h4><i></i>変わること</h4><ul>
+            <li><b>仕事の量</b><span>グループ他社の現場をお願いできる機会が増えます</span></li>
+            <li><b>発注・請求の手続き</b><span>書類の電子化で、やり取りを簡単にします</span></li></ul></div>
+        </div>
       </div>
     </div>
   </div>
@@ -286,15 +482,25 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap sec">
     <div class="label">04<b>対象となる会社</b></div>
     <div>
-      <h2>こんな会社のご相談をお待ちしています。</h2>
-      <dl class="criteria">
-        <dt>事業内容</dt><dd>注文住宅、規格住宅、リフォーム・リノベーションを主とする工務店・住宅会社</dd>
-        <dt>エリア</dt><dd><span class="todo">首都圏・東海・関西など</span>　※ それ以外の地域もご相談ください</dd>
-        <dt>規模の目安</dt><dd>年間売上 <span class="todo">3億〜30億円</span>、年間引渡し <span class="todo">10〜100棟</span></dd>
-        <dt>収益</dt><dd>直近3期のうち2期以上で営業黒字。一時的な赤字は理由をお聞かせください</dd>
-        <dt>ご状況</dt><dd>後継者が決まっていない／数年以内に引退を考えている／成長のための資金や人材が足りない</dd>
-      </dl>
-      <p class="note" style="margin-top:18px">上記に当てはまらなくても、お話を伺ったうえで判断します。条件に合わない場合も、その理由はきちんとお伝えします。</p>
+      <h2 class="rv">ご相談の対象になるか、<br>30秒で確認できます。</h2>
+      <div class="check rv">
+        <div id="qs">
+          <div class="q"><p>注文住宅・規格住宅・リフォームが主な事業である</p><span class="seg"><button aria-pressed="false" data-v="1">はい</button><button aria-pressed="false" data-v="0">いいえ</button></span></div>
+          <div class="q"><p>年間売上がおおむね3億〜30億円の範囲にある</p><span class="seg"><button aria-pressed="false" data-v="1">はい</button><button aria-pressed="false" data-v="0">いいえ</button></span></div>
+          <div class="q"><p>直近3期のうち2期以上、営業利益が黒字である</p><span class="seg"><button aria-pressed="false" data-v="1">はい</button><button aria-pressed="false" data-v="0">いいえ</button></span></div>
+          <div class="q"><p>後継者がまだ決まっていない</p><span class="seg"><button aria-pressed="false" data-v="1">はい</button><button aria-pressed="false" data-v="0">いいえ</button></span></div>
+          <div class="q"><p>5年以内に経営から退くことを考えている</p><span class="seg"><button aria-pressed="false" data-v="1">はい</button><button aria-pressed="false" data-v="0">いいえ</button></span></div>
+        </div>
+        <div class="result" aria-live="polite">
+          <div class="lbl">当てはまる項目</div>
+          <div class="count"><span id="cnt">0</span><small>/ 5</small></div>
+          <div class="meter" id="meter"><i></i><i></i><i></i><i></i><i></i></div>
+          <h3 id="rh">質問にお答えください</h3>
+          <p id="rp">いずれも「はい」「いいえ」で選ぶだけです。入力内容は送信されません。</p>
+          <a class="cta" href="#contact">この内容で相談する <span class="arw">→</span></a>
+        </div>
+      </div>
+      <p class="note rv" style="margin-top:20px">当てはまらなくても、お話を伺ったうえで判断します。対象外の場合も、その理由はきちんとお伝えします。</p>
     </div>
   </div>
 </section>
@@ -303,48 +509,49 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap sec">
     <div class="label">05<b>進め方</b></div>
     <div>
-      <h2>初回のご相談から引き継ぎ完了まで、<br>通常は半年ほどかかります。</h2>
-      <ol class="process">
-        <li><span class="n">1</span><div class="t"><h3>初回面談</h3><span class="dur">1〜2時間</span></div><p>会社のこと、ご家族や社員のこと、ご自身の今後について伺います。決算書は不要です。費用はかかりません。</p></li>
-        <li><span class="n">2</span><div class="t"><h3>秘密保持契約・資料のご提供</h3><span class="dur">2〜4週間</span></div><p>秘密保持契約を結んだうえで、決算書・受注残・社員構成などを拝見します。</p></li>
-        <li><span class="n">3</span><div class="t"><h3>意向表明</h3><span class="dur">2〜3週間</span></div><p>譲渡価格の考え方、雇用や役員の処遇、引き継ぎ期間などを書面でご提示します。</p></li>
-        <li><span class="n">4</span><div class="t"><h3>デューデリジェンス（詳細調査）</h3><span class="dur">1〜2ヶ月</span></div><p>財務・税務・法務・労務に加え、施工中物件、保証の履歴、建設業許可の状況を確認します。現場の負担が最小になるよう日程を組みます。</p></li>
-        <li><span class="n">5</span><div class="t"><h3>最終契約・クロージング</h3><span class="dur">1ヶ月</span></div><p>株式譲渡契約の締結、代金のお支払い、個人保証の解除手続きを行います。</p></li>
-        <li><span class="n">6</span><div class="t"><h3>引き継ぎ</h3><span class="dur">6ヶ月〜数年</span></div><p>社員・協力業者・施主様へのご説明は、時期と伝え方を一緒に決めます。社長に残っていただく期間は、ご希望に合わせて調整します。</p></li>
-      </ol>
-      <p class="note">ご相談の事実は、社員の方・取引先・金融機関に知られないよう配慮します。仲介会社・顧問税理士を通じたご相談も承ります。</p>
+      <h2 class="rv">初回のご相談から引き継ぎまで、<br>通常は半年ほどです。</h2>
+      <p class="intro rv">各工程をクリックすると、何をするのかが表示されます。</p>
+      <div class="gantt rv" id="gantt" style="margin-top:28px">
+        <div class="scale"><span></span><span>1ヶ月</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7〜</span></div>
+        <div class="row" style="--i:0"><div class="nm"><em>1</em><h3>初回面談</h3></div><div class="track"><div class="bar" style="left:0;width:3%"></div><span class="dur" style="left:3%">1〜2時間</span></div><div class="detail"><p>会社のこと、ご家族や社員のこと、ご自身の今後について伺います。決算書は不要で、費用もかかりません。</p></div></div>
+        <div class="row" style="--i:1"><div class="nm"><em>2</em><h3>秘密保持・資料のご提供</h3></div><div class="track"><div class="bar" style="left:3%;width:12%"></div><span class="dur" style="left:15%">2〜4週間</span></div><div class="detail"><p>秘密保持契約を結んだうえで、決算書・受注残・社員構成などを拝見します。</p></div></div>
+        <div class="row" style="--i:2"><div class="nm"><em>3</em><h3>意向表明</h3></div><div class="track"><div class="bar" style="left:15%;width:9%"></div><span class="dur" style="left:24%">2〜3週間</span></div><div class="detail"><p>譲渡価格の考え方、雇用や役員の処遇、引き継ぎ期間などを書面でご提示します。</p></div></div>
+        <div class="row" style="--i:3"><div class="nm"><em>4</em><h3>詳細調査</h3></div><div class="track"><div class="bar" style="left:24%;width:24%"></div><span class="dur" style="left:48%">1〜2ヶ月</span></div><div class="detail"><p>財務・税務・法務・労務に加え、施工中物件、保証の履歴、建設業許可の状況を確認します。現場の負担が最小になるよう日程を組みます。</p></div></div>
+        <div class="row" style="--i:4"><div class="nm"><em>5</em><h3>最終契約・クロージング</h3></div><div class="track"><div class="bar" style="left:48%;width:14%"></div><span class="dur" style="left:62%">約1ヶ月</span></div><div class="detail"><p>株式譲渡契約の締結、代金のお支払い、個人保証の解除手続きを行います。</p></div></div>
+        <div class="row" style="--i:5"><div class="nm"><em>6</em><h3>引き継ぎ</h3></div><div class="track"><div class="bar long" style="left:62%;width:38%"></div></div><div class="detail"><p>社員・協力業者・施主様へのご説明は、時期と伝え方を一緒に決めます。社長に残っていただく期間はご希望に合わせて調整します。</p></div></div>
+      </div>
+      <p class="note rv" style="margin-top:20px">ご相談の事実は、社員の方・取引先・金融機関に知られないよう配慮します。仲介会社や顧問税理士を通じたご相談も承ります。</p>
     </div>
   </div>
 </section>
 
-<section class="block faq" id="faq">
+<section class="block" id="faq">
   <div class="wrap sec">
     <div class="label">06<b>よくあるご質問</b></div>
     <div>
-      <h2>実際によく聞かれることです。</h2>
-      <details><summary>社員にはいつ、どう伝えればいいですか。</summary><div class="a">原則として最終契約の後です。幹部の方に先に伝えるか、全社員に一度に伝えるかは会社の状況によって変わるため、伝える順番と話す内容を一緒に準備します。私たちも説明の場に同席します。</div></details>
-      <details><summary>施工中の現場や、引渡し後のクレームはどうなりますか。</summary><div class="a">施工中の物件も、引渡し済みの物件の保証・点検もそのまま会社に残り、グループ入り後も同じ担当者が対応します。過去のクレームや係争の有無は詳細調査の段階で確認し、譲渡契約の中で扱いを決めます。</div></details>
-      <details><summary>建設業許可はそのまま使えますか。</summary><div class="a">株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。ただし経営業務の管理責任者や専任技術者が退任される場合は、後任の手当てが必要です。誰がいつ交代するかを事前に設計します。</div></details>
-      <details><summary>社長は辞めなければいけませんか。</summary><div class="a">いいえ。引き継ぎ期間だけ残っていただく形も、社長を続けていただく形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。</div></details>
-      <details><summary>仲介会社に相談中ですが、直接話を聞いてもいいですか。</summary><div class="a">はい。仲介会社との契約内容によっては直接交渉が制限されている場合がありますので、その場合は仲介会社を通じてご連絡ください。</div></details>
-      <details><summary>数年後に別の会社へ売られることはありませんか。</summary><div class="a">私たちは買った会社を売却して利益を得ることを前提にしていません。<span class="todo">資金の性質・保有方針を確定後に具体的な記載へ差し替え</span></div></details>
+      <h2 class="rv">実際によく聞かれることです。</h2>
+      <div class="faq-list rv">
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>社員にはいつ、どう伝えればいいですか。</button><div class="ans"><div><p>原則として最終契約の後です。幹部の方に先に伝えるか、全社員に一度に伝えるかは会社の状況によって変わるため、伝える順番と話す内容を一緒に準備します。説明の場には私たちも同席します。</p></div></div></div>
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>施工中の現場や、引渡し後のクレームはどうなりますか。</button><div class="ans"><div><p>施工中の物件も、引渡し済みの物件の保証・点検もそのまま会社に残り、同じ担当者が対応します。過去のクレームや係争の有無は詳細調査で確認し、譲渡契約の中で扱いを決めます。</p></div></div></div>
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>建設業許可はそのまま使えますか。</button><div class="ans"><div><p>株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。ただし経営業務の管理責任者や専任技術者が退任される場合は後任が必要です。誰がいつ交代するかを事前に設計します。</p></div></div></div>
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>社長は辞めなければいけませんか。</button><div class="ans"><div><p>いいえ。引き継ぎ期間だけ残っていただく形も、社長を続けていただく形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。</p></div></div></div>
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>仲介会社に相談中ですが、直接話を聞いてもいいですか。</button><div class="ans"><div><p>はい。ただし仲介会社との契約内容によっては直接のやり取りが制限されている場合があります。その場合は仲介会社を通じてご連絡ください。</p></div></div></div>
+        <div class="faq-item"><button aria-expanded="false"><em>Q</em>数年後に別の会社へ売られることはありませんか。</button><div class="ans"><div><p>私たちは、買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、グループ全体を長く経営していく考え方です。</p></div></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="block company" id="company">
+<section class="block" id="company">
   <div class="wrap sec">
     <div class="label">07<b>会社概要</b></div>
-    <div>
-      <dl class="criteria">
-        <dt>社名</dt><dd>株式会社エッジアセット</dd>
-        <dt>代表者</dt><dd>代表取締役　<span class="todo">氏名</span></dd>
-        <dt>所在地</dt><dd><span class="todo">住所</span></dd>
-        <dt>設立</dt><dd><span class="todo">年月</span></dd>
-        <dt>資本金</dt><dd><span class="todo">金額</span></dd>
-        <dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営、グループ会社の経営支援</dd>
-      </dl>
-    </div>
+    <dl class="tbl rv">
+      <dt>社名</dt><dd>株式会社エッジアセット</dd>
+      <dt>代表者</dt><dd>代表取締役　〇〇 〇〇</dd>
+      <dt>所在地</dt><dd>〒000-0000　東京都〇〇区〇〇 0-0-0</dd>
+      <dt>設立</dt><dd>20XX年X月</dd>
+      <dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営、グループ会社の経営支援</dd>
+    </dl>
   </div>
 </section>
 
@@ -353,27 +560,48 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <div class="label">08<b>ご相談</b></div>
     <div>
       <h2>まずは、話を聞いてみるだけで構いません。</h2>
-      <p>お名前を伏せたままのご相談も可能です。いただいた内容は、ご本人の同意なく第三者に開示することはありません。</p>
+      <p class="intro">お名前を伏せたままのご相談も可能です。いただいた内容を、ご本人の同意なく第三者に開示することはありません。</p>
       <div class="cgrid">
-        <form onsubmit="event.preventDefault();this.querySelector('button').textContent='送信しました（デモ）';">
-          <label for="f-name">お名前</label><input id="f-name" name="name" autocomplete="name">
-          <label for="f-co">会社名（任意）</label><input id="f-co" name="company" autocomplete="organization">
-          <label for="f-mail">メールアドレス</label><input id="f-mail" name="email" type="email" autocomplete="email" required>
-          <label for="f-role">ご立場</label>
-          <select id="f-role" name="role">
-            <option>経営者・オーナー</option>
-            <option>ご家族・役員</option>
-            <option>仲介会社・金融機関・士業</option>
-            <option>その他</option>
-          </select>
-          <label for="f-msg">ご相談内容（任意）</label><textarea id="f-msg" name="message"></textarea>
-          <button type="submit">送信する</button>
-        </form>
         <div>
-          <dl class="direct">
-            <dt>お電話</dt><dd><span class="todo">03-0000-0000</span></dd>
-            <dt>受付時間</dt><dd style="font-size:16px">平日 9:00〜18:00　（夜間・土日の面談も調整します）</dd>
-            <dt>面談場所</dt><dd style="font-size:16px">貴社以外の場所、またはオンラインで行います</dd>
+          <div class="steps"><span class="on" id="s1">1　ご立場</span><span id="s2">2　ご連絡先</span></div>
+          <form id="form" novalidate>
+            <div class="fstep" id="step1">
+              <span class="fl">ご相談者のお立場</span>
+              <div class="chips" id="role">
+                <button type="button" aria-pressed="false">経営者・オーナー</button>
+                <button type="button" aria-pressed="false">ご家族・役員</button>
+                <button type="button" aria-pressed="false">仲介会社・金融機関</button>
+                <button type="button" aria-pressed="false">税理士・士業</button>
+              </div>
+              <span class="fl">ご検討の時期</span>
+              <div class="chips" id="when">
+                <button type="button" aria-pressed="false">すぐにでも</button>
+                <button type="button" aria-pressed="false">1〜3年以内</button>
+                <button type="button" aria-pressed="false">まだ情報収集</button>
+              </div>
+              <div class="fbtns"><button type="button" class="btn-light" id="next" disabled>次へ</button></div>
+            </div>
+            <div class="fstep" id="step2" hidden>
+              <label class="toggle"><input type="checkbox" id="anon"> 匿名で相談する（会社名・お名前を入力しない）</label>
+              <div id="named">
+                <div class="field"><input id="f-name" placeholder=" " autocomplete="name"><label for="f-name">お名前</label></div>
+                <div class="field"><input id="f-co" placeholder=" " autocomplete="organization"><label for="f-co">会社名</label></div>
+              </div>
+              <div class="field"><input id="f-mail" type="email" placeholder=" " autocomplete="email" required><label for="f-mail">メールアドレス</label></div>
+              <div class="field"><textarea id="f-msg" placeholder=" "></textarea><label for="f-msg">ご相談内容（任意）</label></div>
+              <div class="fbtns"><button type="submit" class="btn-light">送信する</button><button type="button" class="btn-ghost" id="back">戻る</button></div>
+            </div>
+          </form>
+          <div class="done" id="done" hidden>
+            <h3>ご相談を受け付けました。</h3>
+            <p style="color:#c4c9cf;margin:0">2営業日以内に、代表の〇〇よりご連絡します。（デモのため実際には送信されていません）</p>
+          </div>
+        </div>
+        <div class="direct">
+          <dl>
+            <dt>お電話</dt><dd>03-0000-0000</dd>
+            <dt>受付時間</dt><dd class="s">平日 9:00〜18:00<br>夜間・土日の面談も調整します</dd>
+            <dt>面談の場所</dt><dd class="s">貴社以外の場所、またはオンライン。<br>社員の方の目に触れないよう配慮します。</dd>
           </dl>
         </div>
       </div>
@@ -385,10 +613,120 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 <footer>
   <div class="wrap">
-    <span>© 株式会社エッジアセット</span>
-    <span>プライバシーポリシー</span>
+    <a class="logo" href="#top"><span class="ja">エッジアセット</span></a>
+    <nav aria-label="フッターメニュー">
+      <a href="#message">代表より</a><a href="#promise">お約束</a><a href="#change">グループ入り後</a><a href="#criteria">対象となる会社</a><a href="#process">進め方</a><a href="#faq">よくあるご質問</a><a href="#company">会社概要</a>
+    </nav>
+    <div class="copy"><span>© EDGE ASSET Inc.</span><span>プライバシーポリシー</span></div>
   </div>
 </footer>
 
+<div class="mcta" id="mcta"><a class="cta" href="#contact">話を聞いてみる <span class="arw">→</span></a></div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  // header: hide on scroll down, progress bar, mobile CTA
+  const hdr = $('#hdr'), prog = $('#progress'), mcta = $('#mcta'), contact = $('#contact');
+  let lastY = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    hdr.classList.toggle('scrolled', y > 10);
+    hdr.classList.toggle('hide', y > lastY && y > 400 && !document.body.classList.contains('menu-open'));
+    lastY = y;
+    prog.style.width = (h > 0 ? y / h * 100 : 0) + '%';
+    const nearContact = contact.getBoundingClientRect().top < innerHeight;
+    mcta.classList.toggle('show', y > innerHeight * .8 && !nearContact);
+  }, { passive: true });
+
+  // mobile menu
+  const burger = $('#burger'), drawer = $('#drawer');
+  const setMenu = open => {
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open);
+    drawer.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  $$('a', drawer).forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // reveal on scroll + scrollspy
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  $$('.rv, #gantt').forEach(el => io.observe(el));
+  const links = $$('nav.gnav a[href^="#"]:not(.cta)');
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.hash === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  $$('section[id]').forEach(s => spy.observe(s));
+
+  // stakeholder tabs (arrow keys supported)
+  const tabs = $$('.tab');
+  const select = t => {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+    });
+  });
+  select(tabs[0]);
+
+  // self check
+  const msgs = [
+    ['質問にお答えください', 'いずれも「はい」「いいえ」で選ぶだけです。入力内容は送信されません。'],
+    ['条件の一部が当てはまります', '当てはまらない項目があっても、事情を伺って判断します。まずは状況だけお聞かせください。'],
+    ['ご相談の対象になる可能性が高いです', '初回面談では決算書も不要です。今の状況とご希望を伺うところから始めます。']
+  ];
+  const qs = $$('#qs .q');
+  const update = () => {
+    const ans = qs.map(q => $('[aria-pressed="true"]', q)?.dataset.v);
+    const yes = ans.filter(v => v === '1').length, answered = ans.filter(Boolean).length;
+    $('#cnt').textContent = yes;
+    $$('#meter i').forEach((m, i) => m.classList.toggle('on', i < yes));
+    const [h, p] = answered === 0 ? msgs[0] : yes >= 4 ? msgs[2] : msgs[1];
+    $('#rh').textContent = h; $('#rp').textContent = p;
+  };
+  qs.forEach(q => $$('button', q).forEach(b => b.addEventListener('click', () => {
+    $$('button', q).forEach(x => x.setAttribute('aria-pressed', x === b));
+    update();
+  })));
+
+  // gantt rows
+  $$('#gantt .row').forEach(r => {
+    r.tabIndex = 0;
+    const toggle = () => r.classList.toggle('open');
+    r.addEventListener('click', toggle);
+    r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
+
+  // faq
+  $$('.faq-item button').forEach(b => b.addEventListener('click', () => {
+    const it = b.parentNode, open = !it.classList.contains('open');
+    it.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
+  }));
+
+  // 2-step form
+  const pick = id => $$('#' + id + ' button').forEach(b => b.addEventListener('click', () => {
+    $$('#' + id + ' button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    $('#next').disabled = !($('#role [aria-pressed="true"]') && $('#when [aria-pressed="true"]'));
+  }));
+  pick('role'); pick('when');
+  const go = n => { $('#step1').hidden = n !== 1; $('#step2').hidden = n !== 2; $('#s2').classList.toggle('on', n === 2); };
+  $('#next').addEventListener('click', () => { go(2); $('#f-name').focus(); });
+  $('#back').addEventListener('click', () => go(1));
+  $('#anon').addEventListener('change', e => { $('#named').hidden = e.target.checked; });
+  $('#form').addEventListener('submit', e => {
+    e.preventDefault();
+    const mail = $('#f-mail');
+    if (!mail.checkValidity()) { mail.focus(); mail.style.borderBottomColor = '#e9a58f'; return; }
+    $('#form').hidden = true; $('.steps').hidden = true; $('#done').hidden = false;
+  });
+})();
+</script>
 </body>
 </html>
