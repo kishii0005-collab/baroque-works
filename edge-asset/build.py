@@ -1,0 +1,751 @@
+import sys
+U=lambda i,w=1600:f'https://unsplash.com/photos/{i}/download?force=true&amp;w={w}'
+SAFE=U('Q6sCJFHCubc',2000)
+def img(i,alt='',w=1400,lazy=True):
+    return (f'<img src="{U(i,w)}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} '
+            f'onerror="if(this.dataset.f){{this.style.visibility=\'hidden\'}}else{{this.dataset.f=1;this.src=\'{SAFE}\'}}">')
+W=lambda t:t.replace('|','<wbr>')
+def nb(t,n=9):  # keep the last phrase together; the break lands right after a particle or comma
+    if len(t)<=n+3: return t
+    i=len(t)-n
+    while i>len(t)-16 and t[i-1] not in 'をにはがのでとも、': i-=1
+    if t[i-1] not in 'をにはがのでとも、': i=len(t)-n
+    return t[:i]+f'<span class="nb">{t[i:]}</span>'
+def P(t,cls=''):
+    c=f' class="{cls}"' if cls else ''
+    return f'<p{c}>{nb(t)}</p>'
+def head(en,ja,h2,lead='',center=False):
+    l=f'<div class="sh-lead">{P(lead)}</div>' if lead else ''
+    return f'''<header class="sh{' c' if center else ''}"><div class="sh-t"><p class="sh-en" aria-hidden="true">{en}</p><p class="sh-ja">{ja}</p><h2>{W(h2)}</h2></div>{l}</header>'''
+
+CSS=r'''
+/* layout: editorial corporate — asymmetric grid, edge-bleeding photos, big English section titles; navy + one bright blue */
+:root{
+  --bg:#ffffff;
+  --mist:#f1f4f8;
+  --ink:#16202c;
+  --ink-2:#4a5565;
+  --mute:#8a94a3;
+  --line:#d9e0e8;
+  --navy:#0c2747;
+  --blue:#2268c8;
+  --en:"Jost","Helvetica Neue",Arial,sans-serif;
+  --fh:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  --f:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --gut:max(48px,env(safe-area-inset-left,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15.5px;line-height:2.05;letter-spacing:.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover;color:transparent;font-size:0}
+p{margin:0 0 1.3em}
+h1,h2,h3,h4{margin:0;font-family:var(--fh);font-weight:700}
+h1,h2,h3,h4,.catch,.lede,.big,.open li,.open .note,summary span{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
+summary span{word-break:normal}
+.nb{white-space:nowrap}
+.w{width:100%;max-width:1240px;margin:0 auto;padding-left:var(--gut);padding-right:max(48px,env(safe-area-inset-right,0px))}
+@media (max-width:760px){body{font-size:15px;line-height:1.95}:root{--gut:max(22px,env(safe-area-inset-left,0px))}.w{padding-right:max(22px,env(safe-area-inset-right,0px))}}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.ph{position:relative;overflow:hidden;background:#cfd8e3}
+section{padding-block:140px}
+@media (max-width:760px){section{padding-block:84px}}
+
+/* section head */
+.sh{display:grid;grid-template-columns:1fr 1fr;gap:28px 72px;align-items:end;margin-bottom:72px}
+.sh-en{font-family:var(--en);font-weight:300;font-size:clamp(56px,7.2vw,104px);line-height:.9;letter-spacing:-.01em;color:var(--navy);margin:0 0 26px}
+.sh-ja{font-size:13px;font-weight:500;color:var(--blue);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.sh-ja::before{content:"";width:8px;height:8px;background:var(--blue)}
+.sh h2{font-size:clamp(22px,2.3vw,30px);line-height:1.7;letter-spacing:.06em}
+.sh-lead p{margin:0;color:var(--ink-2)}
+.sh.c{grid-template-columns:1fr;text-align:center}.sh.c .sh-ja{justify-content:center}.sh.c .sh-lead{max-width:40em;margin:0 auto}
+.dark .sh-en{color:#fff}.dark .sh-ja{color:#8fb6ec}.dark .sh-ja::before{background:#8fb6ec}.dark .sh-lead p{color:#b6c3d4}
+/* heads placed inside a column take the full column */
+.grid .sh{grid-template-columns:1fr;margin-bottom:36px}
+.grid .sh .sh-lead{margin-top:-8px}
+@media (max-width:860px){.sh{grid-template-columns:1fr;margin-bottom:48px}.sh-en{font-size:52px;margin-bottom:18px}.sh h2{font-size:21px}.sh.c{text-align:left}.sh.c .sh-ja{justify-content:flex-start}}
+
+/* buttons / links */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;min-width:260px;padding:20px 26px 20px 30px;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:.1em;line-height:1.4;border:1px solid transparent;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.btn .ar{width:22px;height:1px;background:currentColor;position:relative;transition:width .3s}
+.btn .ar::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.btn:hover .ar{width:32px}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--navy)}
+.btn-white{background:#fff;color:var(--navy)}.btn-white:hover{background:var(--mist)}
+.btn-ghost{border-color:rgba(255,255,255,.65);color:#fff}.btn-ghost:hover{background:#fff;color:var(--navy)}
+.btn-line{border-color:var(--navy);color:var(--navy)}.btn-line:hover{background:var(--navy);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.tl{display:inline-flex;align-items:center;gap:16px;font-size:14px;font-weight:500;color:var(--navy);padding-bottom:8px;border-bottom:1px solid var(--navy)}
+.tl .ar{width:22px;height:1px;background:currentColor;position:relative}
+.tl .ar::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+@media (max-width:760px){.btns{flex-direction:column}.btn{width:100%;min-width:0}}
+
+/* header */
+header.site{position:absolute;inset:0 0 auto;z-index:20;color:#fff}
+header.site .w{max-width:none;display:flex;align-items:center;justify-content:space-between;height:100px;gap:24px}
+.logo{display:flex;align-items:center;gap:14px}
+.logo svg{width:34px;height:34px}
+.logo b{display:block;font-family:var(--en);font-weight:500;font-size:20px;letter-spacing:.24em;line-height:1.1}
+.logo small{display:block;font-size:10px;letter-spacing:.2em;opacity:.8;margin-top:3px}
+.gnav{display:flex;align-items:center;gap:32px;font-size:13px;font-weight:500}
+.gnav a.nl{position:relative;padding:4px 0}
+.gnav a.nl::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:currentColor;transition:right .3s}
+.gnav a.nl:hover::after{right:0}
+.gnav .tel{font-family:var(--en);font-size:20px;letter-spacing:.06em;line-height:1.2;text-align:right}
+.gnav .tel small{display:block;font-family:var(--f);font-size:10px;opacity:.8;letter-spacing:.1em}
+.gnav .btn{min-width:0;padding:14px 22px;gap:18px;font-size:13px}
+@media (max-width:1200px){.gnav a.nl{display:none}}
+@media (max-width:760px){header.site .w{height:70px}.gnav .tel{display:none}.gnav .btn{padding:10px 14px;font-size:12px;gap:10px}.gnav .btn .ar{display:none}.logo b{font-size:16px}.logo svg{width:28px;height:28px}}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;max-height:1080px;color:#fff;overflow:hidden;padding:0;background:var(--navy)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.slide.on{opacity:1}
+.slide img{transform:scale(1.08)}
+.slide.on img{animation:zoom 9s linear forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,24,46,.8) 0%,rgba(8,24,46,.25) 50%,rgba(8,24,46,.35) 100%);pointer-events:none}
+.hero .copy{position:absolute;z-index:2;left:0;right:0;bottom:150px}
+.hero .copy .w{max-width:none}
+.hero .en{font-family:var(--en);font-weight:300;font-size:13px;letter-spacing:.3em;margin:0 0 28px;opacity:.9}
+.hero h1{font-size:clamp(32px,4.6vw,64px);line-height:1.5;letter-spacing:.08em;margin:0 0 28px;max-width:15em;font-weight:700}
+.hero .lead{font-size:15px;max-width:36em;opacity:.92;margin:0 0 40px}
+.news{position:absolute;z-index:3;left:0;right:0;bottom:0;background:rgba(8,24,46,.55);backdrop-filter:blur(4px);border-top:1px solid rgba(255,255,255,.15)}
+.news .w{max-width:none;display:flex;align-items:center;gap:28px;height:68px;font-size:13px}
+.news b{font-family:var(--en);font-weight:500;letter-spacing:.2em;font-size:12px}
+.news time{font-family:var(--en);opacity:.8}
+.news .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pager{display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:12px}
+.pager button{width:36px;height:2px;padding:0;border:0;background:rgba(255,255,255,.3);cursor:pointer;position:relative;overflow:hidden}
+.pager button::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.pager button.on::after{animation:fill 6s linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+@media (max-width:760px){.hero{min-height:620px}.hero .copy{bottom:120px}.hero .en{font-size:9.5px;letter-spacing:.18em;margin-bottom:18px}.hero h1{font-size:28px;line-height:1.55}.hero .lead{font-size:13.5px;margin-bottom:28px}.news .w{height:auto;padding-block:14px;flex-wrap:wrap;gap:6px 14px}.news .t{flex-basis:100%}.pager{display:none}}
+
+/* about: text + bleeding photo stack */
+.about{position:relative;overflow:hidden}
+.about .grid{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center}
+.about .catch{font-family:var(--fh);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.8;letter-spacing:.08em;margin:0 0 40px}
+.about .body p{color:var(--ink-2)}
+.about .pics{position:relative;height:620px;margin-right:calc(-1 * max(48px,(100vw - 1240px)/2 + 48px))}
+.about .pics .ph{position:absolute}
+.about .p1{right:0;top:0;width:82%;height:72%}
+.about .p2{left:0;bottom:0;width:44%;height:46%;outline:12px solid #fff}
+.bgword{position:absolute;left:-1vw;bottom:-2.4vw;font-family:var(--en);font-weight:500;font-size:15vw;line-height:1;color:var(--mist);z-index:-1;white-space:nowrap;letter-spacing:-.02em;pointer-events:none}
+@media (max-width:960px){.about .grid{grid-template-columns:1fr;gap:56px}.about .pics{height:420px;margin-right:calc(-1 * var(--gut))}}
+@media (max-width:760px){.about .catch{font-size:23px}.about .pics{height:320px}.about .p2{outline-width:6px}}
+
+/* market (dark, photo right) */
+.market{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.market .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.market .num{display:flex;align-items:flex-end;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
+.market .num:last-of-type{border-bottom:1px solid rgba(255,255,255,.2)}
+.market .num strong{font-family:var(--en);font-weight:300;font-size:clamp(68px,7.5vw,110px);line-height:.85;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.market .num strong small{font-size:.32em;margin-left:6px}
+.market .num h3{font-size:16px;margin:0 0 4px}
+.market .num p{margin:0;font-size:13.5px;color:#b6c3d4;line-height:1.8}
+.market .src{font-size:12px;color:#8a9ab0;margin-top:20px}
+.market .ph{aspect-ratio:4/5}
+@media (max-width:960px){.market .grid{grid-template-columns:1fr;gap:56px}.market .ph{aspect-ratio:16/10}}
+@media (max-width:560px){.market .num{flex-direction:column;align-items:flex-start;gap:14px}.market .num strong{font-size:72px}}
+
+/* gallery strip */
+.strip{padding:0;display:grid;grid-template-columns:2fr 1fr 1.4fr 1fr;height:380px;gap:0}
+.strip .ph{height:100%}
+@media (max-width:760px){.strip{grid-template-columns:1fr 1fr;height:auto}.strip .ph{height:170px}}
+
+/* stance */
+.stance{position:relative;color:#fff;overflow:hidden;padding-block:200px}
+.stance>.ph{position:absolute;inset:0}
+.stance::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,24,46,.85),rgba(8,24,46,.45));z-index:1}
+.stance .w{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.stance .big{white-space:nowrap;font-family:var(--fh);font-weight:700;font-size:clamp(52px,6.4vw,96px);line-height:1.1;letter-spacing:.1em;margin:0}
+.stance p{color:rgba(255,255,255,.9)}
+@media (max-width:860px){.stance{padding-block:110px}.stance .w{grid-template-columns:1fr;gap:28px}.stance .big{font-size:54px}}
+
+/* message */
+.msg .grid{display:grid;grid-template-columns:5fr 6fr;gap:96px;align-items:start}
+.msg .ph{aspect-ratio:4/5}
+.msg .ph span{position:absolute;left:0;bottom:0;background:#fff;font-size:11px;padding:8px 14px 0 0;color:var(--mute)}
+.msg .who{display:flex;align-items:baseline;gap:18px;margin-top:24px}
+.msg .who small{font-size:12px;color:var(--mute)}
+.msg .who b{font-family:var(--fh);font-size:22px;letter-spacing:.24em}
+.msg ul{list-style:none;padding:0;margin:14px 0 0;font-size:13.5px;color:var(--ink-2)}
+.msg li{padding:10px 0;border-top:1px solid var(--line)}
+.msg .letter .lede{font-family:var(--fh);font-weight:700;font-size:clamp(22px,2.2vw,28px);line-height:1.8;letter-spacing:.06em;margin:0 0 40px}
+.msg .letter p{color:var(--ink-2)}
+.msg .sign{margin-top:36px;text-align:right;font-family:var(--fh);font-size:15px;color:var(--ink)}
+@media (max-width:960px){.msg .grid{grid-template-columns:1fr;gap:48px}.msg .ph{max-width:400px}}
+
+/* promise: numbered two-column list */
+.promise{background:var(--mist)}
+.plist{display:grid;grid-template-columns:1fr 1fr;column-gap:72px}
+.pi{display:grid;grid-template-columns:76px 1fr;align-content:start;gap:4px 20px;padding:34px 0;border-top:1px solid var(--line)}
+.pi .n{font-family:var(--en);font-weight:300;font-size:44px;line-height:1;color:var(--blue);grid-row:span 2}
+.pi h3{font-size:18.5px;line-height:1.6;letter-spacing:.05em}
+.pi p{margin:0;color:var(--ink-2);font-size:14.5px}
+.pi.ask{background:#fff;border-top:0;padding:30px 30px 26px;margin-top:20px;grid-template-columns:1fr}
+.pi.ask h3{font-size:16px;color:var(--navy);margin-bottom:10px}
+.pi.ask ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.pi.ask li{padding:6px 0 6px 18px;position:relative}
+.pi.ask li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--ink-2)}
+@media (max-width:860px){.plist{grid-template-columns:1fr}.pi{grid-template-columns:56px 1fr;padding:26px 0}.pi .n{font-size:34px}}
+
+/* cta band */
+.cta{position:relative;color:#fff;overflow:hidden;padding-block:120px}
+.cta>.ph{position:absolute;inset:0}
+.cta::before{content:"";position:absolute;inset:0;background:rgba(12,39,71,.82);z-index:1}
+.cta .w{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.cta h2{font-size:clamp(22px,2.6vw,34px);line-height:1.7;letter-spacing:.06em;margin-bottom:14px}
+.cta p{margin:0;color:rgba(255,255,255,.85)}
+.cta .tel{margin-top:22px;font-size:13px}
+.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px}
+.cta .btns{flex-direction:column;align-items:flex-end}
+@media (max-width:860px){.cta{padding-block:84px}.cta .w{grid-template-columns:1fr}.cta .btns{align-items:stretch}}
+
+/* support: alternating rows */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;margin-bottom:56px}
+.row .ph{aspect-ratio:3/2}
+.row .tx{padding:0 0 0 72px}
+.row:nth-child(even) .ph{order:2}
+.row:nth-child(even) .tx{padding:0 72px 0 0}
+.row .n{font-family:var(--en);font-weight:300;font-size:15px;letter-spacing:.2em;color:var(--blue);display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.row .n::after{content:"";width:48px;height:1px;background:var(--blue)}
+.row h3{font-size:clamp(20px,2vw,26px);letter-spacing:.08em;margin-bottom:16px}
+.row p{color:var(--ink-2)}
+.row dl{margin:0;font-size:13.5px;border-top:1px solid var(--line)}
+.row dl div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row dt{color:var(--navy);font-weight:500}
+.row dd{margin:0;color:var(--ink-2)}
+@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .ph{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
+
+/* people: one wide photo, four columns */
+.people{background:var(--mist)}
+.people .ph{height:420px;margin-bottom:56px}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:0 40px}
+.pg article{border-top:2px solid var(--navy);padding-top:22px}
+.pg .who{font-size:12.5px;font-weight:500;color:var(--blue);margin:0 0 10px}
+.pg h3{font-size:17px;line-height:1.7;margin-bottom:12px}
+.pg p{margin:0;font-size:14px;color:var(--ink-2)}
+@media (max-width:1000px){.pg{grid-template-columns:1fr 1fr;gap:40px 32px}.people .ph{height:300px}}
+@media (max-width:560px){.pg{grid-template-columns:1fr;gap:32px}.people .ph{height:220px;margin-bottom:40px}}
+
+/* compare */
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cmp{width:100%;min-width:860px;border-collapse:collapse;font-size:14px}
+table.cmp th,table.cmp td{padding:22px 14px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;line-height:1.6}
+table.cmp thead th{font-size:13px;font-weight:500;color:var(--ink-2);border-bottom:1px solid var(--ink)}
+table.cmp tbody th{text-align:left;font-weight:500;white-space:nowrap;background:#fff}
+table.cmp .us{background:var(--navy);color:#fff}
+table.cmp thead .us{font-weight:700}
+table.cmp td small{display:block;font-size:12px;color:var(--mute)}
+table.cmp td.us small{color:#a9bcd3}
+.mk{display:block;font-size:17px}
+.swipe{display:none;font-size:12.5px;color:var(--mute);margin:0 0 10px}
+@media (max-width:860px){.swipe{display:block}table.cmp tbody th{position:sticky;left:0;z-index:1}}
+
+/* cases */
+.cases{background:var(--mist)}
+.case{display:grid;grid-template-columns:5fr 6fr;gap:0;background:#fff;margin-bottom:28px}
+.case .ph{min-height:340px}
+.case .tx{padding:44px 52px}
+.case .no{font-family:var(--en);font-size:13px;letter-spacing:.24em;color:var(--blue);margin:0 0 6px}
+.case .tag{font-size:12.5px;color:var(--mute);margin:0 0 10px}
+.case h3{font-size:19px;line-height:1.7;margin-bottom:18px}
+.case dl{display:flex;flex-wrap:wrap;gap:6px 26px;margin:0 0 18px;font-size:13px;color:var(--ink-2)}
+.case dt{display:inline;color:var(--mute);margin-right:8px}
+.case dd{display:inline;margin:0}
+.case p{margin:0;font-size:14.5px;color:var(--ink-2);padding-top:18px;border-top:1px solid var(--line)}
+.cases .note{font-size:12.5px;color:var(--mute)}
+@media (max-width:860px){.case{grid-template-columns:1fr}.case .ph{min-height:0;aspect-ratio:16/10}.case .tx{padding:28px 22px 30px}}
+
+/* flow */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
+.steps li{counter-increment:s;padding:0 18px 0 0;position:relative}
+.steps li::before{content:counter(s,decimal-leading-zero);position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--en);font-size:14px;margin-bottom:22px}
+.steps h3{font-size:15.5px;line-height:1.6;margin-bottom:4px}
+.steps .t{display:block;font-family:var(--en);font-size:12.5px;color:var(--blue);margin-bottom:10px;letter-spacing:.06em}
+.steps p{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.85}
+@media (max-width:1100px){.steps{grid-template-columns:repeat(3,1fr);row-gap:44px}.steps::before{display:none}}
+@media (max-width:640px){.steps{grid-template-columns:1fr;row-gap:0}.steps li{display:grid;grid-template-columns:44px 1fr;gap:0 18px;padding:0 0 30px}.steps li::before{grid-row:span 3;margin:0}.steps li::after{content:"";position:absolute;left:21.5px;top:48px;bottom:4px;width:1px;background:var(--line)}.steps li:last-child::after{display:none}}
+
+/* open to all */
+.open{margin-top:110px;display:grid;grid-template-columns:5fr 6fr;gap:0;background:var(--navy);color:#fff}
+.open .ph{min-height:420px}
+.open .tx{padding:56px 60px}
+.open h3{font-size:clamp(22px,2.3vw,30px);line-height:1.6;letter-spacing:.06em;margin-bottom:18px}
+.open .lead{color:#c4d0de;margin-bottom:26px}
+.open ul{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 28px;font-size:14.5px}
+.open li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);word-break:keep-all;overflow-wrap:anywhere}
+.open .note{font-size:13.5px;color:#c4d0de;margin-bottom:28px}
+@media (max-width:1200px){.open ul{grid-template-columns:1fr}}
+@media (max-width:960px){.open{grid-template-columns:1fr;margin-top:80px}.open .ph{min-height:0;aspect-ratio:16/9}.open .tx{padding:36px 22px 40px}.open ul{grid-template-columns:1fr}}
+
+/* faq */
+.faq .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px}
+.faq .sh{grid-template-columns:1fr;margin-bottom:0}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--ink)}
+summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px 1fr 20px;gap:12px;padding:26px 0;font-family:var(--fh);font-weight:700;font-size:16px;line-height:1.7}
+summary::-webkit-details-marker{display:none}
+summary .q{font-family:var(--en);font-weight:400;font-size:20px;color:var(--blue);line-height:1.3}
+summary .pm{position:relative;width:14px;height:14px;margin-top:6px}
+summary .pm::before,summary .pm::after{content:"";position:absolute;left:0;top:6px;width:14px;height:1px;background:var(--ink);transition:transform .3s}
+summary .pm::after{transform:rotate(90deg)}
+details[open] summary .pm::after{transform:rotate(0)}
+details .a{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:0 32px 26px 0}
+details .a span{font-family:var(--en);font-size:20px;color:var(--mute);line-height:1.3}
+details .a p{margin:0;color:var(--ink-2);font-size:14.5px}
+@media (max-width:900px){.faq .grid{grid-template-columns:1fr;gap:40px}summary{font-size:15px}details .a{padding-right:0}}
+
+/* company */
+.company{background:var(--mist)}
+.company .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px}
+.company .sh{grid-template-columns:1fr;margin-bottom:0}
+.company dl{margin:0;border-top:1px solid var(--ink)}
+.company dl div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px}
+.company dt{color:var(--mute);font-size:13.5px}
+.company dd{margin:0}
+@media (max-width:900px){.company .grid{grid-template-columns:1fr;gap:40px}.company dl div{grid-template-columns:1fr;gap:2px}}
+
+/* contact */
+.contact{padding:0;display:grid;grid-template-columns:5fr 7fr;min-height:100vh}
+.contact>.ph{min-height:420px}
+.contact .side{position:relative}
+.contact .side .cap{position:absolute;left:var(--gut);bottom:48px;right:24px;color:#fff;z-index:2}
+.contact .side::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,24,46,.75),rgba(8,24,46,0) 55%)}
+.contact .side .cap b{display:block;font-family:var(--en);font-weight:300;font-size:56px;line-height:1;margin-bottom:10px}
+.contact .body{padding:120px max(48px,env(safe-area-inset-right,0px)) 120px 80px;max-width:820px}
+.contact h2{font-size:clamp(22px,2.3vw,30px);line-height:1.7;letter-spacing:.06em;margin-bottom:18px}
+.contact .lead{color:var(--ink-2);margin-bottom:40px}
+.ways{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-bottom:48px}
+.way{padding:22px 18px 20px 0;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
+.way+.way{padding-left:18px;border-left:1px solid var(--line)}
+.way b{font-family:var(--fh);font-size:16px;color:var(--navy)}
+.way span{font-size:13px;color:var(--ink-2);line-height:1.75;flex:1}
+.way i{font-style:normal;font-size:12.5px;color:var(--blue);font-weight:500}
+.way:hover b{color:var(--blue)}
+.telrow{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;padding:0 0 32px;margin-bottom:36px;border-bottom:1px solid var(--line)}
+.telrow b{font-family:var(--en);font-weight:400;font-size:clamp(32px,3.2vw,44px);color:var(--navy);letter-spacing:.03em;line-height:1}
+.telrow span{font-size:13px;color:var(--mute)}
+form label{display:block;font-size:13px;font-weight:500;margin:0 0 6px}
+form label em{font-style:normal;font-size:11px;color:var(--blue);margin-left:8px}
+form input,form select,form textarea{width:100%;border:0;border-bottom:1px solid #b9c4d2;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:10px 0;margin-bottom:26px;border-radius:0}
+form textarea{min-height:110px;resize:vertical}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-bottom-color:var(--navy)}
+form .r2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.chk{display:flex;align-items:center;gap:10px;font-size:13px;margin:0 0 28px}
+.chk input{width:auto;margin:0}
+.sent{border:1px solid var(--navy);padding:28px}
+@media (max-width:1200px){.ways{grid-template-columns:1fr}.way+.way{padding-left:0;border-left:0}}
+@media (max-width:1000px){.contact{grid-template-columns:1fr;min-height:0}.contact>.ph{min-height:0;height:300px}.contact .body{padding:72px var(--gut) 84px}.contact .side .cap b{font-size:40px}.ways{grid-template-columns:1fr}.way+.way{padding-left:0;border-left:0}form .r2{grid-template-columns:1fr;gap:0}}
+
+/* footer */
+footer{background:#081a31;color:#93a3b8;font-size:13px;padding-block:96px 36px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:48px}
+footer .logo b{color:#fff}
+footer address{font-style:normal;margin-top:24px;line-height:1.9}
+footer h4{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;letter-spacing:.2em;margin:0 0 18px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:10px}
+footer a:hover{color:#fff}
+.ftel b{display:block;font-family:var(--en);font-size:26px;font-weight:400;color:#fff;letter-spacing:.03em}
+.ftel .btn{margin-top:18px;width:100%;min-width:0}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #1c3150;margin-top:72px;padding-top:26px;font-size:11.5px}
+.pagetop{position:absolute;right:max(48px,env(safe-area-inset-right,0px));top:-28px;width:56px;height:56px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
+.pagetop::before{content:"";width:10px;height:10px;border-left:1px solid #fff;border-top:1px solid #fff;transform:rotate(45deg);margin-top:4px}
+footer{position:relative}
+@media (max-width:900px){.fg{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.fg{grid-template-columns:1fr;gap:36px}.pagetop{right:22px}}
+
+/* floating CTA */
+.fcta{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:stretch;background:#fff;box-shadow:0 12px 36px rgba(8,24,46,.22);transform:translateY(calc(100% + 48px));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fcta.show{transform:none}
+.fcta .lab{padding:14px 20px;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.fcta .lab b{display:block;font-size:13.5px;color:var(--navy)}
+.fcta a.go{display:flex;align-items:center;gap:14px;padding:0 24px;background:var(--blue);color:#fff;font-size:13.5px;font-weight:500}
+.fcta a.go:hover{background:var(--navy)}
+.fcta .x{position:absolute;right:-10px;top:-10px;width:24px;height:24px;border-radius:50%;background:var(--navy);border:0;color:#fff;font-size:12px;cursor:pointer;line-height:24px}
+.mbar{display:none}
+@media (max-width:760px){
+  .fcta{display:none}
+  .mbar{display:grid;grid-template-columns:1fr 1.5fr;position:fixed;left:0;right:0;bottom:0;z-index:40;transform:translateY(110%);transition:transform .35s;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--navy)}
+  .mbar.show{transform:none}
+  .mbar a{display:flex;align-items:center;justify-content:center;height:58px;font-size:14px;font-weight:500;color:#fff}
+  .mbar a+a{background:var(--blue)}
+  footer{padding-bottom:110px}
+}
+.proto{position:fixed;left:12px;bottom:12px;z-index:30;background:rgba(8,24,46,.85);color:#fff;font-size:10.5px;padding:4px 10px}
+@media (max-width:760px){.proto{display:none}}
+
+/* reveal (content stays visible without JS) */
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .mask{clip-path:inset(0 100% 0 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}
+.js .mask.in{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv,.js .mask{opacity:1;transform:none;clip-path:none}}
+'''
+
+LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
+AR='<span class="ar"></span>'
+
+hero_slides=[('G48h926L2qo','夕暮れの新築住宅',False),('cyAhRBcVUso','大きな窓のある住宅',True),('XojVF4MQQYA','前庭のある住宅',True),('hHz4yrvxwlA','白い外壁の住宅',True),('mzkx33pU2go','切妻屋根の住宅',True)]
+slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
+
+support=[
+ ('集客','MARKETING','VBLHICVh-lI','会議の様子','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
+ ('採用','RECRUITING','avsJHbPLVTU','木材を組む大工さん','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
+ ('財務・資金','FINANCE','4mEyvORkbN0','契約書の上で握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
+ ('仕入・業務','OPERATIONS','qJa6WDmRNwM','建築現場','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
+]
+rows=''.join(f'''<article class="row"><div class="ph mask">{img(pid,alt,1400)}</div><div class="tx rv"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<dl><div><dt>グループが担う</dt><dd>{g}</dd></div><div><dt>各社に残す</dt><dd>{k}</dd></div></dl></div></article>''' for ja,en,pid,alt,desc,g,k in support)
+
+promises=[('社名・|屋号は|そのまま|残します','看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、いちばんの資産です。'),
+ ('雇用と|給与水準を|守ります','グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は契約書に明記します。'),
+ ('保証と|定期点検を|引き継ぎます','引渡し済みの家の保証・点検・アフター対応は、これまでと同じ担当者が続けます。'),
+ ('協力業者さんとの|取引を|続けます','大工・設備・板金など、長年の協力業者さんへの発注も支払条件も、これまでどおりです。'),
+ ('社長の|個人保証の|解除に|取り組みます','借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除を目指します。')]
+plist=''.join(f'<div class="pi rv"><span class="n">{i+1:02d}</span><h3>{W(h)}</h3>{P(t)}</div>' for i,(h,t) in enumerate(promises))
+
+people=[('社長へ','辞める|時期は、|ご自身で|決められます。','引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と、次の社長の育成を一緒に進めます。'),
+ ('社員の皆さまへ','明日からの|仕事は|変わりません。','職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの選択肢が増えます。'),
+ ('施主様へ','点検に|伺うのは|同じ|担当者です。','保証も定期点検も窓口も変わりません。施工中の工事も、契約どおりにお引渡しします。'),
+ ('協力業者さんへ','発注も|支払条件も|これまで|どおりです。','グループ内の他社の現場をお願いできる機会も、少しずつ増えていきます。')]
+pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</article>' for w,h,t in people)
+
+cases=[('後継者不在','hHz4yrvxwlA','住宅の外観','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
+ ('成長の壁','X1P1_EDNnok','建築現場で働く人','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
+ ('廃業の検討','4r9OKorlcTk','明るいリビング','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
+cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
+
+steps=[('初回面談','1–2 hours','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2–4 weeks','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2–3 weeks','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1–2 months','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','1 month','株式譲渡契約の締結と、個人保証の解除手続きを行います。'),('ご説明と|引き継ぎ','6 months–','社員・施主様への説明に、私たちも同席します。')]
+st=''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(p)}</li>' for h,t,p in steps)
+
+faqs=[('相談したことが、社員や取引先に知られることはありませんか。','ありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約は初回面談の段階から結べます。'),
+ ('社員には、いつ、どう伝えればいいですか。','原則として最終契約の後です。幹部に先に伝えるか、全員に一度に伝えるかは会社によって違うため、順番と話す内容を一緒に準備します。説明の場には私たちも同席します。'),
+ ('譲渡価格はどのように決まりますか。','純資産に、今後数年分の利益を踏まえた収益力を加えて算定するのが基本です。受注残や保有不動産、退職金の支給なども考慮し、計算の根拠は書面でお示しします。'),
+ ('赤字の会社でも相談できますか。','はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の選択肢をお伝えします。'),
+ ('建設業許可はそのまま使えますか。','株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。経営業務の管理責任者や専任技術者が退任される場合は後任が必要になるため、交代の時期を事前に設計します。'),
+ ('社長は辞めなければいけませんか。','いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。'),
+ ('数年後に、別の会社へ売られることはありませんか。','買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を続ける考え方です。')]
+fq=''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in faqs)
+
+HTML=f'''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>株式会社エッジアセット｜工務店・住宅会社の事業承継</title>
+<meta name="description" content="株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>{CSS}</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="w">
+    <a class="logo" href="#top">{LOGO}<span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
+    <nav class="gnav" aria-label="メインメニュー">
+      <a class="nl" href="#about">私たちについて</a>
+      <a class="nl" href="#promise">お約束</a>
+      <a class="nl" href="#support">グループの支援</a>
+      <a class="nl" href="#cases">事例</a>
+      <a class="nl" href="#flow">ご相談の流れ</a>
+      <a class="nl" href="#faq">よくある質問</a>
+      <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
+      <a class="btn btn-white" href="#contact">無料相談 {AR}</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" aria-label="メインビジュアル">
+  {slides}
+  <div class="copy"><div class="w">
+    <p class="en">BUSINESS SUCCESSION FOR HOME BUILDERS</p>
+    <h1>{W('建てた|家の|点検に、|三十年後も|伺える|会社で|あるために。')}</h1>
+    {P('エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、そのまま引き継ぎます。','lead')}
+    <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
+  </div></div>
+  <div class="news"><div class="w">
+    <b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span class="t">コーポレートサイトを公開しました。</span>
+    <div class="pager" id="pager"><span id="cnt">01</span></div>
+  </div></div>
+</section>
+
+<section class="about" id="about">
+  <span class="bgword" aria-hidden="true">Succession</span>
+  <div class="w grid">
+    <div class="rv">
+      {head('About','私たちについて','') .replace('<h2></h2>','')}
+      <p class="catch">{W('家は、|建てた後の|三十年の|ほうが長い。')}</p>
+      <div class="body">
+        {P('工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検には誰が行くのか」。')}
+        {P('エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった、一社では手が回らない仕事をグループで支えます。')}
+      </div>
+      <a class="tl" href="#support">グループの支援を見る {AR}</a>
+    </div>
+    <div class="pics">
+      <div class="ph p1 mask">{img('dUYELbt-H-E','上棟中の木造住宅',1600)}</div>
+      <div class="ph p2 mask">{img('2cfj0Y5ch00','木のぬくもりのあるリビング',900)}</div>
+    </div>
+  </div>
+</section>
+
+<section class="market dark" id="market">
+  <div class="w grid">
+    <div class="rv">
+      {head('Market','業界の現状','後継者が|いない|会社が|いちばん|多い|業種は、|建設業です。')}
+      <div class="num"><strong>57.3<small>%</small></strong><div><h3>建設業の後継者不在率</h3>{P('業種別で最も高い水準。全国平均を7ポイント上回ります。')}</div></div>
+      <div class="num"><strong>50.1<small>%</small></strong><div><h3>全国企業の後継者不在率</h3>{P('いまも2社に1社は、後継者が決まっていません。')}</div></div>
+      <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
+    </div>
+    <div class="ph mask">{img('X1P1_EDNnok','建築現場で働く人',1200)}</div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true">
+  <div class="ph">{img('x8l4lN6-xd0','',1200)}</div>
+  <div class="ph">{img('5kdlUEHlMXo','',800)}</div>
+  <div class="ph">{img('1CVQxgLXvdw','',1000)}</div>
+  <div class="ph">{img('bqUZEAeWuok','',800)}</div>
+</div>
+
+<section class="stance">
+  <div class="ph">{img('Q6sCJFHCubc','',2000)}</div>
+  <div class="w">
+    <p class="big rv">売らない。</p>
+    <div class="rv">
+      {P('私たちは、買った会社を数年で売却して利益を得るファンドではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。')}
+      {P('目指すのは、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が続く会社であることです。')}
+    </div>
+  </div>
+</section>
+
+<section class="msg" id="message">
+  <div class="w grid">
+    <div class="rv">
+      <div class="ph">{img('9h8Nhj8fy_E','打ち合わせの様子',1000)}<span>代表写真は撮影予定</span></div>
+      <div class="who"><small>代表取締役</small><b>〇〇 〇〇</b></div>
+      <ul><li>住宅会社にて集客・採用部門を統括</li><li>住宅業界向けSaaS企業 CFO室</li><li>工務店・住宅会社の経営支援</li></ul>
+    </div>
+    <div class="letter rv">
+      {head('Message','代表メッセージ','').replace('<h2></h2>','')}
+      <p class="lede">{W('会社を|売る、|という|言葉に|抵抗がある方へ。')}</p>
+      {P('これまで多くの工務店の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を何人も見てきました。')}
+      {P('大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。')}
+      {P('私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を聞かせてください。')}
+      <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　〇〇 〇〇</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="promise" id="promise">
+  <div class="w">
+    {head('Promise','5つのお約束','引き継ぐ|ときに、|契約書で|お約束すること','口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも正直にお伝えします。')}
+    <div class="plist">
+      {plist}
+      <div class="pi ask rv"><h3>そのかわり、お願いすること</h3><ul><li>月次の数字は、毎月一緒に確認させてください。</li><li>経理・労務・情報管理は、グループ共通のルールに合わせていただきます。</li><li>譲渡価格は純資産と収益力から算定します。相場を大きく超える金額はお出しできません。</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="ph">{img('GQn9GnMkVQg','',2000)}</div>
+  <div class="w">
+    <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
+    <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
+  </div>
+</section>
+
+<section class="support" id="support">
+  <div class="w">
+    {head('Support','グループの支援','現場は|変えずに、|一社では|手が回らない|仕事を|支えます','家づくりの方針には口を出しません。規模が小さいほど負担が重くなる仕事を、グループでまとめて引き受けます。')}
+    {rows}
+  </div>
+</section>
+
+<section class="people">
+  <div class="w">
+    {head('People','それぞれの方へ','社長・|社員・|施主様・|協力業者さん、|それぞれに|とって|変わらないこと')}
+    <div class="ph mask">{img('NbtIDoFKGO8','握手する二人',2000)}</div>
+    <div class="pg">{pg}</div>
+  </div>
+</section>
+
+<section class="compare" id="compare">
+  <div class="w">
+    {head('Comparison','選ばれる理由','事業承継の|選択肢を|比べて|みてください','どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢をご案内することもあります。')}
+    <p class="swipe">表は横にスクロールできます</p>
+    <div class="tbl rv">
+      <table class="cmp">
+        <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
+        <tbody>
+          <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
+          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
+          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
+          <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
+          <tr><th>数年後の再売却</th><td>なし</td><td>なし</td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td>なし</td></tr>
+          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td>なし</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--mute);margin-top:16px">一般的な傾向を整理したもので、個別の案件により異なります。</p>
+  </div>
+</section>
+
+<section class="cases" id="cases">
+  <div class="w">
+    {head('Case','モデルケース','こんな|ご相談を|お受け|しています','よくあるご相談を、条件を変えた想定事例としてまとめました。実在の企業ではありません。')}
+    {cs}
+    <div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="#contact">似た状況について相談する {AR}</a></div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="w">
+    {head('Flow','ご相談の流れ','ご相談から|引き継ぎまで、|通常は|半年|ほどです','ご相談の事実が社員や取引先に伝わることはありません。面談は社外かオンラインで行います。')}
+    <ol class="steps">{st}</ol>
+    <div class="open">
+      <div class="ph">{img('htmZWzApbJE','木のキッチン',1400)}</div>
+      <div class="tx rv">
+        <h3>{W('規模も|エリアも|業績も、|問いません。')}</h3>
+        {P('年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社であればまずはお話を伺います。','lead')}
+        <ul>{''.join('<li>'+W(x)+'</li>' for x in ['後継者が|決まっていない','数年以内に|引退を|考えている','赤字が続いて|先行きが|不安','人が採れず、|成長が|止まっている','廃業も|選択肢に|入れている','社員と|施主様の|今後が心配'])}</ul>
+        <p class="note">{W('ひとつでも|当てはまれば、|ご相談ください。|決算書は|なくても|構いません。')}</p>
+        <a class="btn btn-white" href="#contact">まずは話を聞いてみる {AR}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="w grid">
+    <div class="rv">{head('FAQ','よくあるご質問','ご相談の|前に|よく|聞かれること')}</div>
+    <div class="rv">{fq}</div>
+  </div>
+</section>
+
+<section class="company" id="company">
+  <div class="w grid">
+    <div class="rv">{head('Company','会社概要','会社概要')}</div>
+    <dl class="rv">
+      <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
+      <div><dt>代表者</dt><dd>代表取締役　〇〇 〇〇</dd></div>
+      <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
+      <div><dt>設立</dt><dd>20XX年X月</dd></div>
+      <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
+      <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／グループ会社の経営支援</dd></div>
+      <div><dt>連絡先</dt><dd>TEL 03-0000-0000（平日 9:00–18:00）</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="ph side">{img('Vg96IZTFubo','家の鍵を持つ手',1400)}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="body">
+    <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
+    {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
+    <div class="ways">
+      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接伺います。<span class="nb">オンライン・社外</span><span class="nb">どちらでも。</span></span><i>日程を相談する</i></a>
+      <a class="way" href="#cf" data-topic="資料請求（事業承継ガイド）"><b>ガイドを受け取る</b><span>事業承継で決めることを<span class="nb">一冊にまとめた資料です。</span></span><i>無料で受け取る</i></a>
+      <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
+    </div>
+    <div class="telrow"><b>03-0000-0000</b><span>平日 9:00–18:00　夜間・土日の面談も調整します</span></div>
+    <form id="cf" novalidate>
+      <label for="f-topic">ご相談の種類</label>
+      <select id="f-topic"><option>面談の予約</option><option>資料請求（事業承継ガイド）</option><option>匿名での相談</option><option>その他</option></select>
+      <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" autocomplete="organization"></div></div>
+      <div class="r2"><div><label for="f-mail">メールアドレス<em>必須</em></label><input id="f-mail" type="email" autocomplete="email" required></div><div><label for="f-tel">電話番号</label><input id="f-tel" type="tel" autocomplete="tel"></div></div>
+      <label for="f-msg">ご相談内容</label><textarea id="f-msg"></textarea>
+      <label class="chk"><input type="checkbox" id="f-ok"> プライバシーポリシーに同意する</label>
+      <button class="btn btn-navy" type="submit">送信する {AR}</button>
+    </form>
+    <div class="sent" id="sent" hidden><p style="font-size:17px;margin-bottom:6px">送信を受け付けました。</p><p style="margin:0;font-size:13px;color:var(--mute)">2営業日以内にご連絡します。（デモのため実際には送信されません）</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <a class="pagetop" href="#top" aria-label="ページの先頭へ"></a>
+  <div class="w">
+    <div class="fg">
+      <div><a class="logo" href="#top" style="color:#fff">{LOGO}<span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
+      <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">選ばれる理由</a></li><li><a href="#company">会社概要</a></li></ul></div>
+      <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">モデルケース</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
+      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="#contact">無料で相談する {AR}</a></div>
+    </div>
+    <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
+    <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
+  </div>
+</footer>
+
+<aside class="fcta" id="fcta" aria-label="ご相談窓口">
+  <div class="lab"><b>秘密厳守・無料のご相談</b>社名を伏せたままでも構いません</div>
+  <a class="go" href="#contact">相談する {AR}</a>
+  <button class="x" id="fx" aria-label="閉じる">×</button>
+</aside>
+<nav class="mbar" id="mbar" aria-label="ご相談"><a href="#contact">電話で相談</a><a href="#contact">無料で相談する</a></nav>
+<div class="proto">デザイン確認用｜文言・数値・写真は仮</div>
+
+<script>
+(() => {{
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const slides = $$('.slide'), pager = $('#pager'), cnt = $('#cnt');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur = 0, timer;
+  slides.forEach((_, i) => {{
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', '写真 ' + (i + 1));
+    b.addEventListener('click', () => go(i));
+    pager.appendChild(b);
+  }});
+  const bars = $$('button', pager);
+  const go = i => {{
+    slides[cur].classList.remove('on'); bars[cur].classList.remove('on');
+    cur = i; slides[cur].classList.add('on');
+    void bars[cur].offsetWidth; bars[cur].classList.add('on');
+    cnt.textContent = String(cur + 1).padStart(2, '0');
+    clearTimeout(timer);
+    if (!still) timer = setTimeout(() => go((cur + 1) % slides.length), 6000);
+  }};
+  go(0);
+
+  const io = new IntersectionObserver(es => es.forEach(e => {{
+    if (e.isIntersecting) {{ e.target.classList.add('in'); io.unobserve(e.target); }}
+  }}), {{ threshold: .12, rootMargin: '0px 0px -40px 0px' }});
+  $$('.rv, .mask').forEach(el => io.observe(el));
+
+  const hero = $('.hero'), contact = $('#contact'), fcta = $('#fcta'), mbar = $('#mbar');
+  let closed = false;
+  const onScroll = () => {{
+    const past = scrollY > hero.offsetHeight * .8;
+    const r = contact.getBoundingClientRect();
+    const near = r.top < innerHeight && r.bottom > 0;
+    fcta.classList.toggle('show', past && !near && !closed);
+    mbar.classList.toggle('show', past && !near);
+  }};
+  addEventListener('scroll', onScroll, {{ passive: true }}); onScroll();
+  $('#fx').addEventListener('click', () => {{ closed = true; onScroll(); }});
+
+  $$('.way').forEach(a => a.addEventListener('click', () => {{ $('#f-topic').value = a.dataset.topic; }}));
+  $('#cf').addEventListener('submit', e => {{
+    e.preventDefault();
+    const mail = $('#f-mail');
+    if (!mail.value || !mail.checkValidity()) {{ mail.focus(); mail.style.borderBottomColor = '#c0392b'; return; }}
+    e.target.hidden = true; $('#sent').hidden = false;
+  }});
+}})();
+</script>
+</body>
+</html>
+'''
+open(sys.argv[1],'w').write(HTML)
+print(len(HTML))
