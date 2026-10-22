@@ -230,11 +230,8 @@ table.cmp td small{display:block;font-size:12px;color:var(--mute)}
 .steps p{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.8}
 .spec{margin-top:64px}
 .spec h3{font-size:19px;margin-bottom:18px}
-.spec table{width:100%;border-collapse:collapse;font-size:15px}
-.spec th,.spec td{padding:16px 20px;border:1px solid var(--line);text-align:left;vertical-align:top}
-.spec th{width:180px;background:var(--pale);font-weight:700}
 @media (max-width:1000px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{display:grid;grid-template-columns:36px 1fr;gap:2px 14px}.steps li::before{margin:0;grid-row:span 3}.spec th,.spec td{display:block;width:auto;border-bottom:0}.spec tr:last-child td{border-bottom:1px solid var(--line)}}
+@media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{display:grid;grid-template-columns:36px 1fr;gap:2px 14px}.steps li::before{margin:0;grid-row:span 3}}
 
 /* faq */
 .faq-list{max-width:900px;margin:0 auto}
@@ -296,6 +293,17 @@ form .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media (max-width:760px){.specimg{height:180px}}
 
 .nb{white-space:nowrap}
+.open{background:var(--pale);border-radius:4px;padding:48px 48px 44px;text-align:center}
+.open h3{font-size:clamp(22px,2.4vw,30px);line-height:1.6;color:var(--blue);margin-bottom:16px}
+.open-lead{max-width:40em;margin:0 auto 32px;color:var(--ink-2)}
+.sit{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sit li{background:#fff;border-radius:4px;padding:18px 18px 18px 52px;text-align:left;font-weight:700;font-size:15.5px;line-height:1.6;position:relative;word-break:keep-all;overflow-wrap:anywhere}
+.sit li::before{content:"";position:absolute;left:18px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:var(--blue)}
+.sit li::after{content:"";position:absolute;left:25px;top:50%;width:6px;height:11px;margin-top:-8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+.open-note{font-weight:700;margin:0 0 24px;word-break:keep-all;overflow-wrap:anywhere}
+@media (max-width:900px){.sit{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.open{padding:32px 20px;text-align:left}.sit{grid-template-columns:1fr;gap:8px}.sit li{padding:14px 14px 14px 48px;font-size:15px}.open .btns{justify-content:stretch}}
+
 /* footer */
 footer{background:var(--navy);color:#b9c6d8;font-size:14px;padding-block:72px 32px}
 .fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:44px}
@@ -552,14 +560,20 @@ footer a:hover{color:#fff}
       <li><h3>ご説明と<wbr>引き継ぎ</h3><span class="t">半年〜</span><p>社員・施主様への説明に私たちも同<span class="nb">席します。</span></p></li>
     </ol>
     <div class="spec"><div class="ph specimg"><img src="https://unsplash.com/photos/htmZWzApbJE/download?force=true&amp;w=1400" alt="木のキッチン" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
-      <h3>ご相談を<wbr>お待ちしている<wbr>会社</h3>
-      <table>
-        <tr><th>事業</th><td>注文住宅・規格住宅・リフォーム</td></tr>
-        <tr><th>エリア</th><td>全国（首都圏・東海・関西を優先）</td></tr>
-        <tr><th>規模</th><td>年商 3〜30億円、年間引渡し 10〜100棟程度</td></tr>
-        <tr><th>収益</th><td>直近3期のうち2期以上が営業黒字</td></tr>
-        <tr><th>状況</th><td>後継者が決まっていない／数年以内の引退を考えている／成長のための人材や資金が足りない</td></tr>
-      </table>
+      <div class="open">
+        <h3>規模も<wbr>エリアも<wbr>業績も、<wbr>問いません。</h3>
+        <p class="open-lead">年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社であればまずはお話を<span class="nb">伺います。</span></p>
+        <ul class="sit">
+          <li>後継者が<wbr>決まっていない</li>
+          <li>数年以内に<wbr>引退を<wbr>考えている</li>
+          <li>赤字が続いて<wbr>先行きが<wbr>不安</li>
+          <li>人が採れず、<wbr>成長が<wbr>止まっている</li>
+          <li>廃業も<wbr>選択肢に<wbr>入れている</li>
+          <li>社員と<wbr>施主様の<wbr>今後が心配</li>
+        </ul>
+        <p class="open-note">ひとつでも<wbr>当てはまれば、<wbr>ご相談ください。<wbr>決算書は<wbr>なくても<wbr>構いません。</p>
+        <div class="btns" style="justify-content:center"><a class="btn btn-blue" href="#contact">まずは話を聞いてみる</a></div>
+      </div>
     </div>
   </div>
 </section>
