@@ -1098,6 +1098,7 @@ bodies['404.html']=(NOTFOUND,'お探しのページは見つかりませんで�
 SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'polish.py')).read())
 for fname,title in PAGES:
+    CUR=fname
     b,d=bodies[fname]
     b=re.sub(r'<p class="crumb">.*?</p>','',b,flags=re.S)
     open(os.path.join(OUT,fname),'w').write(telify(page(fname,title,b,d)))

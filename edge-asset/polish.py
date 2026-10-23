@@ -46,3 +46,30 @@ def chapterize(html):
     rail=''.join(f'<li data-ch="{int(n)}"><a href="#ch{n}"><b>{n}</b><span>{s}</span></a></li>' for c,n,s,t in CHAPTERS)
     return f'<nav class="rail" aria-label="このページの章"><ol>{rail}</ol></nav>'+html
 b,d=bodies['index.html']; bodies['index.html']=(chapterize(b),d)
+
+# ---------- menu v3: Japanese first, grouped, current page marked, contact always in view ----------
+MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('cases.html','事例','Cases','4つのモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
+MENU_SUB=[('index.html','トップ'),('partners.html','仲介会社・金融機関の方へ'),('column.html','コラム'),('news.html','お知らせ'),('contact.html','お問い合わせ')]
+CUR=''
+_nav_v2=nav
+def nav():
+    html=_nav_v2()
+    cur=CUR if not CUR.startswith('case-') else 'cases.html'
+    cur='column.html' if cur.startswith('column-') else cur
+    main=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}><span class="m3-en">{e}</span><span class="m3-ja">{j}</span><span class="m3-d">{d}</span><i aria-hidden="true"></i></a></li>' for h,j,e,d in MENU_MAIN)
+    sub=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}>{j}</a></li>' for h,j in MENU_SUB)
+    inner=f"""<div class="menu-in m3">
+    <nav class="m3-l" aria-label="サイトメニュー">
+      <p class="m3-k">事業承継をお考えの方へ</p>
+      <ul class="m3-main">{main}</ul>
+      <ul class="m3-sub">{sub}</ul>
+    </nav>
+    <div class="m3-r">
+      <p class="m3-k">ご相談窓口</p>
+      <p class="m3-lead">{W('ご相談は|無料です。|社名を|伏せたままでも|構いません。')}</p>
+      <a class="m3-b" href="contact.html"{NT}><small>24時間受付</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
+      <a class="m3-b tel" href="tel:0300000000"><small>平日 9:00–18:00</small><span>03-0000-0000</span><i aria-hidden="true"></i></a>
+      <p class="m3-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
+    </div>
+  </div>"""
+    return re.sub(r'<div class="menu-in">.*?</div>\s*</div>\s*$',inner+'\n</div>',html,flags=re.S)

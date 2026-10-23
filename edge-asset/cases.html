@@ -1463,6 +1463,70 @@ footer .fcx::after{content:"";position:absolute;right:-120px;top:-120px;width:36
 @media (max-width:760px){.chap{margin-bottom:28px}.home section[data-ch]:not(:has(.chap)){padding-block:64px}}
 .w>.chap,.grid>.chap{grid-column:1/-1}
 .home .topfaq .sh-en,.home .topnews .sh-en{display:block}
+
+/* ===== menu v3 ===== */
+.menu-in.m3{display:grid;grid-template-columns:7fr 4fr;gap:0 72px;align-items:start;padding-top:130px}
+.m3-k{font-family:var(--fh);font-size:12.5px;letter-spacing:.14em;color:#9cc2f5;margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.m3-k::before{content:"";width:18px;height:1px;background:currentColor}
+.m3-main{list-style:none;margin:0 0 36px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.m3-main a{position:relative;display:grid;grid-template-columns:1fr auto;grid-template-areas:"en i" "ja i" "d i";align-items:center;gap:2px 16px;padding:24px 24px 24px 26px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transition:background .3s,border-color .3s}
+.m3-main a:hover{background:rgba(255,255,255,.09);border-color:rgba(156,194,245,.5)}
+.m3-main a[aria-current]{border-color:#9cc2f5;background:rgba(34,104,200,.22)}
+.m3-main a[aria-current]::after{content:"表示中";position:absolute;right:16px;top:12px;font-size:10px;letter-spacing:.1em;color:#9cc2f5}
+.m3-en{grid-area:en;font-family:var(--en);font-size:11px;letter-spacing:.24em;color:#9cc2f5;text-transform:uppercase}
+.m3-ja{grid-area:ja;font-family:var(--fh);font-weight:700;font-size:clamp(19px,1.8vw,23px);letter-spacing:.06em;color:#fff}
+.m3-d{grid-area:d;font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
+.m3-main i{grid-area:i;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);position:relative;transition:background .3s,border-color .3s}
+.m3-main i::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translate(-70%,-50%) rotate(45deg)}
+.m3-main a:hover i{background:var(--blue);border-color:var(--blue)}
+.m3-sub{list-style:none;margin:0;padding:22px 0 0;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;gap:12px 32px;font-size:14px}
+.m3-sub a{color:rgba(255,255,255,.78);padding:4px 0;display:inline-flex;align-items:center;gap:8px}
+.m3-sub a::before{content:"";width:5px;height:5px;border-top:1px solid #9cc2f5;border-right:1px solid #9cc2f5;transform:rotate(45deg)}
+.m3-sub a:hover,.m3-sub a[aria-current]{color:#fff}
+.m3-r{border-left:1px solid rgba(255,255,255,.12);padding-left:48px}
+.m3-lead{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.7;color:#fff;margin:0 0 22px;word-break:keep-all;overflow-wrap:anywhere}
+.m3-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"s i" "t i";align-items:center;gap:2px 16px;background:#fff;color:var(--navy);padding:18px 20px 18px 24px;margin-bottom:12px;transition:transform .3s}
+.m3-b:hover{transform:translateY(-2px)}
+.m3-b small{grid-area:s;font-size:11px;color:var(--mute)}
+.m3-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:17px}
+.m3-b i{grid-area:i;width:40px;height:40px;border-radius:50%;background:var(--blue);position:relative}
+.m3-b i::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translate(-70%,-50%) rotate(45deg)}
+.m3-b.tel{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}.m3-b.tel small{color:#9cc2f5}.m3-b.tel span{font-family:var(--en);font-weight:400;font-size:22px;letter-spacing:.04em}
+.m3-addr{font-size:12px;color:rgba(255,255,255,.5);line-height:1.9;margin:22px 0 0}
+.m3 li{opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s}
+.menu-open .m3 li{opacity:1;transform:none}
+.menu-open .m3-main li:nth-child(2){transition-delay:.05s}.menu-open .m3-main li:nth-child(3){transition-delay:.1s}.menu-open .m3-main li:nth-child(4){transition-delay:.15s}.menu-open .m3-sub li{transition-delay:.2s}
+@media (max-width:960px){.menu-in.m3{grid-template-columns:1fr;gap:28px;padding:96px 20px 40px}.m3-r{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.12);padding-top:24px}}
+@media (max-width:600px){
+  .m3-main{grid-template-columns:1fr;gap:8px;margin-bottom:22px}
+  .m3-main a{padding:14px 16px 14px 18px;grid-template-areas:"ja i" "d i";gap:2px 12px}
+  .m3-en{display:none}
+  .m3-ja{font-size:18px}
+  .m3-main a[aria-current]::after{top:8px;right:12px}
+  .m3-sub{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding-top:16px;font-size:13.5px}
+  .m3-lead{font-size:15px;margin-bottom:14px}
+  .m3-b{padding:14px 16px 14px 18px;margin-bottom:8px}.m3-b span{font-size:16px}.m3-b.tel span{font-size:20px}
+  .m3-addr{display:none}
+}
+
+/* ===== hero on phones: copy anchored to the bottom of the photo, CTA as the last thing before the fold ===== */
+@media (max-width:760px){
+  .hx{display:flex;flex-direction:column;justify-content:flex-end;min-height:100vh;min-height:100svh;height:auto;padding:96px 0 30px}
+  .hx::before{background:linear-gradient(180deg,rgba(6,18,31,.55) 0%,rgba(6,18,31,.08) 26%,rgba(6,18,31,.35) 48%,rgba(6,18,31,.88) 72%,rgba(6,18,31,.97) 100%)}
+  .hx-in{position:relative;top:auto;bottom:auto;left:auto;right:auto;padding:0 20px;margin:0}
+  .hx-kick{margin-bottom:16px;font-size:12px}
+  .hx-kick span{display:none}
+  .hx-h{font-size:36px;line-height:1.3;margin-bottom:20px}
+  .hx-lead{font-size:13.5px;line-height:1.95;margin-bottom:26px;color:rgba(255,255,255,.82)}
+  .hx-act{flex-direction:column;align-items:stretch;gap:14px}
+  .hx-cta{width:100%;justify-content:space-between;padding:8px 8px 8px 24px}
+  .hc-t{font-size:15.5px}
+  .hc-ar{width:50px;height:50px}
+  .hx-sub{align-self:center;font-size:13px;gap:10px}
+  .hx-sub i{width:26px;height:26px}
+  .hx-foot,.hx-marq{display:none}
+}
+@media (max-width:600px){.m3-sub li:nth-child(2){grid-column:1/-1;order:-1}}
 </style>
 </head>
 <body>
@@ -1476,18 +1540,18 @@ footer .fcx::after{content:"";position:absolute;right:-120px;top:-120px;width:36
 </header>
 <button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span class="bl"><i></i><i></i></span><em class="b-o">MENU</em><em class="b-c">CLOSE</em></button>
 <div class="menu" id="menu" aria-hidden="true">
-  <div class="menu-in">
-    <div class="menu-l">
-      <p class="menu-t">MENU</p>
-      <ul class="menu-list"><li><a href="index.html" target="_blank" rel="noopener"><span class="mn">01</span><span class="mt"><span class="me">Top</span><span class="mj">トップ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="company.html" target="_blank" rel="noopener"><span class="mn">02</span><span class="mt"><span class="me">About us</span><span class="mj">私たちについて</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="service.html" target="_blank" rel="noopener"><span class="mn">03</span><span class="mt"><span class="me">Our support</span><span class="mj">グループの支援</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="cases.html" target="_blank" rel="noopener"><span class="mn">04</span><span class="mt"><span class="me">Case</span><span class="mj">事例</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="flow.html" target="_blank" rel="noopener"><span class="mn">05</span><span class="mt"><span class="me">Flow</span><span class="mj">ご相談の流れ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="partners.html" target="_blank" rel="noopener"><span class="mn">06</span><span class="mt"><span class="me">For partners</span><span class="mj">仲介会社・金融機関の皆さまへ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="news.html" target="_blank" rel="noopener"><span class="mn">07</span><span class="mt"><span class="me">News</span><span class="mj">お知らせ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="column.html" target="_blank" rel="noopener"><span class="mn">08</span><span class="mt"><span class="me">Column</span><span class="mj">コラム</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="contact.html" target="_blank" rel="noopener"><span class="mn">09</span><span class="mt"><span class="me">Contact</span><span class="mj">ご相談・お問い合わせ</span></span><span class="mx" aria-hidden="true"></span></a></li></ul>
-    </div>
-    <div class="menu-r">
-      <p class="menu-k">ご相談窓口</p>
-      <p class="menu-tel"><a class="tel-a" href="tel:0300000000">03-0000-0000</a></p>
-      <p class="menu-s">平日 9:00–18:00　夜間・土日の面談も調整します</p>
-      <a class="btn btn-white" href="contact.html" target="_blank" rel="noopener">無料で相談する <span class="ar"></span></a>
-      <p class="menu-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
-      <p class="menu-note">各ページは新しいタブで開きます</p>
+  <div class="menu-in m3">
+    <nav class="m3-l" aria-label="サイトメニュー">
+      <p class="m3-k">事業承継をお考えの方へ</p>
+      <ul class="m3-main"><li><a href="company.html" target="_blank" rel="noopener"><span class="m3-en">About</span><span class="m3-ja">私たちについて</span><span class="m3-d">考え方・代表・会社概要</span><i aria-hidden="true"></i></a></li><li><a href="service.html" target="_blank" rel="noopener"><span class="m3-en">Support</span><span class="m3-ja">グループの支援</span><span class="m3-d">集客・採用・財務・原価の改善</span><i aria-hidden="true"></i></a></li><li><a href="cases.html" target="_blank" rel="noopener" aria-current="page"><span class="m3-en">Cases</span><span class="m3-ja">事例</span><span class="m3-d">4つのモデルケース</span><i aria-hidden="true"></i></a></li><li><a href="flow.html" target="_blank" rel="noopener"><span class="m3-en">Flow</span><span class="m3-ja">ご相談の流れ</span><span class="m3-d">初回面談から引き継ぎまで</span><i aria-hidden="true"></i></a></li></ul>
+      <ul class="m3-sub"><li><a href="index.html" target="_blank" rel="noopener">トップ</a></li><li><a href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a></li><li><a href="column.html" target="_blank" rel="noopener">コラム</a></li><li><a href="news.html" target="_blank" rel="noopener">お知らせ</a></li><li><a href="contact.html" target="_blank" rel="noopener">お問い合わせ</a></li></ul>
+    </nav>
+    <div class="m3-r">
+      <p class="m3-k">ご相談窓口</p>
+      <p class="m3-lead">ご相談は<wbr>無料です。<wbr>社名を<wbr>伏せたままでも<wbr>構いません。</p>
+      <a class="m3-b" href="contact.html" target="_blank" rel="noopener"><small>24時間受付</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
+      <a class="m3-b tel" href="tel:0300000000"><small>平日 9:00–18:00</small><span>03-0000-0000</span><i aria-hidden="true"></i></a>
+      <p class="m3-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
     </div>
   </div>
 </div>
