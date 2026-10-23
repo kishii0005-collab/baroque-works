@@ -11,12 +11,12 @@ def src_list(i):
     # via the wsrv.nl image cache first (fetched once on their side, then served from cache), then Unsplash directly
     from urllib.parse import quote
     proxied='https://wsrv.nl/?url='+quote(f'unsplash.com/photos/{i}/download?force=true&w=1800',safe='')+'&amp;w=1800&amp;q=82&amp;output=jpg'
-    return out+[proxied,U(i)]
+    return out+[U(i),proxied]
 def img(i,alt='',w=1400,lazy=True,fb=None):
     chain=[]
     for x in [i]+[y for y in (fb or [])+BACKUP if y!=i]:
         chain+=src_list(x)
-    return (f'<img src="{chain[0]}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{"|".join(chain[1:5])}" onerror="nx(this)">')
+    return (f'<img src="{chain[0]}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{"|".join(chain[1:5])}" onerror="var l=(this.dataset.fb||\'\').split(\'|\').filter(Boolean);if(l.length){{this.dataset.fb=l.slice(1).join(\'|\');this.src=l[0]}}else{{this.onerror=null;this.style.visibility=\'hidden\';this.parentNode.classList.add(\'noimg\')}}">')
 W=lambda t:t.replace('|','<wbr>')
 def nb(t,n=9):  # keep the last phrase together; the break lands right after a particle or comma
     if len(t)<=n+3: return t
@@ -462,9 +462,9 @@ section{position:relative}
 /* reveal (content stays visible without JS) */
 .js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
-.js .mask{clip-path:inset(0 100% 0 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}
-.js .mask.in{clip-path:inset(0 0 0 0)}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv,.js .mask{opacity:1;transform:none;clip-path:none}}
+.js .mask::after{content:"";position:absolute;inset:0;z-index:2;background:var(--mist);transform-origin:right center;transition:transform 1.2s cubic-bezier(.7,0,.2,1)}
+.js .mask.in::after{transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.js .mask::after{display:none}}
 '''
 
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
@@ -522,7 +522,7 @@ HTML=f'''<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
-<script>document.documentElement.classList.add('js');function nx(i){{var l=(i.dataset.fb||'').split('|').filter(Boolean);if(l.length){{i.dataset.fb=l.slice(1).join('|');i.src=l[0];}}else{{i.onerror=null;i.style.visibility='hidden';i.parentNode.classList.add('noimg');}}}}</script>
+
 </head>
 <body>
 
@@ -777,6 +777,7 @@ HTML=f'''<!doctype html>
 
 <script>
 (() => {{
+  document.documentElement.classList.add('js');
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const slides = $$('.slide'), pager = $('#pager'), cnt = $('#cnt');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -802,6 +803,7 @@ HTML=f'''<!doctype html>
     if (e.isIntersecting) {{ e.target.classList.add('in'); io.unobserve(e.target); }}
   }}), {{ threshold: .12, rootMargin: '0px 0px -40px 0px' }});
   $$('.rv, .mask').forEach(el => io.observe(el));
+  if (!('IntersectionObserver' in window)) $$('.rv, .mask').forEach(el => el.classList.add('in'));
 
   const hero = $('.hero'), contact = $('#contact'), fcta = $('#fcta'), mbar = $('#mbar');
   let closed = false;
