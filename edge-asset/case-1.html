@@ -1270,6 +1270,83 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 .ts-g p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
 .ts-links{display:flex;flex-wrap:wrap;gap:16px 36px;margin-top:36px}
 @media (max-width:960px){.ts-g{grid-template-columns:1fr}.ts-g article{padding:28px 22px}}
+
+/* ===== structure pass ===== */
+/* trust bar under the top hero */
+.trust{background:#fff;padding:0;border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust li{padding:34px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.trust li:last-child{border-right:1px solid var(--line)}
+.tr-k{font-family:var(--en);font-size:10.5px;letter-spacing:.28em;color:var(--blue);text-transform:uppercase}
+.trust b{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.5;color:var(--navy);word-break:keep-all;overflow-wrap:anywhere}
+.trust small{font-size:12.5px;color:var(--mute)}
+@media (max-width:960px){.trust ul{grid-template-columns:1fr 1fr}.trust li{padding:22px 16px}.trust li:nth-child(n+3){border-top:1px solid var(--line)}.trust li:nth-child(2){border-right:1px solid var(--line)}}
+@media (max-width:480px){.trust b{font-size:15px}.trust small{font-size:11.5px}}
+
+/* in-page index under sub-page heroes */
+.subnav{background:#fff;border-bottom:1px solid var(--line)}
+.subnav .w{display:flex;align-items:center;gap:28px;min-height:64px}
+.sn-k{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--blue);flex:none}
+.subnav ul{list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px}
+.subnav a{position:relative;padding-bottom:3px}
+.subnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.subnav a:hover{color:var(--blue)}.subnav a:hover::after{transform:scaleX(1)}
+@media (max-width:760px){.subnav .w{gap:14px}.subnav ul{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.subnav ul::-webkit-scrollbar{display:none}.sn-k{display:none}}
+
+/* closing CTA on sub-pages */
+.closing{background:var(--blue);color:#fff}
+.closing .w{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:center}
+.cl-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#cfe0ff;margin:0 0 14px;text-transform:uppercase}
+.closing h2{font-size:clamp(24px,2.8vw,36px);line-height:1.55;letter-spacing:.05em;margin:0 0 16px}
+.closing .cl-t p{color:#e3ecfb;margin:0}
+.cl-a{display:grid;gap:14px}
+.cl-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"t ar" "s ar";align-items:center;gap:2px 16px;background:#fff;color:var(--navy);padding:22px 28px;transition:transform .3s,box-shadow .3s}
+.cl-b:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(8,26,48,.25)}
+.cl-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:17px}
+.cl-b small{grid-area:s;font-size:12px;color:var(--mute)}
+.cl-b .ar{grid-area:ar}
+.cl-b.tel{background:var(--navy);color:#fff}.cl-b.tel span{font-family:var(--en);font-weight:500;font-size:24px;letter-spacing:.04em}.cl-b.tel small{color:#b9c8da}
+@media (max-width:860px){.closing .w{grid-template-columns:1fr;gap:32px}.cl-b{padding:18px 20px}}
+
+/* contact page: info panel instead of a photo, form first */
+.contact .side.ca{background:var(--navy);color:#fff;padding:120px 56px 80px;display:flex;flex-direction:column;justify-content:center}
+.contact .side.ca::after{display:none}
+.ca-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#7fb0ff;margin:0 0 12px;text-transform:uppercase}
+.ca h3{font-size:24px;margin:0 0 28px}
+.ca ol{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.ca li{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.ca li b{font-family:var(--en);font-weight:300;font-size:26px;color:#7fb0ff;flex:none}
+.ca li span{font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.ca-sec{font-size:13px;color:#b9c8da;margin:0 0 28px;padding:16px 18px;border:1px solid rgba(255,255,255,.18)}
+.ca-tel{font-family:var(--en);font-size:30px;margin:0;line-height:1.3}
+.ca-tel span{display:block;font-family:var(--fh);font-size:12px;color:#9fc0ff;margin-bottom:4px}
+.ca-tel small{display:block;font-family:var(--f);font-size:12px;color:#b9c8da;margin-top:4px}
+@media (max-width:1000px){.contact .side.ca{order:2;padding:56px var(--gut)}}
+
+/* team without photo placeholders */
+.tm2{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--navy)}
+.tm2 article{padding:30px 26px 26px 0}
+.tm2 article+article{padding-left:26px;border-left:1px solid var(--line)}
+.t2-r{font-size:12px;color:var(--blue);margin:0 0 10px;letter-spacing:.06em}
+.tm2 h3{font-size:20px;letter-spacing:.1em;margin:0 0 12px}
+.tm2 p:not(.t2-r){font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+@media (max-width:960px){.tm2{grid-template-columns:1fr 1fr}.tm2 article:nth-child(3){padding-left:0;border-left:0}.tm2 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.tm2{grid-template-columns:1fr}.tm2 article,.tm2 article+article{padding:24px 0;border-left:0;border-top:1px solid var(--line)}}
+
+/* top page: compact case cards (4 across; swipe on phones) */
+.tcases .cgrid{grid-template-columns:repeat(4,1fr);gap:20px}
+.tcases .ccase p,.tcases .ccase dl{display:none}
+.tcases .ccase .ph{aspect-ratio:4/3}
+.tcases .cc-tx{padding:20px 20px 22px}
+.tcases .ccase h3{font-size:15.5px;line-height:1.75}
+@media (max-width:1100px){.tcases .cgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.tcases .cgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}.tcases .cgrid::-webkit-scrollbar{display:none}.tcases .ccase{flex:0 0 78%;scroll-snap-align:start}}
+.people .pg{margin-top:0}
+
+/* mobile: keep a consult button in the header */
+@media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
+header.site .logo b,header.site .gnav .btn{white-space:nowrap}
+@media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
 </style>
 </head>
 <body>
@@ -1334,7 +1411,15 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
   <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夕暮れの住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>04</b></span></div>
   <div class="cc-tx"><p class="cc-tag"><span>粗利の低下</span>Cost</p><h3>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h3><p>仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引渡し 35棟</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a></div></div></section>
-<section class="nextp"><a href="case-2.html" target="_blank" rel="noopener" class="w"><span class="nx-k">Next page</span><span class="nx-en">Case 02</span><span class="nx-ja">受注はあるのに、人が採れず年20棟から伸びない。</span><span class="nx-ar" aria-hidden="true"></span></a></section>
+<section class="closing">
+  <div class="w">
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-a">
+      <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
+      <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
+    </div>
+  </div>
+</section><section class="nextp"><a href="case-2.html" target="_blank" rel="noopener" class="w"><span class="nx-k">Next page</span><span class="nx-en">Case 02</span><span class="nx-ja">受注はあるのに、人が採れず年20棟から伸びない。</span><span class="nx-ar" aria-hidden="true"></span></a></section>
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>

@@ -1270,6 +1270,83 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 .ts-g p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
 .ts-links{display:flex;flex-wrap:wrap;gap:16px 36px;margin-top:36px}
 @media (max-width:960px){.ts-g{grid-template-columns:1fr}.ts-g article{padding:28px 22px}}
+
+/* ===== structure pass ===== */
+/* trust bar under the top hero */
+.trust{background:#fff;padding:0;border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust li{padding:34px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.trust li:last-child{border-right:1px solid var(--line)}
+.tr-k{font-family:var(--en);font-size:10.5px;letter-spacing:.28em;color:var(--blue);text-transform:uppercase}
+.trust b{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.5;color:var(--navy);word-break:keep-all;overflow-wrap:anywhere}
+.trust small{font-size:12.5px;color:var(--mute)}
+@media (max-width:960px){.trust ul{grid-template-columns:1fr 1fr}.trust li{padding:22px 16px}.trust li:nth-child(n+3){border-top:1px solid var(--line)}.trust li:nth-child(2){border-right:1px solid var(--line)}}
+@media (max-width:480px){.trust b{font-size:15px}.trust small{font-size:11.5px}}
+
+/* in-page index under sub-page heroes */
+.subnav{background:#fff;border-bottom:1px solid var(--line)}
+.subnav .w{display:flex;align-items:center;gap:28px;min-height:64px}
+.sn-k{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--blue);flex:none}
+.subnav ul{list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px}
+.subnav a{position:relative;padding-bottom:3px}
+.subnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.subnav a:hover{color:var(--blue)}.subnav a:hover::after{transform:scaleX(1)}
+@media (max-width:760px){.subnav .w{gap:14px}.subnav ul{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.subnav ul::-webkit-scrollbar{display:none}.sn-k{display:none}}
+
+/* closing CTA on sub-pages */
+.closing{background:var(--blue);color:#fff}
+.closing .w{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:center}
+.cl-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#cfe0ff;margin:0 0 14px;text-transform:uppercase}
+.closing h2{font-size:clamp(24px,2.8vw,36px);line-height:1.55;letter-spacing:.05em;margin:0 0 16px}
+.closing .cl-t p{color:#e3ecfb;margin:0}
+.cl-a{display:grid;gap:14px}
+.cl-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"t ar" "s ar";align-items:center;gap:2px 16px;background:#fff;color:var(--navy);padding:22px 28px;transition:transform .3s,box-shadow .3s}
+.cl-b:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(8,26,48,.25)}
+.cl-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:17px}
+.cl-b small{grid-area:s;font-size:12px;color:var(--mute)}
+.cl-b .ar{grid-area:ar}
+.cl-b.tel{background:var(--navy);color:#fff}.cl-b.tel span{font-family:var(--en);font-weight:500;font-size:24px;letter-spacing:.04em}.cl-b.tel small{color:#b9c8da}
+@media (max-width:860px){.closing .w{grid-template-columns:1fr;gap:32px}.cl-b{padding:18px 20px}}
+
+/* contact page: info panel instead of a photo, form first */
+.contact .side.ca{background:var(--navy);color:#fff;padding:120px 56px 80px;display:flex;flex-direction:column;justify-content:center}
+.contact .side.ca::after{display:none}
+.ca-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#7fb0ff;margin:0 0 12px;text-transform:uppercase}
+.ca h3{font-size:24px;margin:0 0 28px}
+.ca ol{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.ca li{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.ca li b{font-family:var(--en);font-weight:300;font-size:26px;color:#7fb0ff;flex:none}
+.ca li span{font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.ca-sec{font-size:13px;color:#b9c8da;margin:0 0 28px;padding:16px 18px;border:1px solid rgba(255,255,255,.18)}
+.ca-tel{font-family:var(--en);font-size:30px;margin:0;line-height:1.3}
+.ca-tel span{display:block;font-family:var(--fh);font-size:12px;color:#9fc0ff;margin-bottom:4px}
+.ca-tel small{display:block;font-family:var(--f);font-size:12px;color:#b9c8da;margin-top:4px}
+@media (max-width:1000px){.contact .side.ca{order:2;padding:56px var(--gut)}}
+
+/* team without photo placeholders */
+.tm2{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--navy)}
+.tm2 article{padding:30px 26px 26px 0}
+.tm2 article+article{padding-left:26px;border-left:1px solid var(--line)}
+.t2-r{font-size:12px;color:var(--blue);margin:0 0 10px;letter-spacing:.06em}
+.tm2 h3{font-size:20px;letter-spacing:.1em;margin:0 0 12px}
+.tm2 p:not(.t2-r){font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+@media (max-width:960px){.tm2{grid-template-columns:1fr 1fr}.tm2 article:nth-child(3){padding-left:0;border-left:0}.tm2 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.tm2{grid-template-columns:1fr}.tm2 article,.tm2 article+article{padding:24px 0;border-left:0;border-top:1px solid var(--line)}}
+
+/* top page: compact case cards (4 across; swipe on phones) */
+.tcases .cgrid{grid-template-columns:repeat(4,1fr);gap:20px}
+.tcases .ccase p,.tcases .ccase dl{display:none}
+.tcases .ccase .ph{aspect-ratio:4/3}
+.tcases .cc-tx{padding:20px 20px 22px}
+.tcases .ccase h3{font-size:15.5px;line-height:1.75}
+@media (max-width:1100px){.tcases .cgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.tcases .cgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}.tcases .cgrid::-webkit-scrollbar{display:none}.tcases .ccase{flex:0 0 78%;scroll-snap-align:start}}
+.people .pg{margin-top:0}
+
+/* mobile: keep a consult button in the header */
+@media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
+header.site .logo b,header.site .gnav .btn{white-space:nowrap}
+@media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
 </style>
 </head>
 <body>
@@ -1304,7 +1381,7 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
   <div class="pg-ph"><div class="ph"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
   <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>グループの支援</p><p class="pen">Our support</p><h1>グループの支援</h1><p class="plead">家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事を<span class="nb">グループで引き受けます。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
-</section><section class="svint">
+</section><nav class="subnav" aria-label="このページの内容"><div class="w"><span class="sn-k">Index</span><ul><li><a href="#support">支援の内容</a></li><li><a href="#cost">原価の改善</a></li><li><a href="#model">グループの仕組み</a></li><li><a href="#before">グループ入りの前と後</a></li><li><a href="#d100">最初の100日</a></li><li><a href="#svcfaq">よくあるご質問</a></li></ul></div></nav><section class="svint">
   <div class="w g2">
     <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Our support</p><p class="sh-ja">支援の考え方</p><h2>家づくりは<wbr>各社に、<wbr>それ以外は<wbr>グループで</h2></div></header></div>
     <div class="rv"><p>工務店の強みは、地域の施主様との信頼関係と、現場の技術です。一方で、集客・採用・経理・仕入といった仕事は、会社の規模が小さいほど一社あたりの<span class="nb">負担が重くなります。</span></p><p>エッジアセットは、この「家づくり以外の仕事」をグループで引き受けます。社長と社員が本来の仕事に時間を使えるようにすることが、<span class="nb">私たちの支援の目的です。</span></p></div>
@@ -1357,26 +1434,28 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
       <p class="md-note">各社が担うこと：設計・施工・施主様との打ち合わせ・アフター対応・地域での営業</p>
     </div>
   </div>
-</section><section class="ba">
+</section><section class="ba" id="before">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Before / After</p><p class="sh-ja">グループ入りで変わること</p><h2>変わるのは、<wbr>社長の<wbr>手元の<wbr>仕事です</h2></div></header>
     <div class="tbl rv"><table class="batbl"><thead><tr><th>領域</th><th>グループ入り前</th><th class="af">グループ入り後</th></tr></thead><tbody><tr><th>経理・決算</th><td>社長が夜に帳簿をつけ、決算は年1回</td><td class="af">本部が月次決算を締め、翌月10日に数字を共有</td></tr><tr><th>集客</th><td>紹介と見学会頼みで、反響が読めない</td><td class="af">広告・Web・Googleマップの反響を毎月計測</td></tr><tr><th>採用</th><td>自社だけで求人を出し、応募が少ない</td><td class="af">グループ合同で新卒・中途を採用し、研修も共通化</td></tr><tr><th>仕入</th><td>会社ごとに建材・設備を発注</td><td class="af">グループの発注量をまとめて単価を交渉</td></tr><tr><th>事業承継</th><td>後継者が決まらず、社長の個人保証も残る</td><td class="af">次期社長を計画的に育て、個人保証の解除に取り組む</td></tr></tbody></table></div>
   </div>
-</section><section class="d100">
+</section><section class="d100" id="d100">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">First 100 days</p><p class="sh-ja">グループ入り後の100日</p><h2>最初の<wbr>100日で、<wbr>ここまで<wbr>進めます</h2></div><div class="sh-lead"><p>急に何かを変えることはしません。現場の負担にならない順番で、<span class="nb">少しずつ仕組みを整えます。</span></p></div></header>
     <ol class="dl"><li class="rv"><p class="day">Day 1</p><h3>社員の皆さまへのご説明</h3><p>社長と私たちが一緒に、グループ入りの理由と、変わらないことを<span class="nb">直接お伝えします。</span></p></li><li class="rv"><p class="day">30 days</p><h3>数字の見える化</h3><p>月次決算の仕組みを整え、受注・原価・資金繰りを毎月一緒に確認で<span class="nb">きる状態にします。</span></p></li><li class="rv"><p class="day">60 days</p><h3>集客と採用の立て直し</h3><p>広告・Webの反響を計測し始め、<span class="nb">グループ合同の求人を出します。</span></p></li><li class="rv"><p class="day">100 days</p><h3>中期計画の策定</h3><p>3年後の会社の姿を社長・幹部と一緒に描き、次の社長候補の<span class="nb">育成計画を決めます。</span></p></li></ol>
   </div>
-</section><section class="topfaq">
+</section><section class="topfaq" id="svcfaq">
   <div class="w tf">
     <div><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">支援についてのご質問</p></div></header><a class="tl" href="contact.html#faq">すべての質問を見る <span class="ar"></span></a></div>
     <div><details><summary><span class="q">Q.</span><span>グループに入ると、家づくりの方針は<span class="nb">変わりますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>変わりません。設計・仕様・施主様との打ち合わせは、これまでどおり各社の判断です。グループが担うのは、集客・採用・財務・仕入れなど、規模が小さいほど負担が<span class="nb">重くなる仕事です。</span></p></div></details><details><summary><span class="q">Q.</span><span>集客の支援では、具体的に何をしても<span class="nb">らえますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>反響数・来場数・成約率をグループ共通の管理表で毎月集計し、Google広告・Meta広告の運用、ホームページのSEO対策、Googleマップ（MEO）の整備を本部が担います。見学会の企画や施主様との<span class="nb">関係づくりは各社に残します。</span></p></div></details><details><summary><span class="q">Q.</span><span>仕入れ先との取引は<span class="nb">どうなりますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>品質・納期・価格の3つを基準に見直します。相場や発注量を根拠に交渉し、条件が合う取引先とは長くお付き合いします。住設・建材はグループの共同購買に切り替えることで、1社では<span class="nb">届かない条件を引き出します。</span></p></div></details><details><summary><span class="q">Q.</span><span>月次決算は、社内の誰が<span class="nb">担当しますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>グループ本部が締めます。各社には日々の伝票や請求書の整理をお願いし、翌月10日までに数字を共有します。経理担当の方の負担は、多くの<span class="nb">場合いまより軽くなります。</span></p></div></details><details><summary><span class="q">Q.</span><span>採用した社員は、どの会社に<span class="nb">所属しますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>各社の社員として採用し、配属します。グループ合同で説明会や求人を行うことで、一社では出せない規模で応募を集めます。グループ内の応援や異動は、ご本人の希望を<span class="nb">踏まえて行います。</span></p></div></details></div>
   </div>
-</section><section class="cta">
-  <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
+</section><section class="closing">
   <div class="w">
-    <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b></p></div>
-    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#faq">よくある質問を見る <span class="ar"></span></a></div>
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-a">
+      <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
+      <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
+    </div>
   </div>
 </section><section class="nextp"><a href="cases.html" target="_blank" rel="noopener" class="w"><span class="nx-k">Next page</span><span class="nx-en">Model cases</span><span class="nx-ja">モデルケース</span><span class="nx-ar" aria-hidden="true"></span></a></section>
 </main>

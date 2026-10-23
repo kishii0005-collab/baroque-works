@@ -1270,6 +1270,83 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 .ts-g p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
 .ts-links{display:flex;flex-wrap:wrap;gap:16px 36px;margin-top:36px}
 @media (max-width:960px){.ts-g{grid-template-columns:1fr}.ts-g article{padding:28px 22px}}
+
+/* ===== structure pass ===== */
+/* trust bar under the top hero */
+.trust{background:#fff;padding:0;border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust li{padding:34px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.trust li:last-child{border-right:1px solid var(--line)}
+.tr-k{font-family:var(--en);font-size:10.5px;letter-spacing:.28em;color:var(--blue);text-transform:uppercase}
+.trust b{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.5;color:var(--navy);word-break:keep-all;overflow-wrap:anywhere}
+.trust small{font-size:12.5px;color:var(--mute)}
+@media (max-width:960px){.trust ul{grid-template-columns:1fr 1fr}.trust li{padding:22px 16px}.trust li:nth-child(n+3){border-top:1px solid var(--line)}.trust li:nth-child(2){border-right:1px solid var(--line)}}
+@media (max-width:480px){.trust b{font-size:15px}.trust small{font-size:11.5px}}
+
+/* in-page index under sub-page heroes */
+.subnav{background:#fff;border-bottom:1px solid var(--line)}
+.subnav .w{display:flex;align-items:center;gap:28px;min-height:64px}
+.sn-k{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--blue);flex:none}
+.subnav ul{list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px}
+.subnav a{position:relative;padding-bottom:3px}
+.subnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.subnav a:hover{color:var(--blue)}.subnav a:hover::after{transform:scaleX(1)}
+@media (max-width:760px){.subnav .w{gap:14px}.subnav ul{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.subnav ul::-webkit-scrollbar{display:none}.sn-k{display:none}}
+
+/* closing CTA on sub-pages */
+.closing{background:var(--blue);color:#fff}
+.closing .w{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:center}
+.cl-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#cfe0ff;margin:0 0 14px;text-transform:uppercase}
+.closing h2{font-size:clamp(24px,2.8vw,36px);line-height:1.55;letter-spacing:.05em;margin:0 0 16px}
+.closing .cl-t p{color:#e3ecfb;margin:0}
+.cl-a{display:grid;gap:14px}
+.cl-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"t ar" "s ar";align-items:center;gap:2px 16px;background:#fff;color:var(--navy);padding:22px 28px;transition:transform .3s,box-shadow .3s}
+.cl-b:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(8,26,48,.25)}
+.cl-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:17px}
+.cl-b small{grid-area:s;font-size:12px;color:var(--mute)}
+.cl-b .ar{grid-area:ar}
+.cl-b.tel{background:var(--navy);color:#fff}.cl-b.tel span{font-family:var(--en);font-weight:500;font-size:24px;letter-spacing:.04em}.cl-b.tel small{color:#b9c8da}
+@media (max-width:860px){.closing .w{grid-template-columns:1fr;gap:32px}.cl-b{padding:18px 20px}}
+
+/* contact page: info panel instead of a photo, form first */
+.contact .side.ca{background:var(--navy);color:#fff;padding:120px 56px 80px;display:flex;flex-direction:column;justify-content:center}
+.contact .side.ca::after{display:none}
+.ca-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#7fb0ff;margin:0 0 12px;text-transform:uppercase}
+.ca h3{font-size:24px;margin:0 0 28px}
+.ca ol{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.ca li{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.ca li b{font-family:var(--en);font-weight:300;font-size:26px;color:#7fb0ff;flex:none}
+.ca li span{font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.ca-sec{font-size:13px;color:#b9c8da;margin:0 0 28px;padding:16px 18px;border:1px solid rgba(255,255,255,.18)}
+.ca-tel{font-family:var(--en);font-size:30px;margin:0;line-height:1.3}
+.ca-tel span{display:block;font-family:var(--fh);font-size:12px;color:#9fc0ff;margin-bottom:4px}
+.ca-tel small{display:block;font-family:var(--f);font-size:12px;color:#b9c8da;margin-top:4px}
+@media (max-width:1000px){.contact .side.ca{order:2;padding:56px var(--gut)}}
+
+/* team without photo placeholders */
+.tm2{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--navy)}
+.tm2 article{padding:30px 26px 26px 0}
+.tm2 article+article{padding-left:26px;border-left:1px solid var(--line)}
+.t2-r{font-size:12px;color:var(--blue);margin:0 0 10px;letter-spacing:.06em}
+.tm2 h3{font-size:20px;letter-spacing:.1em;margin:0 0 12px}
+.tm2 p:not(.t2-r){font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+@media (max-width:960px){.tm2{grid-template-columns:1fr 1fr}.tm2 article:nth-child(3){padding-left:0;border-left:0}.tm2 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.tm2{grid-template-columns:1fr}.tm2 article,.tm2 article+article{padding:24px 0;border-left:0;border-top:1px solid var(--line)}}
+
+/* top page: compact case cards (4 across; swipe on phones) */
+.tcases .cgrid{grid-template-columns:repeat(4,1fr);gap:20px}
+.tcases .ccase p,.tcases .ccase dl{display:none}
+.tcases .ccase .ph{aspect-ratio:4/3}
+.tcases .cc-tx{padding:20px 20px 22px}
+.tcases .ccase h3{font-size:15.5px;line-height:1.75}
+@media (max-width:1100px){.tcases .cgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.tcases .cgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}.tcases .cgrid::-webkit-scrollbar{display:none}.tcases .ccase{flex:0 0 78%;scroll-snap-align:start}}
+.people .pg{margin-top:0}
+
+/* mobile: keep a consult button in the header */
+@media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
+header.site .logo b,header.site .gnav .btn{white-space:nowrap}
+@media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
 </style>
 </head>
 <body class="home">
@@ -1315,6 +1392,8 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
     <span class="hx-scroll">SCROLL</span>
   </div>
   <div class="hx-marq" aria-hidden="true"><span>EDGE ASSET — BUSINESS SUCCESSION FOR JAPANESE HOME BUILDERS — LONG-TERM OWNERSHIP — </span><span>EDGE ASSET — BUSINESS SUCCESSION FOR JAPANESE HOME BUILDERS — LONG-TERM OWNERSHIP — </span></div>
+</section><section class="trust" aria-label="エッジアセットの特徴">
+  <div class="w"><ul><li><span class="tr-k">Focus</span><b>工務店・<wbr>住宅会社専門</b><small>住宅業界の事業承継だけを扱います</small></li><li><span class="tr-k">Ownership</span><b>売らない<wbr>長期保有</b><small>数年での売却を前提にしません</small></li><li><span class="tr-k">Leadership</span><b>船井総研出身の<wbr>代表</b><small>上位0.5%の粗利獲得実績</small></li><li><span class="tr-k">Confidential</span><b>初回から<wbr>秘密保持</b><small>社外・オンラインで面談します</small></li></ul></div>
 </section><section class="market dark" id="market">
   <div class="w grid">
     <div class="rv">
@@ -1345,14 +1424,6 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
       <p>目指すのは、社員の給与が上がり、施主様からの紹介が<span class="nb">続く会社であることです。</span></p>
     </div>
   </div>
-</section><section class="promise" id="promise">
-  <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Promise</p><p class="sh-ja">5つのお約束</p><h2>引き継ぐ<wbr>ときに、<wbr>契約書で<wbr>お約束すること</h2></div><div class="sh-lead"><p>口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも<span class="nb">正直にお伝えします。</span></p></div></header>
-    <div class="plist">
-      <div class="pi rv"><span class="n">01</span><h3>社名・<wbr>屋号は<wbr>そのまま<wbr>残します</h3><p>看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、<span class="nb">いちばんの資産です。</span></p></div><div class="pi rv"><span class="n">02</span><h3>雇用と<wbr>給与水準を<wbr>守ります</h3><p>グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は<span class="nb">契約書に明記します。</span></p></div><div class="pi rv"><span class="n">03</span><h3>保証と<wbr>定期点検を<wbr>引き継ぎます</h3><p>引渡し済みの家の保証・点検・アフター対応は、これまでと<span class="nb">同じ担当者が続けます。</span></p></div><div class="pi rv"><span class="n">04</span><h3>取引先とは、<wbr>適正な<wbr>条件で<wbr>向き合います</h3><p>長年の協力業者さんとの関係は大切にします。そのうえで仕入れ値・外注費は相場と照らして見直し、品質・納期・価格の3つを基準に、<span class="nb">適正な条件で交渉します。</span></p></div><div class="pi rv"><span class="n">05</span><h3>社長の<wbr>個人保証の<wbr>解除に<wbr>取り組みます</h3><p>借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での<span class="nb">解除を目指します。</span></p></div>
-      <div class="pi ask rv"><h3>そのかわり、お願いすること</h3><ul><li>月次の数字は、毎月一緒に確認させてください。</li><li>経理・労務・情報管理は、グループ共通のルールに合わせていただきます。</li><li>仕入れ・外注の条件は、グループの基準で一緒に見直させてください。</li><li>譲渡価格は純資産と収益力から算定します。相場を大きく超える金額はお出しできません。</li></ul></div>
-    </div>
-  </div>
 </section><section class="model dark" id="model">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Group model</p><p class="sh-ja">グループの仕組み</p><h2>各社の<wbr>看板は<wbr>そのまま。<wbr>裏側の仕事を<wbr>グループで<wbr>共有します</h2></div><div class="sh-lead"><p>エッジアセットはグループの本部として、各社に共通する仕事を引き受けます。家づくりと施主様との関係は、これまで<span class="nb">どおり各社が担います。</span></p></div></header>
@@ -1367,18 +1438,6 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
       <p class="md-note">各社が担うこと：設計・施工・施主様との打ち合わせ・アフター対応・地域での営業</p>
     </div>
   </div>
-</section><section class="cta">
-  <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-  <div class="w">
-    <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b></p></div>
-    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#faq">よくある質問を見る <span class="ar"></span></a></div>
-  </div>
-</section><section class="people">
-  <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれへの<wbr>お約束</h2></div></header>
-    <div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="緑に囲まれた住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="ribbon">社名も、<wbr>社員も、<wbr>施主様との<wbr>約束も。</p></div>
-    <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と後継者の育成も<span class="nb">、一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>明日からの<wbr>仕事は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>点検に<wbr>伺うのは<wbr>同じ<wbr>担当者です。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、<span class="nb">契約どおりにお引渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>いい仕事には、<wbr>適正な<wbr>価格で<wbr>応えます。</h3><p>品質・納期・価格を基準にお取引します。グループの他社の現場を<span class="nb">お願いする機会も増えていきます。</span></p></article></div>
-  </div>
 </section><section class="tcost dark">
   <div class="w">
     <div class="tc-l rv">
@@ -1392,6 +1451,25 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
   <div class="pb-res"><p class="pb-big">営業利益 <b>1.4</b>倍</p><p class="pb-cap">売上が<wbr>同じでも、<wbr>原価率が<wbr>2ポイント<wbr>下がるだけで<wbr>営業利益は<wbr>5から7へ。</p></div>
   <p class="pb-note">売上を100としたモデル（原価率75%・販管費率20%の場合）。濃い青が営業利益です。</p>
 </div>
+  </div>
+</section><section class="promise" id="promise">
+  <div class="w">
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Promise</p><p class="sh-ja">5つのお約束</p><h2>引き継ぐ<wbr>ときに、<wbr>契約書で<wbr>お約束すること</h2></div><div class="sh-lead"><p>口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも<span class="nb">正直にお伝えします。</span></p></div></header>
+    <div class="plist">
+      <div class="pi rv"><span class="n">01</span><h3>社名・<wbr>屋号は<wbr>そのまま<wbr>残します</h3><p>看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、<span class="nb">いちばんの資産です。</span></p></div><div class="pi rv"><span class="n">02</span><h3>雇用と<wbr>給与水準を<wbr>守ります</h3><p>グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は<span class="nb">契約書に明記します。</span></p></div><div class="pi rv"><span class="n">03</span><h3>保証と<wbr>定期点検を<wbr>引き継ぎます</h3><p>引渡し済みの家の保証・点検・アフター対応は、これまでと<span class="nb">同じ担当者が続けます。</span></p></div><div class="pi rv"><span class="n">04</span><h3>取引先とは、<wbr>適正な<wbr>条件で<wbr>向き合います</h3><p>長年の協力業者さんとの関係は大切にします。そのうえで仕入れ値・外注費は相場と照らして見直し、品質・納期・価格の3つを基準に、<span class="nb">適正な条件で交渉します。</span></p></div><div class="pi rv"><span class="n">05</span><h3>社長の<wbr>個人保証の<wbr>解除に<wbr>取り組みます</h3><p>借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での<span class="nb">解除を目指します。</span></p></div>
+      <div class="pi ask rv"><h3>そのかわり、お願いすること</h3><ul><li>月次の数字は、毎月一緒に確認させてください。</li><li>経理・労務・情報管理は、グループ共通のルールに合わせていただきます。</li><li>仕入れ・外注の条件は、グループの基準で一緒に見直させてください。</li><li>譲渡価格は純資産と収益力から算定します。相場を大きく超える金額はお出しできません。</li></ul></div>
+    </div>
+  </div>
+</section><section class="people">
+  <div class="w">
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれへの<wbr>お約束</h2></div></header>
+    <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と後継者の育成も<span class="nb">、一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>明日からの<wbr>仕事は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>点検に<wbr>伺うのは<wbr>同じ<wbr>担当者です。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、<span class="nb">契約どおりにお引渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>いい仕事には、<wbr>適正な<wbr>価格で<wbr>応えます。</h3><p>品質・納期・価格を基準にお取引します。グループの他社の現場を<span class="nb">お願いする機会も増えていきます。</span></p></article></div>
+  </div>
+</section><section class="cta">
+  <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
+  <div class="w">
+    <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b></p></div>
+    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#faq">よくある質問を見る <span class="ar"></span></a></div>
   </div>
 </section><section class="tcases" id="cases">
   <div class="w">
@@ -1446,12 +1524,6 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Column</p><p class="sh-ja">コラム</p><h2>工務店の<wbr>事業承継を<wbr>考える</h2></div><div class="sh-lead"><p>事業承継の選択肢、譲渡価格、原価管理、受注減少への打ち手。社長が判断に<span class="nb">迷うポイントを解説しています。</span></p></div></header>
     <div class="cg"><a class="cc rv" href="column-4.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>譲渡価格</span></p><h3>工務店の譲渡価格はどう決まる？株価の考え方と準備</h3><p class="cc-e">「うちの会社はいくらで引き継いでもらえるのか」。事業承継を考え始めた社長が最初に知りたいのが、譲渡価格の目安です。中小の…</p></div></a><a class="cc rv" href="column-5.html"><div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>原価管理</span></p><h3>工務店の利益を残す原価管理。実行予算のつくり方</h3><p class="cc-e">受注は取れているのに、決算をしてみると思ったほど利益が残っていない。工務店でよく聞くこの悩みの多くは、原価の管理方法に原…</p></div></a><a class="cc rv" href="column-6.html"><div class="ph"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>経営・集客</span></p><h3>新築の受注が減るなかで、地域の工務店が取れる打ち手</h3><p class="cc-e">持家の新設着工戸数は減少が続き、資材価格の上昇も重なって、地域の工務店をとりまく環境は厳しさを増しています。受注の減少に…</p></div></a></div>
     <a class="tl" href="column.html" style="margin-top:36px">コラム一覧へ <span class="ar"></span></a>
-  </div>
-</section><section class="links">
-  <div class="w l3">
-    <a class="lk rv" href="company.html"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">About us</p><h3>私たちについて</h3><span>代表・メンバー・資金と体制・実績</span></a>
-    <a class="lk rv" href="partners.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">For partners</p><h3>仲介会社・金融機関の皆さまへ</h3><span>投資の目安・ご紹介の流れ・窓口</span></a>
-    <a class="lk rv" href="contact.html"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">Contact</p><h3>ご相談・お問い合わせ</h3><span>面談の予約・電話・匿名でのご相談</span></a>
   </div>
 </section><section class="topnews">
   <div class="w tn">

@@ -1270,6 +1270,83 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 .ts-g p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
 .ts-links{display:flex;flex-wrap:wrap;gap:16px 36px;margin-top:36px}
 @media (max-width:960px){.ts-g{grid-template-columns:1fr}.ts-g article{padding:28px 22px}}
+
+/* ===== structure pass ===== */
+/* trust bar under the top hero */
+.trust{background:#fff;padding:0;border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust li{padding:34px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.trust li:last-child{border-right:1px solid var(--line)}
+.tr-k{font-family:var(--en);font-size:10.5px;letter-spacing:.28em;color:var(--blue);text-transform:uppercase}
+.trust b{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.5;color:var(--navy);word-break:keep-all;overflow-wrap:anywhere}
+.trust small{font-size:12.5px;color:var(--mute)}
+@media (max-width:960px){.trust ul{grid-template-columns:1fr 1fr}.trust li{padding:22px 16px}.trust li:nth-child(n+3){border-top:1px solid var(--line)}.trust li:nth-child(2){border-right:1px solid var(--line)}}
+@media (max-width:480px){.trust b{font-size:15px}.trust small{font-size:11.5px}}
+
+/* in-page index under sub-page heroes */
+.subnav{background:#fff;border-bottom:1px solid var(--line)}
+.subnav .w{display:flex;align-items:center;gap:28px;min-height:64px}
+.sn-k{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--blue);flex:none}
+.subnav ul{list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px}
+.subnav a{position:relative;padding-bottom:3px}
+.subnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.subnav a:hover{color:var(--blue)}.subnav a:hover::after{transform:scaleX(1)}
+@media (max-width:760px){.subnav .w{gap:14px}.subnav ul{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.subnav ul::-webkit-scrollbar{display:none}.sn-k{display:none}}
+
+/* closing CTA on sub-pages */
+.closing{background:var(--blue);color:#fff}
+.closing .w{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:center}
+.cl-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#cfe0ff;margin:0 0 14px;text-transform:uppercase}
+.closing h2{font-size:clamp(24px,2.8vw,36px);line-height:1.55;letter-spacing:.05em;margin:0 0 16px}
+.closing .cl-t p{color:#e3ecfb;margin:0}
+.cl-a{display:grid;gap:14px}
+.cl-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"t ar" "s ar";align-items:center;gap:2px 16px;background:#fff;color:var(--navy);padding:22px 28px;transition:transform .3s,box-shadow .3s}
+.cl-b:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(8,26,48,.25)}
+.cl-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:17px}
+.cl-b small{grid-area:s;font-size:12px;color:var(--mute)}
+.cl-b .ar{grid-area:ar}
+.cl-b.tel{background:var(--navy);color:#fff}.cl-b.tel span{font-family:var(--en);font-weight:500;font-size:24px;letter-spacing:.04em}.cl-b.tel small{color:#b9c8da}
+@media (max-width:860px){.closing .w{grid-template-columns:1fr;gap:32px}.cl-b{padding:18px 20px}}
+
+/* contact page: info panel instead of a photo, form first */
+.contact .side.ca{background:var(--navy);color:#fff;padding:120px 56px 80px;display:flex;flex-direction:column;justify-content:center}
+.contact .side.ca::after{display:none}
+.ca-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#7fb0ff;margin:0 0 12px;text-transform:uppercase}
+.ca h3{font-size:24px;margin:0 0 28px}
+.ca ol{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.ca li{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.ca li b{font-family:var(--en);font-weight:300;font-size:26px;color:#7fb0ff;flex:none}
+.ca li span{font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.ca-sec{font-size:13px;color:#b9c8da;margin:0 0 28px;padding:16px 18px;border:1px solid rgba(255,255,255,.18)}
+.ca-tel{font-family:var(--en);font-size:30px;margin:0;line-height:1.3}
+.ca-tel span{display:block;font-family:var(--fh);font-size:12px;color:#9fc0ff;margin-bottom:4px}
+.ca-tel small{display:block;font-family:var(--f);font-size:12px;color:#b9c8da;margin-top:4px}
+@media (max-width:1000px){.contact .side.ca{order:2;padding:56px var(--gut)}}
+
+/* team without photo placeholders */
+.tm2{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--navy)}
+.tm2 article{padding:30px 26px 26px 0}
+.tm2 article+article{padding-left:26px;border-left:1px solid var(--line)}
+.t2-r{font-size:12px;color:var(--blue);margin:0 0 10px;letter-spacing:.06em}
+.tm2 h3{font-size:20px;letter-spacing:.1em;margin:0 0 12px}
+.tm2 p:not(.t2-r){font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+@media (max-width:960px){.tm2{grid-template-columns:1fr 1fr}.tm2 article:nth-child(3){padding-left:0;border-left:0}.tm2 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.tm2{grid-template-columns:1fr}.tm2 article,.tm2 article+article{padding:24px 0;border-left:0;border-top:1px solid var(--line)}}
+
+/* top page: compact case cards (4 across; swipe on phones) */
+.tcases .cgrid{grid-template-columns:repeat(4,1fr);gap:20px}
+.tcases .ccase p,.tcases .ccase dl{display:none}
+.tcases .ccase .ph{aspect-ratio:4/3}
+.tcases .cc-tx{padding:20px 20px 22px}
+.tcases .ccase h3{font-size:15.5px;line-height:1.75}
+@media (max-width:1100px){.tcases .cgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.tcases .cgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}.tcases .cgrid::-webkit-scrollbar{display:none}.tcases .ccase{flex:0 0 78%;scroll-snap-align:start}}
+.people .pg{margin-top:0}
+
+/* mobile: keep a consult button in the header */
+@media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
+header.site .logo b,header.site .gnav .btn{white-space:nowrap}
+@media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
 </style>
 </head>
 <body>
@@ -1304,7 +1381,7 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
   <div class="pg-ph"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
   <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>私たちについて</p><p class="pen">About us</p><h1>私たちについて</h1><p class="plead">後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体<span class="nb">制をご紹介します。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
-</section><section class="about" id="about">
+</section><nav class="subnav" aria-label="このページの内容"><div class="w"><span class="sn-k">Index</span><ul><li><a href="#about">考え方</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#profile">代表プロフィール</a></li><li><a href="#team">体制</a></li><li><a href="#capital">資金と体制</a></li><li><a href="#record">実績</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div></nav><section class="about" id="about">
   <span class="bgword" aria-hidden="true">Succession</span>
   <div class="w grid">
     <div class="rv">
@@ -1337,6 +1414,20 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
       <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
+</section><section class="prof" id="profile">
+  <div class="w">
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Profile</p><p class="sh-ja">代表プロフィール</p><h2>理論と実務を、<wbr>現場で<wbr>つなぐ。</h2></div></header>
+    <div class="pf-g">
+      <div class="pf-card rv"><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
+        <ul class="pf-tags"><li>経営再建</li><li>成長戦略</li><li>人材採用</li><li>営業体制の構築</li><li>業務改善</li><li>建築業界</li></ul></div>
+      <div class="pf-tx rv">
+        <p>株式会社船井総合研究所にて、上位0.5%に入る年間粗利獲得実績を複数年にわたって達成。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型の<span class="nb">コンサルティングを展開してきた。</span></p>
+        <p>同社を退職後も複数の事業の運営に携わりながら、建築業界をはじめとする企業の人材採用、営業体制の構築、業務改善など、幅広い領域で支援の<span class="nb">実績を積み重ねている。</span></p>
+        <p>理論と実務を架橋するアプローチを重視し、企業の持続的な成長に貢献することを信条とする。現在は、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営するグループとして、<span class="nb">株式会社エッジアセットを率いる。</span></p>
+        <ol class="pf-tl"><li><span>Consulting</span><b>船井総合研究所</b><p>経営再建・成長戦略の実行支援。上位0.5%の年間粗利獲得実績を<span class="nb">複数年にわたり達成。</span></p></li><li><span>Operation</span><b>事業運営と支援</b><p>複数の事業を運営しながら、建築業界を中心に<span class="nb">採用・営業・業務改善を支援。</span></p></li><li><span>Edge Asset</span><b>代表取締役</b><p>工務店・住宅会社の事業承継と<span class="nb">グループ経営に取り組む。</span></p></li></ol>
+      </div>
+    </div>
+  </div>
 </section><section class="band">
   <div class="ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w rv"><p class="band-en">Our stance</p><p class="band-t">社名も、<wbr>社員も、<wbr>施主様との<wbr>約束も。</p><p class="band-s">引き継ぐのは、<span class="nb">株式だけではありません。</span></p></div>
@@ -1351,27 +1442,8 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
   </div>
 </section><section class="team" id="team">
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Team</p><p class="sh-ja">メンバー</p><h2>住宅業界の<wbr>実務を<wbr>知る人間が、<wbr>引き継ぎます</h2></div><div class="sh-lead"><p>会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバ<span class="nb">ーをご紹介します。</span></p></div></header>
-    <div class="tg">
-      <article class="tm lead rv"><div class="ph tph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="代表写真（撮影予定）" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span>写真は撮影予定</span></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p><p>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の<span class="nb">構築・業務改善を支援してきた。</span></p><a class="tl" href="#profile">プロフィールを見る <span class="ar"></span></a></div></article>
-      <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3><em class="tbd">【確定後に記載】</em></h3><p>集客・採用・財務の<span class="nb">実務を担当します。</span></p></div></article>
-      <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（税理士）</p><h3><em class="tbd">【確定後に記載】</em></h3><p>事業承継税制・株価<span class="nb">算定を担当します。</span></p></div></article>
-      <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（弁護士）</p><h3><em class="tbd">【確定後に記載】</em></h3><p>株式譲渡契約・許<span class="nb">認可を担当します。</span></p></div></article>
-    </div>
-  </div>
-</section><section class="prof" id="profile">
-  <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Profile</p><p class="sh-ja">代表プロフィール</p><h2>理論と実務を、<wbr>現場で<wbr>つなぐ。</h2></div></header>
-    <div class="pf-g">
-      <div class="pf-card rv"><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
-        <ul class="pf-tags"><li>経営再建</li><li>成長戦略</li><li>人材採用</li><li>営業体制の構築</li><li>業務改善</li><li>建築業界</li></ul></div>
-      <div class="pf-tx rv">
-        <p>株式会社船井総合研究所にて、上位0.5%に入る年間粗利獲得実績を複数年にわたって達成。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型の<span class="nb">コンサルティングを展開してきた。</span></p>
-        <p>同社を退職後も複数の事業の運営に携わりながら、建築業界をはじめとする企業の人材採用、営業体制の構築、業務改善など、幅広い領域で支援の<span class="nb">実績を積み重ねている。</span></p>
-        <p>理論と実務を架橋するアプローチを重視し、企業の持続的な成長に貢献することを信条とする。現在は、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営するグループとして、<span class="nb">株式会社エッジアセットを率いる。</span></p>
-        <ol class="pf-tl"><li><span>Consulting</span><b>船井総合研究所</b><p>経営再建・成長戦略の実行支援。上位0.5%の年間粗利獲得実績を<span class="nb">複数年にわたり達成。</span></p></li><li><span>Operation</span><b>事業運営と支援</b><p>複数の事業を運営しながら、建築業界を中心に<span class="nb">採用・営業・業務改善を支援。</span></p></li><li><span>Edge Asset</span><b>代表取締役</b><p>工務店・住宅会社の事業承継と<span class="nb">グループ経営に取り組む。</span></p></li></ol>
-      </div>
-    </div>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Team</p><p class="sh-ja">体制</p><h2>住宅業界の<wbr>実務を<wbr>知るチームで、<wbr>引き継ぎます</h2></div><div class="sh-lead"><p>会社を託す相手は、ファンドの名前ではなく人です。代表に加え、経営支援と専門家のチームで<span class="nb">グループ入りを支えます。</span></p></div></header>
+    <div class="tm2"><article class="rv"><p class="t2-r">代表取締役</p><h3>谷岡 佑亮</h3><p>全体の統括と、各社の社長との<span class="nb">経営会議を担当します。</span></p><a class="tl" href="#profile">プロフィールを見る <span class="ar"></span></a></article><article class="rv"><p class="t2-r">取締役／グループ経営支援</p><h3><em class="tbd">【確定後に記載】</em></h3><p>集客・採用・財務の<span class="nb">実務を担当します。</span></p></article><article class="rv"><p class="t2-r">顧問（税理士）</p><h3><em class="tbd">【確定後に記載】</em></h3><p>事業承継税制・株価<span class="nb">算定を担当します。</span></p></article><article class="rv"><p class="t2-r">顧問（弁護士）</p><h3><em class="tbd">【確定後に記載】</em></h3><p>株式譲渡契約・許<span class="nb">認可を担当します。</span></p></article></div>
   </div>
 </section><section class="capital dark" id="capital">
   <div class="w">
@@ -1441,6 +1513,14 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／<span class="nb">グループ会社の経営支援</span></dd></div>
       <div><dt>連絡先</dt><dd>TEL <a class="tel-a" href="tel:0300000000">03-0000-0000</a>（平日 9:00–18:00）</dd></div>
     </dl>
+  </div>
+</section><section class="closing">
+  <div class="w">
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-a">
+      <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
+      <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
+    </div>
   </div>
 </section><section class="nextp"><a href="service.html" target="_blank" rel="noopener" class="w"><span class="nx-k">Next page</span><span class="nx-en">Our support</span><span class="nx-ja">グループの支援</span><span class="nx-ar" aria-hidden="true"></span></a></section>
 </main>

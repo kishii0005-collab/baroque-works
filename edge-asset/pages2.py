@@ -183,7 +183,7 @@ def case_page(c,i):
   </div>
 </section>
 <section class="cother"><div class="w">{head('Other cases','ほかのモデルケース','ほかの|ご相談の|かたち')}<div class="cgrid c3">{others}</div></div></section>
-""" + nextlink(f"{nxt['slug']}.html",f"Case {(i+1)%len(CASES)+1:02d}",nxt['title'].replace('|',''))
+""" + CLOSE + nextlink(f"{nxt['slug']}.html",f"Case {(i+1)%len(CASES)+1:02d}",nxt['title'].replace('|',''))
 
 # ---------- flow ----------
 FSTEPS=[('初回面談','First meeting','1〜2時間','会社のこと、ご家族のこと、社長ご自身のこれからを伺います。私たちの考え方と、進め方もご説明します。この段階で何かを決める必要はありません。',['特になし（決算書がなくても構いません）'],'社長お一人'),
@@ -267,3 +267,44 @@ SVCFAQ=f"""<section class="topfaq">
     <div>{''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in SVCFAQ_Q)}</div>
   </div>
 </section>""".replace('<h2></h2>','')
+
+# ---------- structure helpers (trust bar, in-page index, closing CTA, contact aside, slim team) ----------
+TRUST=f"""<section class="trust" aria-label="エッジアセットの特徴">
+  <div class="w"><ul>{''.join(f'<li><span class="tr-k">{k}</span><b>{W(b)}</b><small>{s}</small></li>' for k,b,s in [
+    ('Focus','工務店・|住宅会社専門','住宅業界の事業承継だけを扱います'),
+    ('Ownership','売らない|長期保有','数年での売却を前提にしません'),
+    ('Leadership','船井総研出身の|代表','上位0.5%の粗利獲得実績'),
+    ('Confidential','初回から|秘密保持','社外・オンラインで面談します')])}</ul></div>
+</section>"""
+
+def subnav(items):
+    return f'<nav class="subnav" aria-label="このページの内容"><div class="w"><span class="sn-k">Index</span><ul>{"".join(f"<li><a href=\"#{i}\">{t}</a></li>" for i,t in items)}</ul></div></nav>'
+
+CLOSE=f"""<section class="closing">
+  <div class="w">
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>{W('まずは、|話を|聞いてみる|だけで|構いません。')}</h2>{P('ご相談は無料です。社名を伏せたままでも、決算書がなくても構いません。')}</div>
+    <div class="cl-a">
+      <a class="cl-b" href="contact.html"{NT}><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
+      <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
+    </div>
+  </div>
+</section>"""
+
+CONTACT_ASIDE=f"""<aside class="side ca">
+  <p class="ca-k">After sending</p>
+  <h3>送信後の流れ</h3>
+  <ol>{''.join(f'<li><b>{n}</b><span>{W(t)}</span></li>' for n,t in [('01','2営業日以内に、|代表から|ご連絡します'),('02','日時と場所を|決めます（社外・|オンライン）'),('03','初回面談。|決算書が|なくても|構いません')])}</ol>
+  <p class="ca-sec">{nb('秘密保持契約は、初回の面談の前から結べます。会社の代表番号にお電話することはありません。')}</p>
+  <p class="ca-tel"><span>お電話でのご相談</span>03-0000-0000<small>平日 9:00–18:00　夜間・土日も調整します</small></p>
+</aside>"""
+
+TEAM2=f"""<section class="team" id="team">
+  <div class="w">
+    {head('Team','体制','住宅業界の|実務を|知るチームで、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。代表に加え、経営支援と専門家のチームでグループ入りを支えます。')}
+    <div class="tm2">{''.join(f'<article class="rv"><p class="t2-r">{r}</p><h3>{n}</h3>{P(t)}{lk}</article>' for r,n,t,lk in [
+      ('代表取締役','谷岡 佑亮','全体の統括と、各社の社長との経営会議を担当します。',f'<a class="tl" href="#profile">プロフィールを見る {AR}</a>'),
+      ('取締役／グループ経営支援',TBD,'集客・採用・財務の実務を担当します。',''),
+      ('顧問（税理士）',TBD,'事業承継税制・株価算定を担当します。',''),
+      ('顧問（弁護士）',TBD,'株式譲渡契約・許認可を担当します。','')])}</div>
+  </div>
+</section>"""
