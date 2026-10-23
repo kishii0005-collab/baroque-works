@@ -15,14 +15,6 @@ FV=f"""<section class="hx" aria-label="メインビジュアル">
     {P('後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。社名も、社員も、施主様へのアフターのお約束も、そのまま次の世代へつなぎます。','hx-lead')}
     <div class="hx-act"><a class="btn btn-white" href="contact.html">事業承継について相談する {AR}</a><a class="tl hx-tl" href="partners.html">仲介会社・金融機関の方へ {AR}</a></div>
   </div>
-  <aside class="hx-glass" aria-label="エッジアセットの方針">
-    <p class="g-t">OUR POLICY</p>
-    <dl>
-      <div><dt>保有方針</dt><dd>{W('売却を|前提に|しない')}<small>長期保有・グループ経営</small></dd></div>
-      <div><dt>引き継ぐもの</dt><dd>{W('社名・|雇用・|アフター')}<small>株式譲渡契約に明記</small></dd></div>
-      <div><dt>ご相談</dt><dd>{W('無料・|秘密厳守')}<small>社外またはオンライン</small></dd></div>
-    </dl>
-  </aside>
   <div class="hx-foot">
     <div class="hx-pager"><span id="cnt">01</span><span class="pager" id="pager"></span><span>04</span></div>
     <a class="hx-news" href="news.html"><b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span>コーポレートサイトを公開しました</span></a>
