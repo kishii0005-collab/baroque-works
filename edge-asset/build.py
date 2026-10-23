@@ -863,7 +863,7 @@ def nav():
     NT=' target="_blank" rel="noopener"'
     links=''.join(f'<a class="nl" href="{h}"{NT}>{t}</a>' for h,t in items)
     menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('index.html#cases','事例','Case'),('index.html#flow','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('contact.html','ご相談・お問い合わせ','Contact')]
-    mlinks=''.join(f'<li><a href="{h}"{NT}><span class="me">{e}</span><span class="mj">{j}</span><span class="mx" aria-hidden="true">↗</span></a></li>' for h,j,e in menu)
+    mlinks=''.join(f'<li><a href="{h}"{NT}><span class="mn">{i+1:02d}</span><span class="mt"><span class="me">{e}</span><span class="mj">{j}</span></span><span class="mx" aria-hidden="true"></span></a></li>' for i,(h,j,e) in enumerate(menu))
     return f"""<header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
