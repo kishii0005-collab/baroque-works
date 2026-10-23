@@ -129,7 +129,7 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 /* market (dark, photo right) */
 .market{background:var(--navy);color:#fff;position:relative;overflow:hidden}
 .market .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.market .num{display:flex;align-items:flex-end;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
+.market .num{display:flex;align-items:center;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
 .market .num:last-of-type{border-bottom:1px solid rgba(255,255,255,.2)}
 .market .num strong{font-family:var(--en);font-weight:300;font-size:clamp(68px,7.5vw,110px);line-height:.85;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .market .num strong small{font-size:.32em;margin-left:6px}
@@ -190,15 +190,17 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 .cta h2{font-size:clamp(22px,2.6vw,34px);line-height:1.7;letter-spacing:.06em;margin-bottom:14px}
 .cta p{margin:0;color:rgba(255,255,255,.85)}
 .cta .tel{margin-top:22px;font-size:13px}
-.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px}
+.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px;white-space:nowrap}
+@media (max-width:560px){.cta .tel b{display:block;margin:4px 0 0}}
 .cta .btns{flex-direction:column;align-items:flex-end}
 @media (max-width:860px){.cta{padding-block:84px}.cta .w{grid-template-columns:1fr}.cta .btns{align-items:stretch}}
 
 /* support: alternating rows */
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;margin-bottom:56px}
 .row .ph{aspect-ratio:3/2}
+.row .frame{min-width:0}
 .row .tx{padding:0 0 0 72px}
-.row:nth-child(even) .ph{order:2}
+.row:nth-child(even) .frame{order:2}
 .row:nth-child(even) .tx{padding:0 72px 0 0}
 .row .n{font-family:var(--en);font-weight:300;font-size:15px;letter-spacing:.2em;color:var(--blue);display:flex;align-items:center;gap:14px;margin-bottom:12px}
 .row .n::after{content:"";width:48px;height:1px;background:var(--blue)}
@@ -208,7 +210,7 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 .row dl div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .row dt{color:var(--navy);font-weight:500}
 .row dd{margin:0;color:var(--ink-2)}
-@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .ph{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
+@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .frame{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
 
 /* people: one wide photo, four columns */
 .people{background:var(--mist)}
@@ -370,6 +372,74 @@ footer{position:relative}
 .proto{position:fixed;left:12px;bottom:12px;z-index:30;background:rgba(8,24,46,.85);color:#fff;font-size:10.5px;padding:4px 10px}
 @media (max-width:760px){.proto{display:none}}
 
+
+/* ===== design layer ===== */
+/* seigaiha (青海波) wave pattern on pale bands */
+.promise,.cases,.people,.company{background-color:var(--mist);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%232268c8' stroke-opacity='.09' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px}
+.flow{background-image:linear-gradient(var(--bg),var(--bg))}
+/* offset colour blocks behind photos */
+.frame{position:relative}
+.frame::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--blue);opacity:.12;z-index:0}
+.frame.l::before{inset:28px 28px -28px -28px}
+.frame.navy::before{background:var(--navy);opacity:1;inset:-24px 24px 24px -24px}
+.frame>.ph{position:relative;z-index:1}
+@media (max-width:760px){.frame::before{inset:14px -14px -14px 14px}.frame.l::before{inset:14px 14px -14px -14px}.frame.navy::before{inset:-12px 12px 12px -12px}}
+/* vertical Japanese labels */
+.vt{position:absolute;top:140px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:13px;letter-spacing:.5em;color:var(--blue);display:flex;align-items:center;gap:14px;z-index:2}
+.vt::after{content:"";width:1px;height:80px;background:currentColor;opacity:.5}
+.vt.r{right:max(18px,env(safe-area-inset-right,0px))}
+.vt.l{left:max(18px,env(safe-area-inset-left,0px))}
+.dark .vt,.stance .vt{color:#8fb6ec}
+section{position:relative}
+@media (max-width:1100px){.vt{display:none}}
+/* hero: vertical copy + rotating badge */
+.hero .tate{position:absolute;z-index:2;right:max(56px,env(safe-area-inset-right,0px));top:150px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:16px;letter-spacing:.42em;line-height:2.2;opacity:.92}
+.badge{position:absolute;z-index:3;right:max(48px,env(safe-area-inset-right,0px));bottom:110px;width:132px;height:132px}
+.badge svg{width:100%;height:100%;animation:spin 22s linear infinite}
+.badge text{font-family:var(--en);font-size:10.5px;letter-spacing:3.2px;fill:#fff}
+.badge i{position:absolute;inset:0;margin:auto;width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center}
+.badge i::before{content:"";width:9px;height:9px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg);margin-top:-4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:760px){.hero .tate,.badge{display:none}}
+/* about: large outlined number-like ornament + blue bar */
+.about .catch{position:relative;padding-left:26px}
+.about .catch::before{content:"";position:absolute;left:0;top:.5em;bottom:.5em;width:4px;background:linear-gradient(var(--blue),var(--navy))}
+/* market: donut charts */
+.market .num .donut{flex:none;width:118px;height:118px;border-radius:50%;background:conic-gradient(#5ea2ff calc(var(--v)*1%),rgba(255,255,255,.12) 0);display:grid;place-items:center;position:relative}
+.market .num .donut::after{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--navy)}
+.market .num .donut span{position:relative;z-index:1;font-family:var(--en);font-size:13px;letter-spacing:.1em;color:#8fb6ec}
+.market::before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 60px rgba(255,255,255,.02),0 0 0 120px rgba(255,255,255,.015)}
+@media (max-width:560px){.market .num .donut{width:92px;height:92px}}
+/* promise numbers in circles */
+.pi .n{width:64px;height:64px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font-size:24px;background:#fff}
+@media (max-width:860px){.pi .n{width:48px;height:48px;font-size:18px}}
+/* support rows: number watermark */
+.row{position:relative}
+.row .tx{position:relative}
+.row .tx::before{content:attr(data-no);position:absolute;right:0;top:-78px;font-family:var(--en);font-weight:300;font-size:140px;line-height:1;color:var(--mist);z-index:-1}
+
+@media (max-width:860px){.row .tx::before{font-size:88px;top:-24px}}
+/* cta: diagonal accent */
+.cta::after{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(115deg,transparent 0 30%,rgba(34,104,200,.55) 30% 100%);z-index:1}
+@media (max-width:860px){.cta::after{display:none}}
+/* people photo with caption ribbon */
+.people .frame{margin-bottom:56px}
+.people .frame .ph{margin-bottom:0}
+.ribbon{position:absolute;z-index:2;left:0;bottom:0;background:var(--navy);color:#fff;font-family:var(--fh);font-weight:700;font-size:clamp(15px,1.6vw,20px);letter-spacing:.1em;padding:18px 34px}
+/* case number big */
+.case{position:relative}
+.case .no{font-size:15px}
+.case .tx::after{content:"";position:absolute;right:0;top:0;width:0;height:0;border-style:solid;border-width:0 54px 54px 0;border-color:transparent var(--blue) transparent transparent}
+.case .tx{position:relative}
+/* steps: dotted connector */
+.steps::before{background:repeating-linear-gradient(90deg,var(--blue) 0 4px,transparent 4px 10px);opacity:.5}
+/* open block: pattern overlay */
+.open{position:relative;overflow:hidden}
+.open .tx{position:relative}
+.open .tx::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px;pointer-events:none}
+/* section separator wave */
+.wave{display:block;width:100%;height:60px;margin-top:-60px;position:relative;z-index:3}
+
 /* reveal (content stays visible without JS) */
 .js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -400,13 +470,15 @@ footer{position:relative}
 <main id="top">
 
 <section class="hero" aria-label="メインビジュアル">
-  <div class="slide ph on"><img src="https://unsplash.com/photos/G48h926L2qo/download?force=true&amp;w=2400" alt="夕暮れの新築住宅" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/cyAhRBcVUso/download?force=true&amp;w=2400" alt="大きな窓のある住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/XojVF4MQQYA/download?force=true&amp;w=2400" alt="前庭のある住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/hHz4yrvxwlA/download?force=true&amp;w=2400" alt="白い外壁の住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/mzkx33pU2go/download?force=true&amp;w=2400" alt="切妻屋根の住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="slide ph on"><img src="https://unsplash.com/photos/JsSM2T9iPRU/download?force=true&amp;w=2400" alt="東京の木造住宅" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=2400" alt="緑に囲まれた東京の住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2400" alt="東京の住宅街" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/mW8eMit_-uU/download?force=true&amp;w=2400" alt="瓦屋根の木造住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="slide ph"><img src="https://unsplash.com/photos/I4plBnRzJ94/download?force=true&amp;w=2400" alt="沖縄の住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
   <div class="copy"><div class="w">
     <p class="en">BUSINESS SUCCESSION FOR HOME BUILDERS</p>
     <h1>建てた<wbr>家の<wbr>点検に、<wbr>三十年後も<wbr>伺える<wbr>会社で<wbr>あるために。</h1>
     <p class="lead">エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、その<span class="nb">まま引き継ぎます。</span></p>
     <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する <span class="ar"></span></a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る <span class="ar"></span></a></div>
   </div></div>
+  <p class="tate">家を、<wbr>次の<wbr>三十年へ。</p>
+  <a class="badge" href="#about" aria-label="下へスクロール"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#c">SCROLL DOWN · EDGE ASSET · SINCE 2026 · </textPath></text></svg><i></i></a>
   <div class="news"><div class="w">
     <b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span class="t">コーポレートサイトを公開しました。</span>
     <div class="pager" id="pager"><span id="cnt">01</span></div>
@@ -414,6 +486,7 @@ footer{position:relative}
 </section>
 
 <section class="about" id="about">
+  <span class="vt r" aria-hidden="true">私たちについて</span>
   <span class="bgword" aria-hidden="true">Succession</span>
   <div class="w grid">
     <div class="rv">
@@ -426,33 +499,34 @@ footer{position:relative}
       <a class="tl" href="#support">グループの支援を見る <span class="ar"></span></a>
     </div>
     <div class="pics">
-      <div class="ph p1 mask"><img src="https://unsplash.com/photos/dUYELbt-H-E/download?force=true&amp;w=1600" alt="上棟中の木造住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
-      <div class="ph p2 mask"><img src="https://unsplash.com/photos/2cfj0Y5ch00/download?force=true&amp;w=900" alt="木のぬくもりのあるリビング" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+      <div class="ph p1 mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1600" alt="木造の骨組み" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+      <div class="ph p2 mask"><img src="https://unsplash.com/photos/2WaUtK4lU5w/download?force=true&amp;w=900" alt="畳と障子の和室" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
     </div>
   </div>
 </section>
 
 <section class="market dark" id="market">
+  <span class="vt l" aria-hidden="true">業界の現状</span>
   <div class="w grid">
     <div class="rv">
       <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Market</p><p class="sh-ja">業界の現状</p><h2>後継者が<wbr>いない<wbr>会社が<wbr>いちばん<wbr>多い<wbr>業種は、<wbr>建設業です。</h2></div></header>
-      <div class="num"><strong>57.3<small>%</small></strong><div><h3>建設業の後継者不在率</h3><p>業種別で最も高い水準。全国平均を<span class="nb">7ポイント上回ります。</span></p></div></div>
-      <div class="num"><strong>50.1<small>%</small></strong><div><h3>全国企業の後継者不在率</h3><p>いまも2社に1社は、後継者が<span class="nb">決まっていません。</span></p></div></div>
+      <div class="num"><span class="donut" style="--v:57.3"><span>建設業</span></span><strong>57.3<small>%</small></strong><div><h3>建設業の<wbr>後継者不在率</h3><p>業種別で最も高い水準。全国平均を<span class="nb">7ポイント上回ります。</span></p></div></div>
+      <div class="num"><span class="donut" style="--v:50.1"><span>全国</span></span><strong>50.1<small>%</small></strong><div><h3>全国企業の<wbr>後継者不在率</h3><p>いまも2社に1社は、後継者が<span class="nb">決まっていません。</span></p></div></div>
       <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
     </div>
-    <div class="ph mask"><img src="https://unsplash.com/photos/X1P1_EDNnok/download?force=true&amp;w=1200" alt="建築現場で働く人" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+    <div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1200" alt="夜の東京の住宅街" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div></div>
   </div>
 </section>
 
 <div class="strip" aria-hidden="true">
-  <div class="ph"><img src="https://unsplash.com/photos/x8l4lN6-xd0/download?force=true&amp;w=1200" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/5kdlUEHlMXo/download?force=true&amp;w=800" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/1CVQxgLXvdw/download?force=true&amp;w=1000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/bqUZEAeWuok/download?force=true&amp;w=800" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/1ol0cgfx8Ys/download?force=true&amp;w=1200" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/qx6LmF7xUJk/download?force=true&amp;w=800" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/Km3lhnJZABo/download?force=true&amp;w=1000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/YG65N1UBWRA/download?force=true&amp;w=800" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
 </div>
 
 <section class="stance">
-  <div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/yRGrPNnMKB0/download?force=true&amp;w=2000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
   <div class="w">
     <p class="big rv">売らない。</p>
     <div class="rv">
@@ -465,7 +539,7 @@ footer{position:relative}
 <section class="msg" id="message">
   <div class="w grid">
     <div class="rv">
-      <div class="ph"><img src="https://unsplash.com/photos/9h8Nhj8fy_E/download?force=true&amp;w=1000" alt="打ち合わせの様子" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"><span>代表写真は撮影予定</span></div>
+      <div class="frame navy"><div class="ph"><img src="https://unsplash.com/photos/OYR2mPD3yRY/download?force=true&amp;w=1000" alt="庭の見える和室" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"><span>代表写真は撮影予定</span></div></div>
       <div class="who"><small>代表取締役</small><b>〇〇 〇〇</b></div>
       <ul><li>住宅会社にて集客・採用部門を統括</li><li>住宅業界向けSaaS企業 CFO室</li><li>工務店・住宅会社の経営支援</li></ul>
     </div>
@@ -481,6 +555,7 @@ footer{position:relative}
 </section>
 
 <section class="promise" id="promise">
+  <span class="vt r" aria-hidden="true">五つのお約束</span>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Promise</p><p class="sh-ja">5つのお約束</p><h2>引き継ぐ<wbr>ときに、<wbr>契約書で<wbr>お約束すること</h2></div><div class="sh-lead"><p>口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも<span class="nb">正直にお伝えします。</span></p></div></header>
     <div class="plist">
@@ -491,7 +566,7 @@ footer{position:relative}
 </section>
 
 <section class="cta">
-  <div class="ph"><img src="https://unsplash.com/photos/GQn9GnMkVQg/download?force=true&amp;w=2000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+  <div class="ph"><img src="https://unsplash.com/photos/vTIfBkvquMw/download?force=true&amp;w=2000" alt="" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
   <div class="w">
     <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る <span class="ar"></span></a></div>
@@ -499,16 +574,17 @@ footer{position:relative}
 </section>
 
 <section class="support" id="support">
+  <span class="vt l" aria-hidden="true">グループの支援</span>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Support</p><p class="sh-ja">グループの支援</p><h2>現場は<wbr>変えずに、<wbr>一社では<wbr>手が回らない<wbr>仕事を<wbr>支えます</h2></div><div class="sh-lead"><p>家づくりの方針には口を出しません。規模が小さいほど負担が重くなる仕事を、グループでまと<span class="nb">めて引き受けます。</span></p></div></header>
-    <article class="row"><div class="ph mask"><img src="https://unsplash.com/photos/VBLHICVh-lI/download?force=true&amp;w=1400" alt="会議の様子" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="n">MARKETING</p><h3>集客</h3><p>広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で<span class="nb">回る仕組みに置き換えます。</span></p><dl><div><dt>グループが担う</dt><dd>Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計</dd></div><div><dt>各社に残す</dt><dd>見学会の企画、施主様からの紹介づくり</dd></div></dl></div></article><article class="row"><div class="ph mask"><img src="https://unsplash.com/photos/avsJHbPLVTU/download?force=true&amp;w=1400" alt="木材を組む大工さん" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="n">RECRUITING</p><h3>採用</h3><p>一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の<span class="nb">研修までを引き受けます。</span></p><dl><div><dt>グループが担う</dt><dd>新卒・中途の合同採用、求人媒体の一括契約、入社時研修</dd></div><div><dt>各社に残す</dt><dd>配属後の育成、現場での指導</dd></div></dl></div></article><article class="row"><div class="ph mask"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1400" alt="契約書の上で握手" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="n">FINANCE</p><h3>財務・資金</h3><p>月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への<span class="nb">投資判断も一緒に行います。</span></p><dl><div><dt>グループが担う</dt><dd>月次決算、資金繰り表、金融機関との交渉</dd></div><div><dt>各社に残す</dt><dd>個別案件の見積と受注判断</dd></div></dl></div></article><article class="row"><div class="ph mask"><img src="https://unsplash.com/photos/qJa6WDmRNwM/download?force=true&amp;w=1400" alt="建築現場" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="n">OPERATIONS</p><h3>仕入・業務</h3><p>グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の<span class="nb">時間を減らします。</span></p><dl><div><dt>グループが担う</dt><dd>共同購買、管理システムの統一、点検履歴のデータ化</dd></div><div><dt>各社に残す</dt><dd>仕様の選定、地元の材木店との取引、現場での判断</dd></div></dl></div></article>
+    <article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1400" alt="大阪の住宅の外観" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div></div><div class="tx rv" data-no="01"><p class="n">MARKETING</p><h3>集客</h3><p>広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で<span class="nb">回る仕組みに置き換えます。</span></p><dl><div><dt>グループが担う</dt><dd>Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計</dd></div><div><dt>各社に残す</dt><dd>見学会の企画、施主様からの紹介づくり</dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/M9Y8SeVpH1E/download?force=true&amp;w=1400" alt="奈良の住宅の木の廊下" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div></div><div class="tx rv" data-no="02"><p class="n">RECRUITING</p><h3>採用</h3><p>一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の<span class="nb">研修までを引き受けます。</span></p><dl><div><dt>グループが担う</dt><dd>新卒・中途の合同採用、求人媒体の一括契約、入社時研修</dd></div><div><dt>各社に残す</dt><dd>配属後の育成、現場での指導</dd></div></dl></div></article><article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1400" alt="東京のビル街" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div></div><div class="tx rv" data-no="03"><p class="n">FINANCE</p><h3>財務・資金</h3><p>月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への<span class="nb">投資判断も一緒に行います。</span></p><dl><div><dt>グループが担う</dt><dd>月次決算、資金繰り表、金融機関との交渉</dd></div><div><dt>各社に残す</dt><dd>個別案件の見積と受注判断</dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1400" alt="木造の骨組み" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div></div><div class="tx rv" data-no="04"><p class="n">OPERATIONS</p><h3>仕入・業務</h3><p>グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の<span class="nb">時間を減らします。</span></p><dl><div><dt>グループが担う</dt><dd>共同購買、管理システムの統一、点検履歴のデータ化</dd></div><div><dt>各社に残す</dt><dd>仕様の選定、地元の材木店との取引、現場での判断</dd></div></dl></div></article>
   </div>
 </section>
 
 <section class="people">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれに<wbr>とって<wbr>変わらないこと</h2></div></header>
-    <div class="ph mask"><img src="https://unsplash.com/photos/NbtIDoFKGO8/download?force=true&amp;w=2000" alt="握手する二人" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+    <div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/fdFs1vOOLEY/download?force=true&amp;w=2000" alt="山あいの町並み" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><p class="ribbon">社名も、<wbr>社員も、<wbr>施主様との<wbr>約束も。</p></div>
     <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と、次の社長の<span class="nb">育成を一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>明日からの<wbr>仕事は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>点検に<wbr>伺うのは<wbr>同じ<wbr>担当者です。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、<span class="nb">契約どおりにお引渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>発注も<wbr>支払条件も<wbr>これまで<wbr>どおりです。</h3><p>グループ内の他社の現場をお願いできる機会も、<span class="nb">少しずつ増えていきます。</span></p></article></div>
   </div>
 </section>
@@ -535,19 +611,21 @@ footer{position:relative}
 </section>
 
 <section class="cases" id="cases">
+  <span class="vt r" aria-hidden="true">モデルケース</span>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Case</p><p class="sh-ja">モデルケース</p><h2>こんな<wbr>ご相談を<wbr>お受け<wbr>しています</h2></div><div class="sh-lead"><p>よくあるご相談を、条件を変えた想定事例としてまとめました。実在の<span class="nb">企業ではありません。</span></p></div></header>
-    <article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/hHz4yrvxwlA/download?force=true&amp;w=1200" alt="住宅の外観" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 01</p><p class="tag">後継者不在</p><h3>子どもは<wbr>別の道へ。<wbr>社員に<wbr>継がせるには<wbr>資金が<wbr>足りない。</h3><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>規模</dt><dd>年商 約8億円・年間引渡し25棟</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl><p>株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証は<span class="nb">クロージング時に解除しました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/X1P1_EDNnok/download?force=true&amp;w=1200" alt="建築現場で働く人" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 02</p><p class="tag">成長の壁</p><h3>受注は<wbr>あるのに、<wbr>人が<wbr>採れず<wbr>年20棟から<wbr>伸びない。</h3><dl><div><dt>エリア</dt><dd>首都圏郊外</dd></div><div><dt>規模</dt><dd>年商 約6億円・年間引渡し20棟</dd></div><div><dt>社長</dt><dd>55歳・二代目</dd></div></dl><p>社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中で<span class="nb">きるようにしました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/4r9OKorlcTk/download?force=true&amp;w=1200" alt="明るいリビング" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 03</p><p class="tag">廃業の検討</p><h3>体力的に<wbr>限界。<wbr>でも<wbr>施主様の<wbr>アフターだけは<wbr>残したい。</h3><dl><div><dt>エリア</dt><dd>地方の郡部</dd></div><div><dt>規模</dt><dd>年商 約3億円・リフォーム中心</dd></div><div><dt>社長</dt><dd>72歳・創業者</dd></div></dl><p>近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は<span class="nb">半年で引退しました。</span></p></div></article>
+    <article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/fIzFR4tnFyI/download?force=true&amp;w=1200" alt="竹林と日本家屋" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 01</p><p class="tag">後継者不在</p><h3>子どもは<wbr>別の道へ。<wbr>社員に<wbr>継がせるには<wbr>資金が<wbr>足りない。</h3><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>規模</dt><dd>年商 約8億円・年間引渡し25棟</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl><p>株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証は<span class="nb">クロージング時に解除しました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/yZSKjCg0uz8/download?force=true&amp;w=1200" alt="足場のかかった建物" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 02</p><p class="tag">成長の壁</p><h3>受注は<wbr>あるのに、<wbr>人が<wbr>採れず<wbr>年20棟から<wbr>伸びない。</h3><dl><div><dt>エリア</dt><dd>首都圏郊外</dd></div><div><dt>規模</dt><dd>年商 約6億円・年間引渡し20棟</dd></div><div><dt>社長</dt><dd>55歳・二代目</dd></div></dl><p>社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中で<span class="nb">きるようにしました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/8DPdrb9Wxqg/download?force=true&amp;w=1200" alt="沖縄の木造住宅" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div><div class="tx rv"><p class="no">CASE 03</p><p class="tag">廃業の検討</p><h3>体力的に<wbr>限界。<wbr>でも<wbr>施主様の<wbr>アフターだけは<wbr>残したい。</h3><dl><div><dt>エリア</dt><dd>地方の郡部</dd></div><div><dt>規模</dt><dd>年商 約3億円・リフォーム中心</dd></div><div><dt>社長</dt><dd>72歳・創業者</dd></div></dl><p>近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は<span class="nb">半年で引退しました。</span></p></div></article>
     <div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="#contact">似た状況について相談する <span class="ar"></span></a></div>
   </div>
 </section>
 
 <section class="flow" id="flow">
+  <span class="vt l" aria-hidden="true">ご相談の流れ</span>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Flow</p><p class="sh-ja">ご相談の流れ</p><h2>ご相談から<wbr>引き継ぎまで、<wbr>通常は<wbr>半年<wbr>ほどです</h2></div><div class="sh-lead"><p>ご相談の事実が社員や取引先に伝わることはありません。面談は<span class="nb">社外かオンラインで行います。</span></p></div></header>
     <ol class="steps"><li class="rv"><h3>初回面談</h3><span class="t">1–2 hours</span><p>会社とご家族、ご自身の今後について伺います。<span class="nb">決算書は不要です。</span></p></li><li class="rv"><h3>秘密保持契約・<wbr>資料のご提供</h3><span class="t">2–4 weeks</span><p>決算書・受注残・社員構成<span class="nb">などを拝見します。</span></p></li><li class="rv"><h3>条件の<wbr>ご提示</h3><span class="t">2–3 weeks</span><p>譲渡価格の考え方、雇用、引き継ぎ期間を<span class="nb">書面でお示しします。</span></p></li><li class="rv"><h3>詳細調査</h3><span class="t">1–2 months</span><p>財務・法務・労務、施工中物件、保証履歴、<span class="nb">建設業許可を確認します。</span></p></li><li class="rv"><h3>最終契約・<wbr>お支払い</h3><span class="t">1 month</span><p>株式譲渡契約の締結と、個人保証の<span class="nb">解除手続きを行います。</span></p></li><li class="rv"><h3>ご説明と<wbr>引き継ぎ</h3><span class="t">6 months–</span><p>社員・施主様への説明に、<span class="nb">私たちも同席します。</span></p></li></ol>
     <div class="open">
-      <div class="ph"><img src="https://unsplash.com/photos/htmZWzApbJE/download?force=true&amp;w=1400" alt="木のキッチン" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
+      <div class="ph"><img src="https://unsplash.com/photos/V6VxSgtVyco/download?force=true&amp;w=1400" alt="庭を望む和室" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"></div>
       <div class="tx rv">
         <h3>規模も<wbr>エリアも<wbr>業績も、<wbr>問いません。</h3>
         <p class="lead">年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社で<span class="nb">あればまずはお話を伺います。</span></p>
@@ -582,7 +660,7 @@ footer{position:relative}
 </section>
 
 <section class="contact" id="contact">
-  <div class="ph side"><img src="https://unsplash.com/photos/Vg96IZTFubo/download?force=true&amp;w=1400" alt="家の鍵を持つ手" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"><p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="ph side"><img src="https://unsplash.com/photos/W7sIS8Ms3bw/download?force=true&amp;w=1400" alt="日本家屋が並ぶ通り" loading="lazy" onerror="if(this.dataset.f){this.style.visibility='hidden'}else{this.dataset.f=1;this.src='https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=2000'}"><p class="cap"><b>Contact</b>お問い合わせ</p></div>
   <div class="body">
     <h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません</h2>
     <p class="lead">ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に<span class="nb">伝えることはありません。</span></p>

@@ -139,7 +139,7 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 /* market (dark, photo right) */
 .market{background:var(--navy);color:#fff;position:relative;overflow:hidden}
 .market .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.market .num{display:flex;align-items:flex-end;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
+.market .num{display:flex;align-items:center;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
 .market .num:last-of-type{border-bottom:1px solid rgba(255,255,255,.2)}
 .market .num strong{font-family:var(--en);font-weight:300;font-size:clamp(68px,7.5vw,110px);line-height:.85;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .market .num strong small{font-size:.32em;margin-left:6px}
@@ -200,15 +200,17 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 .cta h2{font-size:clamp(22px,2.6vw,34px);line-height:1.7;letter-spacing:.06em;margin-bottom:14px}
 .cta p{margin:0;color:rgba(255,255,255,.85)}
 .cta .tel{margin-top:22px;font-size:13px}
-.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px}
+.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px;white-space:nowrap}
+@media (max-width:560px){.cta .tel b{display:block;margin:4px 0 0}}
 .cta .btns{flex-direction:column;align-items:flex-end}
 @media (max-width:860px){.cta{padding-block:84px}.cta .w{grid-template-columns:1fr}.cta .btns{align-items:stretch}}
 
 /* support: alternating rows */
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;margin-bottom:56px}
 .row .ph{aspect-ratio:3/2}
+.row .frame{min-width:0}
 .row .tx{padding:0 0 0 72px}
-.row:nth-child(even) .ph{order:2}
+.row:nth-child(even) .frame{order:2}
 .row:nth-child(even) .tx{padding:0 72px 0 0}
 .row .n{font-family:var(--en);font-weight:300;font-size:15px;letter-spacing:.2em;color:var(--blue);display:flex;align-items:center;gap:14px;margin-bottom:12px}
 .row .n::after{content:"";width:48px;height:1px;background:var(--blue)}
@@ -218,7 +220,7 @@ header.site .w{max-width:none;display:flex;align-items:center;justify-content:sp
 .row dl div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .row dt{color:var(--navy);font-weight:500}
 .row dd{margin:0;color:var(--ink-2)}
-@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .ph{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
+@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .frame{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
 
 /* people: one wide photo, four columns */
 .people{background:var(--mist)}
@@ -380,6 +382,74 @@ footer{position:relative}
 .proto{position:fixed;left:12px;bottom:12px;z-index:30;background:rgba(8,24,46,.85);color:#fff;font-size:10.5px;padding:4px 10px}
 @media (max-width:760px){.proto{display:none}}
 
+
+/* ===== design layer ===== */
+/* seigaiha (青海波) wave pattern on pale bands */
+.promise,.cases,.people,.company{background-color:var(--mist);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%232268c8' stroke-opacity='.09' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px}
+.flow{background-image:linear-gradient(var(--bg),var(--bg))}
+/* offset colour blocks behind photos */
+.frame{position:relative}
+.frame::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--blue);opacity:.12;z-index:0}
+.frame.l::before{inset:28px 28px -28px -28px}
+.frame.navy::before{background:var(--navy);opacity:1;inset:-24px 24px 24px -24px}
+.frame>.ph{position:relative;z-index:1}
+@media (max-width:760px){.frame::before{inset:14px -14px -14px 14px}.frame.l::before{inset:14px 14px -14px -14px}.frame.navy::before{inset:-12px 12px 12px -12px}}
+/* vertical Japanese labels */
+.vt{position:absolute;top:140px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:13px;letter-spacing:.5em;color:var(--blue);display:flex;align-items:center;gap:14px;z-index:2}
+.vt::after{content:"";width:1px;height:80px;background:currentColor;opacity:.5}
+.vt.r{right:max(18px,env(safe-area-inset-right,0px))}
+.vt.l{left:max(18px,env(safe-area-inset-left,0px))}
+.dark .vt,.stance .vt{color:#8fb6ec}
+section{position:relative}
+@media (max-width:1100px){.vt{display:none}}
+/* hero: vertical copy + rotating badge */
+.hero .tate{position:absolute;z-index:2;right:max(56px,env(safe-area-inset-right,0px));top:150px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:16px;letter-spacing:.42em;line-height:2.2;opacity:.92}
+.badge{position:absolute;z-index:3;right:max(48px,env(safe-area-inset-right,0px));bottom:110px;width:132px;height:132px}
+.badge svg{width:100%;height:100%;animation:spin 22s linear infinite}
+.badge text{font-family:var(--en);font-size:10.5px;letter-spacing:3.2px;fill:#fff}
+.badge i{position:absolute;inset:0;margin:auto;width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center}
+.badge i::before{content:"";width:9px;height:9px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg);margin-top:-4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:760px){.hero .tate,.badge{display:none}}
+/* about: large outlined number-like ornament + blue bar */
+.about .catch{position:relative;padding-left:26px}
+.about .catch::before{content:"";position:absolute;left:0;top:.5em;bottom:.5em;width:4px;background:linear-gradient(var(--blue),var(--navy))}
+/* market: donut charts */
+.market .num .donut{flex:none;width:118px;height:118px;border-radius:50%;background:conic-gradient(#5ea2ff calc(var(--v)*1%),rgba(255,255,255,.12) 0);display:grid;place-items:center;position:relative}
+.market .num .donut::after{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--navy)}
+.market .num .donut span{position:relative;z-index:1;font-family:var(--en);font-size:13px;letter-spacing:.1em;color:#8fb6ec}
+.market::before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 60px rgba(255,255,255,.02),0 0 0 120px rgba(255,255,255,.015)}
+@media (max-width:560px){.market .num .donut{width:92px;height:92px}}
+/* promise numbers in circles */
+.pi .n{width:64px;height:64px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font-size:24px;background:#fff}
+@media (max-width:860px){.pi .n{width:48px;height:48px;font-size:18px}}
+/* support rows: number watermark */
+.row{position:relative}
+.row .tx{position:relative}
+.row .tx::before{content:attr(data-no);position:absolute;right:0;top:-78px;font-family:var(--en);font-weight:300;font-size:140px;line-height:1;color:var(--mist);z-index:-1}
+
+@media (max-width:860px){.row .tx::before{font-size:88px;top:-24px}}
+/* cta: diagonal accent */
+.cta::after{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(115deg,transparent 0 30%,rgba(34,104,200,.55) 30% 100%);z-index:1}
+@media (max-width:860px){.cta::after{display:none}}
+/* people photo with caption ribbon */
+.people .frame{margin-bottom:56px}
+.people .frame .ph{margin-bottom:0}
+.ribbon{position:absolute;z-index:2;left:0;bottom:0;background:var(--navy);color:#fff;font-family:var(--fh);font-weight:700;font-size:clamp(15px,1.6vw,20px);letter-spacing:.1em;padding:18px 34px}
+/* case number big */
+.case{position:relative}
+.case .no{font-size:15px}
+.case .tx::after{content:"";position:absolute;right:0;top:0;width:0;height:0;border-style:solid;border-width:0 54px 54px 0;border-color:transparent var(--blue) transparent transparent}
+.case .tx{position:relative}
+/* steps: dotted connector */
+.steps::before{background:repeating-linear-gradient(90deg,var(--blue) 0 4px,transparent 4px 10px);opacity:.5}
+/* open block: pattern overlay */
+.open{position:relative;overflow:hidden}
+.open .tx{position:relative}
+.open .tx::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px;pointer-events:none}
+/* section separator wave */
+.wave{display:block;width:100%;height:60px;margin-top:-60px;position:relative;z-index:3}
+
 /* reveal (content stays visible without JS) */
 .js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -391,16 +461,16 @@ footer{position:relative}
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
 AR='<span class="ar"></span>'
 
-hero_slides=[('G48h926L2qo','夕暮れの新築住宅',False),('cyAhRBcVUso','大きな窓のある住宅',True),('XojVF4MQQYA','前庭のある住宅',True),('hHz4yrvxwlA','白い外壁の住宅',True),('mzkx33pU2go','切妻屋根の住宅',True)]
+hero_slides=[('JsSM2T9iPRU','東京の木造住宅',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('Q6sCJFHCubc','東京の住宅街',True),('mW8eMit_-uU','瓦屋根の木造住宅',True),('I4plBnRzJ94','沖縄の住宅',True)]
 slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
 
 support=[
- ('集客','MARKETING','VBLHICVh-lI','会議の様子','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
- ('採用','RECRUITING','avsJHbPLVTU','木材を組む大工さん','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
- ('財務・資金','FINANCE','4mEyvORkbN0','契約書の上で握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
- ('仕入・業務','OPERATIONS','qJa6WDmRNwM','建築現場','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
+ ('集客','MARKETING','q1tyQip5AQQ','大阪の住宅の外観','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
+ ('採用','RECRUITING','M9Y8SeVpH1E','奈良の住宅の木の廊下','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
+ ('財務・資金','FINANCE','rD28m9BmXVs','東京のビル街','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
+ ('仕入・業務','OPERATIONS','4UVtFIfK1eo','木造の骨組み','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
 ]
-rows=''.join(f'''<article class="row"><div class="ph mask">{img(pid,alt,1400)}</div><div class="tx rv"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<dl><div><dt>グループが担う</dt><dd>{g}</dd></div><div><dt>各社に残す</dt><dd>{k}</dd></div></dl></div></article>''' for ja,en,pid,alt,desc,g,k in support)
+rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}"><div class="ph mask">{img(pid,alt,1400)}</div></div><div class="tx rv" data-no="0{k+1}"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<dl><div><dt>グループが担う</dt><dd>{g}</dd></div><div><dt>各社に残す</dt><dd>{kk}</dd></div></dl></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
 
 promises=[('社名・|屋号は|そのまま|残します','看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、いちばんの資産です。'),
  ('雇用と|給与水準を|守ります','グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は契約書に明記します。'),
@@ -415,9 +485,9 @@ people=[('社長へ','辞める|時期は、|ご自身で|決められます。'
  ('協力業者さんへ','発注も|支払条件も|これまで|どおりです。','グループ内の他社の現場をお願いできる機会も、少しずつ増えていきます。')]
 pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</article>' for w,h,t in people)
 
-cases=[('後継者不在','hHz4yrvxwlA','住宅の外観','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
- ('成長の壁','X1P1_EDNnok','建築現場で働く人','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
- ('廃業の検討','4r9OKorlcTk','明るいリビング','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
+cases=[('後継者不在','fIzFR4tnFyI','竹林と日本家屋','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
+ ('成長の壁','yZSKjCg0uz8','足場のかかった建物','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
+ ('廃業の検討','8DPdrb9Wxqg','沖縄の木造住宅','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
 cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
 
 steps=[('初回面談','1–2 hours','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2–4 weeks','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2–3 weeks','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1–2 months','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','1 month','株式譲渡契約の締結と、個人保証の解除手続きを行います。'),('ご説明と|引き継ぎ','6 months–','社員・施主様への説明に、私たちも同席します。')]
@@ -473,6 +543,8 @@ HTML=f'''<!doctype html>
     {P('エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、そのまま引き継ぎます。','lead')}
     <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
   </div></div>
+  <p class="tate">{W("家を、|次の|三十年へ。")}</p>
+  <a class="badge" href="#about" aria-label="下へスクロール"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#c">SCROLL DOWN · EDGE ASSET · SINCE 2026 · </textPath></text></svg><i></i></a>
   <div class="news"><div class="w">
     <b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span class="t">コーポレートサイトを公開しました。</span>
     <div class="pager" id="pager"><span id="cnt">01</span></div>
@@ -480,6 +552,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="about" id="about">
+  <span class="vt r" aria-hidden="true">私たちについて</span>
   <span class="bgword" aria-hidden="true">Succession</span>
   <div class="w grid">
     <div class="rv">
@@ -492,33 +565,34 @@ HTML=f'''<!doctype html>
       <a class="tl" href="#support">グループの支援を見る {AR}</a>
     </div>
     <div class="pics">
-      <div class="ph p1 mask">{img('dUYELbt-H-E','上棟中の木造住宅',1600)}</div>
-      <div class="ph p2 mask">{img('2cfj0Y5ch00','木のぬくもりのあるリビング',900)}</div>
+      <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600)}</div>
+      <div class="ph p2 mask">{img('2WaUtK4lU5w','畳と障子の和室',900)}</div>
     </div>
   </div>
 </section>
 
 <section class="market dark" id="market">
+  <span class="vt l" aria-hidden="true">業界の現状</span>
   <div class="w grid">
     <div class="rv">
       {head('Market','業界の現状','後継者が|いない|会社が|いちばん|多い|業種は、|建設業です。')}
-      <div class="num"><strong>57.3<small>%</small></strong><div><h3>建設業の後継者不在率</h3>{P('業種別で最も高い水準。全国平均を7ポイント上回ります。')}</div></div>
-      <div class="num"><strong>50.1<small>%</small></strong><div><h3>全国企業の後継者不在率</h3>{P('いまも2社に1社は、後継者が決まっていません。')}</div></div>
+      <div class="num"><span class="donut" style="--v:57.3"><span>建設業</span></span><strong>57.3<small>%</small></strong><div><h3>{W('建設業の|後継者不在率')}</h3>{P('業種別で最も高い水準。全国平均を7ポイント上回ります。')}</div></div>
+      <div class="num"><span class="donut" style="--v:50.1"><span>全国</span></span><strong>50.1<small>%</small></strong><div><h3>{W('全国企業の|後継者不在率')}</h3>{P('いまも2社に1社は、後継者が決まっていません。')}</div></div>
       <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
     </div>
-    <div class="ph mask">{img('X1P1_EDNnok','建築現場で働く人',1200)}</div>
+    <div class="frame l"><div class="ph mask">{img('pcYN7Pi8_BQ','夜の東京の住宅街',1200)}</div></div>
   </div>
 </section>
 
 <div class="strip" aria-hidden="true">
-  <div class="ph">{img('x8l4lN6-xd0','',1200)}</div>
-  <div class="ph">{img('5kdlUEHlMXo','',800)}</div>
-  <div class="ph">{img('1CVQxgLXvdw','',1000)}</div>
-  <div class="ph">{img('bqUZEAeWuok','',800)}</div>
+  <div class="ph">{img('1ol0cgfx8Ys','',1200)}</div>
+  <div class="ph">{img('qx6LmF7xUJk','',800)}</div>
+  <div class="ph">{img('Km3lhnJZABo','',1000)}</div>
+  <div class="ph">{img('YG65N1UBWRA','',800)}</div>
 </div>
 
 <section class="stance">
-  <div class="ph">{img('Q6sCJFHCubc','',2000)}</div>
+  <div class="ph">{img('yRGrPNnMKB0','',2000)}</div>
   <div class="w">
     <p class="big rv">売らない。</p>
     <div class="rv">
@@ -531,7 +605,7 @@ HTML=f'''<!doctype html>
 <section class="msg" id="message">
   <div class="w grid">
     <div class="rv">
-      <div class="ph">{img('9h8Nhj8fy_E','打ち合わせの様子',1000)}<span>代表写真は撮影予定</span></div>
+      <div class="frame navy"><div class="ph">{img('OYR2mPD3yRY','庭の見える和室',1000)}<span>代表写真は撮影予定</span></div></div>
       <div class="who"><small>代表取締役</small><b>〇〇 〇〇</b></div>
       <ul><li>住宅会社にて集客・採用部門を統括</li><li>住宅業界向けSaaS企業 CFO室</li><li>工務店・住宅会社の経営支援</li></ul>
     </div>
@@ -547,6 +621,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="promise" id="promise">
+  <span class="vt r" aria-hidden="true">五つのお約束</span>
   <div class="w">
     {head('Promise','5つのお約束','引き継ぐ|ときに、|契約書で|お約束すること','口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも正直にお伝えします。')}
     <div class="plist">
@@ -557,7 +632,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cta">
-  <div class="ph">{img('GQn9GnMkVQg','',2000)}</div>
+  <div class="ph">{img('vTIfBkvquMw','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
@@ -565,6 +640,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="support" id="support">
+  <span class="vt l" aria-hidden="true">グループの支援</span>
   <div class="w">
     {head('Support','グループの支援','現場は|変えずに、|一社では|手が回らない|仕事を|支えます','家づくりの方針には口を出しません。規模が小さいほど負担が重くなる仕事を、グループでまとめて引き受けます。')}
     {rows}
@@ -574,7 +650,7 @@ HTML=f'''<!doctype html>
 <section class="people">
   <div class="w">
     {head('People','それぞれの方へ','社長・|社員・|施主様・|協力業者さん、|それぞれに|とって|変わらないこと')}
-    <div class="ph mask">{img('NbtIDoFKGO8','握手する二人',2000)}</div>
+    <div class="frame"><div class="ph mask">{img('fdFs1vOOLEY','山あいの町並み',2000)}</div><p class="ribbon">{W("社名も、|社員も、|施主様との|約束も。")}</p></div>
     <div class="pg">{pg}</div>
   </div>
 </section>
@@ -601,6 +677,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cases" id="cases">
+  <span class="vt r" aria-hidden="true">モデルケース</span>
   <div class="w">
     {head('Case','モデルケース','こんな|ご相談を|お受け|しています','よくあるご相談を、条件を変えた想定事例としてまとめました。実在の企業ではありません。')}
     {cs}
@@ -609,11 +686,12 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="flow" id="flow">
+  <span class="vt l" aria-hidden="true">ご相談の流れ</span>
   <div class="w">
     {head('Flow','ご相談の流れ','ご相談から|引き継ぎまで、|通常は|半年|ほどです','ご相談の事実が社員や取引先に伝わることはありません。面談は社外かオンラインで行います。')}
     <ol class="steps">{st}</ol>
     <div class="open">
-      <div class="ph">{img('htmZWzApbJE','木のキッチン',1400)}</div>
+      <div class="ph">{img('V6VxSgtVyco','庭を望む和室',1400)}</div>
       <div class="tx rv">
         <h3>{W('規模も|エリアも|業績も、|問いません。')}</h3>
         {P('年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社であればまずはお話を伺います。','lead')}
@@ -648,7 +726,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="contact" id="contact">
-  <div class="ph side">{img('Vg96IZTFubo','家の鍵を持つ手',1400)}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="ph side">{img('W7sIS8Ms3bw','日本家屋が並ぶ通り',1400)}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
   <div class="body">
     <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
