@@ -860,10 +860,10 @@ for key,pat in {
 JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社の事業承継（株式取得およびグループ経営）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-0000-0000","founder":{"@type":"Person","name":"谷岡佑亮"}},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
-    items=[('company.html','私たちについて'),('service.html','グループの支援'),('index.html#cases','事例'),('index.html#flow','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('news.html','お知らせ')]
+    items=[('company.html','私たちについて'),('service.html','グループの支援'),('cases.html','事例'),('flow.html','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('news.html','お知らせ')]
     NT=' target="_blank" rel="noopener"'
     links=''.join(f'<a class="nl" href="{h}"{NT}>{t}</a>' for h,t in items)
-    menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('index.html#cases','事例','Case'),('index.html#flow','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('column.html','コラム','Column'),('contact.html','ご相談・お問い合わせ','Contact')]
+    menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('cases.html','事例','Case'),('flow.html','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('column.html','コラム','Column'),('contact.html','ご相談・お問い合わせ','Contact')]
     mlinks=''.join(f'<li><a href="{h}"{NT}><span class="mn">{i+1:02d}</span><span class="mt"><span class="me">{e}</span><span class="mj">{j}</span></span><span class="mx" aria-hidden="true"></span></a></li>' for i,(h,j,e) in enumerate(menu))
     return f"""<header class="site">
   <div class="w">
@@ -899,7 +899,7 @@ def phero(en,ja,lead,pid):
 def footer():
     f=sec['footer']
     f=f.replace('href="#top"','href="index.html"').replace('href="#about"','href="company.html"').replace('href="#message"','href="company.html#message"').replace('href="#compare"','href="company.html#compare"').replace('href="#company"','href="company.html#company"')
-    f=f.replace('href="#promise"','href="index.html#promise"').replace('href="#support"','href="service.html"').replace('href="#cases"','href="index.html#cases"').replace('href="#flow"','href="index.html#flow"').replace('href="#faq"','href="contact.html#faq"').replace('href="#contact"','href="contact.html"')
+    f=f.replace('href="#promise"','href="index.html#promise"').replace('href="#support"','href="service.html"').replace('href="#cases"','href="cases.html"').replace('href="#flow"','href="flow.html"').replace('href="#faq"','href="contact.html#faq"').replace('href="#contact"','href="contact.html"')
     f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
     f=f.replace('<a href="index.html">プライバシーポリシー</a>','<a href="privacy.html">プライバシーポリシー</a>').replace('<a href="index.html">サイトのご利用について</a>','<a href="terms.html">サイトのご利用について</a>')
     return f
@@ -1052,13 +1052,14 @@ TOPLINKS=f"""<section class="links">
 
 # ---------- pages ----------
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'more.py')).read())
-home=FV+tolinks(sec['market'])+ISSUES+tolinks(sec['stance']+sec['promise'])+MODEL+tolinks(sec['cta']+sec['people']+sec['cases']+sec['flow'])+TOPFAQ+TOPCOL+TOPLINKS+TOPNEWS
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pages2.py')).read())
+home=FV+tolinks(sec['market'])+ISSUES+tolinks(sec['stance']+sec['promise'])+MODEL+tolinks(sec['cta']+sec['people'])+TOPCOST+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPFAQ+TOPCOL+TOPLINKS+TOPNEWS
 home=home.replace('<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する','<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する')
-company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+VMV+TEAM+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])
-partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT
-news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS
+company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+COMPANY_BAND+VMV+TEAM+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+nextlink('service.html','Our support','グループの支援')
+partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT+nextlink('cases.html','Model cases','モデルケース')
+news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS+nextlink('company.html','About us','私たちについて')
 contact=phero('Contact','ご相談・お問い合わせ','ご相談は無料です。社名を伏せたままでも構いません。','Q6sCJFHCubc')+PREP+sec['contact'].replace('href="#cf"','href="#cf"')+sec['faq']
-service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+SERVICE_INTRO+tolinks(sec['support'])+MODEL+BEFORE+D100+tolinks(sec['cta'])
+service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE+D100+tolinks(sec['cta'])+nextlink('cases.html','Model cases','モデルケース')
 bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
  'company.html':(company,'エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。'),
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
@@ -1077,6 +1078,12 @@ def telify(html):
 for a in ARTICLES:
     PAGES.append((a['slug'],a['title']))
     bodies[a['slug']]=(article_page(a),a['lead'][:110])
+PAGES+= [('cases.html','モデルケース'),('flow.html','ご相談の流れ')]
+bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
+bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から引き継ぎまで、通常は半年ほど。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
+for i,c in enumerate(CASES):
+    PAGES.append((c['slug']+'.html','モデルケース '+f'{i+1:02d}｜'+c['tag']))
+    bodies[c['slug']+'.html']=(case_page(c,i),c['short'])
 PAGES+= [('column.html','コラム'),('privacy.html','プライバシーポリシー'),('terms.html','サイトのご利用について'),('404.html','ページが見つかりません')]
 bodies['column.html']=(phero('Column','コラム','工務店・住宅会社の事業承継について、社長が判断に迷うポイントを解説しています。','Q6sCJFHCubc')+COLLIST,'工務店・住宅会社の事業承継に関するコラム。')
 bodies['privacy.html']=(PRIVACY,'株式会社エッジアセットのプライバシーポリシー。')

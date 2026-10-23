@@ -70,4 +70,15 @@
       form.hidden = true; const sent = $('#sent'); if (sent) sent.hidden = false;
     });
   }
+
+  // re-apply #anchor after late layout (htmlpreview writes the page after the browser's own jump)
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (id) {
+    let moved = false;
+    addEventListener('wheel', () => moved = true, { passive: true, once: true });
+    addEventListener('touchstart', () => moved = true, { passive: true, once: true });
+    const go = () => { const t = document.getElementById(id); if (t && !moved) t.scrollIntoView(); };
+    [50, 400, 1200, 2500].forEach(ms => setTimeout(go, ms));
+    addEventListener('load', go);
+  }
 })();
