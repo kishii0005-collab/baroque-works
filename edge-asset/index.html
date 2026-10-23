@@ -1527,6 +1527,59 @@ footer .fcx::after{content:"";position:absolute;right:-120px;top:-120px;width:36
   .hx-foot,.hx-marq{display:none}
 }
 @media (max-width:600px){.m3-sub li:nth-child(2){grid-column:1/-1;order:-1}}
+
+/* ===== refinement pass: type, buttons, image grade, details ===== */
+/* Japanese typography: proportional kerning on display text, a lighter section-heading weight, balanced wraps */
+h1,h2,h3,h4,.sh-ja,.lede,.catch,.big,.band-t,.fc-h,.m3-ja,.m3-lead,.chap span,.hc-t,.cl-b span,.fc-b span,.m3-b span,.trust b,.ts-g h3,.cs-wt h3,.pf-name{font-feature-settings:"palt" 1}
+.sh h2,.chero h1,.phero h1,.cs-wt h3,.fc-h,.band-t{font-weight:500}
+.sh h2{letter-spacing:.08em;line-height:1.65}
+h2,h3,.fc-h,.band-t{text-wrap:balance}
+p{text-wrap:pretty}
+::selection{background:var(--blue);color:#fff}
+html{-webkit-tap-highlight-color:transparent}
+
+/* one button system: capsule + round arrow, matching the hero */
+.btn{border-radius:999px;min-width:0;gap:28px;padding:9px 9px 9px 30px;font-family:var(--fh);font-weight:700;font-size:14.5px;letter-spacing:.08em;transition:background .35s,color .35s,border-color .35s,transform .35s,box-shadow .35s}
+.btn .ar{width:42px;height:42px;border-radius:50%;flex:none;background:var(--blue);position:relative;transition:transform .35s,background .35s}
+.btn .ar::before{content:"";position:absolute;left:13px;right:13px;top:50%;height:1.5px;background:#fff}
+.btn .ar::after{right:13px;top:50%;width:7px;height:7px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translateY(-50%) rotate(45deg)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(12,39,71,.18)}
+.btn:hover .ar{transform:translateX(3px)}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:#12335c}
+.btn-navy .ar{background:var(--blue)}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue .ar{background:var(--navy)}
+.btn-white{background:#fff;color:var(--navy)}.btn-white:hover{background:#fff}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#fff;background:transparent}.btn-ghost .ar{background:rgba(255,255,255,.16)}.btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+form .btn{min-width:240px}
+@media (max-width:760px){.btn{width:100%;justify-content:space-between}}
+
+/* text links: arrow in a small ring */
+.tl{border-bottom-color:rgba(12,39,71,.35);transition:border-color .3s,color .3s}
+.tl:hover{border-bottom-color:var(--blue);color:var(--blue)}
+
+/* photos: one colour grade so different sources read as one set */
+.ph img{filter:saturate(.82) contrast(1.04) brightness(.98)}
+.hx .slide img{filter:saturate(.78) contrast(1.05)}
+
+/* cards and hairlines: same easing everywhere */
+.ccase,.cc,.m3-main a,.lever li,.ts-g article{transition-timing-function:cubic-bezier(.2,.7,.2,1)}
+
+/* back to top: lighter, out of the way */
+.pagetop{width:48px;height:48px;background:#fff;box-shadow:0 8px 24px rgba(12,39,71,.18);top:-24px}
+.pagetop::before,.pagetop::after{border-color:var(--navy)!important}
+
+/* forms: visible focus, brand-colour controls */
+form label{transition:color .2s}
+form div:focus-within>label,form>label:focus-within{color:var(--blue)}
+form input:focus,form select:focus,form textarea:focus{border-bottom-color:var(--blue);box-shadow:0 1px 0 var(--blue)}
+input[type=checkbox]{accent-color:var(--blue);width:16px;height:16px}
+
+/* FAQ: open and close smoothly where the browser supports it */
+:root{interpolate-size:allow-keywords}
+details::details-content{height:0;overflow:clip;transition:height .35s ease,content-visibility .35s allow-discrete}
+details[open]::details-content{height:auto}
+summary:hover span:not(.q):not(.pm){color:var(--blue)}
+details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:inherit}
 </style>
 </head>
 <body class="home">
