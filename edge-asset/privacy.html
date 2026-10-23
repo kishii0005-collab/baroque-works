@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1380,14 +1411,14 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 <section class="phero">
   <div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>プライバシーポリシー</p><p class="pen">Privacy policy</p><h1>プライバシーポリシー</h1></div>
-</section><article class="art legal"><div class="w aw"><h2>基本方針</h2><p>株式会社エッジアセット（以下「当社」）は、お客様の個人情報を適切に取り扱うことが社会的責務であると考え、個人情報の保護に関する法律その他の関係法令を遵守し、以下のと<span class="nb">おり個人情報を取り扱います。</span></p><h2>取得する個人情報</h2><p>当社は、お問い合わせフォーム、電話、面談等を通じて、氏名、会社名、メールアドレス、電話番号、ご相談内容その他お客様が<span class="nb">提供する情報を取得します。</span></p><h2>利用目的</h2><ul><li>お問い合わせ・ご相談への回答および連絡のため</li><li>事業承継・株式取得等のご提案、検討および実行のため</li><li>面談日程の調整その他の連絡のため</li><li>当社サービスの改善のため</li></ul><h2>第三者への提供</h2><p>当社は、法令に定める場合を除き、ご本人の同意を得ることなく個人情報を<span class="nb">第三者に提供しません。</span></p><h2>業務の委託</h2><p>当社は、利用目的の達成に必要な範囲で、個人情報の取扱いを外部に委託することがあります。この場合、委託先に対して必要かつ適切<span class="nb">な監督を行います。</span></p><h2>安全管理措置</h2><p>当社は、個人情報の漏えい、滅失または毀損を防止するため、必要かつ適切な安全管<span class="nb">理措置を講じます。</span></p><h2>アクセス解析について</h2><p>当社ウェブサイトでは、利用状況の把握のためにアクセス解析ツールを使用する場合があります。これらのツールはCookieを使用してデータを収集しますが、個人を特定する情報は含みません。Cookieはブラウザの設定に<span class="nb">より無効にできます。</span></p><h2>開示・訂正・利用停止等のご請求</h2><p>ご本人から個人情報の開示、訂正、追加、削除、利用停止等のご請求があった場合は、ご本人であることを確認のうえ、法令に<span class="nb">従って速やかに対応します。</span></p><h2>お問い合わせ窓口</h2><p>株式会社エッジアセット　〒105-0022 東京都港区海岸2丁目5-1-1702　個人情報お問い合わせ窓口　メール：<em class="tbd">【確定後<span class="nb">に記載】</em></span></p><h2>改定</h2><p>当社は、法令の変更等に応じて本ポリシーを改定することがあります。改定後の内容は本ページに<span class="nb">掲載した時点から効力を生じます。</span></p><p class="anote">制定日：2026年10月【確定後に記載】　株式会社エッジアセット　代表取締役　谷岡 佑亮</p></div></article>
+</section><article class="art legal"><div class="w aw"><h2>基本方針</h2><p>株式会社エッジアセット（以下「当社」）は、お客様の個人情報を適切に取り扱うことが社会的責務であると考え、個人情報の保護に関する法律その他の関係法令を遵守し、以下のと<span class="nb">おり個人情報を取り扱います。</span></p><h2>取得する個人情報</h2><p>当社は、お問い合わせフォーム、電話、面談等を通じて、氏名、会社名、メールアドレス、電話番号、ご相談内容その他お客様が<span class="nb">提供する情報を取得します。</span></p><h2>利用目的</h2><ul><li>お問い合わせ・ご相談への回答および連絡のため</li><li>事業承継・株式取得等のご提案、検討および実行のため</li><li>面談日程の調整その他の連絡のため</li><li>当社サービスの改善のため</li></ul><h2>第三者への提供</h2><p>当社は、法令に定める場合を除き、ご本人の同意を得ることなく個人情報を<span class="nb">第三者に提供しません。</span></p><h2>グループ会社との共同利用</h2><p>当社は、事業承継後のグループ経営に必要な範囲で、取得した個人情報を当社のグループ会社と共同で利用することがあります。共同利用する項目は氏名・会社名・連絡先・ご相談内容、<span class="nb">管理責任者は当社とします。</span></p><h2>業務の委託</h2><p>当社は、利用目的の達成に必要な範囲で、個人情報の取扱いを外部に委託することがあります。この場合、委託先に対して必要かつ適切<span class="nb">な監督を行います。</span></p><h2>安全管理措置</h2><p>当社は、個人情報の漏えい、滅失または毀損を防止するため、必要かつ適切な安全管<span class="nb">理措置を講じます。</span></p><h2>アクセス解析について</h2><p>当社ウェブサイトでは、利用状況の把握のためにアクセス解析ツールを使用する場合があります。これらのツールはCookieを使用してデータを収集しますが、個人を特定する情報は含みません。Cookieはブラウザの設定に<span class="nb">より無効にできます。</span></p><h2>開示・訂正・利用停止等のご請求</h2><p>ご本人から個人情報の開示、訂正、追加、削除、利用停止等のご請求があった場合は、ご本人であることを確認のうえ、法令に<span class="nb">従って速やかに対応します。</span></p><h2>お問い合わせ窓口</h2><p>株式会社エッジアセット　〒105-0022 東京都港区海岸2丁目5-1-1702　個人情報お問い合わせ窓口　メール：<em class="tbd">【確定後<span class="nb">に記載】</em></span></p><h2>改定</h2><p>当社は、法令の変更等に応じて本ポリシーを改定することがあります。改定後の内容は本ページに<span class="nb">掲載した時点から効力を生じます。</span></p><p class="anote">制定日：2026年10月【確定後に記載】　株式会社エッジアセット　代表取締役　谷岡 佑亮</p></div></article>
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>

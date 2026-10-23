@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1388,7 +1419,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
       <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p></div></header>
       <p class="catch">家は、<wbr>建てた後の<wbr>三十年の<wbr>ほうが長い。</p>
       <div class="body">
-        <p>工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検に<span class="nb">は誰が行くのか」。</span></p>
+        <p>工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらった施主様のことです。「自分が辞めたら、あの家の点検に<span class="nb">は誰が行くのか」。</span></p>
         <p>エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった、一社では手が回らない仕事を<span class="nb">グループで支えます。</span></p>
       </div>
       <a class="tl" href="service.html">グループの支援を見る <span class="ar"></span></a>
@@ -1403,14 +1434,14 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
     <div class="rv">
       <div class="frame navy"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="大阪のオフィスビル" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span>代表写真は撮影予定</span></div></div>
       <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
-      <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングを展開</li><li>独立後、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
+      <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングに従事</li><li>同社を退職後、複数の事業運営に携わりながら、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
     </div>
     <div class="letter rv">
       <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Message</p><p class="sh-ja">代表メッセージ</p></div></header>
       <p class="lede">会社を<wbr>売る、<wbr>という<wbr>言葉に<wbr>抵抗がある方へ。</p>
-      <p>経営コンサルタントとして、そして事業の運営者として、建築業界を中心に多くの会社の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を<span class="nb">何人も見てきました。</span></p>
+      <p>経営コンサルタントとして、そして事業の運営者として、建築業界を中心に、さまざまな会社の経営の支援に携わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択を考える社長に、何度も<span class="nb">出会ってきました。</span></p>
       <p>大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること<span class="nb">自体をためらいます。</span></p>
-      <p>私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を<span class="nb">聞かせてください。</span></p>
+      <p>私たちは、その不安に正面から答えるために会社をつくりました。名前を残すこと、施主様との約束を守ること。どちらも契約書に書き込みます。売却を前提にしないことも、最初にはっきりお伝えします。まずは一度、話を<span class="nb">聞かせてください。</span></p>
       <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
@@ -1421,9 +1452,9 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
       <div class="pf-card rv"><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
         <ul class="pf-tags"><li>経営再建</li><li>成長戦略</li><li>人材採用</li><li>営業体制の構築</li><li>業務改善</li><li>建築業界</li></ul></div>
       <div class="pf-tx rv">
-        <p>株式会社船井総合研究所にて、上位0.5%に入る年間粗利獲得実績を複数年にわたって達成。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型の<span class="nb">コンサルティングを展開してきた。</span></p>
-        <p>同社を退職後も複数の事業の運営に携わりながら、建築業界をはじめとする企業の人材採用、営業体制の構築、業務改善など、幅広い領域で支援の<span class="nb">実績を積み重ねている。</span></p>
-        <p>理論と実務を架橋するアプローチを重視し、企業の持続的な成長に貢献することを信条とする。現在は、地域の工務店・住宅会社を引き継ぎ、売らずに長く経営するグループとして、<span class="nb">株式会社エッジアセットを率いる。</span></p>
+        <p>株式会社船井総合研究所で、コンサルタントとして上位0.5%の年間粗利獲得実績を複数年にわたって納めました。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型のコンサルティングに<span class="nb">取り組んできました。</span></p>
+        <p>同社を退職後も複数の事業の運営に携わりながら、建築業界をはじめとする企業の人材採用、営業体制の構築、<span class="nb">業務改善などを支援しています。</span></p>
+        <p>理論と実務をつなぐ進め方を大切にしています。現在は株式会社エッジアセットの代表として、地域の工務店・住宅会社の事業承継とグループ経営に<span class="nb">取り組んでいます。</span></p>
         <ol class="pf-tl"><li><span>Consulting</span><b>船井総合研究所</b><p>経営再建・成長戦略の実行支援。上位0.5%の年間粗利獲得実績を<span class="nb">複数年にわたり達成。</span></p></li><li><span>Operation</span><b>事業運営と支援</b><p>複数の事業を運営しながら、建築業界を中心に<span class="nb">採用・営業・業務改善を支援。</span></p></li><li><span>Edge Asset</span><b>代表取締役</b><p>工務店・住宅会社の事業承継と<span class="nb">グループ経営に取り組む。</span></p></li></ol>
       </div>
     </div>
@@ -1433,12 +1464,12 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w rv"><p class="band-en">Our stance</p><p class="band-t">社名も、<wbr>社員も、<wbr>施主様との<wbr>約束も。</p><p class="band-s">引き継ぐのは、<span class="nb">株式だけではありません。</span></p></div>
 </section><section class="vmv">
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Vision / Mission / Value</p><p class="sh-ja">私たちが目指すもの</p><h2>地域の<wbr>住まいを<wbr>守り続ける<wbr>会社を、<wbr>全国に。</h2></div></header>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Vision / Mission / Value</p><p class="sh-ja">私たちが目指すもの</p><h2>私たちが<wbr>目指す姿と、<wbr>大切に<wbr>していること</h2></div></header>
     <div class="vm2">
       <div class="rv"><p class="k">VISION</p><h3>地域の<wbr>住まいを<wbr>守り続ける<wbr>会社を、<wbr>全国に。</h3><p>家を建てた会社が、三十年後もその家の点検に伺える。そんな当たり前を、後継者がいない工務店にも<span class="nb">続けられるようにします。</span></p></div>
       <div class="rv"><p class="k">MISSION</p><h3>工務店の<wbr>事業承継を、<wbr>廃業以外の<wbr>選択肢に。</h3><p>継ぐ人がいないという理由で、黒字の会社が消えることをなくします。社名と雇用を残したまま引き継ぐ受け皿を、<span class="nb">住宅業界につくります。</span></p></div>
     </div>
-    <ul class="val"><li class="rv"><p class="n">01</p><h4>売らない</h4><p>買った会社を手放して利益を得ること<span class="nb">を前提にしません。</span></p></li><li class="rv"><p class="n">02</p><h4>現場に口を出さない</h4><p>家づくりの方針は、各社の大工と<span class="nb">設計者が決めます。</span></p></li><li class="rv"><p class="n">03</p><h4>数字は毎月、一緒に見る</h4><p>感覚ではなく月次の数字で、社長と<span class="nb">同じ景色を見ます。</span></p></li><li class="rv"><p class="n">04</p><h4>約束は契約書に書く</h4><p>口約束ではなく、守ることを<span class="nb">条項として残します。</span></p></li></ul>
+    <ul class="val"><li class="rv"><p class="n">01</p><h4>売らない</h4><p>買った会社を手放して利益を得ること<span class="nb">を前提にしません。</span></p></li><li class="rv"><p class="n">02</p><h4>設計と施工の判断は各社に</h4><p>仕様や設計の判断は、各社の大工と設計者が行います。本部は発注の整理と<span class="nb">予算の管理で支えます。</span></p></li><li class="rv"><p class="n">03</p><h4>数字は毎月、一緒に見る</h4><p>感覚ではなく月次の数字で、社長と<span class="nb">同じ景色を見ます。</span></p></li><li class="rv"><p class="n">04</p><h4>約束は契約書に書く</h4><p>口約束ではなく、守ることを<span class="nb">条項として残します。</span></p></li></ul>
   </div>
 </section><section class="team" id="team">
   <div class="w">
@@ -1449,7 +1480,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Capital</p><p class="sh-ja">資金と体制</p><h2>買い取る<wbr>資金と、<wbr>支え続ける<wbr>体制</h2></div><div class="sh-lead"><p>一社目の譲渡を迷わず決めていただけるよう、資金の裏付けと支援体制を<span class="nb">明らかにしています。</span></p></div></header>
     <div class="cap3">
-      <div class="rv"><p class="k">投資枠</p><p class="v"><em class="tbd">【確定後に記載】</em></p><p class="d">グループ化に充てる自己資金と<span class="nb">借入枠の合計です。</span></p></div>
+      <div class="rv"><p class="k">投資枠</p><p class="v"><em class="tbd">【確定後に記載】</em></p><p class="d">工務店・住宅会社の株式取得に充てる自己資金と<span class="nb">借入枠の合計です。</span></p></div>
       <div class="rv"><p class="k">提携金融機関</p><p class="v"><em class="tbd">【確定後に記載】</em></p><p class="d">買収資金と、グループ会社の<span class="nb">運転資金を支えます。</span></p></div>
       <div class="rv"><p class="k">専門家ネットワーク</p><p class="v">税理士・弁護士・M&amp;A実務</p><p class="d">株価算定、契約、許認可、労務までを社内外の<span class="nb">専門家で対応します。</span></p></div>
     </div>
@@ -1472,25 +1503,25 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
     <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Track record</p><p class="sh-ja">実績</p><h2>グループ<wbr>1社目の<wbr>パートナーを<wbr>募集しています</h2></div></header></div>
     <div class="rv">
       <p>エッジアセットは、2026年に設立した新しい会社です。現時点で、グループに入っていただいた会社<span class="nb">はまだありません。</span></p>
-      <p>だからこそ、1社目の会社には、私たちの時間と資金のすべてを注ぎます。グループの仕組みは、1社目の社長と一緒に<span class="nb">つくっていきます。</span></p>
+      <p>だからこそ、1社目の会社には、代表が直接、毎週関わります。グループの仕組みは、1社目の社長と一緒に<span class="nb">つくっていきます。</span></p>
       <dl class="recdl"><div><dt>グループ会社数</dt><dd>0社（2026年10月時点）</dd></div><div><dt>検討中のご相談</dt><dd><em class="tbd">【確定後に記載】</em></dd></div></dl>
       <a class="btn btn-navy" href="contact.html">1社目について相談する <span class="ar"></span></a>
     </div>
   </div>
 </section><section class="compare" id="compare">
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Comparison</p><p class="sh-ja">選ばれる理由</p><h2>事業承継の<wbr>選択肢を<wbr>比べて<wbr>みてください</h2></div><div class="sh-lead"><p>どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢を<span class="nb">ご案内することもあります。</span></p></div></header>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Comparison</p><p class="sh-ja">他の選択肢との比較</p><h2>事業承継の<wbr>選択肢を<wbr>比べて<wbr>みてください</h2></div><div class="sh-lead"><p>どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢を<span class="nb">ご案内することもあります。</span></p></div></header>
     <p class="swipe">表は横にスクロールできます</p>
     <div class="tbl rv">
       <table class="cmp">
         <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
         <tbody>
           <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
-          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
-          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
+          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>期間を定めて契約で約束</small></td><td><span class="mk">×</span></td></tr>
+          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>原則として担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
           <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
           <tr><th>数年後の再売却</th><td>なし</td><td>なし</td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td>なし</td></tr>
-          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td>なし</td></tr>
+          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界によって異なる</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を本部が担う</small></td><td>なし</td></tr>
         </tbody>
       </table>
     </div>
@@ -1508,15 +1539,15 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
       <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
       <div><dt>代表者</dt><dd>代表取締役　谷岡 佑亮</dd></div>
       <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
-      <div><dt>設立</dt><dd>20XX年X月</dd></div>
-      <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
+      <div><dt>設立</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
+      <div><dt>資本金</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／<span class="nb">グループ会社の経営支援</span></dd></div>
       <div><dt>連絡先</dt><dd>TEL <a class="tel-a" href="tel:0300000000">03-0000-0000</a>（平日 9:00–18:00）</dd></div>
     </dl>
   </div>
 </section><section class="closing">
   <div class="w">
-    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>代表が、<wbr>直接<wbr>お話を<wbr>伺います。</h2><p>面談には代表の谷岡が伺います。社外の会議室でも、<span class="nb">オンラインでも構いません。</span></p></div>
     <div class="cl-a">
       <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
       <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
@@ -1529,7 +1560,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>

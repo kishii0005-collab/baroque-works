@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1379,18 +1410,18 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 <main id="top">
 <section class="phero">
   <div class="pg-ph"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
-  <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>ご相談の流れ</p><p class="pen">Flow</p><h1>ご相談の流れ</h1><p class="plead">初回面談から引き継ぎまで、通常は半年ほど。各段階でやること、ご用意いただくもの、話が<span class="nb">伝わる範囲をまとめました。</span></p></div>
+  <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>ご相談の流れ</p><p class="pen">Flow</p><h1>ご相談の流れ</h1><p class="plead">初回面談から最終契約まで通常は半年前後、その後半年ほどかけて引き継ぎます。各段階でやること、ご用意いただくもの、話が<span class="nb">伝わる範囲をまとめました。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
 </section><section class="fdet">
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Process</p><p class="sh-ja">ご相談から引き継ぎまで</p><h2>6つの<wbr>ステップで、<wbr>通常は<wbr>半年<wbr>ほどです</h2></div><div class="sh-lead"><p>急いで決めていただく必要はありません。各段階で、何をして、何をご用意いただき、誰にまで話が伝わるのかを<span class="nb">先にお伝えします。</span></p></div></header>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Process</p><p class="sh-ja">ご相談から引き継ぎまで</p><h2>6つの<wbr>ステップで、<wbr>最終契約まで<wbr>通常は<wbr>半年前後です</h2></div><div class="sh-lead"><p>急いで決めていただく必要はありません。各段階で、何をして、何をご用意いただき、誰にまで話が伝わるのかを<span class="nb">先にお伝えします。</span></p></div></header>
     <div class="gantt rv"><p class="g-k">標準的なスケジュール</p><ol><li><span class="gn">01 初回面談</span><span class="gb"><i style="left:0.0%;width:13.3%"></i></span></li><li><span class="gn">02 秘密保持契約・資料のご提供</span><span class="gb"><i style="left:6.7%;width:13.3%"></i></span></li><li><span class="gn">03 条件のご提示</span><span class="gb"><i style="left:20.0%;width:10.7%"></i></span></li><li><span class="gn">04 詳細調査</span><span class="gb"><i style="left:30.7%;width:22.7%"></i></span></li><li><span class="gn">05 最終契約・お支払い</span><span class="gb"><i style="left:53.3%;width:13.3%"></i></span></li><li><span class="gn">06 ご説明と引き継ぎ</span><span class="gb"><i style="left:66.7%;width:33.3%"></i></span></li></ol><p class="gm"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7ヶ月</span></p></div>
     <ol class="fsteps"><li class="rv"><div class="fs-h"><span class="fs-n">STEP 01</span><p class="fs-en">First meeting</p><h3>初回面談</h3><p class="fs-t">期間の目安　1〜2時間</p></div><div class="fs-b"><p>会社のこと、ご家族のこと、社長ご自身のこれからを伺います。私たちの考え方と、進め方もご説明します。この段階で何かを<span class="nb">決める必要はありません。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>特になし（決算書がなくても構いません）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長お一人</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 02</span><p class="fs-en">NDA & documents</p><h3>秘密保持契約・資料のご提供</h3><p class="fs-t">期間の目安　2〜4週間</p></div><div class="fs-b"><p>秘密保持契約を結んだうえで、会社の数字と体制を拝見します。社員名簿は<span class="nb">匿名でも構いません。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>決算書 3期分</li><li>受注残・施工中物件の一覧</li><li>借入の一覧</li><li>社員構成（匿名可）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・顧問税理士</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 03</span><p class="fs-en">Letter of intent</p><h3>条件のご提示</h3><p class="fs-t">期間の目安　2〜3週間</p></div><div class="fs-b"><p>譲渡価格の考え方、取得する株式の割合、社長の処遇、雇用、引き継ぎ期間を書面でお示しします。納得いくまで<span class="nb">何度でも話し合います。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>ご希望の条件（引退の時期、社員の処遇など）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・ご家族・顧問税理士</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 04</span><p class="fs-en">Due diligence</p><h3>詳細調査</h3><p class="fs-t">期間の目安　1〜2ヶ月</p></div><div class="fs-b"><p>財務・税務・法務・労務に加え、施工中の物件、保証と点検の履歴、建設業許可の要件まで、住宅会社ならではの<span class="nb">論点を確認します。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>契約書・許可関係の書類</li><li>保証書・点検記録</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・経理担当（必要に応じて）</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 05</span><p class="fs-en">Closing</p><h3>最終契約・お支払い</h3><p class="fs-t">期間の目安　約1ヶ月</p></div><div class="fs-b"><p>株式譲渡契約を結び、代金をお支払いします。社長の個人保証の解除について、<span class="nb">金融機関と協議します。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>印鑑・株券など、手続きに必要な書類</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・ご家族・金融機関</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 06</span><p class="fs-en">Post merger</p><h3>ご説明と引き継ぎ</h3><p class="fs-t">期間の目安　6ヶ月〜</p></div><div class="fs-b"><p>社員の皆さま、協力業者さん、施主様へのご説明に私たちも同席します。その後は100日の計画に沿って、無理の<span class="nb">ない順番で引き継ぎます。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>特になし</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">全員に公表</p></div></div></div></li></ol>
   </div>
 </section><section class="secret dark">
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Confidential</p><p class="sh-ja">秘密を守るために</p><h2>ご相談の<wbr>事実は、<wbr>社員にも<wbr>取引先にも<wbr>伝わりません</h2></div></header>
-    <ul class="sc-l"><li class="rv"><span>01</span><h3>面談は社外か<wbr>オンラインで</h3><p>会社に伺うことはありません。ご自宅の近く、私たちの事務所、または<span class="nb">オンラインで行います。</span></p></li><li class="rv"><span>02</span><h3>連絡方法は<wbr>事前に決める</h3><p>郵送物や電話は、社長と決めた方法でのみご連絡します。会社の代表番号に<span class="nb">お電話することはありません。</span></p></li><li class="rv"><span>03</span><h3>秘密保持契約は<wbr>初回から</h3><p>ご希望があれば、初回の面談の前に<span class="nb">秘密保持契約を結びます。</span></p></li></ul>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Confidential</p><p class="sh-ja">秘密を守るために</p><h2>最終契約までは、<wbr>ご了承なく<wbr>社員や取引先に<wbr>お伝えしません</h2></div></header>
+    <ul class="sc-l"><li class="rv"><span>01</span><h3>面談は社外か<wbr>オンラインで</h3><p>ご相談の段階で会社に伺うことはありません。ご自宅の近く、私たちの事務所、または<span class="nb">オンラインで行います。</span></p></li><li class="rv"><span>02</span><h3>連絡方法は<wbr>事前に決める</h3><p>郵送物や電話は、社長と決めた方法でのみご連絡します。会社の代表番号に<span class="nb">お電話することはありません。</span></p></li><li class="rv"><span>03</span><h3>秘密保持契約は<wbr>初回から</h3><p>ご希望があれば、初回の面談の前に<span class="nb">秘密保持契約を結びます。</span></p></li></ul>
   </div>
 </section><section class="think">
   <div class="w grid">
@@ -1402,7 +1433,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w rv"><p class="band-en">No rush</p><p class="band-t">決めるのは、<wbr>社長です。</p><p class="band-s">どの段階でも、立ち止まったり、お断りいただいた<span class="nb">りして構いません。</span></p></div>
 </section><section class="closing">
   <div class="w">
-    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>初回面談の<wbr>日程だけ<wbr>決めませんか。</h2><p>初回面談で何かを決めていただく必要はありません。1〜2時間、お話を伺うと<span class="nb">ころから始めます。</span></p></div>
     <div class="cl-a">
       <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
       <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
@@ -1415,7 +1446,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>

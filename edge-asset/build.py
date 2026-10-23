@@ -482,36 +482,36 @@ support=[
  ('集客','MARKETING','q1tyQip5AQQ','大阪の住宅の外観','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
  ('採用','RECRUITING','4UVtFIfK1eo','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
  ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
- ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
+ ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様・設計の判断、施主様との打ち合わせ、現場での判断'),
 ]
 rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}"><div class="ph mask viz">{VIZ[en]}</div></div><div class="tx rv" data-no="0{k+1}"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<ul class="rw-l">{''.join(f'<li>{x}</li>' for x in SUPPORT_MORE[en])}</ul><dl><div><dt>グループが担う</dt><dd>{nb(g,8)}</dd></div><div><dt>各社に残す</dt><dd>{nb(kk,8)}</dd></div></dl></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
 
 promises=[('社名・|屋号は|そのまま|残します','看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、いちばんの資産です。'),
  ('雇用と|給与水準を|守ります','グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は契約書に明記します。'),
- ('保証と|定期点検を|引き継ぎます','引渡し済みの家の保証・点検・アフター対応は、これまでと同じ担当者が続けます。'),
+ ('保証と|定期点検を|引き継ぎます','引き渡し済みの家の保証・点検・アフター対応は、原則として、これまでの担当者が続けます。'),
  ('取引先とは、|適正な|条件で|向き合います','長年の協力業者さんとの関係は大切にします。そのうえで仕入れ値・外注費は相場と照らして見直し、品質・納期・価格の3つを基準に、適正な条件で交渉します。'),
  ('社長の|個人保証の|解除に|取り組みます','借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除を目指します。')]
 plist=''.join(f'<div class="pi rv"><span class="n">{i+1:02d}</span><h3>{W(h)}</h3>{P(t)}</div>' for i,(h,t) in enumerate(promises))
 
 people=[('社長へ','辞める|時期は、|ご自身で|決められます。','引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と後継者の育成も、一緒に進めます。'),
- ('社員の皆さまへ','明日からの|仕事は|変わりません。','職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの選択肢が増えます。'),
- ('施主様へ','点検に|伺うのは|同じ|担当者です。','保証も定期点検も窓口も変わりません。施工中の工事も、契約どおりにお引渡しします。'),
+ ('社員の皆さまへ','現場の|仕事と|職場は|変わりません。','職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの選択肢が増えます。'),
+ ('施主様へ','保証も|点検も、|これまで|どおりです。','保証も定期点検も窓口も変わりません。施工中の工事も、契約どおりにお引き渡しします。'),
  ('協力業者さんへ','いい仕事には、|適正な|価格で|応えます。','品質・納期・価格を基準にお取引します。グループの他社の現場をお願いする機会も増えていきます。')]
 pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</article>' for w,h,t in people)
 
-cases=[('後継者不在','TJ4CndIc9z8','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
- ('成長の壁','4UVtFIfK1eo','木造の骨組み','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
+cases=[('後継者不在','TJ4CndIc9z8','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引き渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
+ ('成長の壁','4UVtFIfK1eo','木造の骨組み','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引き渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
  ('廃業の検討','q1tyQip5AQQ','大きな窓のある室内','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
 cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
 
-steps=[('初回面談','1–2 hours','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2–4 weeks','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2–3 weeks','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1–2 months','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','1 month','株式譲渡契約の締結と、個人保証の解除手続きを行います。'),('ご説明と|引き継ぎ','6 months–','社員・施主様への説明に、私たちも同席します。')]
+steps=[('初回面談','1〜2時間','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2〜4週間','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2〜3週間','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1〜2ヶ月','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','約1ヶ月','株式譲渡契約を結び、個人保証の解除に向けて金融機関と協議します。'),('ご説明と|引き継ぎ','6ヶ月〜','社員・施主様への説明に、私たちも同席します。')]
 st=''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(p)}</li>' for h,t,p in steps)
 
-faqs=[('相談したことが、社員や取引先に知られることはありませんか。','ありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約は初回面談の段階から結べます。'),
+faqs=[('相談したことが、社員や取引先に知られることはありませんか。','ご了承なくお伝えすることはありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約はご希望があれば初回面談の前に結べます。'),
  ('社員には、いつ、どう伝えればいいですか。','原則として最終契約の後です。幹部に先に伝えるか、全員に一度に伝えるかは会社によって違うため、順番と話す内容を一緒に準備します。説明の場には私たちも同席します。'),
  ('譲渡価格はどのように決まりますか。','純資産に、今後数年分の利益を踏まえた収益力を加えて算定するのが基本です。受注残や保有不動産、退職金の支給なども考慮し、計算の根拠は書面でお示しします。'),
  ('赤字の会社でも相談できますか。','はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の選択肢をお伝えします。'),
- ('建設業許可はそのまま使えますか。','株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。経営業務の管理責任者や専任技術者が退任される場合は後任が必要になるため、交代の時期を事前に設計します。'),
+ ('建設業許可はそのまま使えますか。','株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。常勤役員等（いわゆる経管）や営業所技術者が退任される場合は後任が必要になるため、交代の時期を事前に設計します。'),
  ('社長は辞めなければいけませんか。','いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。'),
  ('数年後に、別の会社へ売られることはありませんか。','買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を続ける考え方です。')]
 fq=''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in faqs)
@@ -571,7 +571,7 @@ HTML=f'''<!doctype html>
       {head('About','私たちについて','') .replace('<h2></h2>','')}
       <p class="catch">{W('家は、|建てた後の|三十年の|ほうが長い。')}</p>
       <div class="body">
-        {P('工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検には誰が行くのか」。')}
+        {P('工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらった施主様のことです。「自分が辞めたら、あの家の点検には誰が行くのか」。')}
         {P('エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった、一社では手が回らない仕事をグループで支えます。')}
       </div>
       <a class="tl" href="#support">グループの支援を見る {AR}</a>
@@ -619,14 +619,14 @@ HTML=f'''<!doctype html>
     <div class="rv">
       <div class="frame navy"><div class="ph">{img('rD28m9BmXVs','大阪のオフィスビル',1000)}<span>代表写真は撮影予定</span></div></div>
       <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
-      <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングを展開</li><li>独立後、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
+      <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングに従事</li><li>同社を退職後、複数の事業運営に携わりながら、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
     </div>
     <div class="letter rv">
       {head('Message','代表メッセージ','').replace('<h2></h2>','')}
       <p class="lede">{W('会社を|売る、|という|言葉に|抵抗がある方へ。')}</p>
-      {P('経営コンサルタントとして、そして事業の運営者として、建築業界を中心に多くの会社の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を何人も見てきました。')}
+      {P('経営コンサルタントとして、そして事業の運営者として、建築業界を中心に、さまざまな会社の経営の支援に携わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択を考える社長に、何度も出会ってきました。')}
       {P('大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。')}
-      {P('私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を聞かせてください。')}
+      {P('私たちは、その不安に正面から答えるために会社をつくりました。名前を残すこと、施主様との約束を守ること。どちらも契約書に書き込みます。売却を前提にしないことも、最初にはっきりお伝えします。まずは一度、話を聞かせてください。')}
       <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
@@ -667,18 +667,18 @@ HTML=f'''<!doctype html>
 
 <section class="compare" id="compare">
   <div class="w">
-    {head('Comparison','選ばれる理由','事業承継の|選択肢を|比べて|みてください','どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢をご案内することもあります。')}
+    {head('Comparison','他の選択肢との比較','事業承継の|選択肢を|比べて|みてください','どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢をご案内することもあります。')}
     <p class="swipe">表は横にスクロールできます</p>
     <div class="tbl rv">
       <table class="cmp">
         <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
         <tbody>
           <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
-          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
-          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
+          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>期間を定めて契約で約束</small></td><td><span class="mk">×</span></td></tr>
+          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>原則として担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
           <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
           <tr><th>数年後の再売却</th><td>なし</td><td>なし</td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td>なし</td></tr>
-          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td>なし</td></tr>
+          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界によって異なる</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を本部が担う</small></td><td>なし</td></tr>
         </tbody>
       </table>
     </div>
@@ -696,12 +696,12 @@ HTML=f'''<!doctype html>
 
 <section class="flow" id="flow">
   <div class="w">
-    {head('Flow','ご相談の流れ','ご相談から|引き継ぎまで、|通常は|半年|ほどです','ご相談の事実が社員や取引先に伝わることはありません。面談は社外かオンラインで行います。')}
+    {head('Flow','ご相談の流れ','ご相談から|最終契約まで、|通常は|半年前後です','ご了承なく、社員や取引先にお伝えすることはありません。面談は社外かオンラインで行います。')}
     <ol class="steps">{st}</ol>
     <div class="open">
       <div class="ph">{img('Q6sCJFHCubc','東京の住宅街',1400)}</div>
       <div class="tx rv">
-        <h3>{W('規模も|エリアも|業績も、|問いません。')}</h3>
+        <h3>{W('規模や|エリアだけで、|お断りする|ことは|ありません。')}</h3>
         {P('年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社であればまずはお話を伺います。','lead')}
         <ul>{''.join('<li>'+W(x)+'</li>' for x in ['後継者が|決まっていない','数年以内に|引退を|考えている','赤字が続いて|先行きが|不安','人が採れず、|成長が|止まっている','廃業も|選択肢に|入れている','社員と|施主様の|今後が心配'])}</ul>
         <p class="note">{W('ひとつでも|当てはまれば、|ご相談ください。|決算書は|なくても|構いません。')}</p>
@@ -725,8 +725,8 @@ HTML=f'''<!doctype html>
       <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
       <div><dt>代表者</dt><dd>代表取締役　谷岡 佑亮</dd></div>
       <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
-      <div><dt>設立</dt><dd>20XX年X月</dd></div>
-      <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
+      <div><dt>設立</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
+      <div><dt>資本金</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／<span class="nb">グループ会社の経営支援</span></dd></div>
       <div><dt>連絡先</dt><dd>TEL 03-0000-0000（平日 9:00–18:00）</dd></div>
     </dl>
@@ -739,7 +739,7 @@ HTML=f'''<!doctype html>
     <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
     <div class="ways">
-      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接伺います。<span class="nb">オンライン・社外</span><span class="nb">どちらでも。</span></span><i>日程を相談する</i></a>
+      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接お会いします。<span class="nb">社外でもオンラインでも</span><span class="nb">構いません。</span></span><i>日程を相談する</i></a>
       <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>平日9時〜18時。<span class="nb">夜間・土日も調整します。</span></span><i>03-0000-0000</i></a>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
@@ -764,7 +764,7 @@ HTML=f'''<!doctype html>
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">選ばれる理由</a></li><li><a href="#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">モデルケース</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="#contact">無料で相談する {AR}</a></div>
     </div>
@@ -943,7 +943,7 @@ def page(fname,title,body,desc):
 </html>
 """
 def tolinks(x):
-    return x.replace('href="#contact"','href="contact.html"').replace('href="#cf"','href="contact.html#cf"')
+    return x.replace('href="#contact"','href="contact.html"').replace('href="#cf"','href="contact.html#cf"').replace('href="#faq"','href="contact.html#faq"')
 
 # ---------- top page hero (split layout) ----------
 fv_slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,i>0)}</div>' for i,(pid,alt,_) in enumerate(hero_slides))
@@ -982,7 +982,7 @@ CAPITAL=f"""<section class="capital dark" id="capital">
   <div class="w">
     {head('Capital','資金と体制','買い取る|資金と、|支え続ける|体制','一社目の譲渡を迷わず決めていただけるよう、資金の裏付けと支援体制を明らかにしています。')}
     <div class="cap3">
-      <div class="rv"><p class="k">投資枠</p><p class="v">{TBD}</p>{P('グループ化に充てる自己資金と借入枠の合計です。','d')}</div>
+      <div class="rv"><p class="k">投資枠</p><p class="v">{TBD}</p>{P('工務店・住宅会社の株式取得に充てる自己資金と借入枠の合計です。','d')}</div>
       <div class="rv"><p class="k">提携金融機関</p><p class="v">{TBD}</p>{P('買収資金と、グループ会社の運転資金を支えます。','d')}</div>
       <div class="rv"><p class="k">専門家ネットワーク</p><p class="v">税理士・弁護士・M&amp;A実務</p>{P('株価算定、契約、許認可、労務までを社内外の専門家で対応します。','d')}</div>
     </div>
@@ -994,8 +994,8 @@ RECORD=f"""<section class="record" id="record">
     <div class="rv">{head('Track record','実績','グループ|1社目の|パートナーを|募集しています')}</div>
     <div class="rv">
       {P('エッジアセットは、2026年に設立した新しい会社です。現時点で、グループに入っていただいた会社はまだありません。')}
-      {P('だからこそ、1社目の会社には、私たちの時間と資金のすべてを注ぎます。グループの仕組みは、1社目の社長と一緒につくっていきます。')}
-      <dl class="recdl"><div><dt>グループ会社数</dt><dd>0社（2026年10月時点）</dd></div><div><dt>検討中のご相談</dt><dd>{TBD}</dd></div></dl>
+      {P('だからこそ、1社目の会社には、代表が直接、毎週関わります。グループの仕組みは、1社目の社長と一緒につくっていきます。')}
+      <dl class="recdl"><div><dt>グループ会社数</dt><dd>0社（2026年10月時点）</dd></div><div><dt>検討中のご相談</dt><dd><em class="tbd">【確定後に記載】</em></dd></div></dl>
       <a class="btn btn-navy" href="contact.html">1社目について相談する {AR}</a>
     </div>
   </div>
@@ -1027,13 +1027,13 @@ PROMISE_P=f"""<section class="pp">
 PFLOW=f"""<section class="pflow">
   <div class="w">
     {head('Process','ご紹介の流れ','ご紹介から|クロージングまで')}
-    <ol class="steps">{''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(d)}</li>' for h,t,d in [('ノンネーム情報の|ご共有','Day 0','エリア・事業内容・規模がわかる範囲で構いません。'),('初回のご回答','5 days','検討を進めるかどうかと、その理由をお伝えします。'),('秘密保持契約・|資料の検討','2–4 weeks','決算書等をもとに、譲渡価格の考え方を整理します。'),('意向表明','2–3 weeks','価格・雇用・社長の処遇を書面でご提示します。'),('詳細調査','1–2 months','財務・法務・労務・許認可・施工中物件を確認します。'),('最終契約・|クロージング','1 month','株式譲渡契約の締結と、代金のお支払いを行います。')])}</ol>
+    <ol class="steps">{''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(d)}</li>' for h,t,d in [('ノンネーム情報の|ご共有','Day 0','エリア・事業内容・規模がわかる範囲で構いません。'),('初回のご回答','5営業日','検討を進めるかどうかと、その理由をお伝えします。'),('秘密保持契約・|資料の検討','2〜4週間','決算書等をもとに、譲渡価格の考え方を整理します。'),('意向表明','2〜3週間','価格・雇用・社長の処遇を書面でご提示します。'),('詳細調査','1〜2ヶ月','財務・法務・労務・許認可・施工中物件を確認します。'),('最終契約・|クロージング','約1ヶ月','株式譲渡契約の締結と、代金のお支払いを行います。')])}</ol>
   </div>
 </section>"""
 PCONTACT=f"""<section class="pcon dark">
   <div class="w pc2">
     <div class="rv">{head('Contact','ご紹介の窓口','案件のご紹介・|ご相談は|こちらへ')}</div>
-    <div class="rv"><dl class="pdl"><div><dt>担当</dt><dd>代表取締役　谷岡 佑亮</dd></div><div><dt>メール</dt><dd>{TBD}</dd></div><div><dt>電話</dt><dd>03-0000-0000（平日 9:00–18:00）</dd></div></dl><a class="btn btn-white" href="contact.html">フォームから連絡する {AR}</a></div>
+    <div class="rv"><dl class="pdl"><div><dt>担当</dt><dd>代表取締役　谷岡 佑亮</dd></div><div><dt>メール</dt><dd><em class="tbd">【確定後に記載】</em></dd></div><div><dt>電話</dt><dd>03-0000-0000（平日 9:00–18:00）</dd></div></dl><a class="btn btn-white" href="contact.html">フォームから連絡する {AR}</a></div>
   </div>
 </section>"""
 news_items=[('2026.10.22','お知らせ','コーポレートサイトを公開しました。')]
@@ -1059,13 +1059,13 @@ TOPLINKS=f"""<section class="links">
 # ---------- pages ----------
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'more.py')).read())
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pages2.py')).read())
-home=FV+TRUST+tolinks(sec['market'])+ISSUES+tolinks(sec['stance'])+MODEL+TOPCOST+tolinks(sec['promise']+sec['people'].replace(sec['people'][sec['people'].index('<div class="frame">'):sec['people'].index('<div class="pg">')],'')+sec['cta'])+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPSEO+TOPFAQ+TOPCOL+TOPNEWS
+home=FV+TRUST+tolinks(sec['market'])+ISSUES+tolinks(sec['stance'])+MODEL+tolinks(sec['promise'])+TOPCOST+tolinks(sec['people'].replace(sec['people'][sec['people'].index('<div class="frame">'):sec['people'].index('<div class="pg">')],'')+sec['cta'])+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPSEO+TOPFAQ+TOPCOL+TOPNEWS
 home=home.replace('<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する','<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する')
-company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+subnav([('about','考え方'),('message','代表メッセージ'),('profile','代表プロフィール'),('team','体制'),('capital','資金と体制'),('record','実績'),('compare','他の選択肢との比較'),('company','会社概要')])+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+PROFILE+COMPANY_BAND+VMV+TEAM2+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+CLOSE+nextlink('service.html','Our support','グループの支援')
+company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+subnav([('about','考え方'),('message','代表メッセージ'),('profile','代表プロフィール'),('team','体制'),('capital','資金と体制'),('record','実績'),('compare','他の選択肢との比較'),('company','会社概要')])+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+PROFILE+COMPANY_BAND+VMV+TEAM2+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+CLOSE_CO+nextlink('service.html','Our support','グループの支援')
 partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT+nextlink('cases.html','Model cases','モデルケース')
 news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS+CLOSE+nextlink('company.html','About us','私たちについて')
 contact=phero('Contact','ご相談・お問い合わせ','ご相談は無料です。社名を伏せたままでも構いません。','Q6sCJFHCubc')+re.sub(r'<div class="ph side">.*?</div>',CONTACT_ASIDE,sec['contact'],count=1,flags=re.S)+PREP+sec['faq']
-service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+CLOSE+nextlink('cases.html','Model cases','モデルケース')
+service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+CLOSE_SVC+nextlink('cases.html','Model cases','モデルケース')
 bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
  'company.html':(company,'エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。'),
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
@@ -1086,8 +1086,8 @@ for a in ARTICLES:
     PAGES.append((a['slug'],a['title']))
     bodies[a['slug']]=(article_page(a),a['lead'][:110])
 PAGES+= [('cases.html','モデルケース'),('flow.html','ご相談の流れ')]
-bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+CLOSE+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
-bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から引き継ぎまで、通常は半年ほど。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+CLOSE+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
+bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+CLOSE_CASE+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
+bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から最終契約まで通常は半年前後、その後半年ほどかけて引き継ぎます。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+CLOSE_FLOW+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
 for i,c in enumerate(CASES):
     PAGES.append((c['slug']+'.html','モデルケース '+f'{i+1:02d}｜'+c['tag']))
     bodies[c['slug']+'.html']=(case_page(c,i),c['short'])

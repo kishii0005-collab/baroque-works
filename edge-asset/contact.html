@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1386,14 +1417,14 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <p class="ca-k">After sending</p>
   <h3>送信後の流れ</h3>
   <ol><li><b>01</b><span>2営業日以内に、<wbr>代表から<wbr>ご連絡します</span></li><li><b>02</b><span>日時と場所を<wbr>決めます（社外・<wbr>オンライン）</span></li><li><b>03</b><span>初回面談。<wbr>決算書が<wbr>なくても<wbr>構いません</span></li></ol>
-  <p class="ca-sec">秘密保持契約は、初回の面談の前から結べます。会社の代表番号に<span class="nb">お電話することはありません。</span></p>
+  <p class="ca-sec">秘密保持契約は、ご希望があれば初回面談の前に結べます。会社の代表番号に<span class="nb">お電話することはありません。</span></p>
   <p class="ca-tel"><span>お電話でのご相談</span><a class="tel-a" href="tel:0300000000">03-0000-0000</a><small>平日 9:00–18:00　夜間・土日も調整します</small></p>
 </aside>
   <div class="body">
     <h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません</h2>
     <p class="lead">ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に<span class="nb">伝えることはありません。</span></p>
     <div class="ways">
-      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接伺います。<span class="nb">オンライン・社外</span><span class="nb">どちらでも。</span></span><i>日程を相談する</i></a>
+      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接お会いします。<span class="nb">社外でもオンラインでも</span><span class="nb">構いません。</span></span><i>日程を相談する</i></a>
       <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>平日9時〜18時。<span class="nb">夜間・土日も調整します。</span></span><i>03-0000-0000</i></a>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
@@ -1420,7 +1451,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 </section><section class="faq" id="faq">
   <div class="w grid">
     <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">よくあるご質問</p><h2>ご相談の<wbr>前に<wbr>よく<wbr>聞かれること</h2></div></header></div>
-    <div class="rv"><details><summary><span class="q">Q.</span><span>相談したことが、社員や取引先に知られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>ありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約は初回面談の<span class="nb">段階から結べます。</span></p></div></details><details><summary><span class="q">Q.</span><span>社員には、いつ、<span class="nb">どう伝えればいいですか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>原則として最終契約の後です。幹部に先に伝えるか、全員に一度に伝えるかは会社によって違うため、順番と話す内容を一緒に準備します。説明の場には<span class="nb">私たちも同席します。</span></p></div></details><details><summary><span class="q">Q.</span><span>譲渡価格はどのように<span class="nb">決まりますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>純資産に、今後数年分の利益を踏まえた収益力を加えて算定するのが基本です。受注残や保有不動産、退職金の支給なども考慮し、計算の根拠は<span class="nb">書面でお示しします。</span></p></div></details><details><summary><span class="q">Q.</span><span>赤字の会社でも<span class="nb">相談できますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の<span class="nb">選択肢をお伝えします。</span></p></div></details><details><summary><span class="q">Q.</span><span>建設業許可はその<span class="nb">まま使えますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。経営業務の管理責任者や専任技術者が退任される場合は後任が必要になるため、交代の時期を<span class="nb">事前に設計します。</span></p></div></details><details><summary><span class="q">Q.</span><span>社長は<span class="nb">辞めなければいけませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況を<span class="nb">ふまえて決めます。</span></p></div></details><details><summary><span class="q">Q.</span><span>数年後に、別の会社へ売られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を<span class="nb">続ける考え方です。</span></p></div></details></div>
+    <div class="rv"><details><summary><span class="q">Q.</span><span>相談したことが、社員や取引先に知られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>ご了承なくお伝えすることはありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約はご希望が<span class="nb">あれば初回面談の前に結べます。</span></p></div></details><details><summary><span class="q">Q.</span><span>社員には、いつ、<span class="nb">どう伝えればいいですか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>原則として最終契約の後です。幹部に先に伝えるか、全員に一度に伝えるかは会社によって違うため、順番と話す内容を一緒に準備します。説明の場には<span class="nb">私たちも同席します。</span></p></div></details><details><summary><span class="q">Q.</span><span>譲渡価格はどのように<span class="nb">決まりますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>純資産に、今後数年分の利益を踏まえた収益力を加えて算定するのが基本です。受注残や保有不動産、退職金の支給なども考慮し、計算の根拠は<span class="nb">書面でお示しします。</span></p></div></details><details><summary><span class="q">Q.</span><span>赤字の会社でも<span class="nb">相談できますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の<span class="nb">選択肢をお伝えします。</span></p></div></details><details><summary><span class="q">Q.</span><span>建設業許可はその<span class="nb">まま使えますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。常勤役員等（いわゆる経管）や営業所技術者が退任される場合は後任が必要になるため、交代の時期を<span class="nb">事前に設計します。</span></p></div></details><details><summary><span class="q">Q.</span><span>社長は<span class="nb">辞めなければいけませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況を<span class="nb">ふまえて決めます。</span></p></div></details><details><summary><span class="q">Q.</span><span>数年後に、別の会社へ売られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を<span class="nb">続ける考え方です。</span></p></div></details></div>
   </div>
 </section>
 </main>
@@ -1429,7 +1460,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>

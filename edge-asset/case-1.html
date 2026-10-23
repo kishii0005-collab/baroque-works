@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1386,14 +1417,14 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
     <p class="plead">株式はグループが引き受け、経営は番頭格の社員が継ぐ。所有と経営を分けて、社内承継を<span class="nb">実現した想定例です。</span></p>
   </div>
 </section>
-<section class="cprof"><div class="w"><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>事業</dt><dd>注文住宅・リフォーム</dd></div><div><dt>規模</dt><dd>年商 約8億円／年間引渡し 25棟</dd></div><div><dt>社員</dt><dd>18名</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl></div></section>
+<section class="cprof"><div class="w"><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>事業</dt><dd>注文住宅・リフォーム</dd></div><div><dt>規模</dt><dd>年商 約8億円／年間引き渡し 25棟</dd></div><div><dt>社員</dt><dd>18名</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl></div></section>
 <section class="cbody">
   <div class="w cb-grid">
     <aside class="cb-side"><p class="cb-k">Contents</p><ol><li><a href="#c-before">ご相談前の状況</a></li><li><a href="#c-scheme">引き継ぎの形</a></li><li><a href="#c-after">グループ入り後の1年</a></li><li><a href="#c-change">変わったこと</a></li><li><a href="#c-point">この事例のポイント</a></li></ol><a class="btn btn-navy" href="contact.html" target="_blank" rel="noopener">似た状況を相談する <span class="ar"></span></a></aside>
     <div class="cb-main">
       <div class="cb-sec rv" id="c-before"><p class="cb-n">01</p><h2>ご相談前の状況</h2><ul class="cb-iss"><li>長男は県外で会社員。家業を継ぐ意思はない</li><li>番頭格の工事部長（52歳）に継がせたいが、株式を買い取る資金を用意できない</li><li>社長個人が、会社の借入 約3億円の連帯保証を負っている</li><li>引き渡したOB施主様 約600棟の定期点検が、今後も続く</li></ul><p class="cb-trg"><b>ご相談のきっかけ</b>取引銀行との面談で事業承継が話題に上ったことをきっかけに、仲介会社経由でご相談いただきました。ご希望は「会社を残すこと」と「部長を社長に<span class="nb">すること」の両立でした。</span></p></div>
-      <div class="cb-sec rv" id="c-scheme"><p class="cb-n">02</p><h2>引き継ぎの形</h2><table class="cb-tbl"><tr><th>取得する株式</th><td>100%（株式譲渡）</td></tr><tr><th>社長の処遇</th><td>2年間、代表権のない会長として残留</td></tr><tr><th>次の社長</th><td>工事部長が1年目に取締役、3年目に代表取締役へ</td></tr><tr><th>社名・屋号</th><td>変更なし</td></tr><tr><th>雇用・給与</th><td>全員継続。給与体系も変更なし</td></tr><tr><th>個人保証</th><td>クロージング時に金融機関と協議し、解除</td></tr><tr><th>期間</th><td>初回面談からクロージングまで 約7ヶ月</td></tr></table></div>
-      <div class="cb-sec rv" id="c-after"><p class="cb-n">03</p><h2>グループ入り後の1年</h2><ol class="cb-tl"><li><span>Day 1</span><p>社長と私たちで、全社員に直接ご説明</p></li><li><span>30 days</span><p>月次決算をグループ本部で締める体制へ移行</p></li><li><span>100 days</span><p>部長を交えた経営会議を毎月開催。実行予算の管理を開始</p></li><li><span>1 year</span><p>部長が取締役に就任。現場監督を2名採用</p></li></ol></div>
+      <div class="cb-sec rv" id="c-scheme"><p class="cb-n">02</p><h2>引き継ぎの形</h2><table class="cb-tbl"><tr><th>取得する株式</th><td>100%（株式譲渡）</td></tr><tr><th>社長の処遇</th><td>2年間、代表権のない会長として残留</td></tr><tr><th>次の社長</th><td>工事部長が1年目に取締役、3年目に代表取締役へ</td></tr><tr><th>社名・屋号</th><td>変更なし</td></tr><tr><th>雇用・給与</th><td>全員継続。給与水準は維持</td></tr><tr><th>個人保証</th><td>クロージング時に金融機関と協議し、解除</td></tr><tr><th>期間</th><td>初回面談からクロージングまで 約7ヶ月</td></tr></table></div>
+      <div class="cb-sec rv" id="c-after"><p class="cb-n">03</p><h2>グループ入り後の1年</h2><ol class="cb-tl"><li><span>初日</span><p>社長と私たちで、全社員に直接ご説明</p></li><li><span>30日後</span><p>月次決算をグループ本部で締める体制へ移行</p></li><li><span>100日後</span><p>部長を交えた経営会議を毎月開催。実行予算の管理を開始</p></li><li><span>1年後</span><p>部長が取締役に就任。現場監督を2名採用</p></li></ol></div>
       <div class="cb-sec rv" id="c-change"><p class="cb-n">04</p><h2>変わったこと</h2><div class="cb-ch"><div class="cb-c"><p class="cb-ck">月次の数字</p><p class="cb-b"><small>Before</small>年1回の決算のみ</p><p class="cb-a"><small>After</small>翌月10日に確定</p></div><div class="cb-c"><p class="cb-ck">社長の個人保証</p><p class="cb-b"><small>Before</small>約3億円</p><p class="cb-a"><small>After</small>解除</p></div><div class="cb-c"><p class="cb-ck">次の社長</p><p class="cb-b"><small>Before</small>未定</p><p class="cb-a"><small>After</small>社内の工事部長に決定</p></div></div></div>
       <blockquote class="cb-voice rv"><p>一番怖かったのは、社員に「売られた」と思われることでした。説明の場に一緒に立っても<span class="nb">らえたのが大きかった。</span></p><cite>社長の声（想定）</cite></blockquote>
       <div class="cb-sec rv" id="c-point"><p class="cb-n">05</p><h2>この事例のポイント</h2><p class="cb-pt">社内承継の一番の壁は、株式を買い取る資金です。グループが株式を引き受け、経営は社員が継ぐ形にすれば、資金の問題と「誰が継ぐか」の問題を<span class="nb">切り分けられます。</span></p></div>
@@ -1403,17 +1434,17 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 </section>
 <section class="cother"><div class="w"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Other cases</p><p class="sh-ja">ほかのモデルケース</p><h2>ほかの<wbr>ご相談の<wbr>かたち</h2></div></header><div class="cgrid c3"><a class="ccase rv" href="case-2.html" target="_blank" rel="noopener">
   <div class="ph"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="木造の骨組み" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>02</b></span></div>
-  <div class="cc-tx"><p class="cc-tag"><span>成長の壁</span>Growth</p><h3>受注は<wbr>あるのに、<wbr>人が<wbr>採れず<wbr>年20棟から<wbr>伸びない。</h3><p>社長は続投し、株式の一部も持ち続ける。採用・集客・管理部門をグループで支え、社長が営業と現場に<span class="nb">戻った想定例です。</span></p><dl><div><dt>エリア</dt><dd>首都圏郊外</dd></div><div><dt>規模</dt><dd>年商 約6億円／年間引渡し 20棟</dd></div><div><dt>社長</dt><dd>55歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
+  <div class="cc-tx"><p class="cc-tag"><span>成長の壁</span>Growth</p><h3>受注は<wbr>あるのに、<wbr>人が<wbr>採れず<wbr>年20棟から<wbr>伸びない。</h3><p>社長は続投し、株式の一部も持ち続ける。採用・集客・管理部門をグループで支え、社長が営業と現場に<span class="nb">戻った想定例です。</span></p><dl><div><dt>エリア</dt><dd>首都圏郊外</dd></div><div><dt>規模</dt><dd>年商 約6億円／年間引き渡し 20棟</dd></div><div><dt>社長</dt><dd>55歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a><a class="ccase rv" href="case-3.html" target="_blank" rel="noopener">
   <div class="ph"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="大きな窓のある室内" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>03</b></span></div>
   <div class="cc-tx"><p class="cc-tag"><span>廃業の検討</span>Continuity</p><h3>体力的に<wbr>限界。<wbr>でも<wbr>施主様の<wbr>アフターだけは<wbr>残したい。</h3><p>社名とアフター窓口を残し、近隣のグループ会社と管理部門・仕入れを共通化。社長は半年で<span class="nb">引退した想定例です。</span></p><dl><div><dt>エリア</dt><dd>地方の郡部</dd></div><div><dt>規模</dt><dd>年商 約3億円</dd></div><div><dt>社長</dt><dd>72歳・創業者</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a><a class="ccase rv" href="case-4.html" target="_blank" rel="noopener">
   <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夕暮れの住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>04</b></span></div>
-  <div class="cc-tx"><p class="cc-tag"><span>粗利の低下</span>Cost</p><h3>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h3><p>仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引渡し 35棟</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
+  <div class="cc-tx"><p class="cc-tag"><span>粗利の低下</span>Cost</p><h3>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h3><p>グループ入り後に仕入れ値の見直し、発注の集約、実行予算の徹底で粗利を立て直し、2年後に社内の後継者へ社長を<span class="nb">引き継ぐ想定例です。</span></p><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引き渡し 35棟</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a></div></div></section>
 <section class="closing">
   <div class="w">
-    <div class="cl-t"><p class="cl-en">Contact</p><h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</h2><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+    <div class="cl-t"><p class="cl-en">Contact</p><h2>似た状況でしたら、<wbr>そのまま<wbr>ご相談ください。</h2><p>事例と条件が違っていても構いません。会社の状況を伺い、<span class="nb">取りうる形をご説明します。</span></p></div>
     <div class="cl-a">
       <a class="cl-b" href="contact.html" target="_blank" rel="noopener"><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
       <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
@@ -1426,7 +1457,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>

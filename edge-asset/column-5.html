@@ -1347,6 +1347,37 @@ section[id],[id^="c-"]{scroll-margin-top:96px}
 @media (max-width:760px){header.site .gnav .btn{display:inline-flex;padding:8px 14px;font-size:12px;gap:0;margin-right:58px;min-height:0}header.site .gnav .btn .ar{display:none}}
 header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 @media (max-width:760px){header.site .logo b{font-size:15px;letter-spacing:.14em}header.site .logo small{font-size:9px}header.site .gnav .btn{padding:8px 12px;margin-right:56px}}
+
+/* ===== polish pass: rhythm, tap targets, mobile length ===== */
+/* section titles: English word as a quieter label, Japanese headline carries the message */
+.sh-en{font-size:clamp(44px,5vw,72px);margin-bottom:22px}
+.hx-kick{letter-spacing:.16em;font-family:var(--fh);font-size:13px}
+/* tap targets */
+.hx-pager .pager button{height:22px;padding:10px 0;background-clip:content-box}
+.hx-pager .pager button::after{inset:10px 0}
+footer a{display:inline-block;padding-block:6px}
+header.site .gnav .btn{min-height:40px}
+/* issues: equal left edge when stacked */
+@media (max-width:900px){.is4 article,.is4 article+article{padding-left:0;padding-right:0}}
+@media (max-width:760px){
+  section{padding-block:72px}
+  .sh-en{font-size:42px;margin-bottom:14px}
+  .sh{margin-bottom:36px}
+  /* top page: keep the overview short, details live on their own pages */
+  .home .flow .steps p{display:none}
+  .home .flow .steps li{padding-bottom:20px}
+  .home .ts-g,.home .topcol .cg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut) 8px;scrollbar-width:none}
+  .home .ts-g::-webkit-scrollbar,.home .topcol .cg::-webkit-scrollbar{display:none}
+  .home .ts-g article,.home .topcol .cg>*{flex:0 0 82%;scroll-snap-align:start}
+  .home .open{margin-top:56px}
+}
+@media (max-width:860px){.phero .pg-blk{display:none}}
+@media (max-width:600px){.sim td small{display:inline;font-size:9.5px;margin-left:1px}.sim td{font-size:13px}}
+/* English as a small label; the Japanese carries the heading */
+.cs-sn span{font-size:13px;letter-spacing:.18em;color:var(--blue);font-weight:400}
+.cs-steps h3{font-size:20px}
+.fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
+.fs-h h3{font-size:21px}
 </style>
 </head>
 <body>
@@ -1388,10 +1419,10 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
 <div class="tbl"><table class="atbl"><tr><th></th><th>いつ決めるか</th><th>役割</th></tr><tr><th>見積原価</th><td>契約前</td><td>販売価格を決める根拠</td></tr><tr><th>実行予算</th><td>着工前</td><td>現場で使ってよい金額の上限</td></tr><tr><th>実績原価</th><td>工事中〜完成</td><td>予算どおりに進んだかの確認</td></tr></table></div>
 <p>着工前に実行予算を確定させ、工事中は月に一度、予算と実績を比べます。差が出た現場は、引き渡し後ではなく工事中に原因を確かめます。変更工事の追加請求漏れも、ここで見つかることが<span class="nb">少なくありません。</span></p>
 <h2>仕入れ値は「見える化」してから交渉する</h2>
-<p>同じ住設機器を、現場や担当者ごとに違う価格で買っていることは珍しくありません。まず過去の発注を品目別・取引先別に一覧にし、相場や他の仕入れ先の価格と比べます。根拠を示したうえで交渉すれば、取引先との関係を損なわずに<span class="nb">条件を見直せます。</span></p>
+<p>同じ住設機器を、現場や担当者ごとに違う価格で買っていることは珍しくありません。まず過去の発注を品目別・取引先別に一覧にし、相場や他の仕入れ先の価格と比べます。根拠を示したうえで交渉すれば、取引先との関係を損なわずに条件を<span class="nb">見直しやすくなります。</span></p>
 <ul><li>住設機器・建材：発注をまとめ、年間の取引量を示して交渉</li><li>構造材・プレカット：発注の時期と量をそろえる</li><li>外注費：品質・納期・価格の3つで評価し、相場と比べる</li><li>間接費：保険・リース・車両・広告などの契約を見直す</li></ul>
-<div class="abox"><p>エッジアセットのグループでは、住設・建材の共同購買と、着工前の実行予算を標準にしています。1社では届かない仕入れ条件と、数字で回る現場の仕組みの両方で、営業利益率の<span class="nb">改善に取り組みます。</span></p></div>
-  <div class="acta"><p>事業承継について、<wbr>まずは話を<wbr>聞いてみませんか。</p><a class="btn btn-navy" href="contact.html">無料で相談する <span class="ar"></span></a></div>
+<div class="abox"><p>エッジアセットのグループでは、住設・建材の共同購買と、着工前の実行予算を標準にします。1社では届かない仕入れ条件と、数字で回る現場の仕組みの両方で、営業利益率の<span class="nb">改善に取り組みます。</span></p></div>
+  <div class="acta"><p>この記事の内容を、<wbr>御社に当てはめると<wbr>どうなるか。<wbr>個別にお答えします。</p><a class="btn btn-navy" href="contact.html">無料で相談する <span class="ar"></span></a></div>
   <p class="anote">本記事は一般的な情報の提供を目的としたもので、個別の案件についての法的・税務上の助言ではありません。</p>
 </div></article>
 <section class="artmore"><div class="w"><p class="sh-ja">ほかのコラム</p><div class="cg c2"><a class="cc rv" href="column-1.html"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>事業承継の基礎</span></p><h3>工務店の事業承継、3つの選択肢と選び方</h3><p class="cc-e">後継者が決まっていない工務店の社長が取りうる道は、大きく分けて「親族・社員への承継」「第三者への譲渡（M&A）」「廃業」…</p></div></a><a class="cc rv" href="column-2.html"><div class="ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>施主様・アフター</span></p><h3>工務店を譲渡したら、施主様の保証と点検はどうなる？</h3><p class="cc-e">会社を引き継ぐ相談で、多くの社長が最初に口にするのが「これまで建てた家の点検は誰が行くのか」という心配です。譲渡の方法ご…</p></div></a><a class="cc rv" href="column-3.html"><div class="ph"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>許認可・法務</span></p><h3>建設業許可は引き継げる？株式譲渡と事業譲渡の違い</h3><p class="cc-e">工務店の譲渡で必ず確認が必要なのが、建設業許可の扱いです。譲渡の方法によって、許可がそのまま使えるか、手続きが必要かが変…</p></div></a><a class="cc rv" href="column-4.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>譲渡価格</span></p><h3>工務店の譲渡価格はどう決まる？株価の考え方と準備</h3><p class="cc-e">「うちの会社はいくらで引き継いでもらえるのか」。事業承継を考え始めた社長が最初に知りたいのが、譲渡価格の目安です。中小の…</p></div></a></div></div></section>
@@ -1401,7 +1432,7 @@ header.site .logo b,header.site .gnav .btn{white-space:nowrap}
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>
