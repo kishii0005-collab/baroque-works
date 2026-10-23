@@ -1,11 +1,19 @@
 import sys
 U=lambda i,w=0:f'https://unsplash.com/photos/{i}/download?force=true&amp;w=1800'  # one size per photo so the browser fetches it only once
 SAFE=U('Q6sCJFHCubc',2000)
-BACKUP=['Q6sCJFHCubc','Q6sCJFHCubc','TJ4CndIc9z8']
+import os
+IMG_DIR=os.path.join(os.path.dirname(os.path.abspath(sys.argv[1])),'img')
+BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
+def src_list(i):
+    # a photo saved in edge-asset/img/ always wins; otherwise load it from Unsplash
+    local=f'img/{i}.jpg'
+    out=[local] if os.path.exists(os.path.join(IMG_DIR,f'{i}.jpg')) else []
+    return out+[U(i)]
 def img(i,alt='',w=1400,lazy=True,fb=None):
-    chain=[i]+[x for x in (fb or [])+BACKUP if x!=i]
-    rest='|'.join(U(x,w) for x in chain[1:4])
-    return (f'<img src="{U(i,w)}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{rest}" onerror="nx(this)">')
+    chain=[]
+    for x in [i]+[y for y in (fb or [])+BACKUP if y!=i]:
+        chain+=src_list(x)
+    return (f'<img src="{chain[0]}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{"|".join(chain[1:5])}" onerror="nx(this)">')
 W=lambda t:t.replace('|','<wbr>')
 def nb(t,n=9):  # keep the last phrase together; the break lands right after a particle or comma
     if len(t)<=n+3: return t
