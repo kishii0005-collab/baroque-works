@@ -860,16 +860,36 @@ for key,pat in {
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
     items=[('company.html','私たちについて'),('service.html','グループの支援'),('index.html#cases','事例'),('index.html#flow','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('news.html','お知らせ')]
-    links=''.join(f'<a class="nl" href="{h}">{t}</a>' for h,t in items)
+    NT=' target="_blank" rel="noopener"'
+    links=''.join(f'<a class="nl" href="{h}"{NT}>{t}</a>' for h,t in items)
+    menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('index.html#cases','事例','Case'),('index.html#flow','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('contact.html','ご相談・お問い合わせ','Contact')]
+    mlinks=''.join(f'<li><a href="{h}"{NT}><span class="me">{e}</span><span class="mj">{j}</span><span class="mx" aria-hidden="true">↗</span></a></li>' for h,j,e in menu)
     return f"""<header class="site">
   <div class="w">
     <a class="logo" href="index.html">{LOGO}<span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">{links}
       <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
-      <a class="btn btn-navy" href="contact.html">ご相談 {AR}</a>
+      <a class="btn btn-navy" href="contact.html"{NT}>ご相談 {AR}</a>
+      <button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><em>MENU</em></button>
     </nav>
   </div>
-</header>"""
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-in">
+    <div class="menu-l">
+      <p class="menu-t">MENU</p>
+      <ul class="menu-list">{mlinks}</ul>
+    </div>
+    <div class="menu-r">
+      <p class="menu-k">ご相談窓口</p>
+      <p class="menu-tel">03-0000-0000</p>
+      <p class="menu-s">平日 9:00–18:00　夜間・土日の面談も調整します</p>
+      <a class="btn btn-white" href="contact.html"{NT}>無料で相談する {AR}</a>
+      <p class="menu-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
+      <p class="menu-note">各ページは新しいタブで開きます</p>
+    </div>
+  </div>
+</div>"""
 def phero(en,ja,lead,pid):
     return f"""<section class="phero">
   <div class="ph">{img(pid,'',2000,False)}</div>
@@ -1037,7 +1057,7 @@ EXTRA_CSS=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'extra.cs
 STYLE=css_main+'\n'+EXTRA_CSS
 SCRIPT=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'site.js')).read()
 # when viewed through htmlpreview.github.io, keep page-to-page links inside the preview
-PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');location.href=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');});}"""
+PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}"""
 for fname,title in PAGES:
     b,d=bodies[fname]
     open(os.path.join(OUT,fname),'w').write(page(fname,title,b,d))

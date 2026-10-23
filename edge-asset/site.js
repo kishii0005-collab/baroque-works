@@ -2,6 +2,20 @@
   document.documentElement.classList.add('js');
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+  // hamburger menu
+  const burger = $('#burger'), menu = $('#menu');
+  if (burger && menu) {
+    const set = open => {
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      menu.setAttribute('aria-hidden', !open);
+    };
+    burger.addEventListener('click', () => set(!document.body.classList.contains('menu-open')));
+    $$('a', menu).forEach(a => a.addEventListener('click', () => set(false)));
+    addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  }
+
   // hero slideshow (top page only)
   const slides = $$('.slide'), pager = $('#pager'), cnt = $('#cnt');
   if (slides.length > 1 && pager) {
