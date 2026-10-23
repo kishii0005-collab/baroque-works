@@ -550,7 +550,7 @@ HTML=f'''<!doctype html>
     <p class="en">BUSINESS SUCCESSION FOR HOME BUILDERS</p>
     <h1>{W('建てた|家の|点検に、|三十年後も|伺える|会社で|あるために。')}</h1>
     {P('エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、そのまま引き継ぎます。','lead')}
-    <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
+    <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する {AR}</a><a class="btn btn-ghost" href="#flow">ご相談の流れを見る {AR}</a></div>
   </div></div>
   <a class="badge" href="#about" aria-label="下へスクロール"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#c">SCROLL DOWN · EDGE ASSET · SINCE 2026 · </textPath></text></svg><i></i></a>
   <div class="news"><div class="w">
@@ -640,7 +640,7 @@ HTML=f'''<!doctype html>
   <div class="ph">{img('pcYN7Pi8_BQ','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
-    <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
+    <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#faq">よくある質問を見る {AR}</a></div>
   </div>
 </section>
 
@@ -734,13 +734,13 @@ HTML=f'''<!doctype html>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
     <div class="ways">
       <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接伺います。<span class="nb">オンライン・社外</span><span class="nb">どちらでも。</span></span><i>日程を相談する</i></a>
-      <a class="way" href="#cf" data-topic="資料請求（事業承継ガイド）"><b>ガイドを受け取る</b><span>事業承継で決めることを<span class="nb">一冊にまとめた資料です。</span></span><i>無料で受け取る</i></a>
+      <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>平日9時〜18時。<span class="nb">夜間・土日も調整します。</span></span><i>03-0000-0000</i></a>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
     <div class="telrow"><b>03-0000-0000</b><span>平日 9:00–18:00　夜間・土日の面談も調整します</span></div>
     <form id="cf" novalidate>
       <label for="f-topic">ご相談の種類</label>
-      <select id="f-topic"><option>面談の予約</option><option>資料請求（事業承継ガイド）</option><option>匿名での相談</option><option>その他</option></select>
+      <select id="f-topic"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
       <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" autocomplete="organization"></div></div>
       <div class="r2"><div><label for="f-mail">メールアドレス<em>必須</em></label><input id="f-mail" type="email" autocomplete="email" required></div><div><label for="f-tel">電話番号</label><input id="f-tel" type="tel" autocomplete="tel"></div></div>
       <label for="f-msg">ご相談内容</label><textarea id="f-msg"></textarea>
