@@ -1,9 +1,11 @@
 import sys
 U=lambda i,w=1600:f'https://unsplash.com/photos/{i}/download?force=true&amp;w={w}'
 SAFE=U('Q6sCJFHCubc',2000)
-def img(i,alt='',w=1400,lazy=True):
-    return (f'<img src="{U(i,w)}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} '
-            f'onerror="if(this.dataset.f){{this.style.visibility=\'hidden\'}}else{{this.dataset.f=1;this.src=\'{SAFE}\'}}">')
+BACKUP=['Q6sCJFHCubc','JsSM2T9iPRU','I4plBnRzJ94']
+def img(i,alt='',w=1400,lazy=True,fb=None):
+    chain=[i]+[x for x in (fb or [])+BACKUP if x!=i]
+    rest='|'.join(U(x,w) for x in chain[1:4])
+    return (f'<img src="{U(i,w)}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{rest}" onerror="nx(this)">')
 W=lambda t:t.replace('|','<wbr>')
 def nb(t,n=9):  # keep the last phrase together; the break lands right after a particle or comma
     if len(t)<=n+3: return t
@@ -48,6 +50,8 @@ summary span{word-break:normal}
 @media (max-width:760px){body{font-size:15px;line-height:1.95}:root{--gut:max(22px,env(safe-area-inset-left,0px))}.w{padding-right:max(22px,env(safe-area-inset-right,0px))}}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .ph{position:relative;overflow:hidden;background:#cfd8e3}
+.ph.noimg{background:linear-gradient(135deg,#1b3d6b,#0c2747)}
+.ph.noimg::after{content:"EDGE ASSET";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--en);letter-spacing:.3em;font-size:12px;color:rgba(255,255,255,.35)}
 section{padding-block:140px}
 @media (max-width:760px){section{padding-block:84px}}
 
@@ -384,8 +388,6 @@ footer{position:relative}
 
 
 /* ===== design layer ===== */
-/* seigaiha (青海波) wave pattern on pale bands */
-.promise,.cases,.people,.company{background-color:var(--mist);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%232268c8' stroke-opacity='.09' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px}
 .flow{background-image:linear-gradient(var(--bg),var(--bg))}
 /* offset colour blocks behind photos */
 .frame{position:relative}
@@ -443,10 +445,6 @@ section{position:relative}
 .case .tx{position:relative}
 /* steps: dotted connector */
 .steps::before{background:repeating-linear-gradient(90deg,var(--blue) 0 4px,transparent 4px 10px);opacity:.5}
-/* open block: pattern overlay */
-.open{position:relative;overflow:hidden}
-.open .tx{position:relative}
-.open .tx::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1'%3E%3Cpath d='M0 40a40 40 0 0 1 80 0M8 40a32 32 0 0 1 64 0M16 40a24 24 0 0 1 48 0M24 40a16 16 0 0 1 32 0M32 40a8 8 0 0 1 16 0'/%3E%3Cpath d='M-40 20a40 40 0 0 1 80 0M-32 20a32 32 0 0 1 64 0M-24 20a24 24 0 0 1 48 0M-16 20a16 16 0 0 1 32 0M-8 20a8 8 0 0 1 16 0M40 20a40 40 0 0 1 80 0M48 20a32 32 0 0 1 64 0M56 20a24 24 0 0 1 48 0M64 20a16 16 0 0 1 32 0M72 20a8 8 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 40px;pointer-events:none}
 /* section separator wave */
 .wave{display:block;width:100%;height:60px;margin-top:-60px;position:relative;z-index:3}
 
@@ -461,14 +459,14 @@ section{position:relative}
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
 AR='<span class="ar"></span>'
 
-hero_slides=[('JsSM2T9iPRU','東京の木造住宅',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('Q6sCJFHCubc','東京の住宅街',True),('mW8eMit_-uU','瓦屋根の木造住宅',True),('I4plBnRzJ94','沖縄の住宅',True)]
+hero_slides=[('JsSM2T9iPRU','東京の木造住宅',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('Q6sCJFHCubc','東京の住宅街',True),('I4plBnRzJ94','沖縄の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True)]
 slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
 
 support=[
  ('集客','MARKETING','q1tyQip5AQQ','大阪の住宅の外観','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
- ('採用','RECRUITING','M9Y8SeVpH1E','奈良の住宅の木の廊下','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
- ('財務・資金','FINANCE','rD28m9BmXVs','東京のビル街','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
- ('仕入・業務','OPERATIONS','4UVtFIfK1eo','木造の骨組み','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
+ ('採用','RECRUITING','dUYELbt-H-E','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
+ ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
+ ('仕入・業務','OPERATIONS','yZSKjCg0uz8','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
 ]
 rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}"><div class="ph mask">{img(pid,alt,1400)}</div></div><div class="tx rv" data-no="0{k+1}"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<dl><div><dt>グループが担う</dt><dd>{g}</dd></div><div><dt>各社に残す</dt><dd>{kk}</dd></div></dl></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
 
@@ -485,9 +483,9 @@ people=[('社長へ','辞める|時期は、|ご自身で|決められます。'
  ('協力業者さんへ','発注も|支払条件も|これまで|どおりです。','グループ内の他社の現場をお願いできる機会も、少しずつ増えていきます。')]
 pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</article>' for w,h,t in people)
 
-cases=[('後継者不在','fIzFR4tnFyI','竹林と日本家屋','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
- ('成長の壁','yZSKjCg0uz8','足場のかかった建物','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
- ('廃業の検討','8DPdrb9Wxqg','沖縄の木造住宅','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
+cases=[('後継者不在','I4plBnRzJ94','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
+ ('成長の壁','4UVtFIfK1eo','木造の骨組み','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
+ ('廃業の検討','T7s9FlBavHA','大きな窓のある室内','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
 cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
 
 steps=[('初回面談','1–2 hours','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2–4 weeks','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2–3 weeks','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1–2 months','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','1 month','株式譲渡契約の締結と、個人保証の解除手続きを行います。'),('ご説明と|引き継ぎ','6 months–','社員・施主様への説明に、私たちも同席します。')]
@@ -513,7 +511,7 @@ HTML=f'''<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');function nx(i){{var l=(i.dataset.fb||'').split('|').filter(Boolean);if(l.length){{i.dataset.fb=l.slice(1).join('|');i.src=l[0];}}else{{i.onerror=null;i.style.visibility='hidden';i.parentNode.classList.add('noimg');}}}}</script>
 </head>
 <body>
 
@@ -543,7 +541,6 @@ HTML=f'''<!doctype html>
     {P('エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、そのまま引き継ぎます。','lead')}
     <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
   </div></div>
-  <p class="tate">{W("家を、|次の|三十年へ。")}</p>
   <a class="badge" href="#about" aria-label="下へスクロール"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#c">SCROLL DOWN · EDGE ASSET · SINCE 2026 · </textPath></text></svg><i></i></a>
   <div class="news"><div class="w">
     <b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span class="t">コーポレートサイトを公開しました。</span>
@@ -552,7 +549,6 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="about" id="about">
-  <span class="vt r" aria-hidden="true">私たちについて</span>
   <span class="bgword" aria-hidden="true">Succession</span>
   <div class="w grid">
     <div class="rv">
@@ -565,14 +561,13 @@ HTML=f'''<!doctype html>
       <a class="tl" href="#support">グループの支援を見る {AR}</a>
     </div>
     <div class="pics">
-      <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600)}</div>
-      <div class="ph p2 mask">{img('2WaUtK4lU5w','畳と障子の和室',900)}</div>
+      <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600,fb=['dUYELbt-H-E'])}</div>
+      <div class="ph p2 mask">{img('T7s9FlBavHA','大きな窓のある室内',900,fb=['2cfj0Y5ch00'])}</div>
     </div>
   </div>
 </section>
 
 <section class="market dark" id="market">
-  <span class="vt l" aria-hidden="true">業界の現状</span>
   <div class="w grid">
     <div class="rv">
       {head('Market','業界の現状','後継者が|いない|会社が|いちばん|多い|業種は、|建設業です。')}
@@ -585,14 +580,14 @@ HTML=f'''<!doctype html>
 </section>
 
 <div class="strip" aria-hidden="true">
-  <div class="ph">{img('1ol0cgfx8Ys','',1200)}</div>
-  <div class="ph">{img('qx6LmF7xUJk','',800)}</div>
-  <div class="ph">{img('Km3lhnJZABo','',1000)}</div>
-  <div class="ph">{img('YG65N1UBWRA','',800)}</div>
+  <div class="ph">{img('GQn9GnMkVQg','',1200)}</div>
+  <div class="ph">{img('5kdlUEHlMXo','',800)}</div>
+  <div class="ph">{img('a8A-z_ZPEC0','',1000)}</div>
+  <div class="ph">{img('bqUZEAeWuok','',800)}</div>
 </div>
 
 <section class="stance">
-  <div class="ph">{img('yRGrPNnMKB0','',2000)}</div>
+  <div class="ph">{img('rD28m9BmXVs','',2000)}</div>
   <div class="w">
     <p class="big rv">売らない。</p>
     <div class="rv">
@@ -605,7 +600,7 @@ HTML=f'''<!doctype html>
 <section class="msg" id="message">
   <div class="w grid">
     <div class="rv">
-      <div class="frame navy"><div class="ph">{img('OYR2mPD3yRY','庭の見える和室',1000)}<span>代表写真は撮影予定</span></div></div>
+      <div class="frame navy"><div class="ph">{img('M4dRgj6U_wU','大阪のオフィスビル',1000)}<span>代表写真は撮影予定</span></div></div>
       <div class="who"><small>代表取締役</small><b>〇〇 〇〇</b></div>
       <ul><li>住宅会社にて集客・採用部門を統括</li><li>住宅業界向けSaaS企業 CFO室</li><li>工務店・住宅会社の経営支援</li></ul>
     </div>
@@ -621,7 +616,6 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="promise" id="promise">
-  <span class="vt r" aria-hidden="true">五つのお約束</span>
   <div class="w">
     {head('Promise','5つのお約束','引き継ぐ|ときに、|契約書で|お約束すること','口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも正直にお伝えします。')}
     <div class="plist">
@@ -632,7 +626,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cta">
-  <div class="ph">{img('vTIfBkvquMw','',2000)}</div>
+  <div class="ph">{img('GpJ9p1QH7O4','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
@@ -640,7 +634,6 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="support" id="support">
-  <span class="vt l" aria-hidden="true">グループの支援</span>
   <div class="w">
     {head('Support','グループの支援','現場は|変えずに、|一社では|手が回らない|仕事を|支えます','家づくりの方針には口を出しません。規模が小さいほど負担が重くなる仕事を、グループでまとめて引き受けます。')}
     {rows}
@@ -650,7 +643,7 @@ HTML=f'''<!doctype html>
 <section class="people">
   <div class="w">
     {head('People','それぞれの方へ','社長・|社員・|施主様・|協力業者さん、|それぞれに|とって|変わらないこと')}
-    <div class="frame"><div class="ph mask">{img('fdFs1vOOLEY','山あいの町並み',2000)}</div><p class="ribbon">{W("社名も、|社員も、|施主様との|約束も。")}</p></div>
+    <div class="frame"><div class="ph mask">{img('8DPdrb9Wxqg','緑に囲まれた住宅',2000)}</div><p class="ribbon">{W("社名も、|社員も、|施主様との|約束も。")}</p></div>
     <div class="pg">{pg}</div>
   </div>
 </section>
@@ -677,7 +670,6 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cases" id="cases">
-  <span class="vt r" aria-hidden="true">モデルケース</span>
   <div class="w">
     {head('Case','モデルケース','こんな|ご相談を|お受け|しています','よくあるご相談を、条件を変えた想定事例としてまとめました。実在の企業ではありません。')}
     {cs}
@@ -686,12 +678,11 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="flow" id="flow">
-  <span class="vt l" aria-hidden="true">ご相談の流れ</span>
   <div class="w">
     {head('Flow','ご相談の流れ','ご相談から|引き継ぎまで、|通常は|半年|ほどです','ご相談の事実が社員や取引先に伝わることはありません。面談は社外かオンラインで行います。')}
     <ol class="steps">{st}</ol>
     <div class="open">
-      <div class="ph">{img('V6VxSgtVyco','庭を望む和室',1400)}</div>
+      <div class="ph">{img('Q6sCJFHCubc','東京の住宅街',1400)}</div>
       <div class="tx rv">
         <h3>{W('規模も|エリアも|業績も、|問いません。')}</h3>
         {P('年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社であればまずはお話を伺います。','lead')}
@@ -726,7 +717,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="contact" id="contact">
-  <div class="ph side">{img('W7sIS8Ms3bw','日本家屋が並ぶ通り',1400)}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="ph side">{img('Vg96IZTFubo','家の鍵を持つ手',1400,fb=['bqUZEAeWuok'])}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
   <div class="body">
     <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
