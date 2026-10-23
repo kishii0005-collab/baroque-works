@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Download the site photos into edge-asset/img/ so the page serves them itself.
-# Needs network access to unsplash.com and images.unsplash.com (the GitHub workflow edge-asset-photos.yml runs it).
+# Needs network access to unsplash.com and images.unsplash.com. Unsplash refuses GitHub's servers,
+# so run this on your own machine (or upload the files by hand; see img/README.md).
 # The plain download link answers 401 to automated requests, so each photo tries, in order:
 #   1. the image URL named in the photo page's og:image
 #   2. the wsrv.nl image cache in front of the download link

@@ -1,35 +1,32 @@
-# Downloads the Edge Asset site photos into edge-asset/img/ and rebuilds the pages,
-# so the site serves its own copies instead of hot-linking Unsplash.
+# When photo files are added to edge-asset/img/ (e.g. uploaded through the GitHub web UI
+# as {photo-id}.jpg), rebuild the Edge Asset pages so they use the local copies first.
 name: edge-asset photos
 on:
   push:
     paths:
-      - edge-asset/fetch_photos.sh
-      - edge-asset/fetch_photos_browser.py
-      - .github/workflows/edge-asset-photos.yml
+      - edge-asset/img/**
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  fetch:
+  rebuild:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Download photos with a headless browser
+      - name: Resize photos and rebuild pages
+        working-directory: edge-asset
         run: |
-          pip install playwright
-          python -m playwright install --with-deps chromium
-          python edge-asset/fetch_photos_browser.py -MVSfkR4xz4 4UVtFIfK1eo 4mEyvORkbN0 GpJ9p1QH7O4 Q6sCJFHCubc TJ4CndIc9z8 a8A-z_ZPEC0 pcYN7Pi8_BQ q1tyQip5AQQ rD28m9BmXVs
-      - name: Fill gaps, resize and rebuild
-        run: bash edge-asset/fetch_photos.sh
+          if ls img/*.jpg >/dev/null 2>&1; then mogrify -resize "2000x>" -quality 80 -strip img/*.jpg; fi
+          ls -la img
+          python3 build.py index.html
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add edge-asset
           git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
-          git commit -m "Edge Asset site: self-host photos in edge-asset/img"
+          git commit -m "Edge Asset site: rebuild pages with self-hosted photos"
           git push

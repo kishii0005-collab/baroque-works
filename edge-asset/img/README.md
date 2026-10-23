@@ -1,20 +1,23 @@
-# 写真の差し替え方法
+# edge-asset/img
 
-このフォルダに下記のファイル名で写真（JPG）を置くと、サイトに自動で表示されます。
-置いていない枠は、Unsplashの仮写真（ネット接続時のみ）→ グレーの枠、の順に表示されます。
+Put the site photos here as `{Unsplash photo ID}.jpg`. When a file exists, every page
+loads it first and only falls back to Unsplash if it is missing.
 
-| ファイル名 | 使う場所 | 撮りたい（選びたい）写真 | 推奨サイズ |
-|---|---|---|---|
-| hero1.jpg〜hero4.jpg | トップ全面（6秒ごとに切り替わる） | 自社施工の新築注文住宅の外観・内観 | 横2400px |
-| about1.jpg / about2.jpg | 私たちについて | 打ち合わせ・室内 | 1400px / 900px |
-| stance.jpg | 「売らない。」背景 | 落ち着いた外観 | 横2400px |
-| ceo.jpg | 代表メッセージ | 代表のポートレート | 縦1000px |
-| cta.jpg | 相談の帯の背景 | 打ち合わせ風景 | 横2200px |
-| frame.jpg | 私たちについて | 上棟中の木の骨組み | 縦1600px |
-| street.jpg | 「売らない。」 | 長く建っている家・町並み | 1800px |
-| roof.jpg | 全面写真＋一文 | 屋根・外観のアップ | 横2400px |
-| to-ceo.jpg | 社長へ | 社長の後ろ姿・現場を見る姿 | 縦1000px |
-| to-staff.jpg | 社員の皆さまへ | 現場で働く社員・大工さんの手元 | 縦1000px |
-| to-owner.jpg | 施主様へ | 定期点検で施主宅を訪ねる場面・室内 | 縦1000px |
-| to-partner.jpg | 協力業者さんへ | 職人さんの作業風景 | 縦1000px |
-| contact.jpg | お問い合わせ背景 | 落ち着いた外観・夕景 | 横2000px |
+Pushing files to this folder (including uploads through the GitHub web UI) runs the
+`edge-asset photos` workflow, which resizes the photos and rebuilds the pages.
+
+| File name | Download page |
+|---|---|
+| GpJ9p1QH7O4.jpg | https://unsplash.com/photos/GpJ9p1QH7O4 |
+| q1tyQip5AQQ.jpg | https://unsplash.com/photos/q1tyQip5AQQ |
+| a8A-z_ZPEC0.jpg | https://unsplash.com/photos/a8A-z_ZPEC0 |
+| rD28m9BmXVs.jpg | https://unsplash.com/photos/rD28m9BmXVs |
+| Q6sCJFHCubc.jpg | https://unsplash.com/photos/Q6sCJFHCubc |
+| -MVSfkR4xz4.jpg | https://unsplash.com/photos/-MVSfkR4xz4 |
+| TJ4CndIc9z8.jpg | https://unsplash.com/photos/TJ4CndIc9z8 |
+| pcYN7Pi8_BQ.jpg | https://unsplash.com/photos/pcYN7Pi8_BQ |
+| 4UVtFIfK1eo.jpg | https://unsplash.com/photos/4UVtFIfK1eo |
+| 4mEyvORkbN0.jpg | https://unsplash.com/photos/4mEyvORkbN0 |
+
+`fetch_photos.sh` downloads them in one go from any machine that can reach unsplash.com
+(Unsplash refuses GitHub's servers, so the workflow cannot download them itself).
