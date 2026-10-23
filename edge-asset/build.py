@@ -766,7 +766,7 @@ HTML=f'''<!doctype html>
       <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">モデルケース</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
-      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="#contact">無料で相談する {AR}</a></div>
+      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
@@ -876,7 +876,6 @@ def nav():
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">{links}
       <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
-      <a class="btn btn-navy" href="contact.html"{NT}>ご相談 {AR}</a>
     </nav>
   </div>
 </header>
@@ -933,9 +932,9 @@ def page(fname,title,body,desc):
 <body{' class="home"' if fname=="index.html" else ""}>
 {nav()}
 <main id="top">
-{body}
+{crumbs(fname,title)}{body}
 </main>
-{footer()}
+{footer().replace('<div class="w">','<div class="w">'+footer_cta(fname),1)}
 <div class="proto">デザイン確認用｜【 】内と写真は仮</div>
 <script>{PREVIEW_FIX}</script>
 <script>{SCRIPT}</script>
@@ -1061,11 +1060,11 @@ exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'more.py')).re
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pages2.py')).read())
 home=FV+TRUST+tolinks(sec['market'])+ISSUES+tolinks(sec['stance'])+MODEL+tolinks(sec['promise'])+TOPCOST+tolinks(sec['people'].replace(sec['people'][sec['people'].index('<div class="frame">'):sec['people'].index('<div class="pg">')],'')+sec['cta'])+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPSEO+TOPFAQ+TOPCOL+TOPNEWS
 home=home.replace('<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する','<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する')
-company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+subnav([('about','考え方'),('message','代表メッセージ'),('profile','代表プロフィール'),('team','体制'),('capital','資金と体制'),('record','実績'),('compare','他の選択肢との比較'),('company','会社概要')])+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+PROFILE+COMPANY_BAND+VMV+TEAM2+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+CLOSE_CO+nextlink('service.html','Our support','グループの支援')
+company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+subnav([('about','考え方'),('message','代表メッセージ'),('profile','代表プロフィール'),('team','体制'),('capital','資金と体制'),('record','実績'),('compare','他の選択肢との比較'),('company','会社概要')])+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+PROFILE+COMPANY_BAND+VMV+TEAM2+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+nextlink('service.html','Our support','グループの支援')
 partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT+nextlink('cases.html','Model cases','モデルケース')
-news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS+CLOSE+nextlink('company.html','About us','私たちについて')
+news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS+nextlink('company.html','About us','私たちについて')
 contact=phero('Contact','ご相談・お問い合わせ','ご相談は無料です。社名を伏せたままでも構いません。','Q6sCJFHCubc')+re.sub(r'<div class="ph side">.*?</div>',CONTACT_ASIDE,sec['contact'],count=1,flags=re.S)+PREP+sec['faq']
-service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+CLOSE_SVC+nextlink('cases.html','Model cases','モデルケース')
+service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+nextlink('cases.html','Model cases','モデルケース')
 bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
  'company.html':(company,'エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。'),
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
@@ -1086,8 +1085,8 @@ for a in ARTICLES:
     PAGES.append((a['slug'],a['title']))
     bodies[a['slug']]=(article_page(a),a['lead'][:110])
 PAGES+= [('cases.html','モデルケース'),('flow.html','ご相談の流れ')]
-bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+CLOSE_CASE+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
-bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から最終契約まで通常は半年前後、その後半年ほどかけて引き継ぎます。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+CLOSE_FLOW+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
+bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
+bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から最終契約まで通常は半年前後、その後半年ほどかけて引き継ぎます。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
 for i,c in enumerate(CASES):
     PAGES.append((c['slug']+'.html','モデルケース '+f'{i+1:02d}｜'+c['tag']))
     bodies[c['slug']+'.html']=(case_page(c,i),c['short'])
@@ -1096,10 +1095,12 @@ bodies['column.html']=(phero('Column','コラム','工務店・住宅会社の�
 bodies['privacy.html']=(PRIVACY,'株式会社エッジアセットのプライバシーポリシー。')
 bodies['terms.html']=(TERMS,'株式会社エッジアセットのサイトのご利用について。')
 bodies['404.html']=(NOTFOUND,'お探しのページは見つかりませんでした。')
+SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'polish.py')).read())
 for fname,title in PAGES:
     b,d=bodies[fname]
+    b=re.sub(r'<p class="crumb">.*?</p>','',b,flags=re.S)
     open(os.path.join(OUT,fname),'w').write(telify(page(fname,title,b,d)))
-SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
 open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{'' if f=='index.html' else f}</loc></url>\n' for f,_ in PAGES if f!='404.html')+'</urlset>\n')
 open(os.path.join(OUT,'robots.txt'),'w').write('User-agent: *\nAllow: /\nSitemap: '+SITE+'sitemap.xml\n')
 open(os.path.join(OUT,'favicon.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0c2747"/><text x="32" y="42" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="1" fill="#fff">EA</text></svg>\n')

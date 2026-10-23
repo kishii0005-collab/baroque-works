@@ -183,7 +183,7 @@ def case_page(c,i):
   </div>
 </section>
 <section class="cother"><div class="w">{head('Other cases','ほかのモデルケース','ほかの|ご相談の|かたち')}<div class="cgrid c3">{others}</div></div></section>
-""" + CLOSE_CASE + nextlink(f"{nxt['slug']}.html",f"Case {(i+1)%len(CASES)+1:02d}",nxt['title'].replace('|',''))
+""" + nextlink(f"{nxt['slug']}.html",f"Case {(i+1)%len(CASES)+1:02d}",nxt['title'].replace('|',''))
 
 # ---------- flow ----------
 FSTEPS=[('初回面談','First meeting','1〜2時間','会社のこと、ご家族のこと、社長ご自身のこれからを伺います。私たちの考え方と、進め方もご説明します。この段階で何かを決める必要はありません。',['特になし（決算書がなくても構いません）'],'社長お一人'),

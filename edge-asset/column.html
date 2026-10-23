@@ -1378,6 +1378,91 @@ header.site .gnav .btn{min-height:40px}
 .cs-steps h3{font-size:20px}
 .fs-en{font-size:13px;letter-spacing:.16em;color:var(--blue);margin:0 0 10px;font-weight:400}
 .fs-h h3{font-size:21px}
+
+/* ===== breadcrumbs ===== */
+.bc{background:#fff;border-bottom:1px solid var(--line);padding:0}
+.bc ol{list-style:none;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;min-height:46px;font-size:12.5px;color:var(--mute)}
+.bc li{display:flex;align-items:center}
+.bc li+li::before{content:"";width:5px;height:5px;border-top:1px solid #9aa7b8;border-right:1px solid #9aa7b8;transform:rotate(45deg);margin:0 14px 0 10px}
+.bc a{color:var(--ink-2)}.bc a:hover{color:var(--blue)}
+.bc [aria-current]{color:var(--navy);font-weight:500}
+@media (max-width:760px){.bc ol{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none;min-height:42px;font-size:12px}.bc ol::-webkit-scrollbar{display:none}}
+
+/* ===== footer CTA ===== */
+footer .fcx{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:center;padding:64px 64px;margin:0 0 72px;background:var(--blue);position:relative;overflow:hidden}
+footer .fcx::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(255,255,255,.22);pointer-events:none}
+.fc-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#d6e4fb;margin:0 0 14px;text-transform:uppercase}
+.fc-h{font-family:var(--fh);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.55;letter-spacing:.05em;color:#fff;margin:0 0 14px;word-break:keep-all;overflow-wrap:anywhere}
+.fc-t>p:last-child{color:#e3ecfb;margin:0;font-size:14px}
+.fc-a{display:grid;gap:12px;position:relative;z-index:1}
+.fc-b{display:grid;grid-template-columns:1fr auto;grid-template-areas:"s i" "t i";align-items:center;gap:2px 20px;background:#fff;color:var(--navy);padding:20px 24px 20px 28px;transition:transform .3s,box-shadow .3s}
+.fc-b:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(4,16,32,.3)}
+.fc-b small{grid-area:s;font-size:11.5px;color:var(--mute)}
+.fc-b span{grid-area:t;font-family:var(--fh);font-weight:700;font-size:18px}
+.fc-b i{grid-area:i;width:44px;height:44px;border-radius:50%;background:var(--navy);position:relative;transition:background .3s}
+.fc-b i::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translate(-70%,-50%) rotate(45deg)}
+.fc-b:hover i{background:var(--blue)}
+.fc-b.tel{background:var(--navy);color:#fff}.fc-b.tel small{color:#a9bcd3}.fc-b.tel span{font-family:var(--en);font-weight:500;font-size:24px;letter-spacing:.04em}.fc-b.tel i{background:var(--blue)}
+@media (max-width:900px){footer .fcx{grid-template-columns:1fr;gap:28px;padding:40px 24px;margin:0 calc(var(--gut) * -1) 56px}}
+
+/* ===== hero CTA: capsule with a round arrow, quiet secondary link ===== */
+.hx-act{gap:16px 36px}
+.hx-cta{display:inline-flex;align-items:center;gap:28px;padding:10px 10px 10px 32px;background:#fff;color:var(--navy);border-radius:999px;box-shadow:0 18px 40px rgba(3,12,26,.35);transition:background .35s,color .35s,transform .35s}
+.hc-t{display:flex;flex-direction:column;gap:3px;font-family:var(--fh);font-weight:700;font-size:16px;letter-spacing:.06em;line-height:1.3}
+.hc-t small{font-family:var(--f);font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--blue)}
+.hc-ar{width:54px;height:54px;border-radius:50%;background:var(--blue);position:relative;flex:none;transition:transform .35s,background .35s}
+.hc-ar::before{content:"";position:absolute;left:17px;right:17px;top:50%;height:1.5px;background:#fff}
+.hc-ar::after{content:"";position:absolute;right:17px;top:50%;width:8px;height:8px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translateY(-50%) rotate(45deg)}
+.hx-cta:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}
+.hx-cta:hover .hc-t small{color:#9fc0ff}
+.hx-cta:hover .hc-ar{transform:translateX(4px);background:#fff}
+.hx-cta:hover .hc-ar::before{background:var(--navy)}.hx-cta:hover .hc-ar::after{border-color:var(--navy)}
+.hx-sub{display:inline-flex;align-items:center;gap:14px;color:#fff;font-size:14px;letter-spacing:.06em}
+.hx-sub span{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:3px;transition:background-size .4s}
+.hx-sub:hover span{background-size:100% 1px}
+.hx-sub i{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.55);position:relative;transition:background .3s}
+.hx-sub i::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translate(-70%,-50%) rotate(45deg)}
+.hx-sub:hover i{background:rgba(255,255,255,.16)}
+@media (max-width:760px){.hx-cta{width:100%;justify-content:space-between;padding-left:24px}.hc-ar{width:48px;height:48px}.hx-act .hx-sub{display:inline-flex}}
+
+/* ===== top page rhythm: chapters, varied section heads, a side rail ===== */
+.chap{display:flex;align-items:center;gap:18px;margin:0 0 44px;font-size:13px;letter-spacing:.08em}
+.chap b{font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:.28em;color:var(--blue);text-transform:uppercase;padding:7px 14px;border:1px solid currentColor}
+.chap span{font-family:var(--fh);font-weight:500;color:var(--ink-2)}
+.chap::after{content:"";flex:1;height:1px;background:var(--line)}
+.dark .chap b,.stance .chap b{color:#9fc0ff}.dark .chap span,.stance .chap span{color:#d6e1ee}.dark .chap::after,.stance .chap::after{background:rgba(255,255,255,.2)}
+/* chapter openers get more air; follow-up sections in a chapter drop the giant English word */
+.home section[data-ch]:not(:has(.chap)) .sh-en{display:none}
+.home section[data-ch]:not(:has(.chap)) .sh{margin-bottom:48px}
+.home section[data-ch]:not(:has(.chap)){padding-block:112px}
+/* issues: one centered statement instead of the two-column head */
+.home .issues .sh{grid-template-columns:1fr;text-align:center;max-width:760px;margin-inline:auto}
+.home .issues .sh .sh-ja{justify-content:center}
+.home .issues .sh h2{font-size:clamp(26px,3vw,38px)}
+/* promise: title stays put while the list scrolls */
+@media (min-width:1101px){
+  .home .promise .w{display:grid;grid-template-columns:4fr 7fr;gap:0 80px;align-items:start}
+  .home .promise .chap{grid-column:1/-1}
+  .home .promise .sh{grid-template-columns:1fr;position:sticky;top:120px;margin:0}
+  .home .promise .plist{grid-template-columns:1fr}
+}
+/* secondary sections: smaller, tighter */
+.home .topfaq,.home .topcol,.home .topnews{padding-block:96px}
+.home .topfaq .sh-en,.home .topcol .sh-en,.home .topnews .sh-en{font-size:clamp(34px,3.4vw,44px)}
+/* side rail */
+.rail{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:30;opacity:0;pointer-events:none;transition:opacity .4s}
+.rail.on{opacity:1;pointer-events:auto}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rail a{display:flex;align-items:center;gap:10px;color:#9aa7b8;font-size:11px}
+.rail b{font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:.1em;width:22px}
+.rail span{opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s;white-space:nowrap}
+.rail a::before{content:"";width:14px;height:1px;background:currentColor;transition:width .3s}
+.rail li.cur a{color:var(--blue)}.rail li.cur a::before{width:28px}.rail li.cur span,.rail a:hover span{opacity:1;transform:none}
+.rail.dk a{color:rgba(255,255,255,.45)}.rail.dk li.cur a{color:#fff}
+@media (max-width:1439px){.rail{display:none}}
+@media (max-width:760px){.chap{margin-bottom:28px}.home section[data-ch]:not(:has(.chap)){padding-block:64px}}
+.w>.chap,.grid>.chap{grid-column:1/-1}
+.home .topfaq .sh-en,.home .topnews .sh-en{display:block}
 </style>
 </head>
 <body>
@@ -1386,7 +1471,6 @@ header.site .gnav .btn{min-height:40px}
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html" target="_blank" rel="noopener">私たちについて</a><a class="nl" href="service.html" target="_blank" rel="noopener">グループの支援</a><a class="nl" href="cases.html" target="_blank" rel="noopener">事例</a><a class="nl" href="flow.html" target="_blank" rel="noopener">ご相談の流れ</a><a class="nl" href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a><a class="nl" href="news.html" target="_blank" rel="noopener">お知らせ</a>
       <span class="tel"><a class="tel-a" href="tel:0300000000">03-0000-0000</a><small>平日 9:00–18:00</small></span>
-      <a class="btn btn-navy" href="contact.html" target="_blank" rel="noopener">ご相談 <span class="ar"></span></a>
     </nav>
   </div>
 </header>
@@ -1408,20 +1492,26 @@ header.site .gnav .btn{min-height:40px}
   </div>
 </div>
 <main id="top">
-<section class="phero">
+<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">コラム</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.example.com/"}, {"@type": "ListItem", "position": 2, "name": "コラム", "item": "https://www.example.com/column.html"}]}</script><section class="phero">
   <div class="pg-ph"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
-  <div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>コラム</p><p class="pen">Column</p><h1>コラム</h1><p class="plead">工務店・住宅会社の事業承継について、社長が判断に<span class="nb">迷うポイントを解説しています。</span></p></div>
+  <div class="w"><p class="pen">Column</p><h1>コラム</h1><p class="plead">工務店・住宅会社の事業承継について、社長が判断に<span class="nb">迷うポイントを解説しています。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
 </section><section class="collist"><div class="w"><div class="cg"><a class="cc rv" href="column-1.html"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>事業承継の基礎</span></p><h3>工務店の事業承継、3つの選択肢と選び方</h3><p class="cc-e">後継者が決まっていない工務店の社長が取りうる道は、大きく分けて「親族・社員への承継」「第三者への譲渡（M&A）」「廃業」…</p></div></a><a class="cc rv" href="column-2.html"><div class="ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>施主様・アフター</span></p><h3>工務店を譲渡したら、施主様の保証と点検はどうなる？</h3><p class="cc-e">会社を引き継ぐ相談で、多くの社長が最初に口にするのが「これまで建てた家の点検は誰が行くのか」という心配です。譲渡の方法ご…</p></div></a><a class="cc rv" href="column-3.html"><div class="ph"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>許認可・法務</span></p><h3>建設業許可は引き継げる？株式譲渡と事業譲渡の違い</h3><p class="cc-e">工務店の譲渡で必ず確認が必要なのが、建設業許可の扱いです。譲渡の方法によって、許可がそのまま使えるか、手続きが必要かが変…</p></div></a><a class="cc rv" href="column-4.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>譲渡価格</span></p><h3>工務店の譲渡価格はどう決まる？株価の考え方と準備</h3><p class="cc-e">「うちの会社はいくらで引き継いでもらえるのか」。事業承継を考え始めた社長が最初に知りたいのが、譲渡価格の目安です。中小の…</p></div></a><a class="cc rv" href="column-5.html"><div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>原価管理</span></p><h3>工務店の利益を残す原価管理。実行予算のつくり方</h3><p class="cc-e">受注は取れているのに、決算をしてみると思ったほど利益が残っていない。工務店でよく聞くこの悩みの多くは、原価の管理方法に原…</p></div></a><a class="cc rv" href="column-6.html"><div class="ph"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>経営・集客</span></p><h3>新築の受注が減るなかで、地域の工務店が取れる打ち手</h3><p class="cc-e">持家の新設着工戸数は減少が続き、資材価格の上昇も重なって、地域の工務店をとりまく環境は厳しさを増しています。受注の減少に…</p></div></a></div></div></section>
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
-  <div class="w">
+  <div class="w"><div class="fcx">
+      <div class="fc-t"><p class="fc-en">Contact</p><p class="fc-h">まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</p><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
+      <div class="fc-a">
+        <a class="fc-b" href="contact.html" target="_blank" rel="noopener"><small>24時間受付・無料</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
+        <a class="fc-b tel" href="tel:0300000000"><small>平日 9:00–18:00</small><span>03-0000-0000</span><i aria-hidden="true"></i></a>
+      </div>
+    </div>
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
-      <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
+      <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="privacy.html">プライバシーポリシー</a>　｜　<a href="terms.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
@@ -1515,6 +1605,19 @@ header.site .gnav .btn{min-height:40px}
     const go = () => { const t = document.getElementById(id); if (t && !moved) t.scrollIntoView(); };
     [50, 400, 1200, 2500].forEach(ms => setTimeout(go, ms));
     addEventListener('load', go);
+  }
+
+  // chapter rail on the top page
+  const rail = $('.rail');
+  if (rail) {
+    const items = $$('li', rail), secs = $$('section[data-ch]');
+    const upd = () => {
+      const mid = innerHeight * 0.45; let cur = null, dark = false;
+      secs.forEach(s => { const r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) { cur = s.dataset.ch; dark = s.classList.contains('dark') || s.classList.contains('stance'); } });
+      rail.classList.toggle('on', !!cur); rail.classList.toggle('dk', dark);
+      items.forEach(li => li.classList.toggle('cur', li.dataset.ch === cur));
+    };
+    upd(); addEventListener('scroll', upd, { passive: true });
   }
 })();
 </script>

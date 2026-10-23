@@ -85,4 +85,17 @@
     [50, 400, 1200, 2500].forEach(ms => setTimeout(go, ms));
     addEventListener('load', go);
   }
+
+  // chapter rail on the top page
+  const rail = $('.rail');
+  if (rail) {
+    const items = $$('li', rail), secs = $$('section[data-ch]');
+    const upd = () => {
+      const mid = innerHeight * 0.45; let cur = null, dark = false;
+      secs.forEach(s => { const r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) { cur = s.dataset.ch; dark = s.classList.contains('dark') || s.classList.contains('stance'); } });
+      rail.classList.toggle('on', !!cur); rail.classList.toggle('dk', dark);
+      items.forEach(li => li.classList.toggle('cur', li.dataset.ch === cur));
+    };
+    upd(); addEventListener('scroll', upd, { passive: true });
+  }
 })();

@@ -13,7 +13,7 @@ FV=f"""<section class="hx" aria-label="メインビジュアル">
     <p class="hx-kick"><span>01</span>工務店・住宅会社の事業承継</p>
     <h1 class="hx-h">{split_chars('地域の|工務店を、|つぎの|三十年へ。')}</h1>
     {P('後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。社名も、社員も、施主様へのアフターのお約束も、そのまま次の世代へつなぎます。','hx-lead')}
-    <div class="hx-act"><a class="btn btn-white" href="contact.html">事業承継について相談する {AR}</a><a class="tl hx-tl" href="partners.html">仲介会社・金融機関の方へ {AR}</a></div>
+    <div class="hx-act"><a class="hx-cta" href="contact.html"><span class="hc-t"><small>無料・秘密厳守</small>事業承継について相談する</span><span class="hc-ar" aria-hidden="true"></span></a><a class="hx-sub" href="partners.html"><span>仲介会社・金融機関の方へ</span><i aria-hidden="true"></i></a></div>
   </div>
   <div class="hx-foot">
     <div class="hx-pager"><span id="cnt">01</span><span class="pager" id="pager"></span><span>04</span></div>
