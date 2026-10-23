@@ -1,0 +1,29 @@
+# Downloads the Edge Asset site photos into edge-asset/img/ and rebuilds the pages,
+# so the site serves its own copies instead of hot-linking Unsplash.
+name: edge-asset photos
+on:
+  push:
+    paths:
+      - edge-asset/fetch_photos.sh
+      - .github/workflows/edge-asset-photos.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download photos and rebuild
+        run: bash edge-asset/fetch_photos.sh
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add edge-asset
+          git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
+          git commit -m "Edge Asset site: self-host photos in edge-asset/img"
+          git push
