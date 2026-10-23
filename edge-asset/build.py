@@ -757,7 +757,7 @@ HTML=f'''<!doctype html>
   <a class="pagetop" href="#top" aria-label="ページの先頭へ"></a>
   <div class="w">
     <div class="fg">
-      <div><a class="logo" href="#top" style="color:#fff">{LOGO}<span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
+      <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">選ばれる理由</a></li><li><a href="#company">会社概要</a></li></ul></div>
       <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">モデルケース</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="#contact">無料で相談する {AR}</a></div>
@@ -866,14 +866,14 @@ def nav():
     mlinks=''.join(f'<li><a href="{h}"{NT}><span class="me">{e}</span><span class="mj">{j}</span><span class="mx" aria-hidden="true">↗</span></a></li>' for h,j,e in menu)
     return f"""<header class="site">
   <div class="w">
-    <a class="logo" href="index.html">{LOGO}<span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
+    <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">{links}
       <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
       <a class="btn btn-navy" href="contact.html"{NT}>ご相談 {AR}</a>
-      <button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span></span><span></span><em>MENU</em></button>
     </nav>
   </div>
 </header>
+<button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span class="bl"><i></i><i></i></span><em class="b-o">MENU</em><em class="b-c">CLOSE</em></button>
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu-in">
     <div class="menu-l">

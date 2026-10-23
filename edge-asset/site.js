@@ -14,6 +14,7 @@
     burger.addEventListener('click', () => set(!document.body.classList.contains('menu-open')));
     $$('a', menu).forEach(a => a.addEventListener('click', () => set(false)));
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+    addEventListener('scroll', () => burger.classList.toggle('scrolled', scrollY > 80), { passive: true });
   }
 
   // hero slideshow (top page only)
