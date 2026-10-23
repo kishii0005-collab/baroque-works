@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>私たちについて｜株式会社エッジアセット</title>
 <meta name="description" content="エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="株式会社エッジアセット">
+<meta property="og:title" content="私たちについて｜株式会社エッジアセット">
+<meta property="og:description" content="エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。">
+<meta property="og:image" content="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
@@ -853,6 +862,59 @@ header.site{color:var(--navy)}
   .menu-list .mx::after{left:18px;top:14.5px;width:7px;height:7px}
 }
 .menu-open .burger span.bl{transform:none}
+
+/* ===== tel links ===== */
+a.tel-a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+@media (hover:hover){a.tel-a{border-bottom-color:transparent}a.tel-a:hover{border-bottom-color:currentColor}}
+
+/* ===== columns ===== */
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.cg.c2{grid-template-columns:repeat(2,1fr)}
+.cc{display:block;background:#fff;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.cc:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(12,39,71,.1)}
+.cc .ph{aspect-ratio:16/10}
+.cc-tx{padding:22px 24px 26px}
+.cc-m{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--mute);margin:0 0 10px}
+.cc-m time{font-family:var(--en)}
+.cc-m span{color:var(--blue);border:1px solid var(--blue);padding:0 8px;line-height:1.8}
+.cc h3{font-size:17px;line-height:1.65;margin:0 0 10px}
+.cc-e{font-size:13.5px;color:var(--ink-2);margin:0}
+@media (max-width:900px){.cg,.cg.c2{grid-template-columns:1fr}}
+.topcol{background:var(--mist)}
+.collist{padding-top:80px}
+/* article */
+.arthero{padding-block:72px 40px;background:#fff}
+.aw{max-width:820px}
+.arthero .crumb{color:var(--mute);margin-bottom:28px}
+.arthero .crumb a:hover{color:var(--navy)}
+.arthero h1{font-size:clamp(24px,2.8vw,36px);line-height:1.6;color:var(--navy);letter-spacing:.04em}
+.artimg{max-width:1100px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,0px))}
+.artimg .ph{aspect-ratio:21/9}
+.art{padding-block:64px 100px}
+.alead{font-size:16.5px;line-height:2.1;color:var(--ink);padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.art h2{font-size:clamp(19px,2vw,23px);line-height:1.6;margin:56px 0 18px;padding-left:16px;border-left:4px solid var(--blue);color:var(--navy)}
+.art h3{font-size:17px;margin:32px 0 12px}
+.art p{color:var(--ink-2);font-size:15.5px;line-height:2.1}
+.art ul{margin:0 0 1.4em;padding-left:1.4em;color:var(--ink-2)}
+.art li{margin-bottom:.4em}
+.abox{background:var(--mist);border-left:4px solid var(--navy);padding:24px 28px;margin:40px 0}
+.abox p{margin:0;color:var(--ink)}
+.atbl{width:100%;min-width:480px;border-collapse:collapse;font-size:14.5px;margin:8px 0 24px}
+.atbl th,.atbl td{padding:14px 16px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.atbl tr:first-child th{background:var(--navy);color:#fff}
+.atbl th{background:var(--mist);white-space:nowrap}
+.acta{margin:64px 0 24px;padding:36px;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.acta p{margin:0;font-family:var(--fh);font-weight:700;font-size:18px;color:#fff;word-break:keep-all;overflow-wrap:anywhere}
+.anote{font-size:12.5px;color:var(--mute)}
+.artmore{background:var(--mist)}
+.artmore .sh-ja{margin-bottom:24px}
+@media (max-width:760px){.arthero{padding-block:48px 28px}.artimg .ph{aspect-ratio:16/10}.art{padding-block:40px 72px}.acta{padding:26px 22px}.acta .btn{width:100%}}
+.legal h2{border-left:0;padding-left:0;font-size:18px;margin-top:44px}
+/* 404 */
+.nf{padding-block:160px;text-align:center}
+.nf .pen{color:var(--navy)}
+.nf h1{font-size:24px;margin:0 0 16px}
+.nf .btn{margin-top:20px}
 </style>
 </head>
 <body>
@@ -860,7 +922,7 @@ header.site{color:var(--navy)}
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html" target="_blank" rel="noopener">私たちについて</a><a class="nl" href="service.html" target="_blank" rel="noopener">グループの支援</a><a class="nl" href="index.html#cases" target="_blank" rel="noopener">事例</a><a class="nl" href="index.html#flow" target="_blank" rel="noopener">ご相談の流れ</a><a class="nl" href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a><a class="nl" href="news.html" target="_blank" rel="noopener">お知らせ</a>
-      <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
+      <span class="tel"><a class="tel-a" href="tel:0300000000">03-0000-0000</a><small>平日 9:00–18:00</small></span>
       <a class="btn btn-navy" href="contact.html" target="_blank" rel="noopener">ご相談 <span class="ar"></span></a>
     </nav>
   </div>
@@ -870,11 +932,11 @@ header.site{color:var(--navy)}
   <div class="menu-in">
     <div class="menu-l">
       <p class="menu-t">MENU</p>
-      <ul class="menu-list"><li><a href="index.html" target="_blank" rel="noopener"><span class="mn">01</span><span class="mt"><span class="me">Top</span><span class="mj">トップ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="company.html" target="_blank" rel="noopener"><span class="mn">02</span><span class="mt"><span class="me">About us</span><span class="mj">私たちについて</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="service.html" target="_blank" rel="noopener"><span class="mn">03</span><span class="mt"><span class="me">Our support</span><span class="mj">グループの支援</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="index.html#cases" target="_blank" rel="noopener"><span class="mn">04</span><span class="mt"><span class="me">Case</span><span class="mj">事例</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="index.html#flow" target="_blank" rel="noopener"><span class="mn">05</span><span class="mt"><span class="me">Flow</span><span class="mj">ご相談の流れ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="partners.html" target="_blank" rel="noopener"><span class="mn">06</span><span class="mt"><span class="me">For partners</span><span class="mj">仲介会社・金融機関の皆さまへ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="news.html" target="_blank" rel="noopener"><span class="mn">07</span><span class="mt"><span class="me">News</span><span class="mj">お知らせ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="contact.html" target="_blank" rel="noopener"><span class="mn">08</span><span class="mt"><span class="me">Contact</span><span class="mj">ご相談・お問い合わせ</span></span><span class="mx" aria-hidden="true"></span></a></li></ul>
+      <ul class="menu-list"><li><a href="index.html" target="_blank" rel="noopener"><span class="mn">01</span><span class="mt"><span class="me">Top</span><span class="mj">トップ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="company.html" target="_blank" rel="noopener"><span class="mn">02</span><span class="mt"><span class="me">About us</span><span class="mj">私たちについて</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="service.html" target="_blank" rel="noopener"><span class="mn">03</span><span class="mt"><span class="me">Our support</span><span class="mj">グループの支援</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="index.html#cases" target="_blank" rel="noopener"><span class="mn">04</span><span class="mt"><span class="me">Case</span><span class="mj">事例</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="index.html#flow" target="_blank" rel="noopener"><span class="mn">05</span><span class="mt"><span class="me">Flow</span><span class="mj">ご相談の流れ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="partners.html" target="_blank" rel="noopener"><span class="mn">06</span><span class="mt"><span class="me">For partners</span><span class="mj">仲介会社・金融機関の皆さまへ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="news.html" target="_blank" rel="noopener"><span class="mn">07</span><span class="mt"><span class="me">News</span><span class="mj">お知らせ</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="column.html" target="_blank" rel="noopener"><span class="mn">08</span><span class="mt"><span class="me">Column</span><span class="mj">コラム</span></span><span class="mx" aria-hidden="true"></span></a></li><li><a href="contact.html" target="_blank" rel="noopener"><span class="mn">09</span><span class="mt"><span class="me">Contact</span><span class="mj">ご相談・お問い合わせ</span></span><span class="mx" aria-hidden="true"></span></a></li></ul>
     </div>
     <div class="menu-r">
       <p class="menu-k">ご相談窓口</p>
-      <p class="menu-tel">03-0000-0000</p>
+      <p class="menu-tel"><a class="tel-a" href="tel:0300000000">03-0000-0000</a></p>
       <p class="menu-s">平日 9:00–18:00　夜間・土日の面談も調整します</p>
       <a class="btn btn-white" href="contact.html" target="_blank" rel="noopener">無料で相談する <span class="ar"></span></a>
       <p class="menu-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
@@ -1004,7 +1066,7 @@ header.site{color:var(--navy)}
       <div><dt>設立</dt><dd>20XX年X月</dd></div>
       <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／<span class="nb">グループ会社の経営支援</span></dd></div>
-      <div><dt>連絡先</dt><dd>TEL 03-0000-0000（平日 9:00–18:00）</dd></div>
+      <div><dt>連絡先</dt><dd>TEL <a class="tel-a" href="tel:0300000000">03-0000-0000</a>（平日 9:00–18:00）</dd></div>
     </dl>
   </div>
 </section>
@@ -1015,10 +1077,10 @@ header.site{color:var(--navy)}
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
-      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="index.html#cases">モデルケース</a></li><li><a href="index.html#flow">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li></ul></div>
-      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
+      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="index.html#cases">モデルケース</a></li><li><a href="index.html#flow">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
+      <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>
-    <div class="fb"><span><a href="index.html">プライバシーポリシー</a>　｜　<a href="index.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
+    <div class="fb"><span><a href="privacy.html">プライバシーポリシー</a>　｜　<a href="terms.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
   </div>
 </footer>
