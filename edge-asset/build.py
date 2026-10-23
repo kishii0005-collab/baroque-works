@@ -891,7 +891,7 @@ def page(fname,title,body,desc):
 <title>{t}</title>
 <meta name="description" content="{desc}">
 {head_links}
-<link rel="stylesheet" href="style.css">
+<style>{STYLE}</style>
 </head>
 <body>
 {nav()}
@@ -900,7 +900,8 @@ def page(fname,title,body,desc):
 </main>
 {footer()}
 <div class="proto">デザイン確認用｜【 】内と写真は仮</div>
-<script src="site.js"></script>
+<script>{PREVIEW_FIX}</script>
+<script>{SCRIPT}</script>
 </body>
 </html>
 """
@@ -1030,12 +1031,13 @@ bodies={'index.html':(home,'株式会社エッジアセットは、後継者が�
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
  'news.html':(news,'エッジアセットからのお知らせ。'),
  'contact.html':(contact,'工務店・住宅会社の事業承継のご相談・お問い合わせ。')}
+EXTRA_CSS=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'extra.css')).read()
+STYLE=css_main+'\n'+EXTRA_CSS
+SCRIPT=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'site.js')).read()
+# when viewed through htmlpreview.github.io, keep page-to-page links inside the preview
+PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');location.href=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');});}"""
 for fname,title in PAGES:
     b,d=bodies[fname]
     open(os.path.join(OUT,fname),'w').write(page(fname,title,b,d))
 
-EXTRA_CSS=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'extra.css')).read()
-open(os.path.join(OUT,'style.css'),'w').write(css_main+'\n'+EXTRA_CSS)
-js=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'site.js')).read()
-open(os.path.join(OUT,'site.js'),'w').write(js)
 print('pages written')
