@@ -595,13 +595,167 @@ header.site .w{height:88px}
 @media (max-width:640px){.pflow .steps{grid-template-columns:1fr;row-gap:0}}
 .fv-pts span{word-break:keep-all;overflow-wrap:anywhere}
 .ribbon{word-break:keep-all;overflow-wrap:anywhere}
+
+/* ===== hero v2: cinematic, architectural grid, glass panel ===== */
+.home header.site{position:absolute;inset:0 0 auto;background:transparent;border-bottom:1px solid rgba(255,255,255,.14);color:#fff;z-index:30}
+.home .logo{color:#fff}
+.home .gnav .tel{color:#fff}
+.home header .btn-navy{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);backdrop-filter:blur(6px)}
+.home header .btn-navy:hover{background:#fff;color:var(--navy)}
+.hx{position:relative;height:100vh;height:100svh;min-height:700px;max-height:1100px;padding:0;color:#fff;overflow:hidden;background:#06121f}
+.hx-slides{position:absolute;inset:0}
+.hx .slide img{transform:scale(1.12);filter:saturate(.85) contrast(1.05)}
+.hx .slide.on img{animation:hxzoom 10s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes hxzoom{to{transform:scale(1)}}
+.hx::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(6,18,31,.88) 0%,rgba(6,18,31,.55) 42%,rgba(6,18,31,.2) 70%,rgba(6,18,31,.45) 100%),radial-gradient(120% 80% at 80% 110%,rgba(34,104,200,.35),transparent 60%)}
+.hx-grid{position:absolute;inset:0;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none;padding:0 max(48px,env(safe-area-inset-left,0px))}
+.hx-grid i{border-left:1px solid rgba(255,255,255,.08)}
+.hx-grid i:last-child{border-right:1px solid rgba(255,255,255,.08)}
+.hx-in{position:absolute;z-index:3;left:max(48px,env(safe-area-inset-left,0px));right:46%;bottom:190px}
+.hx-kick{display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:12px;letter-spacing:.32em;color:#9cc2f5;margin:0 0 30px}
+.hx-kick span{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(156,194,245,.6);border-radius:50%;letter-spacing:0;font-size:11px}
+.hx-h{font-size:clamp(40px,5.4vw,84px);line-height:1.22;letter-spacing:.04em;font-weight:700;margin:0 0 32px}
+.hx-h .wd{display:inline-block;white-space:nowrap}
+.hx-h .ch{display:inline-block;opacity:0;transform:translateY(.6em);filter:blur(6px);animation:chin .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--d) + .2s)}
+@keyframes chin{to{opacity:1;transform:none;filter:none}}
+.hx-lead{font-size:15px;line-height:2.05;color:rgba(255,255,255,.85);max-width:32em;margin:0 0 40px;opacity:0;animation:fadein 1s 1.2s forwards}
+.hx-act{display:flex;flex-wrap:wrap;align-items:center;gap:18px 32px;opacity:0;animation:fadein 1s 1.4s forwards}
+.hx-tl{color:#fff;border-color:rgba(255,255,255,.7)}
+@keyframes fadein{to{opacity:1}}
+.hx-glass{position:absolute;z-index:3;right:max(48px,env(safe-area-inset-right,0px));bottom:190px;width:min(380px,32vw);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);padding:26px 28px 10px;opacity:0;animation:fadein 1s 1.6s forwards}
+.g-t{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#9cc2f5;margin:0 0 10px}
+.hx-glass dl{margin:0}
+.hx-glass dl div{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding:14px 0;border-top:1px solid rgba(255,255,255,.14)}
+.hx-glass dt{font-size:12px;color:rgba(255,255,255,.6);padding-top:3px}
+.hx-glass dd{margin:0;font-family:var(--fh);font-weight:700;font-size:15px;line-height:1.5}
+.hx-glass dd small{display:block;font-family:var(--f);font-weight:400;font-size:11.5px;color:rgba(255,255,255,.6)}
+.hx-foot{position:absolute;z-index:3;left:max(48px,env(safe-area-inset-left,0px));right:max(48px,env(safe-area-inset-right,0px));bottom:70px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-family:var(--en);font-size:12px}
+.hx-pager{display:flex;align-items:center;gap:14px;letter-spacing:.1em}
+.hx-pager .pager{display:flex;gap:8px}
+.hx-pager .pager button{width:48px;height:2px;padding:0;border:0;background:rgba(255,255,255,.25);cursor:pointer;position:relative;overflow:hidden}
+.hx-pager .pager button::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.hx-pager .pager button.on::after{animation:fill 6s linear forwards}
+.hx-news{display:flex;align-items:center;gap:16px;font-family:var(--f);font-size:13px;color:#fff;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.4);min-width:0}
+.hx-news b{font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:.24em;color:#9cc2f5}
+.hx-news time{font-family:var(--en);opacity:.7}
+.hx-news span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hx-scroll{letter-spacing:.3em;writing-mode:vertical-rl;position:relative;padding-bottom:56px;opacity:.8}
+.hx-scroll::after{content:"";position:absolute;left:50%;bottom:0;width:1px;height:44px;background:linear-gradient(#fff,transparent);animation:scl 2s infinite}
+@keyframes scl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hx-marq{position:absolute;z-index:3;left:0;right:0;bottom:0;height:38px;display:flex;align-items:center;overflow:hidden;border-top:1px solid rgba(255,255,255,.12);font-family:var(--en);font-size:11px;letter-spacing:.34em;color:rgba(255,255,255,.45);white-space:nowrap}
+.hx-marq span{flex:none;padding-right:2em;animation:marq 40s linear infinite}
+@keyframes marq{to{transform:translateX(-100%)}}
+@media (max-width:1100px){.hx-in{right:max(48px,env(safe-area-inset-right,0px));bottom:300px}.hx-glass{left:max(48px,env(safe-area-inset-left,0px));right:auto;width:auto;max-width:560px;bottom:120px;padding:16px 22px 4px}.hx-glass dl{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px}.hx-glass dl div{grid-template-columns:1fr;gap:2px}.hx-foot{bottom:56px}.hx-news,.hx-scroll{display:none}}
+@media (max-width:760px){
+  .hx{min-height:680px}
+  .hx-grid{grid-template-columns:repeat(2,1fr);padding:0 20px}
+  .hx-in{left:20px;right:20px;bottom:250px}
+  .hx-kick{font-size:10px;letter-spacing:.2em;margin-bottom:20px}
+  .hx-h{font-size:38px;line-height:1.28;margin-bottom:22px}
+  .hx-lead{font-size:13.5px;line-height:1.95;margin-bottom:26px}
+  .hx-act .btn{width:100%}
+  .hx-act .tl{display:none}
+  .hx-glass{left:20px;right:20px;bottom:76px;max-width:none}
+  .hx-glass dl{grid-template-columns:1fr 1fr 1fr}
+  .hx-glass dd{font-size:12px}.hx-glass dd small{display:none}.hx-glass dt{font-size:10.5px}
+  .hx-foot{left:20px;right:20px;bottom:44px}
+  .hx-pager .pager button{width:28px}
+}
+@media (prefers-reduced-motion:reduce){.hx-h .ch,.hx-lead,.hx-act,.hx-glass{opacity:1;transform:none;filter:none;animation:none}.hx-marq span{animation:none}}
+
+/* issues */
+.is3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink)}
+.is3 article{padding:36px 36px 8px 0}
+.is3 article+article{padding-left:36px;border-left:1px solid var(--line)}
+.is3 .n{font-family:var(--en);font-weight:300;font-size:56px;line-height:1;color:var(--blue);margin:0 0 22px}
+.is3 h3{font-size:21px;margin:0 0 14px;letter-spacing:.06em}
+.is3 p{color:var(--ink-2);font-size:14.5px}
+@media (max-width:900px){.is3{grid-template-columns:1fr}.is3 article,.is3 article+article{padding:28px 0 4px;border-left:0;border-bottom:1px solid var(--line)}}
+
+/* group model diagram */
+.model{background:#081a31;color:#fff}
+.md{position:relative;display:grid;grid-template-columns:1fr;justify-items:center;gap:0;padding:20px 0 0}
+.md-hq{position:relative;z-index:2;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#2a77dd,#0c2747 70%);display:grid;place-content:center;text-align:center;box-shadow:0 0 0 14px rgba(34,104,200,.12),0 0 0 34px rgba(34,104,200,.06)}
+.md-hq .k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#9cc2f5;margin:0 0 6px}
+.md-hq .t{font-family:var(--fh);font-weight:700;font-size:22px;margin:0}
+.md-hq .s{font-size:12px;color:#c4d4ea;margin:4px 0 0}
+.md-fn{list-style:none;margin:34px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:760px}
+.md-fn li{padding:8px 18px;border:1px solid rgba(156,194,245,.45);font-size:13.5px;color:#d6e4f7;border-radius:999px}
+.md-co{position:relative;margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%;max-width:900px}
+.md-co::before{content:"";position:absolute;left:16.6%;right:16.6%;top:-30px;height:30px;border:1px solid rgba(156,194,245,.4);border-bottom:0}
+.md-co::after{content:"";position:absolute;left:50%;top:-60px;height:30px;border-left:1px solid rgba(156,194,245,.4)}
+.md-co div{position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);padding:22px 18px;text-align:center}
+.md-co .t{font-family:var(--fh);font-weight:700;font-size:18px;margin:0}
+.md-co .s{font-size:12.5px;color:#b6c3d4;margin:4px 0 0}
+.md-note{margin:28px 0 0;font-size:13.5px;color:#b6c3d4;text-align:center;word-break:keep-all;overflow-wrap:anywhere}
+@media (max-width:640px){.md-hq{width:190px;height:190px}.md-co{grid-template-columns:1fr;gap:10px}.md-co::before,.md-co::after{display:none}.md-note{text-align:left}}
+
+/* first 100 days */
+.dl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.dl::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,var(--blue),var(--navy))}
+.dl li{position:relative;padding:40px 26px 0 0}
+.dl li::before{content:"";position:absolute;left:0;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.dl .day{font-family:var(--en);font-size:26px;font-weight:300;color:var(--blue);margin:0 0 10px}
+.dl h3{font-size:17px;margin:0 0 10px}
+.dl p{font-size:14px;color:var(--ink-2)}
+@media (max-width:900px){.dl{grid-template-columns:1fr}.dl::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto}.dl li{padding:0 0 30px 40px}.dl li::before{top:4px}}
+
+/* before / after */
+.ba{background:var(--mist)}
+.batbl{width:100%;min-width:640px;border-collapse:collapse;font-size:14.5px;background:#fff}
+.batbl th,.batbl td{padding:20px 22px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.batbl thead th{font-size:13px;color:var(--mute);font-weight:500;border-bottom:1px solid var(--ink)}
+.batbl tbody th{font-family:var(--fh);color:var(--navy);white-space:nowrap}
+.batbl .af{background:#eef4fd;color:var(--navy);font-weight:500}
+.batbl thead .af{background:var(--navy);color:#fff}
+
+/* top faq, vmv, gov, history, partner info, prep, service intro */
+.tf{display:grid;grid-template-columns:4fr 8fr;gap:72px}
+.tf .sh{grid-template-columns:1fr;margin-bottom:24px}
+@media (max-width:900px){.tf{grid-template-columns:1fr;gap:28px}}
+.topfaq{background:var(--mist)}
+.vm2{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:56px}
+.vm2>div{background:var(--navy);color:#fff;padding:44px 40px}
+.vm2 .k{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:#9cc2f5;margin:0 0 16px}
+.vm2 h3{font-size:clamp(20px,2vw,26px);line-height:1.6;margin:0 0 18px}
+.vm2 p{color:#c4d0de;margin:0;font-size:14.5px}
+.val{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+.val li{padding:30px 24px 6px 0}
+.val li+li{padding-left:24px;border-left:1px solid var(--line)}
+.val .n{font-family:var(--en);font-size:13px;letter-spacing:.2em;color:var(--blue);margin:0 0 10px}
+.val h4{font-family:var(--fh);font-size:17px;margin:0 0 10px;word-break:keep-all;overflow-wrap:anywhere}
+.val p{font-size:14px;color:var(--ink-2)}
+@media (max-width:900px){.vm2{grid-template-columns:1fr}.vm2>div{padding:32px 24px}.val{grid-template-columns:1fr 1fr}.val li:nth-child(3){padding-left:0;border-left:0}}
+@media (max-width:560px){.val{grid-template-columns:1fr}.val li,.val li+li{padding:22px 0 4px;border-left:0;border-bottom:1px solid var(--line)}}
+.g2{display:grid;grid-template-columns:4fr 8fr;gap:72px;align-items:start}
+.g2 .sh{grid-template-columns:1fr;margin-bottom:0}
+@media (max-width:900px){.g2{grid-template-columns:1fr;gap:28px}}
+.gov{background:var(--mist)}
+.govtbl{width:100%;border-collapse:collapse;font-size:15px;background:#fff}
+.govtbl th,.govtbl td{padding:18px 22px;border-bottom:1px solid var(--line);text-align:left}
+.govtbl thead th{background:var(--navy);color:#fff;font-weight:500;font-size:13px}
+.govtbl td:last-child{font-family:var(--fh);font-weight:700;color:var(--navy);white-space:nowrap}
+.hl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.hl li{display:grid;grid-template-columns:160px 1fr;padding:20px 0;border-bottom:1px solid var(--line)}
+.hl time{font-family:var(--en);color:var(--blue)}
+.hl p{margin:0}
+@media (max-width:560px){.hl li{grid-template-columns:1fr;gap:4px}}
+.chk2{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chk2 li{background:var(--mist);padding:18px 20px 18px 52px;position:relative}
+.chk2 li::before{content:"";position:absolute;left:20px;top:22px;width:16px;height:9px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+.chk2 b{display:block;font-family:var(--fh);color:var(--navy);margin-bottom:2px}
+.chk2 span{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:640px){.chk2{grid-template-columns:1fr}}
+.pnote{margin-top:24px;font-weight:500;word-break:keep-all;overflow-wrap:anywhere}
+.pfaq{background:var(--mist)}
+.chk2 span,.hx-glass dd{word-break:keep-all;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
 <header class="site">
   <div class="w">
     <a class="logo" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
-    <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html">私たちについて</a><a class="nl" href="index.html#support">グループの支援</a><a class="nl" href="index.html#cases">事例</a><a class="nl" href="index.html#flow">ご相談の流れ</a><a class="nl" href="partners.html">仲介会社・金融機関の方へ</a><a class="nl" href="news.html">お知らせ</a>
+    <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html">私たちについて</a><a class="nl" href="service.html">グループの支援</a><a class="nl" href="index.html#cases">事例</a><a class="nl" href="index.html#flow">ご相談の流れ</a><a class="nl" href="partners.html">仲介会社・金融機関の方へ</a><a class="nl" href="news.html">お知らせ</a>
       <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
       <a class="btn btn-navy" href="contact.html">ご相談 <span class="ar"></span></a>
     </nav>
@@ -621,7 +775,7 @@ header.site .w{height:88px}
         <p>工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検に<span class="nb">は誰が行くのか」。</span></p>
         <p>エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった、一社では手が回らない仕事を<span class="nb">グループで支えます。</span></p>
       </div>
-      <a class="tl" href="index.html#support">グループの支援を見る <span class="ar"></span></a>
+      <a class="tl" href="service.html">グループの支援を見る <span class="ar"></span></a>
     </div>
     <div class="pics">
       <div class="ph p1 mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="木造の骨組み" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
@@ -644,6 +798,15 @@ header.site .w{height:88px}
       <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
+</section><section class="vmv">
+  <div class="w">
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Vision / Mission / Value</p><p class="sh-ja">私たちが目指すもの</p><h2>地域の<wbr>住まいを<wbr>守り続ける<wbr>会社を、<wbr>全国に。</h2></div></header>
+    <div class="vm2">
+      <div class="rv"><p class="k">VISION</p><h3>地域の<wbr>住まいを<wbr>守り続ける<wbr>会社を、<wbr>全国に。</h3><p>家を建てた会社が、三十年後もその家の点検に伺える。そんな当たり前を、後継者がいない工務店にも<span class="nb">続けられるようにします。</span></p></div>
+      <div class="rv"><p class="k">MISSION</p><h3>工務店の<wbr>事業承継を、<wbr>廃業以外の<wbr>選択肢に。</h3><p>継ぐ人がいないという理由で、黒字の会社が消えることをなくします。社名と雇用を残したまま引き継ぐ受け皿を、<span class="nb">住宅業界につくります。</span></p></div>
+    </div>
+    <ul class="val"><li class="rv"><p class="n">01</p><h4>売らない</h4><p>買った会社を手放して利益を得ること<span class="nb">を前提にしません。</span></p></li><li class="rv"><p class="n">02</p><h4>現場に口を出さない</h4><p>家づくりの方針は、各社の大工と<span class="nb">設計者が決めます。</span></p></li><li class="rv"><p class="n">03</p><h4>数字は毎月、一緒に見る</h4><p>感覚ではなく月次の数字で、社長と<span class="nb">同じ景色を見ます。</span></p></li><li class="rv"><p class="n">04</p><h4>約束は契約書に書く</h4><p>口約束ではなく、守ることを<span class="nb">条項として残します。</span></p></li></ul>
+  </div>
 </section><section class="team" id="team">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Team</p><p class="sh-ja">メンバー</p><h2>住宅業界の<wbr>実務を<wbr>知る人間が、<wbr>引き継ぎます</h2></div><div class="sh-lead"><p>会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバ<span class="nb">ーをご紹介します。</span></p></div></header>
@@ -663,6 +826,18 @@ header.site .w{height:88px}
       <div class="rv"><p class="k">専門家ネットワーク</p><p class="v">税理士・弁護士・M&amp;A実務</p><p class="d">株価算定、契約、許認可、労務までを社内外の<span class="nb">専門家で対応します。</span></p></div>
     </div>
     <p class="capnote">エッジアセットは、外部の投資家から資金を集めて<span class="nb">運用するファンドではありません。</span><br><em class="tbd">【確定後に記載】</em></p>
+  </div>
+</section><section class="gov">
+  <div class="w g2">
+    <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Governance</p><p class="sh-ja">グループ経営の考え方</p><h2>任せる<wbr>範囲と、<wbr>一緒に<wbr>決める<wbr>範囲</h2></div></header></div>
+    <div class="rv"><table class="govtbl"><thead><tr><th>判断すること</th><th>決める人</th></tr></thead><tbody>
+      <tr><td>設計・仕様・施工方法</td><td>各社</td></tr>
+      <tr><td>個別案件の見積と受注</td><td>各社</td></tr>
+      <tr><td>採用（配属・現場の育成）</td><td>各社</td></tr>
+      <tr><td>年度予算・設備投資</td><td>各社と本部で協議</td></tr>
+      <tr><td>借入・大型投資・役員人事</td><td>各社と本部で協議</td></tr>
+      <tr><td>経理・労務・情報管理のルール</td><td>グループ共通</td></tr>
+    </tbody></table></div>
   </div>
 </section><section class="record" id="record">
   <div class="w rec">
@@ -693,6 +868,11 @@ header.site .w{height:88px}
     </div>
     <p style="font-size:12.5px;color:var(--mute);margin-top:16px">一般的な傾向を整理したもので、個別の案件により異なります。</p>
   </div>
+</section><section class="hist">
+  <div class="w g2">
+    <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">History</p><p class="sh-ja">沿革</p></div></header></div>
+    <ul class="hl rv"><li><time>2026</time><p>株式会社エッジアセット設立（東京都港区）　設立月 <em class="tbd">【確定後に記載】</em></p></li><li><time>2026.10</time><p>コーポレートサイトを公開</p></li></ul>
+  </div>
 </section><section class="company" id="company">
   <div class="w grid">
     <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Company</p><p class="sh-ja">会社概要</p><h2>会社概要</h2></div></header></div>
@@ -714,7 +894,7 @@ header.site .w{height:88px}
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
-      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="index.html#support">グループの支援</a></li><li><a href="index.html#cases">モデルケース</a></li><li><a href="index.html#flow">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li></ul></div>
+      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="index.html#cases">モデルケース</a></li><li><a href="index.html#flow">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>
     <div class="fb"><span><a href="index.html">プライバシーポリシー</a>　｜　<a href="index.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
