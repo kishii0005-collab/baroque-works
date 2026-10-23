@@ -1,7 +1,7 @@
 import sys
-U=lambda i,w=1600:f'https://unsplash.com/photos/{i}/download?force=true&amp;w={w}'
+U=lambda i,w=0:f'https://unsplash.com/photos/{i}/download?force=true&amp;w=1800'  # one size per photo so the browser fetches it only once
 SAFE=U('Q6sCJFHCubc',2000)
-BACKUP=['Q6sCJFHCubc','JsSM2T9iPRU','I4plBnRzJ94']
+BACKUP=['Q6sCJFHCubc','Q6sCJFHCubc','TJ4CndIc9z8']
 def img(i,alt='',w=1400,lazy=True,fb=None):
     chain=[i]+[x for x in (fb or [])+BACKUP if x!=i]
     rest='|'.join(U(x,w) for x in chain[1:4])
@@ -459,14 +459,14 @@ section{position:relative}
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
 AR='<span class="ar"></span>'
 
-hero_slides=[('JsSM2T9iPRU','東京の木造住宅',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('Q6sCJFHCubc','東京の住宅街',True),('I4plBnRzJ94','沖縄の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True)]
+hero_slides=[('Q6sCJFHCubc','東京の住宅街',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True),('pcYN7Pi8_BQ','夕暮れの東京の住宅街',True)]
 slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
 
 support=[
  ('集客','MARKETING','q1tyQip5AQQ','大阪の住宅の外観','広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で回る仕組みに置き換えます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
- ('採用','RECRUITING','dUYELbt-H-E','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
+ ('採用','RECRUITING','4UVtFIfK1eo','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
  ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も一緒に行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
- ('仕入・業務','OPERATIONS','yZSKjCg0uz8','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
+ ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様の選定、地元の材木店との取引、現場での判断'),
 ]
 rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}"><div class="ph mask">{img(pid,alt,1400)}</div></div><div class="tx rv" data-no="0{k+1}"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<dl><div><dt>グループが担う</dt><dd>{g}</dd></div><div><dt>各社に残す</dt><dd>{kk}</dd></div></dl></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
 
@@ -483,9 +483,9 @@ people=[('社長へ','辞める|時期は、|ご自身で|決められます。'
  ('協力業者さんへ','発注も|支払条件も|これまで|どおりです。','グループ内の他社の現場をお願いできる機会も、少しずつ増えていきます。')]
 pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</article>' for w,h,t in people)
 
-cases=[('後継者不在','I4plBnRzJ94','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
+cases=[('後継者不在','TJ4CndIc9z8','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
  ('成長の壁','4UVtFIfK1eo','木造の骨組み','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
- ('廃業の検討','T7s9FlBavHA','大きな窓のある室内','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
+ ('廃業の検討','q1tyQip5AQQ','大きな窓のある室内','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
 cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
 
 steps=[('初回面談','1–2 hours','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2–4 weeks','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2–3 weeks','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1–2 months','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','1 month','株式譲渡契約の締結と、個人保証の解除手続きを行います。'),('ご説明と|引き継ぎ','6 months–','社員・施主様への説明に、私たちも同席します。')]
@@ -561,8 +561,8 @@ HTML=f'''<!doctype html>
       <a class="tl" href="#support">グループの支援を見る {AR}</a>
     </div>
     <div class="pics">
-      <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600,fb=['dUYELbt-H-E'])}</div>
-      <div class="ph p2 mask">{img('T7s9FlBavHA','大きな窓のある室内',900,fb=['2cfj0Y5ch00'])}</div>
+      <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600,fb=['4UVtFIfK1eo'])}</div>
+      <div class="ph p2 mask">{img('q1tyQip5AQQ','大きな窓のある室内',900,fb=['q1tyQip5AQQ'])}</div>
     </div>
   </div>
 </section>
@@ -580,10 +580,10 @@ HTML=f'''<!doctype html>
 </section>
 
 <div class="strip" aria-hidden="true">
-  <div class="ph">{img('GQn9GnMkVQg','',1200)}</div>
-  <div class="ph">{img('5kdlUEHlMXo','',800)}</div>
-  <div class="ph">{img('a8A-z_ZPEC0','',1000)}</div>
-  <div class="ph">{img('bqUZEAeWuok','',800)}</div>
+  <div class="ph">{img('4mEyvORkbN0','',1200)}</div>
+  <div class="ph">{img('q1tyQip5AQQ','',800)}</div>
+  <div class="ph">{img('rD28m9BmXVs','',1000)}</div>
+  <div class="ph">{img('-MVSfkR4xz4','',800)}</div>
 </div>
 
 <section class="stance">
@@ -600,9 +600,9 @@ HTML=f'''<!doctype html>
 <section class="msg" id="message">
   <div class="w grid">
     <div class="rv">
-      <div class="frame navy"><div class="ph">{img('M4dRgj6U_wU','大阪のオフィスビル',1000)}<span>代表写真は撮影予定</span></div></div>
-      <div class="who"><small>代表取締役</small><b>〇〇 〇〇</b></div>
-      <ul><li>住宅会社にて集客・採用部門を統括</li><li>住宅業界向けSaaS企業 CFO室</li><li>工務店・住宅会社の経営支援</li></ul>
+      <div class="frame navy"><div class="ph">{img('rD28m9BmXVs','大阪のオフィスビル',1000)}<span>代表写真は撮影予定</span></div></div>
+      <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
+      <ul><li>経歴は確定後に掲載します</li></ul>
     </div>
     <div class="letter rv">
       {head('Message','代表メッセージ','').replace('<h2></h2>','')}
@@ -610,7 +610,7 @@ HTML=f'''<!doctype html>
       {P('これまで多くの工務店の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を何人も見てきました。')}
       {P('大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。')}
       {P('私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を聞かせてください。')}
-      <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　〇〇 〇〇</span></p>
+      <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
 </section>
@@ -626,7 +626,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cta">
-  <div class="ph">{img('GpJ9p1QH7O4','',2000)}</div>
+  <div class="ph">{img('pcYN7Pi8_BQ','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#contact">事業承継ガイドを受け取る {AR}</a></div>
@@ -643,7 +643,7 @@ HTML=f'''<!doctype html>
 <section class="people">
   <div class="w">
     {head('People','それぞれの方へ','社長・|社員・|施主様・|協力業者さん、|それぞれに|とって|変わらないこと')}
-    <div class="frame"><div class="ph mask">{img('8DPdrb9Wxqg','緑に囲まれた住宅',2000)}</div><p class="ribbon">{W("社名も、|社員も、|施主様との|約束も。")}</p></div>
+    <div class="frame"><div class="ph mask">{img('-MVSfkR4xz4','緑に囲まれた住宅',2000)}</div><p class="ribbon">{W("社名も、|社員も、|施主様との|約束も。")}</p></div>
     <div class="pg">{pg}</div>
   </div>
 </section>
@@ -706,7 +706,7 @@ HTML=f'''<!doctype html>
     <div class="rv">{head('Company','会社概要','会社概要')}</div>
     <dl class="rv">
       <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
-      <div><dt>代表者</dt><dd>代表取締役　〇〇 〇〇</dd></div>
+      <div><dt>代表者</dt><dd>代表取締役　谷岡 佑亮</dd></div>
       <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
       <div><dt>設立</dt><dd>20XX年X月</dd></div>
       <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
@@ -717,7 +717,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="contact" id="contact">
-  <div class="ph side">{img('Vg96IZTFubo','家の鍵を持つ手',1400,fb=['bqUZEAeWuok'])}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="ph side">{img('Q6sCJFHCubc','家の鍵を持つ手',1400,fb=['-MVSfkR4xz4'])}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
   <div class="body">
     <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
