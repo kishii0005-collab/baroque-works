@@ -16,6 +16,10 @@
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
     addEventListener('scroll', () => burger.classList.toggle('scrolled', scrollY > 80), { passive: true });
   }
+  {
+    const hd = () => document.body.classList.toggle('hd-s', scrollY > 40);
+    hd(); addEventListener('scroll', hd, { passive: true });
+  }
 
   // hero slideshow (top page only)
   const slides = $$('.slide'), pager = $('#pager'), cnt = $('#cnt');
