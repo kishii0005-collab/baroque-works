@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>モデルケース 04｜粗利の低下｜株式会社エッジアセット</title>
-<meta name="description" content="職人さんの単価には手を付けず、発注の集約と実行予算の徹底で粗利を立て直してから承継する想定例です。">
+<meta name="description" content="仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承継する想定例です。">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="モデルケース 04｜粗利の低下｜株式会社エッジアセット">
-<meta property="og:description" content="職人さんの単価には手を付けず、発注の集約と実行予算の徹底で粗利を立て直してから承継する想定例です。">
+<meta property="og:description" content="仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承継する想定例です。">
 <meta property="og:image" content="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
@@ -1140,6 +1140,72 @@ body:not(.home) .dark .sh-t::before{color:#7fb0ff;border-color:#7fb0ff}
 .tk-l>li>span{font-family:var(--en);color:var(--blue);font-size:14px;flex:none}
 @media (max-width:860px){.gantt{padding:24px 18px}.gantt li{grid-template-columns:1fr;gap:6px}.gm{margin-left:0}.fsteps>li{grid-template-columns:1fr;gap:20px;padding:36px 0}.fs-m{grid-template-columns:1fr}.secret .sc-l{grid-template-columns:1fr}}
 .secret,.tcost{background:var(--navy);color:#fff}
+
+/* issues: four columns */
+.is4{grid-template-columns:repeat(4,1fr)}
+.is4 article{padding:36px 28px 8px 0}.is4 article+article{padding-left:28px}
+@media (max-width:1200px){.is4{grid-template-columns:1fr 1fr}.is4 article:nth-child(3){padding-left:0;border-left:0}.is4 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.is4{grid-template-columns:1fr}.is4 article:nth-child(n+3){border-top:0}}
+
+/* hero: copy and footer in normal flow so they can never overlap on short/wide screens */
+@media (min-width:761px){
+  .hx{height:auto;min-height:100vh;min-height:100svh;max-height:none;display:flex;flex-direction:column;justify-content:flex-end;padding:150px 0 38px}
+  .hx-in{position:relative;top:auto;bottom:auto;left:auto;right:auto;margin:0 max(48px,env(safe-area-inset-left,0px));max-width:min(880px,58%)}
+  .hx-foot{position:relative;left:auto;right:auto;bottom:auto;margin:64px max(48px,env(safe-area-inset-left,0px)) 34px}
+}
+@media (min-width:761px) and (max-width:1100px){.hx-in{max-width:none}}
+
+/* ===== cost v2 ===== */
+.cs-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin:0 0 16px}
+.cs-why{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center;margin-bottom:96px}
+.cs-wt h3{font-size:clamp(22px,2.2vw,30px);line-height:1.6;letter-spacing:.05em;margin:0 0 20px;word-break:keep-all;overflow-wrap:anywhere}
+.cs-wt p{color:var(--ink-2);margin:0}
+.pbars{background:var(--mist);padding:40px 40px 30px}
+.pb-r{margin-bottom:22px}
+.pb-k{font-size:13px;font-weight:500;margin:0 0 8px}
+.pb-bar{display:flex;height:52px;gap:3px}
+.pb-bar i{display:flex;align-items:center;padding:0 14px;min-width:0;font-style:normal;transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.pb-bar b{font-family:var(--fh);font-weight:500;font-size:12.5px;white-space:nowrap;overflow:hidden}
+.pb-bar .c{background:#cdd8e6;color:var(--navy)}
+.pb-bar .g{background:#8ea7c6;color:#fff}
+.pb-bar .o{background:var(--blue);color:#fff;justify-content:center;padding:0 4px}
+.pb-bar .o b{font-family:var(--en);font-size:18px}
+.pb-r+.pb-r .o{background:var(--navy);box-shadow:0 0 0 3px rgba(34,104,200,.35)}
+.js .pbars:not(.in) .pb-bar i{transform:scaleX(0)}
+.pb-res{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:6px}
+.pb-big{font-family:var(--fh);font-weight:500;font-size:16px;margin:0;color:var(--navy)}
+.pb-big b{font-family:var(--en);font-weight:300;font-size:64px;line-height:1;color:var(--blue);margin:0 4px}
+.pb-cap{margin:0;font-size:14px;color:var(--ink-2);flex:1;min-width:14em;word-break:keep-all;overflow-wrap:anywhere}
+.pb-note{font-size:11.5px;color:var(--mute);margin:16px 0 0}
+.pbars.dk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
+.pbars.dk .pb-k{color:#fff}
+.pbars.dk .pb-bar .c{background:rgba(255,255,255,.18);color:#fff}
+.pbars.dk .pb-bar .g{background:rgba(255,255,255,.34);color:#fff}
+.pbars.dk .pb-r+.pb-r .o{background:#7fb0ff;color:var(--navy);box-shadow:none}
+.pbars.dk .pb-res{border-color:rgba(255,255,255,.16)}
+.pbars.dk .pb-big{color:#fff}.pbars.dk .pb-big b{color:#7fb0ff}
+.pbars.dk .pb-cap{color:#c4d0de}.pbars.dk .pb-note{color:#8ea3bd}
+.cs-steps{list-style:none;margin:0 0 72px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.cs-steps li{padding:0 36px 0 0;position:relative}
+.cs-steps li+li{padding-left:36px;border-left:1px solid var(--line)}
+.cs-sn{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--blue);margin:0 0 6px;display:flex;flex-direction:column;gap:6px}
+.cs-sn span{font-size:clamp(30px,3vw,42px);font-weight:300;letter-spacing:0;color:var(--navy)}
+.cs-steps h3{font-size:18px;margin:12px 0 12px;padding-top:14px;border-top:2px solid var(--navy);display:inline-block}
+.cs-steps p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
+.cs-lv{background:var(--navy);color:#fff;padding:36px 40px;margin-bottom:28px}
+.cs-lv .cs-k{color:#7fb0ff}
+.cs-lv ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.cs-lv li{display:flex;flex-direction:column;gap:4px;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.cs-lv b{font-family:var(--fh);font-weight:500;font-size:15px}
+.cs-lv span{font-size:13px;color:#b9c8da;word-break:keep-all;overflow-wrap:anywhere}
+.notdo li::before{content:"";position:absolute;left:4px;top:50%;width:14px;height:8px;border-left:2px solid #7fb0ff;border-bottom:2px solid #7fb0ff;background:none;transform:translateY(-70%) rotate(-45deg)}
+.notdo li::after{display:none}
+@media (min-width:861px){.tcost .w{grid-template-columns:5fr 6fr}}
+.tcost .w>*{min-width:0}
+@media (max-width:960px){.cs-why{grid-template-columns:1fr;gap:36px;margin-bottom:64px}.cs-steps{grid-template-columns:1fr}.cs-steps li,.cs-steps li+li{padding:0 0 32px;border-left:0}.cs-lv ul{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pbars{padding:24px 18px 20px}.pb-bar{height:44px}.pb-bar i{padding:0 8px}.pb-bar b{font-size:11px}.pb-bar .g b{font-size:0}.pb-bar .g b::after{content:"販管";font-size:11px}.pb-big b{font-size:48px}.cs-lv{padding:28px 20px}.cs-lv ul{grid-template-columns:1fr}}
+.is4 .nb,.people .nb{white-space:normal}
+@media (max-width:600px){.sim th,.sim td{padding:11px 5px}.sim td{font-size:14px}.sim td small{display:none}.sim thead th{font-size:11px}.sim tbody th{font-size:12px}}
 </style>
 </head>
 <body>
@@ -1176,7 +1242,7 @@ body:not(.home) .dark .sh-t::before{color:#7fb0ff;border-color:#7fb0ff}
     <p class="crumb"><a href="index.html">トップ</a><span>/</span><a href="cases.html">モデルケース</a><span>/</span>CASE 04</p>
     <p class="ch-no">CASE <b>04</b><span>粗利の低下</span></p>
     <h1>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h1>
-    <p class="plead">職人さんの単価には手を付けず、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p>
+    <p class="plead">仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p>
   </div>
 </section>
 <section class="cprof"><div class="w"><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>事業</dt><dd>注文住宅・分譲</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引渡し 35棟</dd></div><div><dt>社員</dt><dd>24名</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl></div></section>
@@ -1185,11 +1251,11 @@ body:not(.home) .dark .sh-t::before{color:#7fb0ff;border-color:#7fb0ff}
     <aside class="cb-side"><p class="cb-k">Contents</p><ol><li><a href="#c-before">ご相談前の状況</a></li><li><a href="#c-scheme">引き継ぎの形</a></li><li><a href="#c-after">グループ入り後の1年</a></li><li><a href="#c-change">変わったこと</a></li><li><a href="#c-point">この事例のポイント</a></li></ol><a class="btn btn-navy" href="contact.html" target="_blank" rel="noopener">似た状況を相談する <span class="ar"></span></a></aside>
     <div class="cb-main">
       <div class="cb-sec rv" id="c-before"><p class="cb-n">01</p><h2>ご相談前の状況</h2><ul class="cb-iss"><li>資材価格の上昇を販売価格に転嫁しきれず、粗利率が3年で約5ポイント低下</li><li>発注は担当者ごとにばらばら。同じ住設を、現場ごとに違う価格で購入</li><li>実行予算を組まずに着工し、赤字の現場が引き渡し後に判明</li><li>後継者候補はいるが、業績の悪化で承継に踏み切れない</li></ul><p class="cb-trg"><b>ご相談のきっかけ</b>「数字が見えないまま、次の社長に会社を渡すわけにはいかない」。承継の前に、立て直しも一緒に進めたいと<span class="nb">いうご相談でした。</span></p></div>
-      <div class="cb-sec rv" id="c-scheme"><p class="cb-n">02</p><h2>引き継ぎの形</h2><table class="cb-tbl"><tr><th>取得する株式</th><td>100%（株式譲渡）</td></tr><tr><th>社長の処遇</th><td>2年間続投し、その後は社内の後継者へ</td></tr><tr><th>社名・屋号</th><td>変更なし</td></tr><tr><th>雇用・給与</th><td>全員継続</td></tr><tr><th>協力業者さん</th><td>発注条件・支払条件は変更なし</td></tr><tr><th>期間</th><td>初回面談からクロージングまで 約6ヶ月</td></tr></table></div>
-      <div class="cb-sec rv" id="c-after"><p class="cb-n">03</p><h2>グループ入り後の1年</h2><ol class="cb-tl"><li><span>Day 1</span><p>社長と私たちで、全社員に直接ご説明</p></li><li><span>30 days</span><p>過去2年の全現場の原価を洗い出し、品目別の購入単価を一覧化</p></li><li><span>100 days</span><p>住設・建材をグループの共同購買に切り替え。着工前の実行予算を必須に</p></li><li><span>1 year</span><p>標準仕様を整理し、図面チェックの様式を統一して手戻りを削減</p></li></ol></div>
+      <div class="cb-sec rv" id="c-scheme"><p class="cb-n">02</p><h2>引き継ぎの形</h2><table class="cb-tbl"><tr><th>取得する株式</th><td>100%（株式譲渡）</td></tr><tr><th>社長の処遇</th><td>2年間続投し、その後は社内の後継者へ</td></tr><tr><th>社名・屋号</th><td>変更なし</td></tr><tr><th>雇用・給与</th><td>全員継続</td></tr><tr><th>取引先</th><td>品質・納期・価格を基準に、仕入れ値と外注費を見直し</td></tr><tr><th>期間</th><td>初回面談からクロージングまで 約6ヶ月</td></tr></table></div>
+      <div class="cb-sec rv" id="c-after"><p class="cb-n">03</p><h2>グループ入り後の1年</h2><ol class="cb-tl"><li><span>Day 1</span><p>社長と私たちで、全社員に直接ご説明</p></li><li><span>30 days</span><p>過去2年の全現場の原価を洗い出し、品目別の購入単価を一覧化</p></li><li><span>100 days</span><p>住設・建材をグループの共同購買に切り替え、主要な取引先と単価を交渉。実行予算を必須に</p></li><li><span>1 year</span><p>標準仕様を整理し、図面チェックの様式を統一して手戻りを削減</p></li></ol></div>
       <div class="cb-sec rv" id="c-change"><p class="cb-n">04</p><h2>変わったこと</h2><div class="cb-ch"><div class="cb-c"><p class="cb-ck">実行予算</p><p class="cb-b"><small>Before</small>一部の現場のみ</p><p class="cb-a"><small>After</small>全現場で着工前に作成</p></div><div class="cb-c"><p class="cb-ck">住設・建材の購入先</p><p class="cb-b"><small>Before</small>担当者ごとに分散</p><p class="cb-a"><small>After</small>グループの共同購買に集約</p></div><div class="cb-c"><p class="cb-ck">粗利率</p><p class="cb-b"><small>Before</small>3年で約5ポイント低下</p><p class="cb-a"><small>After</small>2ポイント改善が目標（粗利 年約2,000万円）</p></div></div></div>
-      <blockquote class="cb-voice rv"><p>職人さんの単価には手を付けない、と最初に言ってもらえたので、協力業者さんにも<span class="nb">説明しやすかった。</span></p><cite>社長の声（想定）</cite></blockquote>
-      <div class="cb-sec rv" id="c-point"><p class="cb-n">05</p><h2>この事例のポイント</h2><p class="cb-pt">原価は「誰かの単価を叩く」より、「ばらばらの発注を揃える」「着工前に数字を決める」ほうが大きく下がります。立て直してから承継すれば、次の社長の<span class="nb">負担も軽くなります。</span></p></div>
+      <blockquote class="cb-voice rv"><p>どこにいくら払っているのか、初めて全部が見えました。根拠のある交渉だったので、取引先とも<span class="nb">揉めずに済みました。</span></p><cite>社長の声（想定）</cite></blockquote>
+      <div class="cb-sec rv" id="c-point"><p class="cb-n">05</p><h2>この事例のポイント</h2><p class="cb-pt">原価は、まず「どこにいくら払っているか」を見える化し、相場と発注量を根拠に交渉することで下がります。着工前に数字を決める仕組みまで作れば、下がった原価は元に戻りません。立て直してから承継すれば、次の社長の<span class="nb">負担も軽くなります。</span></p></div>
       <p class="cnote">掲載している事例は、よくあるご相談をもとにしたモデルケース（想定事例）です。実在の企業・数値ではありません。</p>
     </div>
   </div>

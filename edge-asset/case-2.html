@@ -1140,6 +1140,72 @@ body:not(.home) .dark .sh-t::before{color:#7fb0ff;border-color:#7fb0ff}
 .tk-l>li>span{font-family:var(--en);color:var(--blue);font-size:14px;flex:none}
 @media (max-width:860px){.gantt{padding:24px 18px}.gantt li{grid-template-columns:1fr;gap:6px}.gm{margin-left:0}.fsteps>li{grid-template-columns:1fr;gap:20px;padding:36px 0}.fs-m{grid-template-columns:1fr}.secret .sc-l{grid-template-columns:1fr}}
 .secret,.tcost{background:var(--navy);color:#fff}
+
+/* issues: four columns */
+.is4{grid-template-columns:repeat(4,1fr)}
+.is4 article{padding:36px 28px 8px 0}.is4 article+article{padding-left:28px}
+@media (max-width:1200px){.is4{grid-template-columns:1fr 1fr}.is4 article:nth-child(3){padding-left:0;border-left:0}.is4 article:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:900px){.is4{grid-template-columns:1fr}.is4 article:nth-child(n+3){border-top:0}}
+
+/* hero: copy and footer in normal flow so they can never overlap on short/wide screens */
+@media (min-width:761px){
+  .hx{height:auto;min-height:100vh;min-height:100svh;max-height:none;display:flex;flex-direction:column;justify-content:flex-end;padding:150px 0 38px}
+  .hx-in{position:relative;top:auto;bottom:auto;left:auto;right:auto;margin:0 max(48px,env(safe-area-inset-left,0px));max-width:min(880px,58%)}
+  .hx-foot{position:relative;left:auto;right:auto;bottom:auto;margin:64px max(48px,env(safe-area-inset-left,0px)) 34px}
+}
+@media (min-width:761px) and (max-width:1100px){.hx-in{max-width:none}}
+
+/* ===== cost v2 ===== */
+.cs-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin:0 0 16px}
+.cs-why{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center;margin-bottom:96px}
+.cs-wt h3{font-size:clamp(22px,2.2vw,30px);line-height:1.6;letter-spacing:.05em;margin:0 0 20px;word-break:keep-all;overflow-wrap:anywhere}
+.cs-wt p{color:var(--ink-2);margin:0}
+.pbars{background:var(--mist);padding:40px 40px 30px}
+.pb-r{margin-bottom:22px}
+.pb-k{font-size:13px;font-weight:500;margin:0 0 8px}
+.pb-bar{display:flex;height:52px;gap:3px}
+.pb-bar i{display:flex;align-items:center;padding:0 14px;min-width:0;font-style:normal;transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.pb-bar b{font-family:var(--fh);font-weight:500;font-size:12.5px;white-space:nowrap;overflow:hidden}
+.pb-bar .c{background:#cdd8e6;color:var(--navy)}
+.pb-bar .g{background:#8ea7c6;color:#fff}
+.pb-bar .o{background:var(--blue);color:#fff;justify-content:center;padding:0 4px}
+.pb-bar .o b{font-family:var(--en);font-size:18px}
+.pb-r+.pb-r .o{background:var(--navy);box-shadow:0 0 0 3px rgba(34,104,200,.35)}
+.js .pbars:not(.in) .pb-bar i{transform:scaleX(0)}
+.pb-res{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:6px}
+.pb-big{font-family:var(--fh);font-weight:500;font-size:16px;margin:0;color:var(--navy)}
+.pb-big b{font-family:var(--en);font-weight:300;font-size:64px;line-height:1;color:var(--blue);margin:0 4px}
+.pb-cap{margin:0;font-size:14px;color:var(--ink-2);flex:1;min-width:14em;word-break:keep-all;overflow-wrap:anywhere}
+.pb-note{font-size:11.5px;color:var(--mute);margin:16px 0 0}
+.pbars.dk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
+.pbars.dk .pb-k{color:#fff}
+.pbars.dk .pb-bar .c{background:rgba(255,255,255,.18);color:#fff}
+.pbars.dk .pb-bar .g{background:rgba(255,255,255,.34);color:#fff}
+.pbars.dk .pb-r+.pb-r .o{background:#7fb0ff;color:var(--navy);box-shadow:none}
+.pbars.dk .pb-res{border-color:rgba(255,255,255,.16)}
+.pbars.dk .pb-big{color:#fff}.pbars.dk .pb-big b{color:#7fb0ff}
+.pbars.dk .pb-cap{color:#c4d0de}.pbars.dk .pb-note{color:#8ea3bd}
+.cs-steps{list-style:none;margin:0 0 72px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.cs-steps li{padding:0 36px 0 0;position:relative}
+.cs-steps li+li{padding-left:36px;border-left:1px solid var(--line)}
+.cs-sn{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--blue);margin:0 0 6px;display:flex;flex-direction:column;gap:6px}
+.cs-sn span{font-size:clamp(30px,3vw,42px);font-weight:300;letter-spacing:0;color:var(--navy)}
+.cs-steps h3{font-size:18px;margin:12px 0 12px;padding-top:14px;border-top:2px solid var(--navy);display:inline-block}
+.cs-steps p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.95}
+.cs-lv{background:var(--navy);color:#fff;padding:36px 40px;margin-bottom:28px}
+.cs-lv .cs-k{color:#7fb0ff}
+.cs-lv ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.cs-lv li{display:flex;flex-direction:column;gap:4px;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.cs-lv b{font-family:var(--fh);font-weight:500;font-size:15px}
+.cs-lv span{font-size:13px;color:#b9c8da;word-break:keep-all;overflow-wrap:anywhere}
+.notdo li::before{content:"";position:absolute;left:4px;top:50%;width:14px;height:8px;border-left:2px solid #7fb0ff;border-bottom:2px solid #7fb0ff;background:none;transform:translateY(-70%) rotate(-45deg)}
+.notdo li::after{display:none}
+@media (min-width:861px){.tcost .w{grid-template-columns:5fr 6fr}}
+.tcost .w>*{min-width:0}
+@media (max-width:960px){.cs-why{grid-template-columns:1fr;gap:36px;margin-bottom:64px}.cs-steps{grid-template-columns:1fr}.cs-steps li,.cs-steps li+li{padding:0 0 32px;border-left:0}.cs-lv ul{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pbars{padding:24px 18px 20px}.pb-bar{height:44px}.pb-bar i{padding:0 8px}.pb-bar b{font-size:11px}.pb-bar .g b{font-size:0}.pb-bar .g b::after{content:"販管";font-size:11px}.pb-big b{font-size:48px}.cs-lv{padding:28px 20px}.cs-lv ul{grid-template-columns:1fr}}
+.is4 .nb,.people .nb{white-space:normal}
+@media (max-width:600px){.sim th,.sim td{padding:11px 5px}.sim td{font-size:14px}.sim td small{display:none}.sim thead th{font-size:11px}.sim tbody th{font-size:12px}}
 </style>
 </head>
 <body>
@@ -1202,7 +1268,7 @@ body:not(.home) .dark .sh-t::before{color:#7fb0ff;border-color:#7fb0ff}
   <div class="cc-tx"><p class="cc-tag"><span>廃業の検討</span>Continuity</p><h3>体力的に<wbr>限界。<wbr>でも<wbr>施主様の<wbr>アフターだけは<wbr>残したい。</h3><p>社名とアフター窓口を残し、近隣のグループ会社と管理部門・仕入れを共通化。社長は半年で<span class="nb">引退した想定例です。</span></p><dl><div><dt>エリア</dt><dd>地方の郡部</dd></div><div><dt>規模</dt><dd>年商 約3億円</dd></div><div><dt>社長</dt><dd>72歳・創業者</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a><a class="ccase rv" href="case-4.html" target="_blank" rel="noopener">
   <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夕暮れの住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>04</b></span></div>
-  <div class="cc-tx"><p class="cc-tag"><span>粗利の低下</span>Cost</p><h3>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h3><p>職人さんの単価には手を付けず、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引渡し 35棟</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
+  <div class="cc-tx"><p class="cc-tag"><span>粗利の低下</span>Cost</p><h3>資材は<wbr>上がり、<wbr>粗利は<wbr>3年で<wbr>5ポイント<wbr>下がった。</h3><p>仕入れ値を相場と照らして見直し、発注の集約と実行予算の徹底で粗利を立て直してから承<span class="nb">継する想定例です。</span></p><dl><div><dt>エリア</dt><dd>中核市</dd></div><div><dt>規模</dt><dd>年商 約10億円／年間引渡し 35棟</dd></div><div><dt>社長</dt><dd>62歳・二代目</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a></div></div></section>
 <section class="nextp"><a href="case-3.html" target="_blank" rel="noopener" class="w"><span class="nx-k">Next page</span><span class="nx-en">Case 03</span><span class="nx-ja">体力的に限界。でも施主様のアフターだけは残したい。</span><span class="nx-ar" aria-hidden="true"></span></a></section>
 </main>
