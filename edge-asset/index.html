@@ -8,498 +8,36 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
-<style>
-/* layout: editorial corporate — asymmetric grid, edge-bleeding photos, big English section titles; navy + one bright blue */
-:root{
-  --bg:#ffffff;
-  --mist:#f1f4f8;
-  --ink:#16202c;
-  --ink-2:#4a5565;
-  --mute:#8a94a3;
-  --line:#d9e0e8;
-  --navy:#0c2747;
-  --blue:#2268c8;
-  --en:"Jost","Helvetica Neue",Arial,sans-serif;
-  --fh:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
-  --f:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  --gut:max(48px,env(safe-area-inset-left,0px));
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15.5px;line-height:2.05;letter-spacing:.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;width:100%;height:100%;object-fit:cover;color:transparent;font-size:0}
-p{margin:0 0 1.3em}
-h1,h2,h3,h4{margin:0;font-family:var(--fh);font-weight:700}
-h1,h2,h3,h4,.catch,.lede,.big,.open li,.open .note,summary span{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
-summary span{word-break:normal}
-.nb{white-space:nowrap}
-.w{width:100%;max-width:1240px;margin:0 auto;padding-left:var(--gut);padding-right:max(48px,env(safe-area-inset-right,0px))}
-@media (max-width:760px){body{font-size:15px;line-height:1.95}:root{--gut:max(22px,env(safe-area-inset-left,0px))}.w{padding-right:max(22px,env(safe-area-inset-right,0px))}}
-:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.ph{position:relative;overflow:hidden;background:#cfd8e3}
-.ph.noimg{background:linear-gradient(135deg,#1b3d6b,#0c2747)}
-.ph.noimg::after{content:"EDGE ASSET";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--en);letter-spacing:.3em;font-size:12px;color:rgba(255,255,255,.35)}
-section{padding-block:140px}
-@media (max-width:760px){section{padding-block:84px}}
-
-/* section head */
-.sh{display:grid;grid-template-columns:1fr 1fr;gap:28px 72px;align-items:end;margin-bottom:72px}
-.sh-en{font-family:var(--en);font-weight:300;font-size:clamp(56px,7.2vw,104px);line-height:.9;letter-spacing:-.01em;color:var(--navy);margin:0 0 26px}
-.sh-ja{font-size:13px;font-weight:500;color:var(--blue);margin:0 0 14px;display:flex;align-items:center;gap:12px}
-.sh-ja::before{content:"";width:8px;height:8px;background:var(--blue)}
-.sh h2{font-size:clamp(22px,2.3vw,30px);line-height:1.7;letter-spacing:.06em}
-.sh-lead p{margin:0;color:var(--ink-2)}
-.sh.c{grid-template-columns:1fr;text-align:center}.sh.c .sh-ja{justify-content:center}.sh.c .sh-lead{max-width:40em;margin:0 auto}
-.dark .sh-en{color:#fff}.dark .sh-ja{color:#8fb6ec}.dark .sh-ja::before{background:#8fb6ec}.dark .sh-lead p{color:#b6c3d4}
-/* heads placed inside a column take the full column */
-.grid .sh{grid-template-columns:1fr;margin-bottom:36px}
-.grid .sh .sh-lead{margin-top:-8px}
-@media (max-width:860px){.sh{grid-template-columns:1fr;margin-bottom:48px}.sh-en{font-size:52px;margin-bottom:18px}.sh h2{font-size:21px}.sh.c{text-align:left}.sh.c .sh-ja{justify-content:flex-start}}
-
-/* buttons / links */
-.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;min-width:260px;padding:20px 26px 20px 30px;font-family:inherit;font-size:14.5px;font-weight:500;letter-spacing:.1em;line-height:1.4;border:1px solid transparent;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
-.btn .ar{width:22px;height:1px;background:currentColor;position:relative;transition:width .3s}
-.btn .ar::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
-.btn:hover .ar{width:32px}
-.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
-.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--navy)}
-.btn-white{background:#fff;color:var(--navy)}.btn-white:hover{background:var(--mist)}
-.btn-ghost{border-color:rgba(255,255,255,.65);color:#fff}.btn-ghost:hover{background:#fff;color:var(--navy)}
-.btn-line{border-color:var(--navy);color:var(--navy)}.btn-line:hover{background:var(--navy);color:#fff}
-.btns{display:flex;flex-wrap:wrap;gap:14px}
-.tl{display:inline-flex;align-items:center;gap:16px;font-size:14px;font-weight:500;color:var(--navy);padding-bottom:8px;border-bottom:1px solid var(--navy)}
-.tl .ar{width:22px;height:1px;background:currentColor;position:relative}
-.tl .ar::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
-@media (max-width:760px){.btns{flex-direction:column}.btn{width:100%;min-width:0}}
-
-/* header */
-header.site{position:absolute;inset:0 0 auto;z-index:20;color:#fff}
-header.site .w{max-width:none;display:flex;align-items:center;justify-content:space-between;height:100px;gap:24px}
-.logo{display:flex;align-items:center;gap:14px}
-.logo svg{width:34px;height:34px}
-.logo b{display:block;font-family:var(--en);font-weight:500;font-size:20px;letter-spacing:.24em;line-height:1.1}
-.logo small{display:block;font-size:10px;letter-spacing:.2em;opacity:.8;margin-top:3px}
-.gnav{display:flex;align-items:center;gap:32px;font-size:13px;font-weight:500}
-.gnav a.nl{position:relative;padding:4px 0}
-.gnav a.nl::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:currentColor;transition:right .3s}
-.gnav a.nl:hover::after{right:0}
-.gnav .tel{font-family:var(--en);font-size:20px;letter-spacing:.06em;line-height:1.2;text-align:right}
-.gnav .tel small{display:block;font-family:var(--f);font-size:10px;opacity:.8;letter-spacing:.1em}
-.gnav .btn{min-width:0;padding:14px 22px;gap:18px;font-size:13px}
-@media (max-width:1200px){.gnav a.nl{display:none}}
-@media (max-width:760px){header.site .w{height:70px}.gnav .tel{display:none}.gnav .btn{padding:10px 14px;font-size:12px;gap:10px}.gnav .btn .ar{display:none}.logo b{font-size:16px}.logo svg{width:28px;height:28px}}
-
-/* hero */
-.hero{position:relative;height:100vh;height:100svh;min-height:640px;max-height:1080px;color:#fff;overflow:hidden;padding:0;background:var(--navy)}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
-.slide.on{opacity:1}
-.slide img{transform:scale(1.08)}
-.slide.on img{animation:zoom 9s linear forwards}
-@keyframes zoom{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,24,46,.8) 0%,rgba(8,24,46,.25) 50%,rgba(8,24,46,.35) 100%);pointer-events:none}
-.hero .copy{position:absolute;z-index:2;left:0;right:0;bottom:150px}
-.hero .copy .w{max-width:none}
-.hero .en{font-family:var(--en);font-weight:300;font-size:13px;letter-spacing:.3em;margin:0 0 28px;opacity:.9}
-.hero h1{font-size:clamp(32px,4.6vw,64px);line-height:1.5;letter-spacing:.08em;margin:0 0 28px;max-width:15em;font-weight:700}
-.hero .lead{font-size:15px;max-width:36em;opacity:.92;margin:0 0 40px}
-.news{position:absolute;z-index:3;left:0;right:0;bottom:0;background:rgba(8,24,46,.55);backdrop-filter:blur(4px);border-top:1px solid rgba(255,255,255,.15)}
-.news .w{max-width:none;display:flex;align-items:center;gap:28px;height:68px;font-size:13px}
-.news b{font-family:var(--en);font-weight:500;letter-spacing:.2em;font-size:12px}
-.news time{font-family:var(--en);opacity:.8}
-.news .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pager{display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:12px}
-.pager button{width:36px;height:2px;padding:0;border:0;background:rgba(255,255,255,.3);cursor:pointer;position:relative;overflow:hidden}
-.pager button::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
-.pager button.on::after{animation:fill 6s linear forwards}
-@keyframes fill{to{transform:scaleX(1)}}
-@media (max-width:760px){.hero{min-height:620px}.hero .copy{bottom:120px}.hero .en{font-size:9.5px;letter-spacing:.18em;margin-bottom:18px}.hero h1{font-size:28px;line-height:1.55}.hero .lead{font-size:13.5px;margin-bottom:28px}.news .w{height:auto;padding-block:14px;flex-wrap:wrap;gap:6px 14px}.news .t{flex-basis:100%}.pager{display:none}}
-
-/* about: text + bleeding photo stack */
-.about{position:relative;overflow:hidden}
-.about .grid{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center}
-.about .catch{font-family:var(--fh);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.8;letter-spacing:.08em;margin:0 0 40px}
-.about .body p{color:var(--ink-2)}
-.about .pics{position:relative;height:620px;margin-right:calc(-1 * max(48px,(100vw - 1240px)/2 + 48px))}
-.about .pics .ph{position:absolute}
-.about .p1{right:0;top:0;width:82%;height:72%}
-.about .p2{left:0;bottom:0;width:44%;height:46%;outline:12px solid #fff}
-.bgword{position:absolute;left:-1vw;bottom:-2.4vw;font-family:var(--en);font-weight:500;font-size:15vw;line-height:1;color:var(--mist);z-index:-1;white-space:nowrap;letter-spacing:-.02em;pointer-events:none}
-@media (max-width:960px){.about .grid{grid-template-columns:1fr;gap:56px}.about .pics{height:420px;margin-right:calc(-1 * var(--gut))}}
-@media (max-width:760px){.about .catch{font-size:23px}.about .pics{height:320px}.about .p2{outline-width:6px}}
-
-/* market (dark, photo right) */
-.market{background:var(--navy);color:#fff;position:relative;overflow:hidden}
-.market .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.market .num{display:flex;align-items:center;gap:28px;padding:34px 0;border-top:1px solid rgba(255,255,255,.2)}
-.market .num:last-of-type{border-bottom:1px solid rgba(255,255,255,.2)}
-.market .num strong{font-family:var(--en);font-weight:300;font-size:clamp(68px,7.5vw,110px);line-height:.85;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.market .num strong small{font-size:.32em;margin-left:6px}
-.market .num h3{font-size:16px;margin:0 0 4px}
-.market .num p{margin:0;font-size:13.5px;color:#b6c3d4;line-height:1.8}
-.market .src{font-size:12px;color:#8a9ab0;margin-top:20px}
-.market .ph{aspect-ratio:4/5}
-@media (max-width:960px){.market .grid{grid-template-columns:1fr;gap:56px}.market .ph{aspect-ratio:16/10}}
-@media (max-width:560px){.market .num{flex-direction:column;align-items:flex-start;gap:14px}.market .num strong{font-size:72px}}
-
-/* gallery strip */
-.strip{padding:0;display:grid;grid-template-columns:2fr 1fr 1.4fr 1fr;height:380px;gap:0}
-.strip .ph{height:100%}
-@media (max-width:760px){.strip{grid-template-columns:1fr 1fr;height:auto}.strip .ph{height:170px}}
-
-/* stance */
-.stance{position:relative;color:#fff;overflow:hidden;padding-block:200px}
-.stance>.ph{position:absolute;inset:0}
-.stance::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,24,46,.85),rgba(8,24,46,.45));z-index:1}
-.stance .w{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
-.stance .big{white-space:nowrap;font-family:var(--fh);font-weight:700;font-size:clamp(52px,6.4vw,96px);line-height:1.1;letter-spacing:.1em;margin:0}
-.stance p{color:rgba(255,255,255,.9)}
-@media (max-width:860px){.stance{padding-block:110px}.stance .w{grid-template-columns:1fr;gap:28px}.stance .big{font-size:54px}}
-
-/* message */
-.msg .grid{display:grid;grid-template-columns:5fr 6fr;gap:96px;align-items:start}
-.msg .ph{aspect-ratio:4/5}
-.msg .ph span{position:absolute;left:0;bottom:0;background:#fff;font-size:11px;padding:8px 14px 0 0;color:var(--mute)}
-.msg .who{display:flex;align-items:baseline;gap:18px;margin-top:24px}
-.msg .who small{font-size:12px;color:var(--mute)}
-.msg .who b{font-family:var(--fh);font-size:22px;letter-spacing:.24em}
-.msg ul{list-style:none;padding:0;margin:14px 0 0;font-size:13.5px;color:var(--ink-2)}
-.msg li{padding:10px 0;border-top:1px solid var(--line)}
-.msg .letter .lede{font-family:var(--fh);font-weight:700;font-size:clamp(22px,2.2vw,28px);line-height:1.8;letter-spacing:.06em;margin:0 0 40px}
-.msg .letter p{color:var(--ink-2)}
-.msg .sign{margin-top:36px;text-align:right;font-family:var(--fh);font-size:15px;color:var(--ink)}
-@media (max-width:960px){.msg .grid{grid-template-columns:1fr;gap:48px}.msg .ph{max-width:400px}}
-
-/* promise: numbered two-column list */
-.promise{background:var(--mist)}
-.plist{display:grid;grid-template-columns:1fr 1fr;column-gap:72px}
-.pi{display:grid;grid-template-columns:76px 1fr;align-content:start;gap:4px 20px;padding:34px 0;border-top:1px solid var(--line)}
-.pi .n{font-family:var(--en);font-weight:300;font-size:44px;line-height:1;color:var(--blue);grid-row:span 2}
-.pi h3{font-size:18.5px;line-height:1.6;letter-spacing:.05em}
-.pi p{margin:0;color:var(--ink-2);font-size:14.5px}
-.pi.ask{background:#fff;border-top:0;padding:30px 30px 26px;margin-top:20px;grid-template-columns:1fr}
-.pi.ask h3{font-size:16px;color:var(--navy);margin-bottom:10px}
-.pi.ask ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
-.pi.ask li{padding:6px 0 6px 18px;position:relative}
-.pi.ask li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--ink-2)}
-@media (max-width:860px){.plist{grid-template-columns:1fr}.pi{grid-template-columns:56px 1fr;padding:26px 0}.pi .n{font-size:34px}}
-
-/* cta band */
-.cta{position:relative;color:#fff;overflow:hidden;padding-block:120px}
-.cta>.ph{position:absolute;inset:0}
-.cta::before{content:"";position:absolute;inset:0;background:rgba(12,39,71,.82);z-index:1}
-.cta .w{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
-.cta h2{font-size:clamp(22px,2.6vw,34px);line-height:1.7;letter-spacing:.06em;margin-bottom:14px}
-.cta p{margin:0;color:rgba(255,255,255,.85)}
-.cta .tel{margin-top:22px;font-size:13px}
-.cta .tel b{font-family:var(--en);font-weight:400;font-size:30px;letter-spacing:.04em;margin-left:12px;white-space:nowrap}
-@media (max-width:560px){.cta .tel b{display:block;margin:4px 0 0}}
-.cta .btns{flex-direction:column;align-items:flex-end}
-@media (max-width:860px){.cta{padding-block:84px}.cta .w{grid-template-columns:1fr}.cta .btns{align-items:stretch}}
-
-/* support: alternating rows */
-.row{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;margin-bottom:56px}
-.row .ph{aspect-ratio:3/2}
-.row .frame{min-width:0}
-.row .tx{padding:0 0 0 72px}
-.row:nth-child(even) .frame{order:2}
-.row:nth-child(even) .tx{padding:0 72px 0 0}
-.row .n{font-family:var(--en);font-weight:300;font-size:15px;letter-spacing:.2em;color:var(--blue);display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.row .n::after{content:"";width:48px;height:1px;background:var(--blue)}
-.row h3{font-size:clamp(20px,2vw,26px);letter-spacing:.08em;margin-bottom:16px}
-.row p{color:var(--ink-2)}
-.row dl{margin:0;font-size:13.5px;border-top:1px solid var(--line)}
-.row dl div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.row dt{color:var(--navy);font-weight:500}
-.row dd{margin:0;color:var(--ink-2)}
-@media (max-width:860px){.row{grid-template-columns:1fr;margin-bottom:56px}.row .tx,.row:nth-child(even) .tx{padding:28px 0 0}.row:nth-child(even) .frame{order:0}.row dl div{grid-template-columns:1fr;gap:0}}
-
-/* people: one wide photo, four columns */
-.people{background:var(--mist)}
-.people .ph{height:420px;margin-bottom:56px}
-.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:0 40px}
-.pg article{border-top:2px solid var(--navy);padding-top:22px}
-.pg .who{font-size:12.5px;font-weight:500;color:var(--blue);margin:0 0 10px}
-.pg h3{font-size:17px;line-height:1.7;margin-bottom:12px}
-.pg p{margin:0;font-size:14px;color:var(--ink-2)}
-@media (max-width:1000px){.pg{grid-template-columns:1fr 1fr;gap:40px 32px}.people .ph{height:300px}}
-@media (max-width:560px){.pg{grid-template-columns:1fr;gap:32px}.people .ph{height:220px;margin-bottom:40px}}
-
-/* compare */
-.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table.cmp{width:100%;min-width:860px;border-collapse:collapse;font-size:14px}
-table.cmp th,table.cmp td{padding:22px 14px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;line-height:1.6}
-table.cmp thead th{font-size:13px;font-weight:500;color:var(--ink-2);border-bottom:1px solid var(--ink)}
-table.cmp tbody th{text-align:left;font-weight:500;white-space:nowrap;background:#fff}
-table.cmp .us{background:var(--navy);color:#fff}
-table.cmp thead .us{font-weight:700}
-table.cmp td small{display:block;font-size:12px;color:var(--mute)}
-table.cmp td.us small{color:#a9bcd3}
-.mk{display:block;font-size:17px}
-.swipe{display:none;font-size:12.5px;color:var(--mute);margin:0 0 10px}
-@media (max-width:860px){.swipe{display:block}table.cmp tbody th{position:sticky;left:0;z-index:1}}
-
-/* cases */
-.cases{background:var(--mist)}
-.case{display:grid;grid-template-columns:5fr 6fr;gap:0;background:#fff;margin-bottom:28px}
-.case .ph{min-height:340px}
-.case .tx{padding:44px 52px}
-.case .no{font-family:var(--en);font-size:13px;letter-spacing:.24em;color:var(--blue);margin:0 0 6px}
-.case .tag{font-size:12.5px;color:var(--mute);margin:0 0 10px}
-.case h3{font-size:19px;line-height:1.7;margin-bottom:18px}
-.case dl{display:flex;flex-wrap:wrap;gap:6px 26px;margin:0 0 18px;font-size:13px;color:var(--ink-2)}
-.case dt{display:inline;color:var(--mute);margin-right:8px}
-.case dd{display:inline;margin:0}
-.case p{margin:0;font-size:14.5px;color:var(--ink-2);padding-top:18px;border-top:1px solid var(--line)}
-.cases .note{font-size:12.5px;color:var(--mute)}
-@media (max-width:860px){.case{grid-template-columns:1fr}.case .ph{min-height:0;aspect-ratio:16/10}.case .tx{padding:28px 22px 30px}}
-
-/* flow */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);counter-reset:s;position:relative}
-.steps::before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
-.steps li{counter-increment:s;padding:0 18px 0 0;position:relative}
-.steps li::before{content:counter(s,decimal-leading-zero);position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--en);font-size:14px;margin-bottom:22px}
-.steps h3{font-size:15.5px;line-height:1.6;margin-bottom:4px}
-.steps .t{display:block;font-family:var(--en);font-size:12.5px;color:var(--blue);margin-bottom:10px;letter-spacing:.06em}
-.steps p{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.85}
-@media (max-width:1100px){.steps{grid-template-columns:repeat(3,1fr);row-gap:44px}.steps::before{display:none}}
-@media (max-width:640px){.steps{grid-template-columns:1fr;row-gap:0}.steps li{display:grid;grid-template-columns:44px 1fr;gap:0 18px;padding:0 0 30px}.steps li::before{grid-row:span 3;margin:0}.steps li::after{content:"";position:absolute;left:21.5px;top:48px;bottom:4px;width:1px;background:var(--line)}.steps li:last-child::after{display:none}}
-
-/* open to all */
-.open{margin-top:110px;display:grid;grid-template-columns:5fr 6fr;gap:0;background:var(--navy);color:#fff}
-.open .ph{min-height:420px}
-.open .tx{padding:56px 60px}
-.open h3{font-size:clamp(22px,2.3vw,30px);line-height:1.6;letter-spacing:.06em;margin-bottom:18px}
-.open .lead{color:#c4d0de;margin-bottom:26px}
-.open ul{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 28px;font-size:14.5px}
-.open li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);word-break:keep-all;overflow-wrap:anywhere}
-.open .note{font-size:13.5px;color:#c4d0de;margin-bottom:28px}
-@media (max-width:1200px){.open ul{grid-template-columns:1fr}}
-@media (max-width:960px){.open{grid-template-columns:1fr;margin-top:80px}.open .ph{min-height:0;aspect-ratio:16/9}.open .tx{padding:36px 22px 40px}.open ul{grid-template-columns:1fr}}
-
-/* faq */
-.faq .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px}
-.faq .sh{grid-template-columns:1fr;margin-bottom:0}
-details{border-bottom:1px solid var(--line)}
-details:first-of-type{border-top:1px solid var(--ink)}
-summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px 1fr 20px;gap:12px;padding:26px 0;font-family:var(--fh);font-weight:700;font-size:16px;line-height:1.7}
-summary::-webkit-details-marker{display:none}
-summary .q{font-family:var(--en);font-weight:400;font-size:20px;color:var(--blue);line-height:1.3}
-summary .pm{position:relative;width:14px;height:14px;margin-top:6px}
-summary .pm::before,summary .pm::after{content:"";position:absolute;left:0;top:6px;width:14px;height:1px;background:var(--ink);transition:transform .3s}
-summary .pm::after{transform:rotate(90deg)}
-details[open] summary .pm::after{transform:rotate(0)}
-details .a{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:0 32px 26px 0}
-details .a span{font-family:var(--en);font-size:20px;color:var(--mute);line-height:1.3}
-details .a p{margin:0;color:var(--ink-2);font-size:14.5px}
-@media (max-width:900px){.faq .grid{grid-template-columns:1fr;gap:40px}summary{font-size:15px}details .a{padding-right:0}}
-
-/* company */
-.company{background:var(--mist)}
-.company .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px}
-.company .sh{grid-template-columns:1fr;margin-bottom:0}
-.company dl{margin:0;border-top:1px solid var(--ink)}
-.company dl div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px}
-.company dt{color:var(--mute);font-size:13.5px}
-.company dd{margin:0}
-@media (max-width:900px){.company .grid{grid-template-columns:1fr;gap:40px}.company dl div{grid-template-columns:1fr;gap:2px}}
-
-/* contact */
-.contact{padding:0;display:grid;grid-template-columns:5fr 7fr;min-height:100vh}
-.contact>.ph{min-height:420px}
-.contact .side{position:relative}
-.contact .side .cap{position:absolute;left:var(--gut);bottom:48px;right:24px;color:#fff;z-index:2}
-.contact .side::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,24,46,.75),rgba(8,24,46,0) 55%)}
-.contact .side .cap b{display:block;font-family:var(--en);font-weight:300;font-size:56px;line-height:1;margin-bottom:10px}
-.contact .body{padding:120px max(48px,env(safe-area-inset-right,0px)) 120px 80px;max-width:820px}
-.contact h2{font-size:clamp(22px,2.3vw,30px);line-height:1.7;letter-spacing:.06em;margin-bottom:18px}
-.contact .lead{color:var(--ink-2);margin-bottom:40px}
-.ways{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-bottom:48px}
-.way{padding:22px 18px 20px 0;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
-.way+.way{padding-left:18px;border-left:1px solid var(--line)}
-.way b{font-family:var(--fh);font-size:16px;color:var(--navy)}
-.way span{font-size:13px;color:var(--ink-2);line-height:1.75;flex:1}
-.way i{font-style:normal;font-size:12.5px;color:var(--blue);font-weight:500}
-.way:hover b{color:var(--blue)}
-.telrow{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;padding:0 0 32px;margin-bottom:36px;border-bottom:1px solid var(--line)}
-.telrow b{font-family:var(--en);font-weight:400;font-size:clamp(32px,3.2vw,44px);color:var(--navy);letter-spacing:.03em;line-height:1}
-.telrow span{font-size:13px;color:var(--mute)}
-form label{display:block;font-size:13px;font-weight:500;margin:0 0 6px}
-form label em{font-style:normal;font-size:11px;color:var(--blue);margin-left:8px}
-form input,form select,form textarea{width:100%;border:0;border-bottom:1px solid #b9c4d2;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:10px 0;margin-bottom:26px;border-radius:0}
-form textarea{min-height:110px;resize:vertical}
-form input:focus,form select:focus,form textarea:focus{outline:none;border-bottom-color:var(--navy)}
-form .r2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.chk{display:flex;align-items:center;gap:10px;font-size:13px;margin:0 0 28px}
-.chk input{width:auto;margin:0}
-.sent{border:1px solid var(--navy);padding:28px}
-@media (max-width:1200px){.ways{grid-template-columns:1fr}.way+.way{padding-left:0;border-left:0}}
-@media (max-width:1000px){.contact{grid-template-columns:1fr;min-height:0}.contact>.ph{min-height:0;height:300px}.contact .body{padding:72px var(--gut) 84px}.contact .side .cap b{font-size:40px}.ways{grid-template-columns:1fr}.way+.way{padding-left:0;border-left:0}form .r2{grid-template-columns:1fr;gap:0}}
-
-/* footer */
-footer{background:#081a31;color:#93a3b8;font-size:13px;padding-block:96px 36px}
-.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:48px}
-footer .logo b{color:#fff}
-footer address{font-style:normal;margin-top:24px;line-height:1.9}
-footer h4{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;letter-spacing:.2em;margin:0 0 18px}
-footer ul{list-style:none;margin:0;padding:0}
-footer li{margin-bottom:10px}
-footer a:hover{color:#fff}
-.ftel b{display:block;font-family:var(--en);font-size:26px;font-weight:400;color:#fff;letter-spacing:.03em}
-.ftel .btn{margin-top:18px;width:100%;min-width:0}
-.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #1c3150;margin-top:72px;padding-top:26px;font-size:11.5px}
-.pagetop{position:absolute;right:max(48px,env(safe-area-inset-right,0px));top:-28px;width:56px;height:56px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
-.pagetop::before{content:"";width:10px;height:10px;border-left:1px solid #fff;border-top:1px solid #fff;transform:rotate(45deg);margin-top:4px}
-footer{position:relative}
-@media (max-width:900px){.fg{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.fg{grid-template-columns:1fr;gap:36px}.pagetop{right:22px}}
-
-/* floating CTA */
-.fcta{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:stretch;background:#fff;box-shadow:0 12px 36px rgba(8,24,46,.22);transform:translateY(calc(100% + 48px));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.fcta.show{transform:none}
-.fcta .lab{padding:14px 20px;font-size:12.5px;line-height:1.55;color:var(--ink)}
-.fcta .lab b{display:block;font-size:13.5px;color:var(--navy)}
-.fcta a.go{display:flex;align-items:center;gap:14px;padding:0 24px;background:var(--blue);color:#fff;font-size:13.5px;font-weight:500}
-.fcta a.go:hover{background:var(--navy)}
-.fcta .x{position:absolute;right:-10px;top:-10px;width:24px;height:24px;border-radius:50%;background:var(--navy);border:0;color:#fff;font-size:12px;cursor:pointer;line-height:24px}
-.mbar{display:none}
-@media (max-width:760px){
-  .fcta{display:none}
-  .mbar{display:grid;grid-template-columns:1fr 1.5fr;position:fixed;left:0;right:0;bottom:0;z-index:40;transform:translateY(110%);transition:transform .35s;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--navy)}
-  .mbar.show{transform:none}
-  .mbar a{display:flex;align-items:center;justify-content:center;height:58px;font-size:14px;font-weight:500;color:#fff}
-  .mbar a+a{background:var(--blue)}
-  footer{padding-bottom:110px}
-}
-.proto{position:fixed;left:12px;bottom:12px;z-index:30;background:rgba(8,24,46,.85);color:#fff;font-size:10.5px;padding:4px 10px}
-@media (max-width:760px){.proto{display:none}}
-
-
-/* ===== design layer ===== */
-.flow{background-image:linear-gradient(var(--bg),var(--bg))}
-/* offset colour blocks behind photos */
-.frame{position:relative}
-.frame::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--blue);opacity:.12;z-index:0}
-.frame.l::before{inset:28px 28px -28px -28px}
-.frame.navy::before{background:var(--navy);opacity:1;inset:-24px 24px 24px -24px}
-.frame>.ph{position:relative;z-index:1}
-@media (max-width:760px){.frame::before{inset:14px -14px -14px 14px}.frame.l::before{inset:14px 14px -14px -14px}.frame.navy::before{inset:-12px 12px 12px -12px}}
-/* vertical Japanese labels */
-.vt{position:absolute;top:140px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:13px;letter-spacing:.5em;color:var(--blue);display:flex;align-items:center;gap:14px;z-index:2}
-.vt::after{content:"";width:1px;height:80px;background:currentColor;opacity:.5}
-.vt.r{right:max(18px,env(safe-area-inset-right,0px))}
-.vt.l{left:max(18px,env(safe-area-inset-left,0px))}
-.dark .vt,.stance .vt{color:#8fb6ec}
-section{position:relative}
-@media (max-width:1100px){.vt{display:none}}
-/* hero: vertical copy + rotating badge */
-.hero .tate{position:absolute;z-index:2;right:max(56px,env(safe-area-inset-right,0px));top:150px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:16px;letter-spacing:.42em;line-height:2.2;opacity:.92}
-.badge{position:absolute;z-index:3;right:max(48px,env(safe-area-inset-right,0px));bottom:110px;width:132px;height:132px}
-.badge svg{width:100%;height:100%;animation:spin 22s linear infinite}
-.badge text{font-family:var(--en);font-size:10.5px;letter-spacing:3.2px;fill:#fff}
-.badge i{position:absolute;inset:0;margin:auto;width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center}
-.badge i::before{content:"";width:9px;height:9px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg);margin-top:-4px}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media (max-width:760px){.hero .tate,.badge{display:none}}
-/* about: large outlined number-like ornament + blue bar */
-.about .catch{position:relative;padding-left:26px}
-.about .catch::before{content:"";position:absolute;left:0;top:.5em;bottom:.5em;width:4px;background:linear-gradient(var(--blue),var(--navy))}
-/* market: donut charts */
-.market .num .donut{flex:none;width:118px;height:118px;border-radius:50%;background:conic-gradient(#5ea2ff calc(var(--v)*1%),rgba(255,255,255,.12) 0);display:grid;place-items:center;position:relative}
-.market .num .donut::after{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--navy)}
-.market .num .donut span{position:relative;z-index:1;font-family:var(--en);font-size:13px;letter-spacing:.1em;color:#8fb6ec}
-.market::before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 60px rgba(255,255,255,.02),0 0 0 120px rgba(255,255,255,.015)}
-@media (max-width:560px){.market .num .donut{width:92px;height:92px}}
-/* promise numbers in circles */
-.pi .n{width:64px;height:64px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font-size:24px;background:#fff}
-@media (max-width:860px){.pi .n{width:48px;height:48px;font-size:18px}}
-/* support rows: number watermark */
-.row{position:relative}
-.row .tx{position:relative}
-.row .tx::before{content:attr(data-no);position:absolute;right:0;top:-78px;font-family:var(--en);font-weight:300;font-size:140px;line-height:1;color:var(--mist);z-index:-1}
-
-@media (max-width:860px){.row .tx::before{font-size:88px;top:-24px}}
-/* cta: diagonal accent */
-.cta::after{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(115deg,transparent 0 30%,rgba(34,104,200,.55) 30% 100%);z-index:1}
-@media (max-width:860px){.cta::after{display:none}}
-/* people photo with caption ribbon */
-.people .frame{margin-bottom:56px}
-.people .frame .ph{margin-bottom:0}
-.ribbon{position:absolute;z-index:2;left:0;bottom:0;background:var(--navy);color:#fff;font-family:var(--fh);font-weight:700;font-size:clamp(15px,1.6vw,20px);letter-spacing:.1em;padding:18px 34px}
-/* case number big */
-.case{position:relative}
-.case .no{font-size:15px}
-.case .tx::after{content:"";position:absolute;right:0;top:0;width:0;height:0;border-style:solid;border-width:0 54px 54px 0;border-color:transparent var(--blue) transparent transparent}
-.case .tx{position:relative}
-/* steps: dotted connector */
-.steps::before{background:repeating-linear-gradient(90deg,var(--blue) 0 4px,transparent 4px 10px);opacity:.5}
-/* section separator wave */
-.wave{display:block;width:100%;height:60px;margin-top:-60px;position:relative;z-index:3}
-
-/* reveal (content stays visible without JS) */
-.js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
-.js .rv.in{opacity:1;transform:none}
-.js .mask::after{content:"";position:absolute;inset:0;z-index:2;background:var(--mist);transform-origin:right center;transition:transform 1.2s cubic-bezier(.7,0,.2,1)}
-.js .mask.in::after{transform:scaleX(0)}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.js .mask::after{display:none}}
-</style>
-
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header class="site">
   <div class="w">
-    <a class="logo" href="#top"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
-    <nav class="gnav" aria-label="メインメニュー">
-      <a class="nl" href="#about">私たちについて</a>
-      <a class="nl" href="#promise">お約束</a>
-      <a class="nl" href="#support">グループの支援</a>
-      <a class="nl" href="#cases">事例</a>
-      <a class="nl" href="#flow">ご相談の流れ</a>
-      <a class="nl" href="#faq">よくある質問</a>
+    <a class="logo" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
+    <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html">私たちについて</a><a class="nl" href="index.html#support">グループの支援</a><a class="nl" href="index.html#cases">事例</a><a class="nl" href="index.html#flow">ご相談の流れ</a><a class="nl" href="partners.html">仲介会社・金融機関の方へ</a><a class="nl" href="news.html">お知らせ</a>
       <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
-      <a class="btn btn-white" href="#contact">無料相談 <span class="ar"></span></a>
+      <a class="btn btn-navy" href="contact.html">ご相談 <span class="ar"></span></a>
     </nav>
   </div>
 </header>
-
 <main id="top">
-
-<section class="hero" aria-label="メインビジュアル">
-  <div class="slide ph on"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="東京の住宅街" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="緑に囲まれた東京の住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/TJ4CndIc9z8/download?force=true&amp;w=1800" alt="山梨の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FTJ4CndIc9z8%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夕暮れの東京の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-  <div class="copy"><div class="w">
-    <p class="en">BUSINESS SUCCESSION FOR HOME BUILDERS</p>
-    <h1>建てた<wbr>家の<wbr>点検に、<wbr>三十年後も<wbr>伺える<wbr>会社で<wbr>あるために。</h1>
-    <p class="lead">エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。社名・社員・施主様へのアフターのお約束を、その<span class="nb">まま引き継ぎます。</span></p>
-    <div class="btns"><a class="btn btn-white" href="#contact">無料で相談する <span class="ar"></span></a><a class="btn btn-ghost" href="#flow">ご相談の流れを見る <span class="ar"></span></a></div>
-  </div></div>
-  <a class="badge" href="#about" aria-label="下へスクロール"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#c">SCROLL DOWN · EDGE ASSET · SINCE 2026 · </textPath></text></svg><i></i></a>
-  <div class="news"><div class="w">
-    <b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span class="t">コーポレートサイトを公開しました。</span>
-    <div class="pager" id="pager"><span id="cnt">01</span></div>
-  </div></div>
-</section>
-
-<section class="about" id="about">
-  <span class="bgword" aria-hidden="true">Succession</span>
-  <div class="w grid">
-    <div class="rv">
-      <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p></div></header>
-      <p class="catch">家は、<wbr>建てた後の<wbr>三十年の<wbr>ほうが長い。</p>
-      <div class="body">
-        <p>工務店の社長から事業承継の相談を受けると、最初に出てくるのはご自身のことではなく、社員と、これまで家を建てさせてもらったお施主様のことです。「自分が辞めたら、あの家の点検に<span class="nb">は誰が行くのか」。</span></p>
-        <p>エッジアセットは、その問いに答えるための会社です。株式を引き受けたあとも社名と現場はそのままに、集客・採用・財務・管理部門といった、一社では手が回らない仕事を<span class="nb">グループで支えます。</span></p>
-      </div>
-      <a class="tl" href="#support">グループの支援を見る <span class="ar"></span></a>
-    </div>
-    <div class="pics">
-      <div class="ph p1 mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="木造の骨組み" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-      <div class="ph p2 mask"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="大きな窓のある室内" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-    </div>
+<section class="fv" aria-label="メインビジュアル">
+  <div class="fv-copy">
+    <p class="fv-kick">工務店・住宅会社の事業承継</p>
+    <h1>地域の<wbr>工務店を、<wbr>つぎの<wbr>三十年へ。</h1>
+    <p class="fv-lead">建てた家の点検に、三十年後も伺える会社であるために。エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、<span class="nb">売らずに長く経営します。</span></p>
+    <div class="fv-act"><a class="btn btn-navy" href="contact.html">事業承継について相談する <span class="ar"></span></a><a class="tl" href="partners.html">仲介会社・金融機関の方へ <span class="ar"></span></a></div>
+    <ul class="fv-pts">
+      <li><b>売却を<wbr>前提に<wbr>しない</b><span>グループ入り後も<wbr>長く保有</span></li>
+      <li><b>社名と雇用を<wbr>契約で守る</b><span>施主様の<wbr>アフターも継続</span></li>
+      <li><b>秘密厳守で<wbr>面談</b><span>社外・<wbr>オンラインで対応</span></li>
+    </ul>
   </div>
-</section>
-
-<section class="market dark" id="market">
+  <div class="fv-pics">
+    <div class="slide ph on"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="東京の住宅街" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="緑に囲まれた東京の住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/TJ4CndIc9z8/download?force=true&amp;w=1800" alt="山梨の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FTJ4CndIc9z8%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="slide ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夕暮れの東京の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
+    <div class="fv-bar"><span class="pager" id="pager"><span id="cnt">01</span></span><a class="fv-news" href="news.html"><b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span>コーポレートサイトを公開しました</span></a></div>
+  </div>
+</section><section class="market dark" id="market">
   <div class="w grid">
     <div class="rv">
       <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Market</p><p class="sh-ja">業界の現状</p><h2>後継者が<wbr>いない<wbr>会社が<wbr>いちばん<wbr>多い<wbr>業種は、<wbr>建設業です。</h2></div></header>
@@ -509,16 +47,7 @@ section{position:relative}
     </div>
     <div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="夜の東京の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div>
   </div>
-</section>
-
-<div class="strip" aria-hidden="true">
-  <div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-  <div class="ph"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
-</div>
-
-<section class="stance">
+</section><section class="stance">
   <div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w">
     <p class="big rv">売らない。</p>
@@ -527,27 +56,7 @@ section{position:relative}
       <p>目指すのは、毎年きちんと利益が残り、社員の給与が上がり、施主様からの紹介が<span class="nb">続く会社であることです。</span></p>
     </div>
   </div>
-</section>
-
-<section class="msg" id="message">
-  <div class="w grid">
-    <div class="rv">
-      <div class="frame navy"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="大阪のオフィスビル" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span>代表写真は撮影予定</span></div></div>
-      <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
-      <ul><li>経歴は確定後に掲載します</li></ul>
-    </div>
-    <div class="letter rv">
-      <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Message</p><p class="sh-ja">代表メッセージ</p></div></header>
-      <p class="lede">会社を<wbr>売る、<wbr>という<wbr>言葉に<wbr>抵抗がある方へ。</p>
-      <p>これまで多くの工務店の経営に関わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択をする社長を<span class="nb">何人も見てきました。</span></p>
-      <p>大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること<span class="nb">自体をためらいます。</span></p>
-      <p>私たちは、その不安に正面から答えるために会社をつくりました。売らないこと、名前を残すこと、施主様との約束を守ること。どれも契約書に書き込みます。まずは一度、話を<span class="nb">聞かせてください。</span></p>
-      <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
-    </div>
-  </div>
-</section>
-
-<section class="promise" id="promise">
+</section><section class="promise" id="promise">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Promise</p><p class="sh-ja">5つのお約束</p><h2>引き継ぐ<wbr>ときに、<wbr>契約書で<wbr>お約束すること</h2></div><div class="sh-lead"><p>口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも<span class="nb">正直にお伝えします。</span></p></div></header>
     <div class="plist">
@@ -555,61 +64,30 @@ section{position:relative}
       <div class="pi ask rv"><h3>そのかわり、お願いすること</h3><ul><li>月次の数字は、毎月一緒に確認させてください。</li><li>経理・労務・情報管理は、グループ共通のルールに合わせていただきます。</li><li>譲渡価格は純資産と収益力から算定します。相場を大きく超える金額はお出しできません。</li></ul></div>
     </div>
   </div>
-</section>
-
-<section class="cta">
+</section><section class="cta">
   <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w">
     <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
-    <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#faq">よくある質問を見る <span class="ar"></span></a></div>
+    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="#faq">よくある質問を見る <span class="ar"></span></a></div>
   </div>
-</section>
-
-<section class="support" id="support">
+</section><section class="support" id="support">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Support</p><p class="sh-ja">グループの支援</p><h2>現場は<wbr>変えずに、<wbr>一社では<wbr>手が回らない<wbr>仕事を<wbr>支えます</h2></div><div class="sh-lead"><p>家づくりの方針には口を出しません。規模が小さいほど負担が重くなる仕事を、グループでまと<span class="nb">めて引き受けます。</span></p></div></header>
-    <article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="大阪の住宅の外観" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="01"><p class="n">MARKETING</p><h3>集客</h3><p>広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で<span class="nb">回る仕組みに置き換えます。</span></p><dl><div><dt>グループが担う</dt><dd>Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計</dd></div><div><dt>各社に残す</dt><dd>見学会の企画、施主様からの紹介づくり</dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="建築中の住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="02"><p class="n">RECRUITING</p><h3>採用</h3><p>一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の<span class="nb">研修までを引き受けます。</span></p><dl><div><dt>グループが担う</dt><dd>新卒・中途の合同採用、求人媒体の一括契約、入社時研修</dd></div><div><dt>各社に残す</dt><dd>配属後の育成、現場での指導</dd></div></dl></div></article><article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="契約の握手" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="03"><p class="n">FINANCE</p><h3>財務・資金</h3><p>月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への<span class="nb">投資判断も一緒に行います。</span></p><dl><div><dt>グループが担う</dt><dd>月次決算、資金繰り表、金融機関との交渉</dd></div><div><dt>各社に残す</dt><dd>個別案件の見積と受注判断</dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="足場のかかった建物" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="04"><p class="n">OPERATIONS</p><h3>仕入・業務</h3><p>グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の<span class="nb">時間を減らします。</span></p><dl><div><dt>グループが担う</dt><dd>共同購買、管理システムの統一、点検履歴のデータ化</dd></div><div><dt>各社に残す</dt><dd>仕様の選定、地元の材木店との取引、現場での判断</dd></div></dl></div></article>
+    <article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="大阪の住宅の外観" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="01"><p class="n">MARKETING</p><h3>集客</h3><p>広告費あたりの反響数を毎月計測し、媒体と予算の配分を見直します。勘と経験に頼っていた集客を、数字で<span class="nb">回る仕組みに置き換えます。</span></p><dl><div><dt>グループが担う</dt><dd>Google・Meta広告の運用、SEO・Googleマップ<span class="nb">対策、反響の集計</span></dd></div><div><dt>各社に残す</dt><dd>見学会の企画、<span class="nb">施主様からの紹介づくり</span></dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="建築中の住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="02"><p class="n">RECRUITING</p><h3>採用</h3><p>一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の<span class="nb">研修までを引き受けます。</span></p><dl><div><dt>グループが担う</dt><dd>新卒・中途の合同採用、求人媒体の<span class="nb">一括契約、入社時研修</span></dd></div><div><dt>各社に残す</dt><dd>配属後の<span class="nb">育成、現場での指導</span></dd></div></dl></div></article><article class="row"><div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="契約の握手" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="03"><p class="n">FINANCE</p><h3>財務・資金</h3><p>月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への<span class="nb">投資判断も一緒に行います。</span></p><dl><div><dt>グループが担う</dt><dd>月次決算、資金繰り表、<span class="nb">金融機関との交渉</span></dd></div><div><dt>各社に残す</dt><dd>個別案件の見積と<span class="nb">受注判断</span></dd></div></dl></div></article><article class="row"><div class="frame l"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="足場のかかった建物" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div></div><div class="tx rv" data-no="04"><p class="n">OPERATIONS</p><h3>仕入・業務</h3><p>グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の<span class="nb">時間を減らします。</span></p><dl><div><dt>グループが担う</dt><dd>共同購買、管理システムの統一、<span class="nb">点検履歴のデータ化</span></dd></div><div><dt>各社に残す</dt><dd>仕様の選定、地元の材木店との<span class="nb">取引、現場での判断</span></dd></div></dl></div></article>
   </div>
-</section>
-
-<section class="people">
+</section><section class="people">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれに<wbr>とって<wbr>変わらないこと</h2></div></header>
     <div class="frame"><div class="ph mask"><img src="https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800" alt="緑に囲まれた住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="ribbon">社名も、<wbr>社員も、<wbr>施主様との<wbr>約束も。</p></div>
     <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と、次の社長の<span class="nb">育成を一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>明日からの<wbr>仕事は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>点検に<wbr>伺うのは<wbr>同じ<wbr>担当者です。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、<span class="nb">契約どおりにお引渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>発注も<wbr>支払条件も<wbr>これまで<wbr>どおりです。</h3><p>グループ内の他社の現場をお願いできる機会も、<span class="nb">少しずつ増えていきます。</span></p></article></div>
   </div>
-</section>
-
-<section class="compare" id="compare">
-  <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Comparison</p><p class="sh-ja">選ばれる理由</p><h2>事業承継の<wbr>選択肢を<wbr>比べて<wbr>みてください</h2></div><div class="sh-lead"><p>どの方法にも長所と短所があります。私たちが合わない場合は、ほかの選択肢を<span class="nb">ご案内することもあります。</span></p></div></header>
-    <p class="swipe">表は横にスクロールできます</p>
-    <div class="tbl rv">
-      <table class="cmp">
-        <thead><tr><th></th><th>親族・社員への承継</th><th>大手・同業への売却</th><th>一般的な投資ファンド</th><th class="us">エッジアセット</th><th>廃業</th></tr></thead>
-        <tbody>
-          <tr><th>社名・屋号</th><td><span class="mk">◎</span>残る</td><td><span class="mk">△</span>統合されることが多い</td><td><span class="mk">○</span>残ることが多い</td><td class="us"><span class="mk">◎</span>契約で残す</td><td><span class="mk">×</span>なくなる</td></tr>
-          <tr><th>社員の雇用</th><td><span class="mk">◎</span></td><td><span class="mk">△</span><small>重複部門は再編</small></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>契約で保証</small></td><td><span class="mk">×</span></td></tr>
-          <tr><th>施主様の保証・点検</th><td><span class="mk">◎</span></td><td><span class="mk">○</span></td><td><span class="mk">○</span></td><td class="us"><span class="mk">◎</span><small>同じ担当者が継続</small></td><td><span class="mk">×</span><small>引き受け手がいない</small></td></tr>
-          <tr><th>社長の個人保証</th><td><span class="mk">△</span><small>後継者に移る</small></td><td><span class="mk">◎</span></td><td><span class="mk">◎</span></td><td class="us"><span class="mk">◎</span><small>解除に取り組む</small></td><td><span class="mk">△</span><small>清算次第</small></td></tr>
-          <tr><th>数年後の再売却</th><td>なし</td><td>なし</td><td><span class="mk">×</span><small>3〜7年で売却が前提</small></td><td class="us"><span class="mk">◎</span><small>前提にしない</small></td><td>なし</td></tr>
-          <tr><th>住宅業界の実務支援</th><td><span class="mk">△</span></td><td><span class="mk">○</span></td><td><span class="mk">△</span><small>業界外の人材が中心</small></td><td class="us"><span class="mk">◎</span><small>集客・採用・財務を内製</small></td><td>なし</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:12.5px;color:var(--mute);margin-top:16px">一般的な傾向を整理したもので、個別の案件により異なります。</p>
-  </div>
-</section>
-
-<section class="cases" id="cases">
+</section><section class="cases" id="cases">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Case</p><p class="sh-ja">モデルケース</p><h2>こんな<wbr>ご相談を<wbr>お受け<wbr>しています</h2></div><div class="sh-lead"><p>よくあるご相談を、条件を変えた想定事例としてまとめました。実在の<span class="nb">企業ではありません。</span></p></div></header>
     <article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/TJ4CndIc9z8/download?force=true&amp;w=1800" alt="沖縄の住宅" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FTJ4CndIc9z8%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="tx rv"><p class="no">CASE 01</p><p class="tag">後継者不在</p><h3>子どもは<wbr>別の道へ。<wbr>社員に<wbr>継がせるには<wbr>資金が<wbr>足りない。</h3><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>規模</dt><dd>年商 約8億円・年間引渡し25棟</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl><p>株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証は<span class="nb">クロージング時に解除しました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" alt="木造の骨組み" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="tx rv"><p class="no">CASE 02</p><p class="tag">成長の壁</p><h3>受注は<wbr>あるのに、<wbr>人が<wbr>採れず<wbr>年20棟から<wbr>伸びない。</h3><dl><div><dt>エリア</dt><dd>首都圏郊外</dd></div><div><dt>規模</dt><dd>年商 約6億円・年間引渡し20棟</dd></div><div><dt>社長</dt><dd>55歳・二代目</dd></div></dl><p>社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中で<span class="nb">きるようにしました。</span></p></div></article><article class="case"><div class="ph mask"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="大きな窓のある室内" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="tx rv"><p class="no">CASE 03</p><p class="tag">廃業の検討</p><h3>体力的に<wbr>限界。<wbr>でも<wbr>施主様の<wbr>アフターだけは<wbr>残したい。</h3><dl><div><dt>エリア</dt><dd>地方の郡部</dd></div><div><dt>規模</dt><dd>年商 約3億円・リフォーム中心</dd></div><div><dt>社長</dt><dd>72歳・創業者</dd></div></dl><p>近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は<span class="nb">半年で引退しました。</span></p></div></article>
-    <div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="#contact">似た状況について相談する <span class="ar"></span></a></div>
+    <div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する <span class="ar"></span></a></div>
   </div>
-</section>
-
-<section class="flow" id="flow">
+</section><section class="flow" id="flow">
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Flow</p><p class="sh-ja">ご相談の流れ</p><h2>ご相談から<wbr>引き継ぎまで、<wbr>通常は<wbr>半年<wbr>ほどです</h2></div><div class="sh-lead"><p>ご相談の事実が社員や取引先に伝わることはありません。面談は<span class="nb">社外かオンラインで行います。</span></p></div></header>
     <ol class="steps"><li class="rv"><h3>初回面談</h3><span class="t">1–2 hours</span><p>会社とご家族、ご自身の今後について伺います。<span class="nb">決算書は不要です。</span></p></li><li class="rv"><h3>秘密保持契約・<wbr>資料のご提供</h3><span class="t">2–4 weeks</span><p>決算書・受注残・社員構成<span class="nb">などを拝見します。</span></p></li><li class="rv"><h3>条件の<wbr>ご提示</h3><span class="t">2–3 weeks</span><p>譲渡価格の考え方、雇用、引き継ぎ期間を<span class="nb">書面でお示しします。</span></p></li><li class="rv"><h3>詳細調査</h3><span class="t">1–2 months</span><p>財務・法務・労務、施工中物件、保証履歴、<span class="nb">建設業許可を確認します。</span></p></li><li class="rv"><h3>最終契約・<wbr>お支払い</h3><span class="t">1 month</span><p>株式譲渡契約の締結と、個人保証の<span class="nb">解除手続きを行います。</span></p></li><li class="rv"><h3>ご説明と<wbr>引き継ぎ</h3><span class="t">6 months–</span><p>社員・施主様への説明に、<span class="nb">私たちも同席します。</span></p></li></ol>
@@ -620,132 +98,37 @@ section{position:relative}
         <p class="lead">年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社で<span class="nb">あればまずはお話を伺います。</span></p>
         <ul><li>後継者が<wbr>決まっていない</li><li>数年以内に<wbr>引退を<wbr>考えている</li><li>赤字が続いて<wbr>先行きが<wbr>不安</li><li>人が採れず、<wbr>成長が<wbr>止まっている</li><li>廃業も<wbr>選択肢に<wbr>入れている</li><li>社員と<wbr>施主様の<wbr>今後が心配</li></ul>
         <p class="note">ひとつでも<wbr>当てはまれば、<wbr>ご相談ください。<wbr>決算書は<wbr>なくても<wbr>構いません。</p>
-        <a class="btn btn-white" href="#contact">まずは話を聞いてみる <span class="ar"></span></a>
+        <a class="btn btn-white" href="contact.html">まずは話を聞いてみる <span class="ar"></span></a>
       </div>
     </div>
   </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="w grid">
-    <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">よくあるご質問</p><h2>ご相談の<wbr>前に<wbr>よく<wbr>聞かれること</h2></div></header></div>
-    <div class="rv"><details><summary><span class="q">Q.</span><span>相談したことが、社員や取引先に知られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>ありません。面談は社外かオンラインで行い、郵送物や電話も事前に決めた方法でのみご連絡します。秘密保持契約は初回面談の<span class="nb">段階から結べます。</span></p></div></details><details><summary><span class="q">Q.</span><span>社員には、いつ、<span class="nb">どう伝えればいいですか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>原則として最終契約の後です。幹部に先に伝えるか、全員に一度に伝えるかは会社によって違うため、順番と話す内容を一緒に準備します。説明の場には<span class="nb">私たちも同席します。</span></p></div></details><details><summary><span class="q">Q.</span><span>譲渡価格はどのように<span class="nb">決まりますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>純資産に、今後数年分の利益を踏まえた収益力を加えて算定するのが基本です。受注残や保有不動産、退職金の支給なども考慮し、計算の根拠は<span class="nb">書面でお示しします。</span></p></div></details><details><summary><span class="q">Q.</span><span>赤字の会社でも<span class="nb">相談できますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の<span class="nb">選択肢をお伝えします。</span></p></div></details><details><summary><span class="q">Q.</span><span>建設業許可はその<span class="nb">まま使えますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。経営業務の管理責任者や専任技術者が退任される場合は後任が必要になるため、交代の時期を<span class="nb">事前に設計します。</span></p></div></details><details><summary><span class="q">Q.</span><span>社長は<span class="nb">辞めなければいけませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況を<span class="nb">ふまえて決めます。</span></p></div></details><details><summary><span class="q">Q.</span><span>数年後に、別の会社へ売られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を<span class="nb">続ける考え方です。</span></p></div></details></div>
+</section><section class="links">
+  <div class="w l3">
+    <a class="lk rv" href="company.html"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">About us</p><h3>私たちについて</h3><span>代表・メンバー・資金と体制・実績</span></a>
+    <a class="lk rv" href="partners.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">For partners</p><h3>仲介会社・金融機関の皆さまへ</h3><span>投資の目安・ご紹介の流れ・窓口</span></a>
+    <a class="lk rv" href="contact.html"><div class="ph"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><p class="len">Contact</p><h3>ご相談・お問い合わせ</h3><span>面談の予約・電話・匿名でのご相談</span></a>
+  </div>
+</section><section class="topnews">
+  <div class="w tn">
+    <div><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">News</p><p class="sh-ja">お知らせ</p></div></header></div>
+    <div><ul class="nl-list"><li><time>2026.10.22</time><span class="cat">お知らせ</span><p>コーポレートサイトを公開しました。</p></li></ul><a class="tl" href="news.html">お知らせ一覧へ <span class="ar"></span></a></div>
   </div>
 </section>
-
-<section class="company" id="company">
-  <div class="w grid">
-    <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Company</p><p class="sh-ja">会社概要</p><h2>会社概要</h2></div></header></div>
-    <dl class="rv">
-      <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
-      <div><dt>代表者</dt><dd>代表取締役　谷岡 佑亮</dd></div>
-      <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
-      <div><dt>設立</dt><dd>20XX年X月</dd></div>
-      <div><dt>資本金</dt><dd>〇〇〇万円</dd></div>
-      <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／グループ会社の経営支援</dd></div>
-      <div><dt>連絡先</dt><dd>TEL 03-0000-0000（平日 9:00–18:00）</dd></div>
-    </dl>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="ph side"><img src="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" alt="家の鍵を持つ手" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/-MVSfkR4xz4/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2F-MVSfkR4xz4%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><p class="cap"><b>Contact</b>お問い合わせ</p></div>
-  <div class="body">
-    <h2>まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません</h2>
-    <p class="lead">ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に<span class="nb">伝えることはありません。</span></p>
-    <div class="ways">
-      <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接伺います。<span class="nb">オンライン・社外</span><span class="nb">どちらでも。</span></span><i>日程を相談する</i></a>
-      <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>平日9時〜18時。<span class="nb">夜間・土日も調整します。</span></span><i>03-0000-0000</i></a>
-      <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
-    </div>
-    <div class="telrow"><b>03-0000-0000</b><span>平日 9:00–18:00　夜間・土日の面談も調整します</span></div>
-    <form id="cf" novalidate>
-      <label for="f-topic">ご相談の種類</label>
-      <select id="f-topic"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
-      <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" autocomplete="organization"></div></div>
-      <div class="r2"><div><label for="f-mail">メールアドレス<em>必須</em></label><input id="f-mail" type="email" autocomplete="email" required></div><div><label for="f-tel">電話番号</label><input id="f-tel" type="tel" autocomplete="tel"></div></div>
-      <label for="f-msg">ご相談内容</label><textarea id="f-msg"></textarea>
-      <label class="chk"><input type="checkbox" id="f-ok"> プライバシーポリシーに同意する</label>
-      <button class="btn btn-navy" type="submit">送信する <span class="ar"></span></button>
-    </form>
-    <div class="sent" id="sent" hidden><p style="font-size:17px;margin-bottom:6px">送信を受け付けました。</p><p style="margin:0;font-size:13px;color:var(--mute)">2営業日以内にご連絡します。（デモのため実際には送信されません）</p></div>
-  </div>
-</section>
-
 </main>
-
 <footer>
-  <a class="pagetop" href="#top" aria-label="ページの先頭へ"></a>
+  <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
   <div class="w">
     <div class="fg">
-      <div><a class="logo" href="#top" style="color:#fff"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">選ばれる理由</a></li><li><a href="#company">会社概要</a></li></ul></div>
-      <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">モデルケース</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
-      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="#contact">無料で相談する <span class="ar"></span></a></div>
+      <div><a class="logo" href="index.html" style="color:#fff"><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
+      <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">選ばれる理由</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
+      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="index.html#support">グループの支援</a></li><li><a href="index.html#cases">モデルケース</a></li><li><a href="index.html#flow">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li></ul></div>
+      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span><a class="btn btn-blue" href="contact.html">無料で相談する <span class="ar"></span></a></div>
     </div>
-    <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
+    <div class="fb"><span><a href="index.html">プライバシーポリシー</a>　｜　<a href="index.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
   </div>
 </footer>
-
-<aside class="fcta" id="fcta" aria-label="ご相談窓口">
-  <div class="lab"><b>秘密厳守・無料のご相談</b>社名を伏せたままでも構いません</div>
-  <a class="go" href="#contact">相談する <span class="ar"></span></a>
-  <button class="x" id="fx" aria-label="閉じる">×</button>
-</aside>
-<nav class="mbar" id="mbar" aria-label="ご相談"><a href="#contact">電話で相談</a><a href="#contact">無料で相談する</a></nav>
-<div class="proto">デザイン確認用｜文言・数値・写真は仮</div>
-
-<script>
-(() => {
-  document.documentElement.classList.add('js');
-  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const slides = $$('.slide'), pager = $('#pager'), cnt = $('#cnt');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cur = 0, timer;
-  slides.forEach((_, i) => {
-    const b = document.createElement('button');
-    b.setAttribute('aria-label', '写真 ' + (i + 1));
-    b.addEventListener('click', () => go(i));
-    pager.appendChild(b);
-  });
-  const bars = $$('button', pager);
-  const go = i => {
-    slides[cur].classList.remove('on'); bars[cur].classList.remove('on');
-    cur = i; slides[cur].classList.add('on');
-    void bars[cur].offsetWidth; bars[cur].classList.add('on');
-    cnt.textContent = String(cur + 1).padStart(2, '0');
-    clearTimeout(timer);
-    if (!still) timer = setTimeout(() => go((cur + 1) % slides.length), 6000);
-  };
-  go(0);
-
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-  $$('.rv, .mask').forEach(el => io.observe(el));
-  if (!('IntersectionObserver' in window)) $$('.rv, .mask').forEach(el => el.classList.add('in'));
-
-  const hero = $('.hero'), contact = $('#contact'), fcta = $('#fcta'), mbar = $('#mbar');
-  let closed = false;
-  const onScroll = () => {
-    const past = scrollY > hero.offsetHeight * .8;
-    const r = contact.getBoundingClientRect();
-    const near = r.top < innerHeight && r.bottom > 0;
-    fcta.classList.toggle('show', past && !near && !closed);
-    mbar.classList.toggle('show', past && !near);
-  };
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-  $('#fx').addEventListener('click', () => { closed = true; onScroll(); });
-
-  $$('.way').forEach(a => a.addEventListener('click', () => { $('#f-topic').value = a.dataset.topic; }));
-  $('#cf').addEventListener('submit', e => {
-    e.preventDefault();
-    const mail = $('#f-mail');
-    if (!mail.value || !mail.checkValidity()) { mail.focus(); mail.style.borderBottomColor = '#c0392b'; return; }
-    e.target.hidden = true; $('#sent').hidden = false;
-  });
-})();
-</script>
+<div class="proto">デザイン確認用｜【 】内と写真は仮</div>
+<script src="site.js"></script>
 </body>
 </html>
