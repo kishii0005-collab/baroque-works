@@ -8,7 +8,10 @@ def src_list(i):
     # a photo saved in edge-asset/img/ always wins; otherwise load it from Unsplash
     local=f'img/{i}.jpg'
     out=[local] if os.path.exists(os.path.join(IMG_DIR,f'{i}.jpg')) else []
-    return out+[U(i)]
+    # via the wsrv.nl image cache first (fetched once on their side, then served from cache), then Unsplash directly
+    from urllib.parse import quote
+    proxied='https://wsrv.nl/?url='+quote(f'unsplash.com/photos/{i}/download?force=true&w=1800',safe='')+'&amp;w=1800&amp;q=82&amp;output=jpg'
+    return out+[proxied,U(i)]
 def img(i,alt='',w=1400,lazy=True,fb=None):
     chain=[]
     for x in [i]+[y for y in (fb or [])+BACKUP if y!=i]:
