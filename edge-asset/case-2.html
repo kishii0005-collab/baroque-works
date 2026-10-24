@@ -1624,9 +1624,59 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 /* contact: route for intermediaries */
 .c-alt{font-size:13.5px;color:var(--ink-2);margin:-20px 0 28px}
 .c-alt a{color:var(--blue);border-bottom:1px solid currentColor}
+
+/* ===== design pass 3: one surface language, motion with meaning ===== */
+/* surfaces: the hero's architectural grid and a film grain carried through every dark and mist section */
+.sf{position:absolute;inset:0;pointer-events:none;z-index:0}
+.sf::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(25% - 1px),var(--sf-line) calc(25% - 1px),var(--sf-line) 25%)}
+.sf::after{content:"";position:absolute;inset:0;opacity:var(--sf-grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px}
+.sf.dk{--sf-line:rgba(255,255,255,.055);--sf-grain:.16;background:radial-gradient(70% 60% at 88% 100%,rgba(34,104,200,.22),transparent 70%)}
+.sf.lt{--sf-line:rgba(12,39,71,.045);--sf-grain:.06}
+section>.w,section>.grid,section>.menu-in,footer>.w,.stance>.w,.market>.w{position:relative;z-index:1}
+.stance>.ph{z-index:0}.stance .sf{z-index:0}
+.tmsg .sf{display:none}
+@media (max-width:760px){.sf::before{background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(50% - 1px),var(--sf-line) calc(50% - 1px),var(--sf-line) 50%)}}
+
+/* reading progress: a hairline that grows under the sticky header */
+.prog{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--blue);transform:scaleX(var(--p,0));transform-origin:left;z-index:60;pointer-events:none;opacity:.9}
+.menu-open .prog{opacity:0}
+
+/* stats: ring fills and number counts up when the section arrives */
+@property --v{syntax:'<number>';inherits:false;initial-value:0}
+.market .num .donut{transition:--v 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .market:not(.in) .num .donut{--v:0!important}
+.market .num strong{font-variant-numeric:tabular-nums}
+
+/* staggered reveal inside grids */
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(2){transition-delay:.08s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(3){transition-delay:.16s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(4){transition-delay:.24s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(5){transition-delay:.32s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(6){transition-delay:.4s}
+.kpi li:nth-child(2){transition-delay:.08s}.kpi li:nth-child(3){transition-delay:.16s}.kpi li:nth-child(4){transition-delay:.24s}
+
+/* photos slide into their frames; headlines ease up a touch more */
+.js .mask img{transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .mask.in img{transform:none}
+.js .rv{transform:translateY(22px)}
+
+/* page in */
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+.js main,.js footer{animation:pagein .7s ease both}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js main,.js footer{animation:none}.market .num .donut{transition:none}.js .mask img{transform:none;transition:none}}
+
+/* hover: cards lift on a shared curve, links get a soft blue underline sweep */
+.ccase,.cc,.ts-g article,.lever li,.m3-main a{transition-duration:.45s}
+.ts-g article{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.ts-g article:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(12,39,71,.1)}
+.sm-g li a,.bc a,.fq-nav a,.subnav a{transition:color .25s}
+.chap b{white-space:nowrap}
+@media (max-width:760px){.chap{gap:12px;font-size:12px}.chap b{font-size:10px;letter-spacing:.2em;padding:6px 10px}.chap span{word-break:keep-all;overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
+<i class="prog" aria-hidden="true"></i>
 <header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
@@ -1677,7 +1727,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     </div>
   </div>
 </section>
-<section class="cother"><div class="w"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Other cases</p><p class="sh-ja">ほかのモデルケース</p><h2>ほかの<wbr>ご相談の<wbr>かたち</h2></div></header><div class="cgrid c3"><a class="ccase rv" href="case-1.html" target="_blank" rel="noopener">
+<section class="cother"><i class="sf lt" aria-hidden="true"></i><div class="w"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Other cases</p><p class="sh-ja">ほかのモデルケース</p><h2>ほかの<wbr>ご相談の<wbr>かたち</h2></div></header><div class="cgrid c3"><a class="ccase rv" href="case-1.html" target="_blank" rel="noopener">
   <div class="ph"><img src="https://unsplash.com/photos/TJ4CndIc9z8/download?force=true&amp;w=1800" alt="地方都市の住宅街" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FTJ4CndIc9z8%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"><span class="cc-no">CASE<b>01</b></span></div>
   <div class="cc-tx"><p class="cc-tag"><span>後継者不在</span>Succession</p><h3>子どもは<wbr>別の道へ。<wbr>社員に<wbr>継がせるには<wbr>資金が<wbr>足りない。</h3><p>株式はグループが引き受け、経営は番頭格の社員が継ぐ。所有と経営を分けて、社内承継を<span class="nb">実現した想定例です。</span></p><dl><div><dt>エリア</dt><dd>地方都市</dd></div><div><dt>規模</dt><dd>年商 約8億円／年間引き渡し 25棟</dd></div><div><dt>社長</dt><dd>68歳・創業者</dd></div></dl><span class="cc-more">詳しく見る <span class="ar"></span></span></div>
 </a><a class="ccase rv" href="case-3.html" target="_blank" rel="noopener">
@@ -1691,7 +1741,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
-  <div class="w"><div class="fcx">
+  <i class="sf dk" aria-hidden="true"></i><div class="w"><div class="fcx">
       <div class="fc-t"><p class="fc-en">Contact</p><p class="fc-h">似た状況でしたら、<wbr>そのまま<wbr>ご相談ください。</p><p>事例と条件が違っていても構いません。会社の状況を伺い、<span class="nb">取りうる形をご説明します。</span></p></div>
       <div class="fc-a">
         <a class="fc-b" href="contact.html" target="_blank" rel="noopener"><small>24時間受付・無料</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
@@ -1810,6 +1860,25 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     };
     upd(); addEventListener('scroll', upd, { passive: true });
   }
+
+  // reading progress + stat counters
+  const prog = $('.prog');
+  if (prog) {
+    const up = () => { const h = document.documentElement; const max = h.scrollHeight - innerHeight; prog.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0); };
+    up(); addEventListener('scroll', up, { passive: true }); addEventListener('resize', up);
+  }
+  const market = $('.market');
+  if (market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const nums = $$('.num strong', market).map(el => ({ el, node: el.firstChild, to: parseFloat(el.firstChild.textContent), dec: (el.firstChild.textContent.split('.')[1] || '').length }));
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io2.disconnect(); market.classList.add('in');
+      const t0 = performance.now(), dur = 1600;
+      const tick = now => { const k = Math.min(1, (now - t0) / dur), ease = 1 - Math.pow(1 - k, 3);
+        nums.forEach(n => n.node.textContent = (n.to * ease).toFixed(n.dec)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), { threshold: .3 });
+    io2.observe(market);
+  } else if (market) market.classList.add('in');
 })();
 </script>
 </body>

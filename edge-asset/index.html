@@ -1624,9 +1624,59 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 /* contact: route for intermediaries */
 .c-alt{font-size:13.5px;color:var(--ink-2);margin:-20px 0 28px}
 .c-alt a{color:var(--blue);border-bottom:1px solid currentColor}
+
+/* ===== design pass 3: one surface language, motion with meaning ===== */
+/* surfaces: the hero's architectural grid and a film grain carried through every dark and mist section */
+.sf{position:absolute;inset:0;pointer-events:none;z-index:0}
+.sf::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(25% - 1px),var(--sf-line) calc(25% - 1px),var(--sf-line) 25%)}
+.sf::after{content:"";position:absolute;inset:0;opacity:var(--sf-grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px}
+.sf.dk{--sf-line:rgba(255,255,255,.055);--sf-grain:.16;background:radial-gradient(70% 60% at 88% 100%,rgba(34,104,200,.22),transparent 70%)}
+.sf.lt{--sf-line:rgba(12,39,71,.045);--sf-grain:.06}
+section>.w,section>.grid,section>.menu-in,footer>.w,.stance>.w,.market>.w{position:relative;z-index:1}
+.stance>.ph{z-index:0}.stance .sf{z-index:0}
+.tmsg .sf{display:none}
+@media (max-width:760px){.sf::before{background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(50% - 1px),var(--sf-line) calc(50% - 1px),var(--sf-line) 50%)}}
+
+/* reading progress: a hairline that grows under the sticky header */
+.prog{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--blue);transform:scaleX(var(--p,0));transform-origin:left;z-index:60;pointer-events:none;opacity:.9}
+.menu-open .prog{opacity:0}
+
+/* stats: ring fills and number counts up when the section arrives */
+@property --v{syntax:'<number>';inherits:false;initial-value:0}
+.market .num .donut{transition:--v 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .market:not(.in) .num .donut{--v:0!important}
+.market .num strong{font-variant-numeric:tabular-nums}
+
+/* staggered reveal inside grids */
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(2){transition-delay:.08s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(3){transition-delay:.16s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(4){transition-delay:.24s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(5){transition-delay:.32s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(6){transition-delay:.4s}
+.kpi li:nth-child(2){transition-delay:.08s}.kpi li:nth-child(3){transition-delay:.16s}.kpi li:nth-child(4){transition-delay:.24s}
+
+/* photos slide into their frames; headlines ease up a touch more */
+.js .mask img{transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .mask.in img{transform:none}
+.js .rv{transform:translateY(22px)}
+
+/* page in */
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+.js main,.js footer{animation:pagein .7s ease both}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js main,.js footer{animation:none}.market .num .donut{transition:none}.js .mask img{transform:none;transition:none}}
+
+/* hover: cards lift on a shared curve, links get a soft blue underline sweep */
+.ccase,.cc,.ts-g article,.lever li,.m3-main a{transition-duration:.45s}
+.ts-g article{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.ts-g article:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(12,39,71,.1)}
+.sm-g li a,.bc a,.fq-nav a,.subnav a{transition:color .25s}
+.chap b{white-space:nowrap}
+@media (max-width:760px){.chap{gap:12px;font-size:12px}.chap b{font-size:10px;letter-spacing:.2em;padding:6px 10px}.chap span{word-break:keep-all;overflow-wrap:anywhere}}
 </style>
 </head>
 <body class="home">
+<i class="prog" aria-hidden="true"></i>
 <header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
@@ -1670,7 +1720,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
   <div class="hx-marq" aria-hidden="true"><span>EDGE ASSET — BUSINESS SUCCESSION FOR JAPANESE HOME BUILDERS — LONG-TERM OWNERSHIP — </span><span>EDGE ASSET — BUSINESS SUCCESSION FOR JAPANESE HOME BUILDERS — LONG-TERM OWNERSHIP — </span></div>
 </section><section class="trust" aria-label="エッジアセットの特徴">
   <div class="w"><ul><li><span class="tr-k">Focus</span><b>工務店・<wbr>住宅会社専門</b><small>住宅業界の事業承継だけを扱います</small></li><li><span class="tr-k">Ownership</span><b>売らない<wbr>長期保有</b><small>数年での売却を前提にしません</small></li><li><span class="tr-k">Leadership</span><b>船井総研出身の<wbr>代表</b><small>在籍時、上位0.5%の粗利獲得実績</small></li><li><span class="tr-k">Confidential</span><b>初回から<wbr>秘密保持</b><small>社外・オンラインで面談します</small></li></ul></div>
-</section><section data-ch="1" class="market dark" id="market">
+</section><section data-ch="1" class="market dark" id="market"><i class="sf dk" aria-hidden="true"></i>
   <div class="w grid"><p class="chap rv" id="ch01"><b>Chapter 01</b><span>いま、工務店に起きていること</span></p>
     <div class="rv">
       <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Market</p><p class="sh-ja">業界の現状</p><h2>後継者が<wbr>いない<wbr>会社が<wbr>いちばん<wbr>多い<wbr>業種は、<wbr>建設業です。</h2></div></header>
@@ -1690,7 +1740,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
       <article class="rv"><p class="n">04</p><h3>社長に<wbr>仕事が<wbr>集中する</h3><p>集客、見積、資金繰り、労務、法改正への対応。家づくり以外の仕事がすべて社長に集まり、本来の強みである現場と施主様に時間を<span class="nb">割けなくなっています。</span></p></article>
     </div>
   </div>
-</section><section data-ch="2" class="stance">
+</section><section data-ch="2" class="stance"><i class="sf dk" aria-hidden="true"></i>
   <div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w"><p class="chap rv" id="ch02"><b>Chapter 02</b><span>エッジアセットの答え</span></p>
     <p class="big rv">売らない。</p>
@@ -1700,7 +1750,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
       <p>目指すのは、社員の給与が上がり、施主様からの紹介が<span class="nb">続く会社であることです。</span></p>
     </div>
   </div>
-</section><section data-ch="2" class="model dark" id="model">
+</section><section data-ch="2" class="model dark" id="model"><i class="sf dk" aria-hidden="true"></i>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Group model</p><p class="sh-ja">グループの仕組み</p><h2>各社の<wbr>看板は<wbr>そのまま。<wbr>裏側の仕事を<wbr>グループで<wbr>共有します</h2></div><div class="sh-lead"><p>エッジアセットはグループの本部として、各社に共通する仕事を引き受けます。家づくりと施主様との関係は、これまで<span class="nb">どおり各社が担います。</span></p></div></header>
     <div class="md rv" role="img" aria-label="エッジアセットが本部として集客・採用・財務・仕入・システム・人材を担い、各社は社名と現場をそのまま残す仕組みの図">
@@ -1714,7 +1764,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
       <p class="md-note">各社が担うこと：設計・施工・施主様との打ち合わせ・アフター対応・地域での営業</p>
     </div>
   </div>
-</section><section data-ch="3" class="promise" id="promise">
+</section><section data-ch="3" class="promise" id="promise"><i class="sf lt" aria-hidden="true"></i>
   <div class="w"><p class="chap rv" id="ch03"><b>Chapter 03</b><span>引き継ぐときのお約束</span></p>
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Promise</p><p class="sh-ja">5つのお約束</p><h2>引き継ぐ<wbr>ときに、<wbr>契約書で<wbr>お約束すること</h2></div><div class="sh-lead"><p>口約束ではなく、株式譲渡契約の条項として書き込みます。そのかわり、私たちからお願いすることも<span class="nb">正直にお伝えします。</span></p></div></header>
     <div class="plist">
@@ -1722,7 +1772,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
       <div class="pi ask rv"><h3>そのかわり、お願いすること</h3><ul><li>月次の数字は、毎月一緒に確認させてください。</li><li>経理・労務・情報管理は、グループ共通のルールに合わせていただきます。</li><li>仕入れ・外注の条件は、グループの基準で一緒に見直させてください。</li><li>譲渡価格は純資産と収益力から算定します。相場を大きく超える金額はお出しできません。</li></ul></div>
     </div>
   </div>
-</section><section data-ch="2" class="tcost dark">
+</section><section data-ch="2" class="tcost dark"><i class="sf dk" aria-hidden="true"></i>
   <div class="w">
     <div class="tc-l rv">
       <p class="sh-en" aria-hidden="true">Cost</p><p class="sh-ja">原価の改善</p>
@@ -1736,7 +1786,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
   <p class="pb-note">売上を100としたモデル（原価率75%・販管費率20%の場合）。濃い青が営業利益です。</p>
 </div>
   </div>
-</section><section data-ch="3" class="people">
+</section><section data-ch="3" class="people"><i class="sf lt" aria-hidden="true"></i>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれへの<wbr>お約束</h2></div></header>
     <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と後継者の育成も<span class="nb">、一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>現場の<wbr>仕事と<wbr>職場は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>保証も<wbr>点検も、<wbr>これまで<wbr>どおりです。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、契約どおりに<span class="nb">お引き渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>いい仕事には、<wbr>適正な<wbr>価格で<wbr>応えます。</h3><p>品質・納期・価格を基準にお取引します。グループの他社の現場を<span class="nb">お願いする機会も増えていきます。</span></p></article></div>
@@ -1758,7 +1808,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="faq.html">よくある質問を見る <span class="ar"></span></a></div>
   </div>
-</section><section data-ch="4" class="tcases" id="cases">
+</section><section data-ch="4" class="tcases" id="cases"><i class="sf lt" aria-hidden="true"></i>
   <div class="w"><p class="chap rv" id="ch04"><b>Chapter 04</b><span>事例と、ご相談の流れ</span></p>
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Case</p><p class="sh-ja">モデルケース</p><h2>こんな<wbr>ご相談を<wbr>お受け<wbr>しています</h2></div><div class="sh-lead"><p>よくあるご相談を、条件を変えた想定事例としてまとめました。カードを押すと、引き継ぎの形とその後の1年を別タブで<span class="nb">ご覧いただけます。</span></p></div></header>
     <div class="cgrid"><a class="ccase rv" href="case-1.html" target="_blank" rel="noopener">
@@ -1791,7 +1841,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
       </div>
     </div>
   </div>
-</section><section data-ch="5" class="tseo">
+</section><section data-ch="5" class="tseo"><i class="sf lt" aria-hidden="true"></i>
   <div class="w"><p class="chap rv" id="ch05"><b>Chapter 05</b><span>事業承継を、もっと知る</span></p>
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">About succession</p><p class="sh-ja">工務店の事業承継とM&A</p><h2>工務店・<wbr>住宅会社の<wbr>M&A・<wbr>事業承継を<wbr>お考えの方へ</h2></div><div class="sh-lead"><p>後継者が決まっていない、受注が減って先が見えない、社員と施主様の今後が心配。そんな社長のために、事業承継の基本と、エッジアセットの<span class="nb">考え方をまとめました。</span></p></div></header>
     <div class="ts-g">
@@ -1801,12 +1851,12 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     </div>
     <div class="ts-links"><a class="tl" href="column-1.html">事業承継の3つの選択肢 <span class="ar"></span></a><a class="tl" href="column-4.html">譲渡価格の考え方 <span class="ar"></span></a><a class="tl" href="column-3.html">建設業許可の引き継ぎ <span class="ar"></span></a></div>
   </div>
-</section><section data-ch="5" class="topfaq">
+</section><section data-ch="5" class="topfaq"><i class="sf lt" aria-hidden="true"></i>
   <div class="w tf">
     <div><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">よくあるご質問</p></div></header><a class="tl" href="faq.html">すべての質問を見る <span class="ar"></span></a></div>
     <div><details><summary><span class="q">Q.</span><span>相談したことが、社員や取引先に知られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>ご了承なくお伝えすることはありません。面談は社外かオンラインで行い、秘密保持契約はご希望が<span class="nb">あれば初回面談の前に結べます。</span></p></div></details><details><summary><span class="q">Q.</span><span>赤字の会社でも<span class="nb">相談できますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>はい。赤字の理由と改善の見通しを一緒に整理すると<span class="nb">ころから始めます。</span></p></div></details><details><summary><span class="q">Q.</span><span>社長は<span class="nb">辞めなければいけませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>いいえ。引き継ぎ期間だけ残る形も、社長を<span class="nb">続ける形も選べます。</span></p></div></details></div>
   </div>
-</section><section data-ch="5" class="topcol">
+</section><section data-ch="5" class="topcol"><i class="sf lt" aria-hidden="true"></i>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Column</p><p class="sh-ja">コラム</p><h2>工務店の<wbr>事業承継を<wbr>考える</h2></div><div class="sh-lead"><p>事業承継の選択肢、譲渡価格、原価管理、受注減少への打ち手。社長が判断に<span class="nb">迷うポイントを解説しています。</span></p></div></header>
     <div class="cg"><a class="cc rv" href="column-4.html"><div class="ph"><img src="https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>譲渡価格</span></p><h3>工務店の譲渡価格はどう決まる？株価の考え方と準備</h3><p class="cc-e">「うちの会社はいくらで引き継いでもらえるのか」。事業承継を考え始めた社長が最初に知りたいのが、譲渡価格の目安です。中小の…</p></div></a><a class="cc rv" href="column-5.html"><div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>原価管理</span></p><h3>工務店の利益を残す原価管理。実行予算のつくり方</h3><p class="cc-e">受注は取れているのに、決算をしてみると思ったほど利益が残っていない。工務店でよく聞くこの悩みの多くは、原価の管理方法に原…</p></div></a><a class="cc rv" href="column-6.html"><div class="ph"><img src="https://unsplash.com/photos/q1tyQip5AQQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2Fq1tyQip5AQQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><div class="cc-tx"><p class="cc-m"><time>2026.10.23</time><span>経営・集客</span></p><h3>新築の受注が減るなかで、地域の工務店が取れる打ち手</h3><p class="cc-e">持家の新設着工戸数は減少が続き、資材価格の上昇も重なって、地域の工務店をとりまく環境は厳しさを増しています。受注の減少に…</p></div></a></div>
@@ -1821,7 +1871,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
-  <div class="w"><div class="fcx">
+  <i class="sf dk" aria-hidden="true"></i><div class="w"><div class="fcx">
       <div class="fc-t"><p class="fc-en">Contact</p><p class="fc-h">まずは、<wbr>話を<wbr>聞いてみる<wbr>だけで<wbr>構いません。</p><p>ご相談は無料です。社名を伏せたままでも、決算書が<span class="nb">なくても構いません。</span></p></div>
       <div class="fc-a">
         <a class="fc-b" href="contact.html" target="_blank" rel="noopener"><small>24時間受付・無料</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
@@ -1940,6 +1990,25 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     };
     upd(); addEventListener('scroll', upd, { passive: true });
   }
+
+  // reading progress + stat counters
+  const prog = $('.prog');
+  if (prog) {
+    const up = () => { const h = document.documentElement; const max = h.scrollHeight - innerHeight; prog.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0); };
+    up(); addEventListener('scroll', up, { passive: true }); addEventListener('resize', up);
+  }
+  const market = $('.market');
+  if (market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const nums = $$('.num strong', market).map(el => ({ el, node: el.firstChild, to: parseFloat(el.firstChild.textContent), dec: (el.firstChild.textContent.split('.')[1] || '').length }));
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io2.disconnect(); market.classList.add('in');
+      const t0 = performance.now(), dur = 1600;
+      const tick = now => { const k = Math.min(1, (now - t0) / dur), ease = 1 - Math.pow(1 - k, 3);
+        nums.forEach(n => n.node.textContent = (n.to * ease).toFixed(n.dec)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), { threshold: .3 });
+    io2.observe(market);
+  } else if (market) market.classList.add('in');
 })();
 </script>
 </body>

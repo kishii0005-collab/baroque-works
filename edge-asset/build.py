@@ -930,11 +930,12 @@ def page(fname,title,body,desc):
 <style>{STYLE}</style>
 </head>
 <body{' class="home"' if fname=="index.html" else ""}>
+<i class="prog" aria-hidden="true"></i>
 {nav()}
 <main id="top">
 {crumbs(fname,title)}{body}
 </main>
-{footer().replace('<div class="w">','<div class="w">'+footer_cta(fname),1)}
+{footer().replace('<div class="w">','<i class="sf dk" aria-hidden="true"></i><div class="w">'+footer_cta(fname),1)}
 <div class="proto">デザイン確認用｜【 】内と写真は仮</div>
 <script>{PREVIEW_FIX}</script>
 <script>{SCRIPT}</script>
@@ -1097,10 +1098,21 @@ bodies['terms.html']=(TERMS,'株式会社エッジアセットのサイトのご
 bodies['404.html']=(NOTFOUND,'お探しのページは見つかりませんでした。')
 SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'polish.py')).read())
+DARK_SURF={'market','model','tcost','secret','capital','pcon','stance','tmsg_x'}
+MIST_SURF={'promise','people','company','pp','links','ba','topfaq','gov','pfaq','topcol','artmore','kpi','tcases','clist','cother','think','record','tseo'}
+def surface(html):
+    def f(m):
+        cls=m.group(2).split()[0]
+        if cls in DARK_SURF: kind='dk'
+        elif cls in MIST_SURF: kind='lt'
+        else: return m.group(0)
+        return m.group(0)+f'<i class="sf {kind}" aria-hidden="true"></i>'
+    return re.sub(r'(<section\b[^>]*class="([^"]+)"[^>]*>)',f,html)
 for fname,title in PAGES:
     CUR=fname
     b,d=bodies[fname]
     b=re.sub(r'<p class="crumb">.*?</p>','',b,flags=re.S)
+    b=surface(b)
     open(os.path.join(OUT,fname),'w').write(telify(page(fname,title,b,d)))
 open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{'' if f=='index.html' else f}</loc></url>\n' for f,_ in PAGES if f!='404.html')+'</urlset>\n')
 open(os.path.join(OUT,'robots.txt'),'w').write('User-agent: *\nAllow: /\nSitemap: '+SITE+'sitemap.xml\n')

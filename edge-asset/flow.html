@@ -1624,9 +1624,59 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 /* contact: route for intermediaries */
 .c-alt{font-size:13.5px;color:var(--ink-2);margin:-20px 0 28px}
 .c-alt a{color:var(--blue);border-bottom:1px solid currentColor}
+
+/* ===== design pass 3: one surface language, motion with meaning ===== */
+/* surfaces: the hero's architectural grid and a film grain carried through every dark and mist section */
+.sf{position:absolute;inset:0;pointer-events:none;z-index:0}
+.sf::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(25% - 1px),var(--sf-line) calc(25% - 1px),var(--sf-line) 25%)}
+.sf::after{content:"";position:absolute;inset:0;opacity:var(--sf-grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px}
+.sf.dk{--sf-line:rgba(255,255,255,.055);--sf-grain:.16;background:radial-gradient(70% 60% at 88% 100%,rgba(34,104,200,.22),transparent 70%)}
+.sf.lt{--sf-line:rgba(12,39,71,.045);--sf-grain:.06}
+section>.w,section>.grid,section>.menu-in,footer>.w,.stance>.w,.market>.w{position:relative;z-index:1}
+.stance>.ph{z-index:0}.stance .sf{z-index:0}
+.tmsg .sf{display:none}
+@media (max-width:760px){.sf::before{background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(50% - 1px),var(--sf-line) calc(50% - 1px),var(--sf-line) 50%)}}
+
+/* reading progress: a hairline that grows under the sticky header */
+.prog{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--blue);transform:scaleX(var(--p,0));transform-origin:left;z-index:60;pointer-events:none;opacity:.9}
+.menu-open .prog{opacity:0}
+
+/* stats: ring fills and number counts up when the section arrives */
+@property --v{syntax:'<number>';inherits:false;initial-value:0}
+.market .num .donut{transition:--v 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .market:not(.in) .num .donut{--v:0!important}
+.market .num strong{font-variant-numeric:tabular-nums}
+
+/* staggered reveal inside grids */
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(2){transition-delay:.08s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(3){transition-delay:.16s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(4){transition-delay:.24s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(5){transition-delay:.32s}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l)>:nth-child(6){transition-delay:.4s}
+.kpi li:nth-child(2){transition-delay:.08s}.kpi li:nth-child(3){transition-delay:.16s}.kpi li:nth-child(4){transition-delay:.24s}
+
+/* photos slide into their frames; headlines ease up a touch more */
+.js .mask img{transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .mask.in img{transform:none}
+.js .rv{transform:translateY(22px)}
+
+/* page in */
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+.js main,.js footer{animation:pagein .7s ease both}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js main,.js footer{animation:none}.market .num .donut{transition:none}.js .mask img{transform:none;transition:none}}
+
+/* hover: cards lift on a shared curve, links get a soft blue underline sweep */
+.ccase,.cc,.ts-g article,.lever li,.m3-main a{transition-duration:.45s}
+.ts-g article{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.ts-g article:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(12,39,71,.1)}
+.sm-g li a,.bc a,.fq-nav a,.subnav a{transition:color .25s}
+.chap b{white-space:nowrap}
+@media (max-width:760px){.chap{gap:12px;font-size:12px}.chap b{font-size:10px;letter-spacing:.2em;padding:6px 10px}.chap span{word-break:keep-all;overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
+<i class="prog" aria-hidden="true"></i>
 <header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
@@ -1663,12 +1713,12 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     <div class="gantt rv"><p class="g-k">標準的なスケジュール</p><ol><li><span class="gn">01 初回面談</span><span class="gb"><i style="left:0.0%;width:13.3%"></i></span></li><li><span class="gn">02 秘密保持契約・資料のご提供</span><span class="gb"><i style="left:6.7%;width:13.3%"></i></span></li><li><span class="gn">03 条件のご提示</span><span class="gb"><i style="left:20.0%;width:10.7%"></i></span></li><li><span class="gn">04 詳細調査</span><span class="gb"><i style="left:30.7%;width:22.7%"></i></span></li><li><span class="gn">05 最終契約・お支払い</span><span class="gb"><i style="left:53.3%;width:13.3%"></i></span></li><li><span class="gn">06 ご説明と引き継ぎ</span><span class="gb"><i style="left:66.7%;width:33.3%"></i></span></li></ol><p class="gm"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7ヶ月</span></p></div>
     <ol class="fsteps"><li class="rv"><div class="fs-h"><span class="fs-n">STEP 01</span><p class="fs-en">First meeting</p><h3>初回面談</h3><p class="fs-t">期間の目安　1〜2時間</p></div><div class="fs-b"><p>会社のこと、ご家族のこと、社長ご自身のこれからを伺います。私たちの考え方と、進め方もご説明します。この段階で何かを<span class="nb">決める必要はありません。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>特になし（決算書がなくても構いません）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長お一人</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 02</span><p class="fs-en">NDA & documents</p><h3>秘密保持契約・資料のご提供</h3><p class="fs-t">期間の目安　2〜4週間</p></div><div class="fs-b"><p>秘密保持契約を結んだうえで、会社の数字と体制を拝見します。社員名簿は<span class="nb">匿名でも構いません。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>決算書 3期分</li><li>受注残・施工中物件の一覧</li><li>借入の一覧</li><li>社員構成（匿名可）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・顧問税理士</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 03</span><p class="fs-en">Letter of intent</p><h3>条件のご提示</h3><p class="fs-t">期間の目安　2〜3週間</p></div><div class="fs-b"><p>譲渡価格の考え方、取得する株式の割合、社長の処遇、雇用、引き継ぎ期間を書面でお示しします。納得いくまで<span class="nb">何度でも話し合います。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>ご希望の条件（引退の時期、社員の処遇など）</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・ご家族・顧問税理士</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 04</span><p class="fs-en">Due diligence</p><h3>詳細調査</h3><p class="fs-t">期間の目安　1〜2ヶ月</p></div><div class="fs-b"><p>財務・税務・法務・労務に加え、施工中の物件、保証と点検の履歴、建設業許可の要件まで、住宅会社ならではの<span class="nb">論点を確認します。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>契約書・許可関係の書類</li><li>保証書・点検記録</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・経理担当（必要に応じて）</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 05</span><p class="fs-en">Closing</p><h3>最終契約・お支払い</h3><p class="fs-t">期間の目安　約1ヶ月</p></div><div class="fs-b"><p>株式譲渡契約を結び、代金をお支払いします。社長の個人保証の解除について、<span class="nb">金融機関と協議します。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>印鑑・株券など、手続きに必要な書類</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">社長・ご家族・金融機関</p></div></div></div></li><li class="rv"><div class="fs-h"><span class="fs-n">STEP 06</span><p class="fs-en">Post merger</p><h3>ご説明と引き継ぎ</h3><p class="fs-t">期間の目安　6ヶ月〜</p></div><div class="fs-b"><p>社員の皆さま、協力業者さん、施主様へのご説明に私たちも同席します。その後は100日の計画に沿って、無理の<span class="nb">ない順番で引き継ぎます。</span></p><div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul><li>特になし</li></ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">全員に公表</p></div></div></div></li></ol>
   </div>
-</section><section class="secret dark">
+</section><section class="secret dark"><i class="sf dk" aria-hidden="true"></i>
   <div class="w">
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Confidential</p><p class="sh-ja">秘密を守るために</p><h2>最終契約までは、<wbr>ご了承なく<wbr>社員や取引先に<wbr>お伝えしません</h2></div></header>
     <ul class="sc-l"><li class="rv"><span>01</span><h3>面談は社外か<wbr>オンラインで</h3><p>ご相談の段階で会社に伺うことはありません。ご自宅の近く、私たちの事務所、または<span class="nb">オンラインで行います。</span></p></li><li class="rv"><span>02</span><h3>連絡方法は<wbr>事前に決める</h3><p>郵送物や電話は、社長と決めた方法でのみご連絡します。会社の代表番号に<span class="nb">お電話することはありません。</span></p></li><li class="rv"><span>03</span><h3>秘密保持契約は<wbr>初回から</h3><p>ご希望があれば、初回の面談の前に<span class="nb">秘密保持契約を結びます。</span></p></li></ul>
   </div>
-</section><section class="think">
+</section><section class="think"><i class="sf lt" aria-hidden="true"></i>
   <div class="w grid">
     <div class="rv"><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Before you talk</p><p class="sh-ja">ご相談の前に</p><h2>考えておくと<wbr>話が<wbr>早いこと</h2></div><div class="sh-lead"><p>決まっていなくても構いません。面談の中で<span class="nb">一緒に整理します。</span></p></div></header></div>
     <ol class="tk-l rv"><li><span>Q1</span>いつ頃までに、<wbr>社長を<wbr>退きたいか</li><li><span>Q2</span>引き継ぎ後も、<wbr>会社に<wbr>関わりたいか</li><li><span>Q3</span>社員の<wbr>誰に、<wbr>どんな役割を<wbr>任せたいか</li><li><span>Q4</span>ご家族は<wbr>株式や<wbr>会社のことを<wbr>どう考えているか</li><li><span>Q5</span>会社の<wbr>借入と、<wbr>ご自身の<wbr>個人保証の<wbr>状況</li></ol>
@@ -1680,7 +1730,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
 </main>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
-  <div class="w"><div class="fcx">
+  <i class="sf dk" aria-hidden="true"></i><div class="w"><div class="fcx">
       <div class="fc-t"><p class="fc-en">Contact</p><p class="fc-h">まずは、<wbr>初回面談の<wbr>日程だけ<wbr>決めませんか。</p><p>初回面談で何かを決めていただく必要はありません。1〜2時間、お話を伺うと<span class="nb">ころから始めます。</span></p></div>
       <div class="fc-a">
         <a class="fc-b" href="contact.html" target="_blank" rel="noopener"><small>24時間受付・無料</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
@@ -1799,6 +1849,25 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     };
     upd(); addEventListener('scroll', upd, { passive: true });
   }
+
+  // reading progress + stat counters
+  const prog = $('.prog');
+  if (prog) {
+    const up = () => { const h = document.documentElement; const max = h.scrollHeight - innerHeight; prog.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0); };
+    up(); addEventListener('scroll', up, { passive: true }); addEventListener('resize', up);
+  }
+  const market = $('.market');
+  if (market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const nums = $$('.num strong', market).map(el => ({ el, node: el.firstChild, to: parseFloat(el.firstChild.textContent), dec: (el.firstChild.textContent.split('.')[1] || '').length }));
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io2.disconnect(); market.classList.add('in');
+      const t0 = performance.now(), dur = 1600;
+      const tick = now => { const k = Math.min(1, (now - t0) / dur), ease = 1 - Math.pow(1 - k, 3);
+        nums.forEach(n => n.node.textContent = (n.to * ease).toFixed(n.dec)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), { threshold: .3 });
+    io2.observe(market);
+  } else if (market) market.classList.add('in');
 })();
 </script>
 </body>

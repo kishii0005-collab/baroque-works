@@ -98,4 +98,23 @@
     };
     upd(); addEventListener('scroll', upd, { passive: true });
   }
+
+  // reading progress + stat counters
+  const prog = $('.prog');
+  if (prog) {
+    const up = () => { const h = document.documentElement; const max = h.scrollHeight - innerHeight; prog.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0); };
+    up(); addEventListener('scroll', up, { passive: true }); addEventListener('resize', up);
+  }
+  const market = $('.market');
+  if (market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const nums = $$('.num strong', market).map(el => ({ el, node: el.firstChild, to: parseFloat(el.firstChild.textContent), dec: (el.firstChild.textContent.split('.')[1] || '').length }));
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io2.disconnect(); market.classList.add('in');
+      const t0 = performance.now(), dur = 1600;
+      const tick = now => { const k = Math.min(1, (now - t0) / dur), ease = 1 - Math.pow(1 - k, 3);
+        nums.forEach(n => n.node.textContent = (n.to * ease).toFixed(n.dec)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), { threshold: .3 });
+    io2.observe(market);
+  } else if (market) market.classList.add('in');
 })();
