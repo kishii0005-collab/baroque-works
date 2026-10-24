@@ -1580,13 +1580,57 @@ details::details-content{height:0;overflow:clip;transition:height .35s ease,cont
 details[open]::details-content{height:auto}
 summary:hover span:not(.q):not(.pm){color:var(--blue)}
 details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:inherit}
+
+/* ===== FAQ page ===== */
+.fq-nav{list-style:none;margin:0 0 72px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.fq-nav a{display:inline-block;padding:10px 18px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;transition:border-color .3s,color .3s,background .3s}
+.fq-nav a:hover{border-color:var(--blue);color:var(--blue)}
+.fq-cat{display:grid;grid-template-columns:4fr 8fr;gap:0 72px;padding:56px 0;border-top:1px solid var(--line);scroll-margin-top:96px}
+.fq-cat:last-of-type{border-bottom:1px solid var(--line)}
+.fq-h{position:sticky;top:110px;align-self:start}
+.fq-n{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--blue);border-top:2px solid var(--blue);display:inline-block;padding-top:10px;margin:0 0 12px}
+.fq-h h2{font-size:clamp(20px,2vw,26px);margin:0}
+.fq-l details:first-of-type{border-top:0}
+.fq-l summary{padding-top:4px}
+.fq-l details:first-of-type summary{padding-top:0}
+.fq-more{margin:48px 0 0;font-size:14px;color:var(--ink-2);text-align:center}
+@media (max-width:860px){.fq-cat{grid-template-columns:1fr;gap:16px;padding:36px 0}.fq-h{position:static}.fq-nav{margin-bottom:40px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.fq-nav::-webkit-scrollbar{display:none}.fq-nav a{white-space:nowrap}}
+
+/* ===== sitemap page ===== */
+.sm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 56px}
+.sm-g h2{font-size:15px;letter-spacing:.1em;color:var(--blue);padding-bottom:12px;border-bottom:1px solid var(--line);margin:0 0 14px}
+.sm-g ul{list-style:none;margin:0;padding:0}
+.sm-g li a{display:block;padding:9px 0;font-size:14.5px;border-bottom:1px solid var(--line)}
+.sm-g li a:hover{color:var(--blue)}
+@media (max-width:860px){.sm-grid{grid-template-columns:1fr;gap:36px}}
+
+/* ===== top page: representative teaser ===== */
+.tmsg{background:#fff}
+.tmsg .w{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+.tm-ph{position:relative}
+.tm-ph .ph{aspect-ratio:4/5;background:var(--mist)}
+.tm-ph::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--navy);z-index:0}
+.tm-ph .ph{position:relative;z-index:1}
+.tm-cap{position:absolute;left:0;bottom:-28px;z-index:2;background:#fff;font-size:11px;color:var(--mute);padding:6px 12px 0 0}
+.tm-tx .sh-ja{margin-bottom:14px}
+.tm-tx h2{font-size:clamp(24px,2.6vw,34px);line-height:1.6;letter-spacing:.06em;margin:0 0 20px}
+.tm-tx>p{color:var(--ink-2);margin:0 0 28px}
+.tm-who{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:28px}
+.tm-who b{font-family:var(--fh);font-size:20px;letter-spacing:.12em}
+.tm-who span{font-size:12.5px;color:var(--mute)}
+.tm-who small{grid-column:1/-1;font-size:12.5px;color:var(--ink-2);line-height:1.8}
+@media (max-width:900px){.tmsg .w{grid-template-columns:1fr;gap:48px}.tm-ph{max-width:320px}.tm-ph::before{inset:14px -14px -14px 14px}}
+
+/* contact: route for intermediaries */
+.c-alt{font-size:13.5px;color:var(--ink-2);margin:-20px 0 28px}
+.c-alt a{color:var(--blue);border-bottom:1px solid currentColor}
 </style>
 </head>
 <body class="home">
 <header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
-    <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html" target="_blank" rel="noopener">私たちについて</a><a class="nl" href="service.html" target="_blank" rel="noopener">グループの支援</a><a class="nl" href="cases.html" target="_blank" rel="noopener">事例</a><a class="nl" href="flow.html" target="_blank" rel="noopener">ご相談の流れ</a><a class="nl" href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a><a class="nl" href="news.html" target="_blank" rel="noopener">お知らせ</a>
+    <nav class="gnav" aria-label="メインメニュー"><a class="nl" href="company.html" target="_blank" rel="noopener">私たちについて</a><a class="nl" href="service.html" target="_blank" rel="noopener">グループの支援</a><a class="nl" href="cases.html" target="_blank" rel="noopener">事例</a><a class="nl" href="flow.html" target="_blank" rel="noopener">ご相談の流れ</a><a class="nl" href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a><a class="nl" href="faq.html" target="_blank" rel="noopener">よくあるご質問</a>
       <span class="tel"><a class="tel-a" href="tel:0300000000">03-0000-0000</a><small>平日 9:00–18:00</small></span>
     </nav>
   </div>
@@ -1597,7 +1641,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     <nav class="m3-l" aria-label="サイトメニュー">
       <p class="m3-k">事業承継をお考えの方へ</p>
       <ul class="m3-main"><li><a href="company.html" target="_blank" rel="noopener"><span class="m3-en">About</span><span class="m3-ja">私たちについて</span><span class="m3-d">考え方・代表・会社概要</span><i aria-hidden="true"></i></a></li><li><a href="service.html" target="_blank" rel="noopener"><span class="m3-en">Support</span><span class="m3-ja">グループの支援</span><span class="m3-d">集客・採用・財務・原価の改善</span><i aria-hidden="true"></i></a></li><li><a href="cases.html" target="_blank" rel="noopener"><span class="m3-en">Cases</span><span class="m3-ja">事例</span><span class="m3-d">4つのモデルケース</span><i aria-hidden="true"></i></a></li><li><a href="flow.html" target="_blank" rel="noopener"><span class="m3-en">Flow</span><span class="m3-ja">ご相談の流れ</span><span class="m3-d">初回面談から引き継ぎまで</span><i aria-hidden="true"></i></a></li></ul>
-      <ul class="m3-sub"><li><a href="index.html" target="_blank" rel="noopener" aria-current="page">トップ</a></li><li><a href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a></li><li><a href="column.html" target="_blank" rel="noopener">コラム</a></li><li><a href="news.html" target="_blank" rel="noopener">お知らせ</a></li><li><a href="contact.html" target="_blank" rel="noopener">お問い合わせ</a></li></ul>
+      <ul class="m3-sub"><li><a href="index.html" target="_blank" rel="noopener" aria-current="page">トップ</a></li><li><a href="partners.html" target="_blank" rel="noopener">仲介会社・金融機関の方へ</a></li><li><a href="column.html" target="_blank" rel="noopener">コラム</a></li><li><a href="faq.html" target="_blank" rel="noopener">よくあるご質問</a></li><li><a href="news.html" target="_blank" rel="noopener">お知らせ</a></li><li><a href="contact.html" target="_blank" rel="noopener">お問い合わせ</a></li></ul>
     </nav>
     <div class="m3-r">
       <p class="m3-k">ご相談窓口</p>
@@ -1697,11 +1741,22 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">People</p><p class="sh-ja">それぞれの方へ</p><h2>社長・<wbr>社員・<wbr>施主様・<wbr>協力業者さん、<wbr>それぞれへの<wbr>お約束</h2></div></header>
     <div class="pg"><article class="rv"><p class="who">社長へ</p><h3>辞める<wbr>時期は、<wbr>ご自身で<wbr>決められます。</h3><p>引き継ぎ期間だけ残る形も、社長を続ける形も選べます。個人保証の解除と後継者の育成も<span class="nb">、一緒に進めます。</span></p></article><article class="rv"><p class="who">社員の皆さまへ</p><h3>現場の<wbr>仕事と<wbr>職場は<wbr>変わりません。</h3><p>職場も上司も名刺の社名もそのままです。事務作業が減り、研修とキャリアの<span class="nb">選択肢が増えます。</span></p></article><article class="rv"><p class="who">施主様へ</p><h3>保証も<wbr>点検も、<wbr>これまで<wbr>どおりです。</h3><p>保証も定期点検も窓口も変わりません。施工中の工事も、契約どおりに<span class="nb">お引き渡しします。</span></p></article><article class="rv"><p class="who">協力業者さんへ</p><h3>いい仕事には、<wbr>適正な<wbr>価格で<wbr>応えます。</h3><p>品質・納期・価格を基準にお取引します。グループの他社の現場を<span class="nb">お願いする機会も増えていきます。</span></p></article></div>
   </div>
+</section><section data-ch="3" class="tmsg">
+  <div class="w">
+    <div class="tm-ph"><div class="ph"><img src="https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" alt="代表写真（撮影予定）" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="tm-cap">代表写真は撮影予定</span></div>
+    <div class="tm-tx rv">
+      <p class="sh-ja">代表メッセージ</p>
+      <h2>会社を<wbr>売る、<wbr>という<wbr>言葉に<wbr>抵抗がある方へ。</h2>
+      <p>大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安に正面から答えるために、この<span class="nb">会社をつくりました。</span></p>
+      <div class="tm-who"><b>谷岡 佑亮</b><span>株式会社エッジアセット 代表取締役</span><small>船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年。経営再建・成長戦略の実行支援を経て、建築業界の採用・営業・業務改善を支援。</small></div>
+      <a class="btn btn-navy" href="company.html#message" target="_blank" rel="noopener">メッセージの全文を読む <span class="ar"></span></a>
+    </div>
+  </div>
 </section><section data-ch="3" class="cta">
   <div class="ph"><img src="https://unsplash.com/photos/pcYN7Pi8_BQ/download?force=true&amp;w=1800" alt="" loading="lazy" data-fb="https://wsrv.nl/?url=unsplash.com%2Fphotos%2FpcYN7Pi8_BQ%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
   <div class="w">
     <div class="rv"><h2>まずは<wbr>30分、<wbr>オンラインで<wbr>話を<wbr>聞いて<wbr>みませんか。</h2><p>ご相談は無料です。社名を<span class="nb">伏せたままでも構いません。</span></p><p class="tel">お電話でのご相談<b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b></p></div>
-    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="contact.html#faq">よくある質問を見る <span class="ar"></span></a></div>
+    <div class="btns rv"><a class="btn btn-white" href="contact.html">面談を予約する <span class="ar"></span></a><a class="btn btn-ghost" href="faq.html">よくある質問を見る <span class="ar"></span></a></div>
   </div>
 </section><section data-ch="4" class="tcases" id="cases">
   <div class="w"><p class="chap rv" id="ch04"><b>Chapter 04</b><span>事例と、ご相談の流れ</span></p>
@@ -1748,7 +1803,7 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
   </div>
 </section><section data-ch="5" class="topfaq">
   <div class="w tf">
-    <div><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">よくあるご質問</p></div></header><a class="tl" href="contact.html#faq">すべての質問を見る <span class="ar"></span></a></div>
+    <div><header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">FAQ</p><p class="sh-ja">よくあるご質問</p></div></header><a class="tl" href="faq.html">すべての質問を見る <span class="ar"></span></a></div>
     <div><details><summary><span class="q">Q.</span><span>相談したことが、社員や取引先に知られることは<span class="nb">ありませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>ご了承なくお伝えすることはありません。面談は社外かオンラインで行い、秘密保持契約はご希望が<span class="nb">あれば初回面談の前に結べます。</span></p></div></details><details><summary><span class="q">Q.</span><span>赤字の会社でも<span class="nb">相談できますか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>はい。赤字の理由と改善の見通しを一緒に整理すると<span class="nb">ころから始めます。</span></p></div></details><details><summary><span class="q">Q.</span><span>社長は<span class="nb">辞めなければいけませんか。</span></span><span class="pm"></span></summary><div class="a"><span>A.</span><p>いいえ。引き継ぎ期間だけ残る形も、社長を<span class="nb">続ける形も選べます。</span></p></div></details></div>
   </div>
 </section><section data-ch="5" class="topcol">
@@ -1776,10 +1831,10 @@ details .a .nb{font-family:inherit;font-size:inherit;color:inherit;line-height:i
     <div class="fg">
       <div><a class="logo" href="index.html" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><h4>COMPANY</h4><ul><li><a href="company.html">私たちについて</a></li><li><a href="company.html#message">代表メッセージ</a></li><li><a href="company.html#compare">他の選択肢との比較</a></li><li><a href="company.html#company">会社概要</a></li></ul></div>
-      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">モデルケース</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="contact.html#faq">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li></ul></div>
+      <div><h4>SUCCESSION</h4><ul><li><a href="index.html#promise">5つのお約束</a></li><li><a href="service.html">グループの支援</a></li><li><a href="cases.html">事例</a></li><li><a href="flow.html">ご相談の流れ</a></li><li><a href="faq.html">よくあるご質問</a></li></ul></div>
       <div class="ftel"><h4>CONTACT</h4><b><a class="tel-a" href="tel:0300000000">03-0000-0000</a></b><span>平日 9:00–18:00</span></div>
     </div>
-    <div class="fb"><span><a href="privacy.html">プライバシーポリシー</a>　｜　<a href="terms.html">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
+    <div class="fb"><span><a href="privacy.html">プライバシーポリシー</a>　｜　<a href="terms.html">サイトのご利用について</a>　｜　<a href="sitemap.html">サイトマップ</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
   </div>
 </footer>

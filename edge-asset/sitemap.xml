@@ -21,4 +21,6 @@
   <url><loc>https://www.example.com/column.html</loc></url>
   <url><loc>https://www.example.com/privacy.html</loc></url>
   <url><loc>https://www.example.com/terms.html</loc></url>
+  <url><loc>https://www.example.com/faq.html</loc></url>
+  <url><loc>https://www.example.com/sitemap.html</loc></url>
 </urlset>

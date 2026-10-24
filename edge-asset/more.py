@@ -79,7 +79,7 @@ TOPFAQ_Q=[('相談したことが、社員や取引先に知られることは�
           ('社長は辞めなければいけませんか。','いいえ。引き継ぎ期間だけ残る形も、社長を続ける形も選べます。')]
 TOPFAQ=f"""<section class="topfaq">
   <div class="w tf">
-    <div>{head('FAQ','よくあるご質問','')}<a class="tl" href="contact.html#faq">すべての質問を見る {AR}</a></div>
+    <div>{head('FAQ','よくあるご質問','')}<a class="tl" href="faq.html">すべての質問を見る {AR}</a></div>
     <div>{''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in TOPFAQ_Q)}</div>
   </div>
 </section>""".replace('<h2></h2>','')
@@ -301,4 +301,4 @@ TERMS=legal('サイトのご利用について','Terms of use',[
  ('リンクについて',['本サイトへのリンクは原則として自由です。ただし、当社の信用を損なうおそれのあるサイトからのリンクはお断りします。']),
  ('写真について',['本サイトに掲載している写真の一部は、イメージ素材（Unsplash）を使用しています。']),
 ],'株式会社エッジアセット')
-NOTFOUND=f"""<section class="nf"><div class="w"><p class="pen">404</p><h1>ページが見つかりませんでした</h1>{P('お探しのページは移動または削除された可能性があります。')}<a class="btn btn-navy" href="index.html">トップへ戻る {AR}</a></div></section>"""
+NOTFOUND=f"""<section class="nf"><div class="w"><p class="pen">404</p><h1>ページが見つかりませんでした</h1>{P('お探しのページは移動または削除された可能性があります。')}<div class="btns"><a class="btn btn-navy" href="index.html">トップへ戻る {AR}</a><a class="tl" href="sitemap.html">サイトマップを見る {AR}</a></div></div></section>"""

@@ -263,7 +263,7 @@ SVCFAQ_Q=[('グループに入ると、家づくりの方針は変わります�
  ('採用した社員は、どの会社に所属しますか。','各社の社員として採用し、配属します。グループ合同で説明会や求人を行うことで、一社では出せない規模で応募を集めます。グループ内の応援や異動は、ご本人の希望を踏まえて行います。')]
 SVCFAQ=f"""<section class="topfaq">
   <div class="w tf">
-    <div>{head('FAQ','支援についてのご質問','')}<a class="tl" href="contact.html#faq">すべての質問を見る {AR}</a></div>
+    <div>{head('FAQ','支援についてのご質問','')}<a class="tl" href="faq.html">すべての質問を見る {AR}</a></div>
     <div>{''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in SVCFAQ_Q)}</div>
   </div>
 </section>""".replace('<h2></h2>','')
