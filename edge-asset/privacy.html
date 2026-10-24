@@ -1673,6 +1673,25 @@ html{scroll-behavior:smooth}
 .sm-g li a,.bc a,.fq-nav a,.subnav a{transition:color .25s}
 .chap b{white-space:nowrap}
 @media (max-width:760px){.chap{gap:12px;font-size:12px}.chap b{font-size:10px;letter-spacing:.2em;padding:6px 10px}.chap span{word-break:keep-all;overflow-wrap:anywhere}}
+
+/* ===== bottom consult bar (follows the scroll) ===== */
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:45;transform:translateY(110%);transition:transform .5s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.sbar.on{transform:none;pointer-events:auto}
+.menu-open .sbar{transform:translateY(110%)}
+.sb-in{display:flex;align-items:center;gap:22px;background:rgba(8,26,49,.92);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);color:#fff;border-top:1px solid rgba(255,255,255,.12);padding:12px max(48px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(48px,env(safe-area-inset-left,0px))}
+.sb-t{margin:0 auto 0 0;display:flex;flex-direction:column;gap:2px;line-height:1.4}
+.sb-t b{font-family:var(--fh);font-weight:700;font-size:15px;letter-spacing:.06em}
+.sb-t span{font-size:11.5px;color:#9fb3cc}
+.sb-b{display:inline-flex;align-items:center;gap:18px;background:#fff;color:var(--navy);border-radius:999px;padding:7px 7px 7px 24px;font-family:var(--fh);font-weight:700;font-size:14.5px;letter-spacing:.06em;transition:transform .3s,background .3s,color .3s}
+.sb-b i{width:38px;height:38px;border-radius:50%;background:var(--blue);position:relative;transition:transform .3s}
+.sb-b i::before{content:"";position:absolute;left:12px;right:12px;top:50%;height:1.5px;background:#fff}
+.sb-b i::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:translateY(-50%) rotate(45deg)}
+.sb-b:hover{transform:translateY(-2px)}.sb-b:hover i{transform:translateX(3px)}
+.sb-tel{display:flex;flex-direction:column;align-items:flex-end;font-family:var(--en);font-size:20px;letter-spacing:.04em;line-height:1.1;color:#fff}
+.sb-tel small{font-family:var(--f);font-size:10.5px;color:#9fb3cc;letter-spacing:.04em}
+.sbar.on~footer .pagetop,body:has(.sbar.on) .pagetop{bottom:auto}
+@media (min-width:761px){.sbar{left:auto;right:28px;bottom:28px}.sb-in{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;box-shadow:0 18px 44px rgba(3,12,26,.35);gap:18px}.sb-t span{display:none}.sb-tel{display:none}}
+@media (max-width:760px){.sb-in{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}.sb-t b{font-size:13px}.sb-t span{font-size:10px}.sb-b{padding:6px 6px 6px 18px;font-size:13.5px;gap:12px}.sb-b i{width:34px;height:34px}.sb-tel{display:none}body{padding-bottom:0}}
 </style>
 </head>
 <body>
@@ -1708,6 +1727,7 @@ html{scroll-behavior:smooth}
   <div class="w"><p class="pen">Privacy policy</p><h1>プライバシーポリシー</h1></div>
 </section><article class="art legal"><div class="w aw"><h2>基本方針</h2><p>株式会社エッジアセット（以下「当社」）は、お客様の個人情報を適切に取り扱うことが社会的責務であると考え、個人情報の保護に関する法律その他の関係法令を遵守し、以下のと<span class="nb">おり個人情報を取り扱います。</span></p><h2>取得する個人情報</h2><p>当社は、お問い合わせフォーム、電話、面談等を通じて、氏名、会社名、メールアドレス、電話番号、ご相談内容その他お客様が<span class="nb">提供する情報を取得します。</span></p><h2>利用目的</h2><ul><li>お問い合わせ・ご相談への回答および連絡のため</li><li>事業承継・株式取得等のご提案、検討および実行のため</li><li>面談日程の調整その他の連絡のため</li><li>当社サービスの改善のため</li></ul><h2>第三者への提供</h2><p>当社は、法令に定める場合を除き、ご本人の同意を得ることなく個人情報を<span class="nb">第三者に提供しません。</span></p><h2>グループ会社との共同利用</h2><p>当社は、事業承継後のグループ経営に必要な範囲で、取得した個人情報を当社のグループ会社と共同で利用することがあります。共同利用する項目は氏名・会社名・連絡先・ご相談内容、<span class="nb">管理責任者は当社とします。</span></p><h2>業務の委託</h2><p>当社は、利用目的の達成に必要な範囲で、個人情報の取扱いを外部に委託することがあります。この場合、委託先に対して必要かつ適切<span class="nb">な監督を行います。</span></p><h2>安全管理措置</h2><p>当社は、個人情報の漏えい、滅失または毀損を防止するため、必要かつ適切な安全管<span class="nb">理措置を講じます。</span></p><h2>アクセス解析について</h2><p>当社ウェブサイトでは、利用状況の把握のためにアクセス解析ツールを使用する場合があります。これらのツールはCookieを使用してデータを収集しますが、個人を特定する情報は含みません。Cookieはブラウザの設定に<span class="nb">より無効にできます。</span></p><h2>開示・訂正・利用停止等のご請求</h2><p>ご本人から個人情報の開示、訂正、追加、削除、利用停止等のご請求があった場合は、ご本人であることを確認のうえ、法令に<span class="nb">従って速やかに対応します。</span></p><h2>お問い合わせ窓口</h2><p>株式会社エッジアセット　〒105-0022 東京都港区海岸2丁目5-1-1702　個人情報お問い合わせ窓口　メール：<em class="tbd">【確定後<span class="nb">に記載】</em></span></p><h2>改定</h2><p>当社は、法令の変更等に応じて本ポリシーを改定することがあります。改定後の内容は本ページに<span class="nb">掲載した時点から効力を生じます。</span></p><p class="anote">制定日：2026年10月【確定後に記載】　株式会社エッジアセット　代表取締役　谷岡 佑亮</p></div></article>
 </main>
+<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2営業日以内にご連絡</span></p><a class="sb-b" href="contact.html" target="_blank" rel="noopener"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0300000000"><small>平日 9:00–18:00</small>03-0000-0000</a></div></div>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
   <i class="sf dk" aria-hidden="true"></i><div class="w"><div class="fcx">
@@ -1848,6 +1868,15 @@ html{scroll-behavior:smooth}
     }), { threshold: .3 });
     io2.observe(market);
   } else if (market) market.classList.add('in');
+
+  // bottom consult bar: shows after the first screen, hides while the footer CTA is on screen
+  const sbar = $('#sbar');
+  if (sbar) {
+    const fc = $('.fcx'); let fcIn = false;
+    if (fc && 'IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { fcIn = e.isIntersecting; upd(); }), { threshold: 0 }).observe(fc);
+    const upd = () => sbar.classList.toggle('on', scrollY > innerHeight * 0.8 && !fcIn);
+    upd(); addEventListener('scroll', upd, { passive: true });
+  }
 })();
 </script>
 </body>

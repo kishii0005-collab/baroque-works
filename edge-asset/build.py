@@ -908,6 +908,7 @@ def footer():
     f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="faq.html">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
     f=f.replace('<a href="index.html">プライバシーポリシー</a>','<a href="privacy.html">プライバシーポリシー</a>').replace('<a href="index.html">サイトのご利用について</a>','<a href="terms.html">サイトのご利用について</a>　｜　<a href="sitemap.html">サイトマップ</a>')
     return f
+SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2営業日以内にご連絡</span></p><a class="sb-b" href="contact.html" target="_blank" rel="noopener"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0300000000"><small>平日 9:00–18:00</small>03-0000-0000</a></div></div>'
 def page(fname,title,body,desc):
     t='工務店・住宅会社のM&A・事業承継｜株式会社エッジアセット' if fname=='index.html' else f'{title}｜株式会社エッジアセット'
     return f"""<!doctype html>
@@ -935,6 +936,7 @@ def page(fname,title,body,desc):
 <main id="top">
 {crumbs(fname,title)}{body}
 </main>
+{'' if fname in ('contact.html','404.html') else SBAR}
 {footer().replace('<div class="w">','<i class="sf dk" aria-hidden="true"></i><div class="w">'+footer_cta(fname),1)}
 <div class="proto">デザイン確認用｜【 】内と写真は仮</div>
 <script>{PREVIEW_FIX}</script>

@@ -117,4 +117,13 @@
     }), { threshold: .3 });
     io2.observe(market);
   } else if (market) market.classList.add('in');
+
+  // bottom consult bar: shows after the first screen, hides while the footer CTA is on screen
+  const sbar = $('#sbar');
+  if (sbar) {
+    const fc = $('.fcx'); let fcIn = false;
+    if (fc && 'IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { fcIn = e.isIntersecting; upd(); }), { threshold: 0 }).observe(fc);
+    const upd = () => sbar.classList.toggle('on', scrollY > innerHeight * 0.8 && !fcIn);
+    upd(); addEventListener('scroll', upd, { passive: true });
+  }
 })();
