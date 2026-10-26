@@ -38,7 +38,7 @@ CSS=r'''
   --mist:#f1f4f8;
   --ink:#16202c;
   --ink-2:#4a5565;
-  --mute:#8a94a3;
+  --mute:#6b778a;
   --line:#d9e0e8;
   --navy:#0c2747;
   --blue:#2268c8;
@@ -364,7 +364,7 @@ footer{background:#081a31;color:#93a3b8;font-size:13px;padding-block:96px 36px}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:48px}
 footer .logo b{color:#fff}
 footer address{font-style:normal;margin-top:24px;line-height:1.9}
-footer h4{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;letter-spacing:.2em;margin:0 0 18px}
+footer .fh{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;letter-spacing:.2em;margin:0 0 18px}
 footer ul{list-style:none;margin:0;padding:0}
 footer li{margin-bottom:10px}
 footer a:hover{color:#fff}
@@ -764,9 +764,9 @@ HTML=f'''<!doctype html>
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><h4>COMPANY</h4><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
-      <div><h4>SUCCESSION</h4><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
-      <div class="ftel"><h4>CONTACT</h4><b>03-0000-0000</b><span>平日 9:00–18:00</span></div>
+      <div><p class="fh">COMPANY</p><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
+      <div><p class="fh">SUCCESSION</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
+      <div class="ftel"><p class="fh">CONTACT</p><b>03-0000-0000</b><span>平日 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
@@ -928,7 +928,8 @@ def page(fname,title,body,desc):
 <meta name="twitter:card" content="summary_large_image">
 {JSONLD if fname=='index.html' else ''}
 {head_links}
-<style>{STYLE}</style>
+<link rel="stylesheet" href="site.css">
+<style>{CRIT_CSS}</style>
 </head>
 <body{' class="home"' if fname=="index.html" else ""}>
 <i class="prog" aria-hidden="true"></i>
@@ -1038,7 +1039,7 @@ PCONTACT=f"""<section class="pcon dark">
     <div class="rv"><dl class="pdl"><div><dt>担当</dt><dd>代表取締役　谷岡 佑亮</dd></div><div><dt>メール</dt><dd><em class="tbd">【確定後に記載】</em></dd></div><div><dt>電話</dt><dd>03-0000-0000（平日 9:00–18:00）</dd></div></dl><a class="btn btn-white" href="contact.html">フォームから連絡する {AR}</a></div>
   </div>
 </section>"""
-news_items=[('2026.10.22','お知らせ','コーポレートサイトを公開しました。')]
+news_items=[('2026.10.22','お知らせ','コーポレートサイトを公開しました。'),('2026.10.01','お知らせ','株式会社エッジアセットを設立しました。【確定後に記載】')]
 NEWS=f"""<section class="newslist">
   <div class="w">
     <ul class="nl-list">{''.join(f'<li><time>{d}</time><span class="cat">{c}</span><p>{t}</p></li>' for d,c,t in news_items)}</ul>
@@ -1075,9 +1076,10 @@ bodies={'service.html':(service,'エッジアセットがグループで担う�
  'contact.html':(contact,'工務店・住宅会社の事業承継のご相談・お問い合わせ。')}
 EXTRA_CSS=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'extra.css')).read()
 STYLE=css_main+'\n'+EXTRA_CSS
+CRIT_CSS=css_main[:css_main.index('/* buttons')] if '/* buttons' in css_main else css_main[:4000]
 SCRIPT=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'site.js')).read()
 # when viewed through htmlpreview.github.io, keep page-to-page links inside the preview
-PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}"""
+PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var raw=location.search.slice(1).replace(/[^/]*$/,'')+'site.css';if(!document.querySelector('link[href$="site.css"][data-abs]')){var l=document.createElement('link');l.rel='stylesheet';l.href=raw;l.setAttribute('data-abs','1');document.head.appendChild(l)}var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}"""
 TEL='03-0000-0000'
 def telify(html):
     html=html.replace('<i>'+TEL+'</i>','<i>@@TEL@@</i>')  # already inside a link
@@ -1117,6 +1119,7 @@ for fname,title in PAGES:
     b=surface(b)
     open(os.path.join(OUT,fname),'w').write(telify(page(fname,title,b,d)))
 open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{'' if f=='index.html' else f}</loc></url>\n' for f,_ in PAGES if f!='404.html')+'</urlset>\n')
+open(os.path.join(OUT,'site.css'),'w').write(STYLE)
 open(os.path.join(OUT,'robots.txt'),'w').write('User-agent: *\nAllow: /\nSitemap: '+SITE+'sitemap.xml\n')
 open(os.path.join(OUT,'favicon.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0c2747"/><text x="32" y="42" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="1" fill="#fff">EA</text></svg>\n')
 

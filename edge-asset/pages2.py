@@ -298,7 +298,7 @@ CLOSE_FLOW=close('まずは、|初回面談の|日程だけ|決めませんか�
 
 CONTACT_ASIDE=f"""<aside class="side ca">
   <p class="ca-k">After sending</p>
-  <h3>送信後の流れ</h3>
+  <h2 class="ca-h">送信後の流れ</h2>
   <ol>{''.join(f'<li><b>{n}</b><span>{W(t)}</span></li>' for n,t in [('01','2営業日以内に、|代表から|ご連絡します'),('02','日時と場所を|決めます（社外・|オンライン）'),('03','初回面談。|決算書が|なくても|構いません')])}</ol>
   <p class="ca-sec">{nb('秘密保持契約は、ご希望があれば初回面談の前に結べます。会社の代表番号にお電話することはありません。')}</p>
   <p class="ca-tel"><span>お電話でのご相談</span>03-0000-0000<small>平日 9:00–18:00　夜間・土日も調整します</small></p>

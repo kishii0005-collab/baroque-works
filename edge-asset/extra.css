@@ -1267,3 +1267,34 @@ html{scroll-behavior:smooth}
 @media (max-width:900px){.cf{grid-template-columns:1fr;margin-bottom:48px}.cf-tx{padding:24px 22px 28px}.col-cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.col-cats::-webkit-scrollbar{display:none}.col-cats li>*{white-space:nowrap}}
 /* footer on phones: the two link lists sit side by side */
 @media (max-width:560px){.fg{grid-template-columns:1fr 1fr;gap:28px 20px}.fg>div:first-child,.fg>.ftel{grid-column:1/-1}}
+
+/* ===== audit pass: contrast, structure, small pages ===== */
+/* greys that carry meaning meet 4.5:1 on white and on navy */
+.rail a{color:#6b778a}
+.tr-k,.cc-tag,.cb-k,.nx-k,.pf-en,.ca-k,.fc-en,.cl-en,.m3-en,.cs-k,.fq-n,.cb-n,.cf-k{color:#1f5bb5}
+.dark .cs-k,.tcost .sh-ja,.fc-en,.cl-en,.m3-en,.ca-k,.nx-k,.sb-t span{color:#bcd3f5}
+.chap b{color:#1f5bb5}.chap span{color:#4a5565}
+.dark .chap b,.stance .chap b{color:#bcd3f5}.dark .chap span,.stance .chap span{color:#e3ecf7}
+.cc-m time,.cc-m span,.ccase dl,.ccase dt,.cnote,.tm-cap,.tm-who span,.fq-more,.art .anote,.sim-n,.pb-note,.tc-n,.m3-d,.m3-addr,.sb-t span,.fc-b small,.m3-b small,.cl-b small{color:#5d6a7e}
+.dark .m3-d,.menu .m3-d,.menu .m3-addr,.dark .pb-note,.dark .tc-n,.sb-t span{color:#b9c8da}
+.cl-b small,.fc-b small,.m3-b small{color:#5d6a7e}
+.fc-b.tel small,.m3-b.tel small,.cl-b.tel small{color:#bcd3f5}
+details .a span{color:#4a5565}
+footer{color:#aab8cb}
+/* footer group labels are not headings */
+footer .fh{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;letter-spacing:.2em;margin:0 0 18px}
+.ca-h{font-size:24px;margin:0 0 28px}
+/* legal pages: a table of contents beside the text */
+.legal .aw{max-width:1100px;display:grid;grid-template-columns:240px 1fr;gap:64px;align-items:start}
+.lg-toc{position:sticky;top:110px}
+.lg-toc ol{list-style:none;margin:0;padding:0;counter-reset:lg;border-top:1px solid var(--line)}
+.lg-toc li{counter-increment:lg;border-bottom:1px solid var(--line)}
+.lg-toc a{display:flex;gap:10px;padding:10px 0;font-size:13px;color:var(--ink-2)}
+.lg-toc a::before{content:counter(lg,decimal-leading-zero);font-family:var(--en);color:var(--blue);font-size:11.5px;padding-top:2px}
+.lg-toc a:hover{color:var(--blue)}
+.lg-body h2:first-child{margin-top:0}
+.lg-body h2{scroll-margin-top:100px}
+@media (max-width:900px){.legal .aw{grid-template-columns:1fr;gap:32px}.lg-toc{position:static}.lg-toc ol{display:grid;grid-template-columns:1fr 1fr;border-top:0;gap:0 16px}}
+/* news: entries read as a list even with one item */
+.newslist .nl-list li{padding:26px 0}
+.nf .crumb{color:var(--mute);margin-bottom:32px;justify-content:center}

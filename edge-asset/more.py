@@ -290,8 +290,8 @@ def article_page(a):
 <section class="artmore"><div class="w"><p class="sh-ja">ほかのコラム</p><div class="cg c2">{others}</div></div></section>"""
 
 def legal(title,en,items,updated):
-    body=''.join(f'<h2>{W(h)}</h2>'+''.join(P(x) if not isinstance(x,list) else '<ul>'+''.join(f'<li>{y}</li>' for y in x)+'</ul>' for x in xs) for h,xs in items)
-    return phero(en,title,'','rD28m9BmXVs')+f'<article class="art legal"><div class="w aw">{body}<p class="anote">{updated}</p></div></article>'
+    body=''.join(f'<h2 id="lg{k}">{W(h)}</h2>'+''.join(P(x) if not isinstance(x,list) else '<ul>'+''.join(f'<li>{y}</li>' for y in x)+'</ul>' for x in xs) for k,(h,xs) in enumerate(items))
+    return phero(en,title,'','rD28m9BmXVs')+f'<article class="art legal"><div class="w aw"><nav class="lg-toc" aria-label="目次"><ol>'+''.join(f'<li><a href="#lg{k}">{h}</a></li>' for k,(h,_) in enumerate(items))+f'</ol></nav><div class="lg-body">{body}<p class="anote">{updated}</p></div></div></article>'
 PRIVACY=legal('プライバシーポリシー','Privacy policy',[
  ('基本方針',['株式会社エッジアセット（以下「当社」）は、お客様の個人情報を適切に取り扱うことが社会的責務であると考え、個人情報の保護に関する法律その他の関係法令を遵守し、以下のとおり個人情報を取り扱います。']),
  ('取得する個人情報',['当社は、お問い合わせフォーム、電話、面談等を通じて、氏名、会社名、メールアドレス、電話番号、ご相談内容その他お客様が提供する情報を取得します。']),
@@ -311,4 +311,4 @@ TERMS=legal('サイトのご利用について','Terms of use',[
  ('リンクについて',['本サイトへのリンクは原則として自由です。ただし、当社の信用を損なうおそれのあるサイトからのリンクはお断りします。']),
  ('写真について',['本サイトに掲載している写真の一部は、イメージ素材（Unsplash）を使用しています。']),
 ],'株式会社エッジアセット')
-NOTFOUND=f"""<section class="nf"><div class="w"><p class="pen">404</p><h1>ページが見つかりませんでした</h1>{P('お探しのページは移動または削除された可能性があります。')}<div class="btns"><a class="btn btn-navy" href="index.html">トップへ戻る {AR}</a><a class="tl" href="sitemap.html">サイトマップを見る {AR}</a></div></div></section>"""
+NOTFOUND=f"""<section class="nf"><div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>404</p><p class="pen">404</p><h1>ページが見つかりませんでした</h1>{P('お探しのページは移動または削除された可能性があります。')}<div class="btns"><a class="btn btn-navy" href="index.html">トップへ戻る {AR}</a><a class="tl" href="sitemap.html">サイトマップを見る {AR}</a></div></div></section>"""
