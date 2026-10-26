@@ -6,6 +6,8 @@
 <title>工務店を譲渡したら、施主様の保証と点検はどうなる？｜株式会社エッジアセット</title>
 <meta name="description" content="会社を引き継ぐ相談で、多くの社長が最初に口にするのが「これまで建てた家の点検は誰が行くのか」という心配です。譲渡の方法ごとに、保証とアフターがどう扱われるかを整理します。">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0c2747">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="工務店を譲渡したら、施主様の保証と点検はどうなる？｜株式会社エッジアセット">
@@ -202,15 +204,32 @@ section{padding-block:140px}
     });
   }, { passive: true });
 
-  // contact form
+  // contact form: posts to the endpoint in data-endpoint (e.g. Formspree); with none set, opens a prepared email
   const form = $('#cf');
   if (form) {
     $$('.way').forEach(a => a.addEventListener('click', () => { const t = $('#f-topic'); if (t) t.value = a.dataset.topic; }));
-    form.addEventListener('submit', e => {
+    const mail = $('#f-mail'), ok = $('#f-ok'), eMail = $('#e-mail'), eOk = $('#e-ok');
+    const mark = (el, err, bad) => { el.classList.toggle('bad', bad); if (err) err.hidden = !bad; };
+    mail.addEventListener('input', () => mark(mail, eMail, false));
+    ok.addEventListener('change', () => mark(ok, eOk, false));
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const mail = $('#f-mail');
-      if (!mail.value || !mail.checkValidity()) { mail.focus(); mail.style.borderBottomColor = '#c0392b'; return; }
-      form.hidden = true; const sent = $('#sent'); if (sent) sent.hidden = false;
+      let bad = false;
+      if (!mail.value || !mail.checkValidity()) { mark(mail, eMail, true); bad = true; }
+      if (!ok.checked) { mark(ok, eOk, true); bad = true; }
+      if (bad) { (mail.classList.contains('bad') ? mail : ok).focus(); return; }
+      const data = new FormData(form); if (data.get('_gotcha')) return;
+      const done = note => { form.hidden = true; const s = $('#sent'); if (s) { s.hidden = false; s.scrollIntoView({ block: 'center' }); } if (note) $('#sent-note').hidden = false; };
+      const ep = form.dataset.endpoint;
+      if (ep) {
+        const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
+        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
+      } else {
+        const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');
+        location.href = 'mailto:' + form.dataset.mailto + '?subject=' + encodeURIComponent('【ご相談】' + data.get('ご相談の種類')) + '&body=' + encodeURIComponent(lines + '\n\n（エッジアセット サイトのフォームから）');
+        setTimeout(() => done(true), 800);
+      }
     });
   }
 

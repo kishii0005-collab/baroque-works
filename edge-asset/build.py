@@ -744,16 +744,17 @@ HTML=f'''<!doctype html>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
     <div class="telrow"><b>03-0000-0000</b><span>平日 9:00–18:00　夜間・土日の面談も調整します</span></div>
-    <form id="cf" novalidate>
+    <form id="cf" novalidate data-endpoint="" data-mailto="info@example.com">
       <label for="f-topic">ご相談の種類</label>
-      <select id="f-topic"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
-      <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" autocomplete="organization"></div></div>
-      <div class="r2"><div><label for="f-mail">メールアドレス<em>必須</em></label><input id="f-mail" type="email" autocomplete="email" required></div><div><label for="f-tel">電話番号</label><input id="f-tel" type="tel" autocomplete="tel"></div></div>
-      <label for="f-msg">ご相談内容</label><textarea id="f-msg"></textarea>
-      <label class="chk"><input type="checkbox" id="f-ok"> プライバシーポリシーに同意する</label>
-      <button class="btn btn-navy" type="submit">送信する {AR}</button>
+      <select id="f-topic" name="ご相談の種類"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
+      <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" name="お名前" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" name="会社名" autocomplete="organization"></div></div>
+      <div class="r2"><div><label for="f-mail">メールアドレス<em>必須</em></label><input id="f-mail" name="メールアドレス" type="email" autocomplete="email" required inputmode="email"><p class="f-err" id="e-mail" hidden>メールアドレスを正しく入力してください。</p></div><div><label for="f-tel">電話番号</label><input id="f-tel" name="電話番号" type="tel" autocomplete="tel" inputmode="tel"></div></div>
+      <label for="f-msg">ご相談内容</label><textarea id="f-msg" name="ご相談内容" rows="5" placeholder="例：後継者が決まっていない／数年以内に引退を考えている／まず話を聞きたい　など、一言でも構いません"></textarea>
+      <label class="chk"><input type="checkbox" id="f-ok" required> <span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label><p class="f-err" id="e-ok" hidden>プライバシーポリシーへの同意が必要です。</p><input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-navy" type="submit"><span class="bt">送信する</span><span class="bt-busy" hidden>送信しています…</span> {AR}</button>
+      <ul class="f-trust"><li>ご相談は無料です</li><li>社名・お名前を伏せたままでも構いません</li><li>2営業日以内にご連絡します</li></ul>
     </form>
-    <div class="sent" id="sent" hidden><p style="font-size:17px;margin-bottom:6px">送信を受け付けました。</p><p style="margin:0;font-size:13px;color:var(--mute)">2営業日以内にご連絡します。（デモのため実際には送信されません）</p></div>
+    <div class="sent" id="sent" hidden><p class="st-k">Thank you</p><p class="st-h">送信を受け付けました。</p><p class="st-p">2営業日以内に、代表の谷岡からご連絡します。お急ぎの場合は、お電話でもお受けしています。</p><a class="tel-a st-tel" href="tel:0300000000">03-0000-0000</a><p class="st-n" id="sent-note" hidden>メールソフトが開かない場合は、上記の電話番号へご連絡ください。</p></div>
   </div>
 </section>
 
@@ -919,6 +920,8 @@ def page(fname,title,body,desc):
 <title>{t}</title>
 <meta name="description" content="{desc}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0c2747">
 <meta property="og:type" content="{'website' if fname=='index.html' else 'article' if fname.startswith('column-') else 'website'}">
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="{t}">

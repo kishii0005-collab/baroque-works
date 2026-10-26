@@ -1733,3 +1733,22 @@ footer .fh{font-family:var(--en);color:#fff;font-size:13px;font-weight:500;lette
 /* news: entries read as a list even with one item */
 .newslist .nl-list li{padding:26px 0}
 .nf .crumb{color:var(--mute);margin-bottom:32px;justify-content:center}
+
+/* ===== form: states, trust line, thank-you ===== */
+.f-err{margin:6px 0 0;font-size:12.5px;color:#b3261e}
+form .bad{border-bottom-color:#b3261e!important}
+.chk input.bad{outline:2px solid #b3261e;outline-offset:2px}
+.chk span a{color:var(--blue);border-bottom:1px solid currentColor}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.f-trust{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12.5px;color:#5d6a7e}
+.f-trust li{display:flex;align-items:center;gap:8px}
+.f-trust li::before{content:"";width:12px;height:7px;border-left:1.5px solid var(--blue);border-bottom:1.5px solid var(--blue);transform:translateY(-2px) rotate(-45deg)}
+form button[disabled]{opacity:.7;cursor:progress}
+.sent{padding:48px 44px;background:var(--mist);border-top:3px solid var(--blue)}
+.st-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#1f5bb5;margin:0 0 14px;text-transform:uppercase}
+.st-h{font-family:var(--fh);font-weight:700;font-size:24px;margin:0 0 14px}
+.st-p{color:var(--ink-2);margin:0 0 20px}
+.st-tel{font-family:var(--en);font-size:30px;color:var(--navy);letter-spacing:.04em}
+.st-n{font-size:12.5px;color:#5d6a7e;margin:16px 0 0}
+textarea::placeholder{color:#9aa7b8;font-size:13px}
+@media (max-width:760px){.sent{padding:32px 22px}.st-h{font-size:20px}}
