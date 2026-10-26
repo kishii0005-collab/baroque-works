@@ -1018,7 +1018,7 @@ CRIT=f"""<section class="crit" id="criteria">
 </section>"""
 PROMISE_P=f"""<section class="pp">
   <div class="w">
-    {head('For partners','ご紹介者さまへのお約束','ご紹介いただいた|案件に、|誠実に|お応えします')}
+    {head('Commitment','ご紹介者さまへのお約束','ご紹介いただいた|案件に、|誠実に|お応えします')}
     <div class="pp3">
       <div class="rv"><p class="n">01</p><h3>{W('初回のご回答は|5営業日以内')}</h3>{P('ノンネーム情報をいただいてから5営業日以内に、検討を進めるかどうかをご回答します。')}</div>
       <div class="rv"><p class="n">02</p><h3>{W('見送る場合も|理由をお伝えします')}</h3>{P('検討を見送る場合も、理由を具体的にお伝えします。売り手の方へのご説明にお使いください。')}</div>

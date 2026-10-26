@@ -1692,6 +1692,35 @@ html{scroll-behavior:smooth}
 .sbar.on~footer .pagetop,body:has(.sbar.on) .pagetop{bottom:auto}
 @media (min-width:761px){.sbar{left:auto;right:28px;bottom:28px}.sb-in{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;box-shadow:0 18px 44px rgba(3,12,26,.35);gap:18px}.sb-t span{display:none}.sb-tel{display:none}}
 @media (max-width:760px){.sb-in{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}.sb-t b{font-size:13px}.sb-t span{font-size:10px}.sb-b{padding:6px 6px 6px 18px;font-size:13.5px;gap:12px}.sb-b i{width:34px;height:34px}.sb-tel{display:none}body{padding-bottom:0}}
+
+/* ===== design pass 4: sub-page polish ===== */
+/* no English title repeated right under a hero that already carries it */
+.clist .sh-en,.svint .sh-en{display:none}
+.clist .sh,.svint .sh{margin-bottom:48px}
+/* company: the background word stays behind, never over the photo on phones */
+@media (max-width:760px){.bgword{display:none}}
+/* article: centered reading column; tables scroll on phones */
+.art .aw,.arthero .aw{margin-inline:auto}
+.art .swipe{display:none}
+@media (max-width:760px){.art .swipe{display:block;font-size:12px;color:var(--mute);margin:0 0 8px}.atbl{min-width:520px}}
+/* column list: one featured article, category chips, then the grid */
+.col-cats{list-style:none;margin:0 0 40px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.col-cats li>*{display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-2)}
+.col-cats a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cf{display:grid;grid-template-columns:7fr 5fr;gap:0;background:#fff;border:1px solid var(--line);margin-bottom:72px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.cf:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(12,39,71,.12)}
+.cf .ph{aspect-ratio:16/10;overflow:hidden}
+.cf .ph img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cf:hover .ph img{transform:scale(1.04)}
+.cf-tx{padding:44px 48px;display:flex;flex-direction:column;justify-content:center}
+.cf-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);margin:0 0 16px;text-transform:uppercase}
+.cf h2{font-size:clamp(20px,2vw,26px);line-height:1.6;margin:10px 0 14px}
+.cf-tx>p:not(.cf-k):not(.cc-m){font-size:14px;color:var(--ink-2);margin:0 0 22px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cf .tl{align-self:flex-start}
+.col-sub{margin-bottom:24px}
+@media (max-width:900px){.cf{grid-template-columns:1fr;margin-bottom:48px}.cf-tx{padding:24px 22px 28px}.col-cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.col-cats::-webkit-scrollbar{display:none}.col-cats li>*{white-space:nowrap}}
+/* footer on phones: the two link lists sit side by side */
+@media (max-width:560px){.fg{grid-template-columns:1fr 1fr;gap:28px 20px}.fg>div:first-child,.fg>.ftel{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -1736,7 +1765,7 @@ html{scroll-behavior:smooth}
 <h2>選択肢3：廃業</h2>
 <p>後継者も譲渡先も見つからない場合の最終手段です。注意したいのは、廃業すると引き渡し済みの家の保証や定期点検を引き受ける会社がいなくなることです。地域で長く家を建ててきた会社ほど、施主様への<span class="nb">影響は大きくなります。</span></p>
 <h2>比べるときの判断軸</h2>
-<div class="tbl"><table class="atbl"><tr><th>判断軸</th><th>確認すること</th></tr><tr><th>社名・ブランド</th><td>引き継いだ後も残るか</td></tr><tr><th>社員の雇用</th><td>雇用と給与水準が守られるか</td></tr><tr><th>施主様のアフター</th><td>保証・定期点検を誰が担うか</td></tr><tr><th>社長の個人保証</th><td>解除されるか</td></tr><tr><th>数年後の姿</th><td>再び売却される前提ではないか</td></tr></table></div>
+<p class="swipe">表は横にスクロールできます</p><div class="tbl"><table class="atbl"><tr><th>判断軸</th><th>確認すること</th></tr><tr><th>社名・ブランド</th><td>引き継いだ後も残るか</td></tr><tr><th>社員の雇用</th><td>雇用と給与水準が守られるか</td></tr><tr><th>施主様のアフター</th><td>保証・定期点検を誰が担うか</td></tr><tr><th>社長の個人保証</th><td>解除されるか</td></tr><tr><th>数年後の姿</th><td>再び売却される前提ではないか</td></tr></table></div>
 <div class="abox"><p>どの方法にも長所と短所があります。大切なのは、社長ご自身が「何を残したいか」を先に決めておくことです。社名か、社員か、施主様との関係か。その優先順位がはっきりしていれば、相手選びで<span class="nb">迷いにくくなります。</span></p></div>
   <div class="acta"><p>この記事の内容を、<wbr>御社に当てはめると<wbr>どうなるか。<wbr>個別にお答えします。</p><a class="btn btn-navy" href="contact.html">無料で相談する <span class="ar"></span></a></div>
   <p class="anote">本記事は一般的な情報の提供を目的としたもので、個別の案件についての法的・税務上の助言ではありません。</p>

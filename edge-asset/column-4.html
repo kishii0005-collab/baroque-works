@@ -1692,6 +1692,35 @@ html{scroll-behavior:smooth}
 .sbar.on~footer .pagetop,body:has(.sbar.on) .pagetop{bottom:auto}
 @media (min-width:761px){.sbar{left:auto;right:28px;bottom:28px}.sb-in{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;box-shadow:0 18px 44px rgba(3,12,26,.35);gap:18px}.sb-t span{display:none}.sb-tel{display:none}}
 @media (max-width:760px){.sb-in{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}.sb-t b{font-size:13px}.sb-t span{font-size:10px}.sb-b{padding:6px 6px 6px 18px;font-size:13.5px;gap:12px}.sb-b i{width:34px;height:34px}.sb-tel{display:none}body{padding-bottom:0}}
+
+/* ===== design pass 4: sub-page polish ===== */
+/* no English title repeated right under a hero that already carries it */
+.clist .sh-en,.svint .sh-en{display:none}
+.clist .sh,.svint .sh{margin-bottom:48px}
+/* company: the background word stays behind, never over the photo on phones */
+@media (max-width:760px){.bgword{display:none}}
+/* article: centered reading column; tables scroll on phones */
+.art .aw,.arthero .aw{margin-inline:auto}
+.art .swipe{display:none}
+@media (max-width:760px){.art .swipe{display:block;font-size:12px;color:var(--mute);margin:0 0 8px}.atbl{min-width:520px}}
+/* column list: one featured article, category chips, then the grid */
+.col-cats{list-style:none;margin:0 0 40px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.col-cats li>*{display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-2)}
+.col-cats a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cf{display:grid;grid-template-columns:7fr 5fr;gap:0;background:#fff;border:1px solid var(--line);margin-bottom:72px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.cf:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(12,39,71,.12)}
+.cf .ph{aspect-ratio:16/10;overflow:hidden}
+.cf .ph img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cf:hover .ph img{transform:scale(1.04)}
+.cf-tx{padding:44px 48px;display:flex;flex-direction:column;justify-content:center}
+.cf-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);margin:0 0 16px;text-transform:uppercase}
+.cf h2{font-size:clamp(20px,2vw,26px);line-height:1.6;margin:10px 0 14px}
+.cf-tx>p:not(.cf-k):not(.cc-m){font-size:14px;color:var(--ink-2);margin:0 0 22px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cf .tl{align-self:flex-start}
+.col-sub{margin-bottom:24px}
+@media (max-width:900px){.cf{grid-template-columns:1fr;margin-bottom:48px}.cf-tx{padding:24px 22px 28px}.col-cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.col-cats::-webkit-scrollbar{display:none}.col-cats li>*{white-space:nowrap}}
+/* footer on phones: the two link lists sit side by side */
+@media (max-width:560px){.fg{grid-template-columns:1fr 1fr;gap:28px 20px}.fg>div:first-child,.fg>.ftel{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -1728,7 +1757,7 @@ html{scroll-behavior:smooth}
   <p class="alead">「うちの会社はいくらで引き継いでもらえるのか」。事業承継を考え始めた社長が最初に知りたいのが、譲渡価格の目安です。中小の工務店・住宅会社のM&Aで一般的な考え方と、価格に影響するポイントを整理します。</p>
   <h2>基本は「純資産」と「稼ぐ力」の組み合わせ</h2>
 <p>中小企業のM&Aでは、会社の純資産（資産から負債を引いた金額）を時価で見直した「時価純資産」に、営業利益の数年分を「のれん」として加える考え方が広く使われています。いわゆる年買法です。何年分を加えるかは、利益の安定性や成長性、業界の状況に<span class="nb">よって変わります。</span></p>
-<div class="tbl"><table class="atbl"><tr><th>要素</th><th>中身</th><th>見られるポイント</th></tr><tr><th>時価純資産</th><td>土地・建物・在庫などを時価で評価し直した純資産</td><td>含み損益、回収できない売掛金</td></tr><tr><th>のれん</th><td>営業利益の数年分</td><td>利益が毎年安定しているか</td></tr><tr><th>調整</th><td>役員報酬・保険などの見直し</td><td>社長個人の経費が含まれていないか</td></tr></table></div>
+<p class="swipe">表は横にスクロールできます</p><div class="tbl"><table class="atbl"><tr><th>要素</th><th>中身</th><th>見られるポイント</th></tr><tr><th>時価純資産</th><td>土地・建物・在庫などを時価で評価し直した純資産</td><td>含み損益、回収できない売掛金</td></tr><tr><th>のれん</th><td>営業利益の数年分</td><td>利益が毎年安定しているか</td></tr><tr><th>調整</th><td>役員報酬・保険などの見直し</td><td>社長個人の経費が含まれていないか</td></tr></table></div>
 <h2>工務店ならではの確認ポイント</h2>
 <p>住宅会社の場合、一般的な決算書の数字に加えて、業界特有の項目が<span class="nb">価格に影響します。</span></p>
 <ul><li>受注残：契約済みで着工前・工事中の物件と、その粗利</li><li>前受金（未成工事受入金）：施主様からお預かりしている着手金・中間金</li><li>引き渡し済み物件の保証・定期点検の将来の負担</li><li>建設業許可の要件（常勤役員等（いわゆる経管）・営業所技術者）を満たし続けられるか</li><li>借入と、社長の個人保証の状況</li></ul>

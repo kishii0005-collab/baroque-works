@@ -159,7 +159,7 @@ def art_body(blocks):
         elif kind=='p': out.append(P(txt))
         elif kind=='ul': out.append('<ul>'+''.join(f'<li>{x}</li>' for x in txt)+'</ul>')
         elif kind=='box': out.append(f'<div class="abox">{P(txt)}</div>')
-        elif kind=='tbl': out.append('<div class="tbl"><table class="atbl">'+''.join('<tr>'+''.join(f'<t{"h" if i==0 or r==0 else "d"}>{c}</t{"h" if i==0 or r==0 else "d"}>' for i,c in enumerate(row))+'</tr>' for r,row in enumerate(txt))+'</table></div>')
+        elif kind=='tbl': out.append('<p class="swipe">表は横にスクロールできます</p><div class="tbl"><table class="atbl">'+''.join('<tr>'+''.join(f'<t{"h" if i==0 or r==0 else "d"}>{c}</t{"h" if i==0 or r==0 else "d"}>' for i,c in enumerate(row))+'</tr>' for r,row in enumerate(txt))+'</table></div>')
     return '\n'.join(out)
 
 ARTICLES=[
@@ -259,7 +259,17 @@ for a in ARTICLES:
 
 def col_card(a):
     return f'''<a class="cc rv" href="{a['slug']}"><div class="ph">{img(a['pid'],'',1200)}</div><div class="cc-tx"><p class="cc-m"><time>{a['date']}</time><span>{a['cat']}</span></p><h3>{W(a['title'])}</h3><p class="cc-e">{a['excerpt']}</p></div></a>'''
-COLLIST=f"""<section class="collist"><div class="w"><div class="cg">{''.join(col_card(a) for a in ARTICLES)}</div></div></section>"""
+def col_feat(a):
+    return f'''<a class="cf rv" href="{a['slug']}"><div class="ph">{img(a['pid'],'',1600)}</div><div class="cf-tx"><p class="cf-k">Pick up</p><p class="cc-m"><time>{a['date']}</time><span>{a['cat']}</span></p><h2>{W(a['title'])}</h2><p>{a['lead']}</p><span class="tl">記事を読む {AR}</span></div></a>'''
+COL_CATS=[]
+for a in ARTICLES:
+    if a['cat'] not in COL_CATS: COL_CATS.append(a['cat'])
+COLLIST=f"""<section class="collist"><div class="w">
+  <ul class="col-cats"><li><a href="column.html" aria-current="page">すべて</a></li>{''.join(f'<li><span>{c}</span></li>' for c in COL_CATS)}</ul>
+  {col_feat(ARTICLES[-1])}
+  <p class="sh-ja col-sub">記事一覧</p>
+  <div class="cg">{''.join(col_card(a) for a in ARTICLES[:-1][::-1])}</div>
+</div></section>"""
 TOPCOL=f"""<section class="topcol">
   <div class="w">
     {head('Column','コラム','工務店の|事業承継を|考える','事業承継の選択肢、譲渡価格、原価管理、受注減少への打ち手。社長が判断に迷うポイントを解説しています。')}

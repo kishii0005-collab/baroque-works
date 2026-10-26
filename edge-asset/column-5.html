@@ -1692,6 +1692,35 @@ html{scroll-behavior:smooth}
 .sbar.on~footer .pagetop,body:has(.sbar.on) .pagetop{bottom:auto}
 @media (min-width:761px){.sbar{left:auto;right:28px;bottom:28px}.sb-in{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;box-shadow:0 18px 44px rgba(3,12,26,.35);gap:18px}.sb-t span{display:none}.sb-tel{display:none}}
 @media (max-width:760px){.sb-in{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}.sb-t b{font-size:13px}.sb-t span{font-size:10px}.sb-b{padding:6px 6px 6px 18px;font-size:13.5px;gap:12px}.sb-b i{width:34px;height:34px}.sb-tel{display:none}body{padding-bottom:0}}
+
+/* ===== design pass 4: sub-page polish ===== */
+/* no English title repeated right under a hero that already carries it */
+.clist .sh-en,.svint .sh-en{display:none}
+.clist .sh,.svint .sh{margin-bottom:48px}
+/* company: the background word stays behind, never over the photo on phones */
+@media (max-width:760px){.bgword{display:none}}
+/* article: centered reading column; tables scroll on phones */
+.art .aw,.arthero .aw{margin-inline:auto}
+.art .swipe{display:none}
+@media (max-width:760px){.art .swipe{display:block;font-size:12px;color:var(--mute);margin:0 0 8px}.atbl{min-width:520px}}
+/* column list: one featured article, category chips, then the grid */
+.col-cats{list-style:none;margin:0 0 40px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.col-cats li>*{display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-2)}
+.col-cats a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cf{display:grid;grid-template-columns:7fr 5fr;gap:0;background:#fff;border:1px solid var(--line);margin-bottom:72px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.cf:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(12,39,71,.12)}
+.cf .ph{aspect-ratio:16/10;overflow:hidden}
+.cf .ph img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cf:hover .ph img{transform:scale(1.04)}
+.cf-tx{padding:44px 48px;display:flex;flex-direction:column;justify-content:center}
+.cf-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);margin:0 0 16px;text-transform:uppercase}
+.cf h2{font-size:clamp(20px,2vw,26px);line-height:1.6;margin:10px 0 14px}
+.cf-tx>p:not(.cf-k):not(.cc-m){font-size:14px;color:var(--ink-2);margin:0 0 22px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cf .tl{align-self:flex-start}
+.col-sub{margin-bottom:24px}
+@media (max-width:900px){.cf{grid-template-columns:1fr;margin-bottom:48px}.cf-tx{padding:24px 22px 28px}.col-cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.col-cats::-webkit-scrollbar{display:none}.col-cats li>*{white-space:nowrap}}
+/* footer on phones: the two link lists sit side by side */
+@media (max-width:560px){.fg{grid-template-columns:1fr 1fr;gap:28px 20px}.fg>div:first-child,.fg>.ftel{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -1730,7 +1759,7 @@ html{scroll-behavior:smooth}
 <p>たとえば年商6億円の工務店で原価率が1ポイント改善すると、粗利は年600万円増えます。販管費が変わらなければ、その分はそのまま営業利益の増加です。原価率75%・販管費率20%の会社なら、原価率が2ポイント下がるだけで営業利益は<span class="nb">1.4倍になります。</span></p>
 <h2>「見積原価」と「実行予算」と「実績原価」を分ける</h2>
 <p>原価管理がうまくいかない会社の多くは、見積のときの原価と、実際にかかった原価しか見ていません。その間に「実行予算」を<span class="nb">置くのが基本です。</span></p>
-<div class="tbl"><table class="atbl"><tr><th></th><th>いつ決めるか</th><th>役割</th></tr><tr><th>見積原価</th><td>契約前</td><td>販売価格を決める根拠</td></tr><tr><th>実行予算</th><td>着工前</td><td>現場で使ってよい金額の上限</td></tr><tr><th>実績原価</th><td>工事中〜完成</td><td>予算どおりに進んだかの確認</td></tr></table></div>
+<p class="swipe">表は横にスクロールできます</p><div class="tbl"><table class="atbl"><tr><th></th><th>いつ決めるか</th><th>役割</th></tr><tr><th>見積原価</th><td>契約前</td><td>販売価格を決める根拠</td></tr><tr><th>実行予算</th><td>着工前</td><td>現場で使ってよい金額の上限</td></tr><tr><th>実績原価</th><td>工事中〜完成</td><td>予算どおりに進んだかの確認</td></tr></table></div>
 <p>着工前に実行予算を確定させ、工事中は月に一度、予算と実績を比べます。差が出た現場は、引き渡し後ではなく工事中に原因を確かめます。変更工事の追加請求漏れも、ここで見つかることが<span class="nb">少なくありません。</span></p>
 <h2>仕入れ値は「見える化」してから交渉する</h2>
 <p>同じ住設機器を、現場や担当者ごとに違う価格で買っていることは珍しくありません。まず過去の発注を品目別・取引先別に一覧にし、相場や他の仕入れ先の価格と比べます。根拠を示したうえで交渉すれば、取引先との関係を損なわずに条件を<span class="nb">見直しやすくなります。</span></p>

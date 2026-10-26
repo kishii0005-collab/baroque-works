@@ -1692,6 +1692,35 @@ html{scroll-behavior:smooth}
 .sbar.on~footer .pagetop,body:has(.sbar.on) .pagetop{bottom:auto}
 @media (min-width:761px){.sbar{left:auto;right:28px;bottom:28px}.sb-in{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;box-shadow:0 18px 44px rgba(3,12,26,.35);gap:18px}.sb-t span{display:none}.sb-tel{display:none}}
 @media (max-width:760px){.sb-in{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}.sb-t b{font-size:13px}.sb-t span{font-size:10px}.sb-b{padding:6px 6px 6px 18px;font-size:13.5px;gap:12px}.sb-b i{width:34px;height:34px}.sb-tel{display:none}body{padding-bottom:0}}
+
+/* ===== design pass 4: sub-page polish ===== */
+/* no English title repeated right under a hero that already carries it */
+.clist .sh-en,.svint .sh-en{display:none}
+.clist .sh,.svint .sh{margin-bottom:48px}
+/* company: the background word stays behind, never over the photo on phones */
+@media (max-width:760px){.bgword{display:none}}
+/* article: centered reading column; tables scroll on phones */
+.art .aw,.arthero .aw{margin-inline:auto}
+.art .swipe{display:none}
+@media (max-width:760px){.art .swipe{display:block;font-size:12px;color:var(--mute);margin:0 0 8px}.atbl{min-width:520px}}
+/* column list: one featured article, category chips, then the grid */
+.col-cats{list-style:none;margin:0 0 40px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.col-cats li>*{display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-2)}
+.col-cats a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cf{display:grid;grid-template-columns:7fr 5fr;gap:0;background:#fff;border:1px solid var(--line);margin-bottom:72px;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.cf:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(12,39,71,.12)}
+.cf .ph{aspect-ratio:16/10;overflow:hidden}
+.cf .ph img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cf:hover .ph img{transform:scale(1.04)}
+.cf-tx{padding:44px 48px;display:flex;flex-direction:column;justify-content:center}
+.cf-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--blue);margin:0 0 16px;text-transform:uppercase}
+.cf h2{font-size:clamp(20px,2vw,26px);line-height:1.6;margin:10px 0 14px}
+.cf-tx>p:not(.cf-k):not(.cc-m){font-size:14px;color:var(--ink-2);margin:0 0 22px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cf .tl{align-self:flex-start}
+.col-sub{margin-bottom:24px}
+@media (max-width:900px){.cf{grid-template-columns:1fr;margin-bottom:48px}.cf-tx{padding:24px 22px 28px}.col-cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding:0 var(--gut)}.col-cats::-webkit-scrollbar{display:none}.col-cats li>*{white-space:nowrap}}
+/* footer on phones: the two link lists sit side by side */
+@media (max-width:560px){.fg{grid-template-columns:1fr 1fr;gap:28px 20px}.fg>div:first-child,.fg>.ftel{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -1741,7 +1770,7 @@ html{scroll-behavior:smooth}
   </div>
 </section><section class="pp"><i class="sf lt" aria-hidden="true"></i>
   <div class="w">
-    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">For partners</p><p class="sh-ja">ご紹介者さまへのお約束</p><h2>ご紹介いただいた<wbr>案件に、<wbr>誠実に<wbr>お応えします</h2></div></header>
+    <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Commitment</p><p class="sh-ja">ご紹介者さまへのお約束</p><h2>ご紹介いただいた<wbr>案件に、<wbr>誠実に<wbr>お応えします</h2></div></header>
     <div class="pp3">
       <div class="rv"><p class="n">01</p><h3>初回のご回答は<wbr>5営業日以内</h3><p>ノンネーム情報をいただいてから5営業日以内に、検討を<span class="nb">進めるかどうかをご回答します。</span></p></div>
       <div class="rv"><p class="n">02</p><h3>見送る場合も<wbr>理由をお伝えします</h3><p>検討を見送る場合も、理由を具体的にお伝えします。売り手の方への<span class="nb">ご説明にお使いください。</span></p></div>
