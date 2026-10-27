@@ -1317,3 +1317,57 @@ form button[disabled]{opacity:.7;cursor:progress}
 .st-n{font-size:12.5px;color:#5d6a7e;margin:16px 0 0}
 textarea::placeholder{color:#9aa7b8;font-size:13px}
 @media (max-width:760px){.sent{padding:32px 22px}.st-h{font-size:20px}}
+
+/* ===== strict pass: one type scale, one spacing rule, texture behind content ===== */
+/* type scale: display 40 / h2 32 / h3 20 / h3-small 17 / body 15.5 ; weights: h2 500, h3 700 */
+:root{--t-h2:clamp(24px,2.4vw,32px);--t-h3:20px;--t-h3s:17px}
+.sh h2,.tm-tx h2,.tcost h2,.cs-wt h3,.closing h2,.fc-h,.band-t{font-size:var(--t-h2);font-weight:500;line-height:1.65;letter-spacing:.06em}
+.home .issues .sh h2{font-size:clamp(26px,2.8vw,36px)}
+.pi h3,.row h3,.case h3,.open h3,.vm2 h3,.ccase h3,.fs-h h3,.sc-l h3,.cs-steps h3,.ts-g h3,.tm2 h3,.is3 h3,.cf h2,.fq-h h2,.cb-sec h2,.ca-h{font-size:var(--t-h3);font-weight:700;line-height:1.6;letter-spacing:.05em}
+.open h3{font-size:var(--t-h2);font-weight:500}
+.pg h3,.lever h3,.steps h3,.val h4,.tcases .ccase h3,.kpi span,.m3-ja{font-size:var(--t-h3s);font-weight:700;line-height:1.65}
+.steps h3{font-size:15.5px}
+.row h3{font-size:clamp(20px,2vw,24px)}
+/* spacing rule: chapter openers 140, everything else 112, hero-like statements 160 */
+section{padding-block:112px}
+.home section:has(.chap),.phero~section:first-of-type{padding-block:140px}
+.stance{padding-block:160px}
+.trust,.kpi,.cprof,.bc,.subnav,.nextp,.closing,.band{padding-block:0}
+.closing{padding-block:96px}.band{padding-block:0}
+@media (max-width:760px){section{padding-block:72px}.home section:has(.chap){padding-block:88px}.stance{padding-block:96px}.closing{padding-block:64px}}
+/* background grid: visible on the surface, never through content blocks */
+.sf::before{opacity:.75}
+.sf.lt::before{opacity:.5}
+:is(.ccase,.cc,.cf,.ts-g article,.sim,.notdo,.pbars,.cs-lv,.tm-ph,.tc-r,.cb-c,.cb-iss li,.fs-m>div,.gantt,.m3-main a,.pf-card,.fcx,.fc-b,.cl-b,.sent,.abox,.acta,details .a,.atbl,.cmp,.govtbl,.batbl,.lk,.cap3>div,.recdl,.pdl,.lever li,.cb-tbl,.chk2,.frame,.md,.tn,.tf,.fq-l,.cb-main,.val li){position:relative;z-index:1}
+.topfaq .tf>div:last-child,.faq .grid>div:last-child,.fq-l{background:inherit}
+.topfaq .tf>div:last-child{background:var(--mist)}
+/* the faq list and compare table sit on their own panel so lines do not run through rows */
+details{background:var(--bg)}
+.topfaq details,.pfaq details,.faqp details{background:transparent}
+.topfaq .tf>div:last-child,.pfaq .w>div:last-child,.fq-l{background:var(--mist);position:relative;z-index:1}
+.faqp .fq-l{background:#fff}
+/* chapter rail: one label at a time */
+.rail span{position:absolute;left:52px;white-space:nowrap}
+.rail li{position:relative}
+.rail a{min-width:40px}
+/* mid-page cta: phone sits beside the heading column, buttons stay a tidy stack */
+.cta .w{grid-template-columns:1.1fr .9fr;align-items:center}
+.cta .tel{display:flex;align-items:baseline;gap:14px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2)}
+.cta .tel b{margin-left:0}
+/* statement paragraphs on the dark stance block: no forced last-phrase glue at this width */
+.stance .nb{white-space:normal}
+/* rail: label exists only for the current chapter; fixed gap after the number */
+.rail span{display:none;position:static;margin-left:10px}
+.rail li.cur span{display:inline;opacity:1;transform:none}
+.rail a:hover span{display:inline}
+.rail b{width:auto;min-width:22px}
+/* grid texture stays in the margins: content column gets a solid surface on list-type sections */
+.promise .plist,.topfaq .tf,.faq .grid,.tseo .ts-g,.tseo .ts-links,.people .pg,.flow .steps,.flow .fl-more,.tmsg .w,.topcol .cg,.topnews .tn,.pfaq .w>div,.think .grid,.fq-cat,.cs-why,.cs-steps,.sim,.ba .w>*,.d100 .w>*,.compare .w>*,.hist .w>*,.gov .w>*,.record .w>*,.capital .cap3,.crit .w>*,.pp .pp3,.info .w>*,.pflow .steps,.vmv .vm2,.vmv .val,.prof .pf-g,.team .tm2,.about .w>*,.msg .w>*,.svint .w>*,.support .row,.open,.chero~section .w>*{position:relative;z-index:1}
+.promise .plist::before,.topfaq .tf::before,.faq .grid::before,.flow .steps::before,.people .pg::before{content:"";position:absolute;inset:-24px -32px;background:inherit;z-index:-1}
+.promise .plist,.people .pg,.flow .steps{background:var(--mist)}
+.flow .steps{background:var(--bg)}
+.topfaq .tf{background:var(--mist)}
+.faq .grid{background:var(--bg)}
+.flow .steps::before{background:var(--bg)}
+@media (max-width:760px){.promise .plist::before,.topfaq .tf::before,.faq .grid::before,.flow .steps::before,.people .pg::before{inset:-16px 0}}
+.rail{overflow:visible}
