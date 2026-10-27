@@ -230,7 +230,7 @@ PROFILE=f"""<section class="prof" id="profile">
   <div class="w">
     {head('Profile','代表プロフィール','理論と実務を、|現場で|つなぐ。')}
     <div class="pf-g">
-      <div class="pf-card rv"><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
+      <div class="pf-card rv"><div class="pf-ph"><img src="img/tanioka-sm.jpg" alt="" width="480" height="600" loading="lazy" decoding="async"></div><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
         <ul class="pf-tags">{''.join(f'<li>{t}</li>' for t in ['経営再建','成長戦略','人材採用','営業体制の構築','業務改善','建築業界'])}</ul></div>
       <div class="pf-tx rv">
         {P('株式会社船井総合研究所で、コンサルタントとして上位0.5%の年間粗利獲得実績を複数年にわたって納めました。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型のコンサルティングに取り組んできました。')}

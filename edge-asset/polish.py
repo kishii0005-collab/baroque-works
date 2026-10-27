@@ -119,7 +119,7 @@ bodies['sitemap.html']=(sitemap_page(),'株式会社エッジアセットのサ�
 
 TOPMSG=f"""<section class="tmsg">
   <div class="w">
-    <div class="tm-ph"><div class="ph">{img('rD28m9BmXVs','代表写真（撮影予定）',1000)}</div><span class="tm-cap">代表写真は撮影予定</span></div>
+    <div class="tm-ph"><div class="ph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div></div>
     <div class="tm-tx rv">
       <p class="sh-ja">代表メッセージ</p>
       <h2>{W('会社を|売る、|という|言葉に|抵抗がある方へ。')}</h2>

@@ -617,7 +617,7 @@ HTML=f'''<!doctype html>
 <section class="msg" id="message">
   <div class="w grid">
     <div class="rv">
-      <div class="frame navy"><div class="ph">{img('rD28m9BmXVs','大阪のオフィスビル',1000)}<span>代表写真は撮影予定</span></div></div>
+      <div class="frame navy"><div class="ph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div></div>
       <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
       <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングに従事</li><li>同社を退職後、複数の事業運営に携わりながら、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
     </div>
@@ -864,7 +864,8 @@ for key,pat in {
  'footer':r'<footer>.*?</footer>',
 }.items(): sec[key]=cut(pat)
 
-JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社の事業承継（株式取得およびグループ経営）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-0000-0000","founder":{"@type":"Person","name":"谷岡佑亮"}},ensure_ascii=False)+'</script>'
+SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
+JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社の事業承継（株式取得およびグループ経営）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-0000-0000","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
     items=[('company.html','私たちについて'),('service.html','グループの支援'),('cases.html','事例'),('flow.html','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('faq.html','よくあるご質問')]
@@ -926,7 +927,9 @@ def page(fname,title,body,desc):
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{U('rD28m9BmXVs')}">
+<meta property="og:image" content="{SITE}img/tanioka-sq.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 {JSONLD if fname=='index.html' else ''}
@@ -977,7 +980,7 @@ TEAM=f"""<section class="team" id="team">
   <div class="w">
     {head('Team','メンバー','住宅業界の|実務を|知る人間が、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバーをご紹介します。')}
     <div class="tg">
-      <article class="tm lead rv"><div class="ph tph">{img('rD28m9BmXVs','代表写真（撮影予定）',1000)}<span>写真は撮影予定</span></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
+      <article class="tm lead rv"><div class="ph tph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3>{TBD}</h3>{P('集客・採用・財務の実務を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（税理士）</p><h3>{TBD}</h3>{P('事業承継税制・株価算定を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（弁護士）</p><h3>{TBD}</h3>{P('株式譲渡契約・許認可を担当します。')}</div></article>
@@ -1103,7 +1106,6 @@ bodies['column.html']=(phero('Column','コラム','工務店・住宅会社の�
 bodies['privacy.html']=(PRIVACY,'株式会社エッジアセットのプライバシーポリシー。')
 bodies['terms.html']=(TERMS,'株式会社エッジアセットのサイトのご利用について。')
 bodies['404.html']=(NOTFOUND,'お探しのページは見つかりませんでした。')
-SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'polish.py')).read())
 DARK_SURF={'market','model','tcost','secret','capital','pcon','stance','tmsg_x'}
 MIST_SURF={'promise','people','company','pp','links','ba','topfaq','gov','pfaq','topcol','artmore','kpi','tcases','clist','cother','think','record','tseo'}
