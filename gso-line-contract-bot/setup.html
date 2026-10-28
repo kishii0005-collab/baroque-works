@@ -1,0 +1,676 @@
+<title>GSO契約書ボット</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* layout: single narrow column of steps, code block at the end; ledger-blue accent from the GSO sheet */
+:root{--bg:#f7f8f6;--fg:#1d2328;--muted:#5d6871;--accent:#1f4e79;--accent-ink:#ffffff;--line:#d9dee2;--panel:#ffffff;--warn-bg:#fff4e1;--warn-fg:#7a4b00;--code-bg:#1b2227;--code-fg:#e6ebee;
+--font-body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;--font-mono:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#13181c;--fg:#e8ecef;--muted:#9aa6ae;--accent:#7fb2e0;--accent-ink:#0f1a24;--line:#2b353c;--panel:#1b2227;--warn-bg:#3a2a0c;--warn-fg:#ffd58a;--code-bg:#0e1316;--code-fg:#dfe6ea;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13181c;--fg:#e8ecef;--muted:#9aa6ae;--accent:#7fb2e0;--accent-ink:#0f1a24;--line:#2b353c;--panel:#1b2227;--warn-bg:#3a2a0c;--warn-fg:#ffd58a;--code-bg:#0e1316;--code-fg:#dfe6ea;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.7;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;display:grid;gap:40px}
+h1{font-size:1.7rem;margin:0 0 4px;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:1.15rem;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);text-wrap:balance}
+p{margin:0 0 10px;max-width:68ch}
+.lead{color:var(--muted);max-width:68ch}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.flow span{background:var(--panel);border:1px solid var(--line);padding:6px 12px;border-radius:4px;font-size:.92rem}
+.flow i{color:var(--muted);font-style:normal}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.85rem;letter-spacing:.04em}
+td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+ol.steps{margin:0;padding-left:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+ol.steps>li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:10px;background:var(--panel);border:1px solid var(--line);padding:14px 16px;border-radius:6px}
+ol.steps>li::before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;font-variant-numeric:tabular-nums}
+ol.steps>li>div{min-width:0}
+ol.steps b{display:block;margin-bottom:4px}
+ol.steps ul{margin:4px 0 0;padding-left:18px}
+ol.steps li li{margin:2px 0}
+code{font-family:var(--font-mono);font-size:.88em;background:var(--panel);border:1px solid var(--line);padding:1px 5px;border-radius:3px}
+ul.plain{margin:0;padding-left:20px}
+ul.plain li{margin:4px 0}
+.warn{background:var(--warn-bg);color:var(--warn-fg);padding:12px 14px;border-radius:6px;max-width:none}
+.codehead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.codehead p{margin:0;color:var(--muted);font-size:.9rem}
+button{font:inherit;font-size:.9rem;background:var(--accent);color:var(--accent-ink);border:0;border-radius:4px;padding:8px 14px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+pre{margin:0;background:var(--code-bg);color:var(--code-fg);padding:16px;border-radius:6px;overflow-x:auto;font-family:var(--font-mono);font-size:.78rem;line-height:1.55;max-height:70vh}
+.ok{color:var(--muted);font-size:.9rem}
+</style>
+<main>
+<header>
+<h1>GSO契約書ボット</h1>
+<p class="lead">LINEグループに上がった請負契約書の写真を読み取り、「【GSOリフォーム】経営管理帳票」の入金管理シートに1行追記して、読み取り結果をグループに返信します。Google Apps Script と Claude API で動き、固定費はかかりません。</p>
+<div class="flow"><span>LINEグループに写真</span><i>→</i><span>GAS が受信・Driveに保存</span><i>→</i><span>Claude が項目を抽出</span><i>→</i><span>入金管理に追記</span><i>→</i><span>グループに結果を返信</span></div>
+</header>
+
+<section>
+<h2>入金管理シートに書く列</h2>
+<p>入力列だけを書きます。契約月・標準料率・適用料率・受領額・払出額の数式列は触らず、新しい行には1つ上の行の数式をコピーします。</p>
+<div class="tablewrap"><table>
+<tr><th>列</th><th>項目</th><th>埋め方</th></tr>
+<tr><td>B</td><td>契約日</td><td>契約書下部の「日付」欄。空欄なら支払方法の契約締結時の日付</td></tr>
+<tr><td>C</td><td>代理店</td><td>担当者から「LINE連携」シートで変換（宮下→エナジージャパン、治部・伊藤→GSOライフケア）</td></tr>
+<tr><td>D</td><td>担当者</td><td>請負者欄の担当者サイン。空欄ならLINE投稿者から推定して要確認を付ける</td></tr>
+<tr><td>E</td><td>顧客名</td><td>注文者氏名。姓と名の間を全角スペースに統一</td></tr>
+<tr><td>F</td><td>カテゴリ</td><td>工事名称からマスタのカテゴリ一覧に分類。迷ったら「その他リフォーム」＋要確認</td></tr>
+<tr><td>G</td><td>契約金額（税込）</td><td>請負金額（税込）。工事価格＋消費税と合わなければ要確認</td></tr>
+<tr><td>M</td><td>入金予定日</td><td>支払方法の完工時の日付</td></tr>
+<tr><td>O / Q</td><td>入金状況 / 支払通知書</td><td>「未入金」「未作成」を初期値で入れる</td></tr>
+<tr><td>S</td><td>備考</td><td>工事名称・場所・電話・工期・Driveの画像リンク・要確認項目</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2>セットアップ手順</h2>
+<ol class="steps">
+<li><div><b>LINE公式アカウントを用意する</b>
+<ul><li>LINE Developers でプロバイダーを作り、Messaging API チャネルを作成（既存の公式アカウントがあればそれに Messaging API を有効化）</li>
+<li>LINE Official Account Manager ＞ 設定 ＞ 応答設定：「応答メッセージ」OFF、「Webhook」ON、「グループ・複数人チャットへの参加を許可する」ON</li>
+<li>LINE Developers ＞ Messaging API設定 ＞「チャネルアクセストークン（長期）」を発行して控える</li></ul></div></li>
+<li><div><b>Anthropic APIキーを発行する</b>
+<ul><li>console.anthropic.com でAPIキーを発行。月の上限（例：5,000円）を設定しておく</li></ul></div></li>
+<li><div><b>Googleドライブに保存先フォルダを作る</b>
+<ul><li>例：<code>GSO契約書</code>。URLの <code>folders/</code> 以降がフォルダID</li></ul></div></li>
+<li><div><b>Apps Script にコードを入れる</b>
+<ul><li>スプレッドシート「【GSOリフォーム】経営管理帳票」を開き、拡張機能 ＞ Apps Script</li>
+<li>下のコードを全部貼り付けて保存</li>
+<li>歯車「プロジェクトの設定」＞ スクリプト プロパティ に <code>LINE_CHANNEL_ACCESS_TOKEN</code> / <code>ANTHROPIC_API_KEY</code> / <code>SPREADSHEET_ID</code>（<code>1q9cTqWUhwjcBfwF5-hufukyoQkGJC8kcH0_awnQA8FE</code>）/ <code>DRIVE_FOLDER_ID</code> を追加</li>
+<li>エディタ上部で関数 <code>setup</code> を選んで実行（初回は権限の承認が出る）。「LINE連携」「LINE処理ログ」シートができる</li>
+<li>デプロイ ＞ 新しいデプロイ ＞ 種類「ウェブアプリ」、実行ユーザー「自分」、アクセス「全員」→ デプロイ → ウェブアプリURLを控える</li></ul></div></li>
+<li><div><b>Webhook をつなぐ</b>
+<ul><li>LINE Developers ＞ Messaging API設定 ＞ Webhook URL にウェブアプリURLを貼り、「Webhookの利用」ON</li>
+<li>「検証」ボタンはGASのリダイレクトの都合で失敗することがある。失敗しても実際の投稿は届くので次のテストで確認する</li></ul></div></li>
+<li><div><b>グループに招待して1枚テストする</b>
+<ul><li>契約書が流れているグループに公式アカウントを招待</li>
+<li>契約書を1枚投稿し、30〜60秒以内に読み取り結果の返信が来れば完了</li>
+<li>返信が来ないときは Apps Script の「実行数」でエラーを見る</li></ul></div></li>
+</ol>
+</section>
+
+<section>
+<h2>現場に伝える運用ルール</h2>
+<ul class="plain">
+<li>契約書は<b>表面（1ページ目）を1枚で</b>、できれば「オリジナル画質」で送る</li>
+<li>1契約で複数枚送るときは<b>同時にまとめて送る</b>。別々に送ると別契約として扱われることがある</li>
+<li>返信に「⚠ 要確認」が付いた項目は、投稿した本人がその場でシートを直す</li>
+<li>「登録済み」と返ってきたら台帳側の行を確認する。顧客名が違うと表示されたら手入力ミスの可能性が高い</li>
+<li>担当者が増えたら「LINE連携」シートに 担当者・代理店・LINE表示名 を1行足す</li>
+</ul>
+<p class="warn" style="margin-top:12px">GASはリクエストヘッダーを読めないため、LINEの署名検証ができません。ウェブアプリURLを外部に出さないこと。心配なら <code>ALLOWED_GROUP_IDS</code> にグループIDを入れて、他からの投稿を無視させてください。</p>
+</section>
+
+<section>
+<h2>手元の4枚で確認した結果</h2>
+<p>送ってもらった契約書4枚は、すべて入金管理に手入力済みでした。ボットの判定ロジックに通すと4枚とも「登録済み」と返し、1枚目は台帳との食い違いを指摘します。</p>
+<div class="tablewrap"><table>
+<tr><th>写真</th><th>契約書の読み取り</th><th>台帳</th><th>ボットの返信</th></tr>
+<tr><td>1</td><td>小田川 直江 / 屋根裏改修工事 / ¥4,983,000 / 2026/10/28 / 担当者欄 空欄</td><td>55行目：飯田 / GSOライフケア / 担当 小田川</td><td>登録済み。<b>顧客名が台帳と違う</b>と警告</td></tr>
+<tr><td>2</td><td>中川 静雄 / 基礎塗装工事 / ¥600,000 / 2026/10/28 / 伊藤</td><td>56行目：中川 静雄 / GSOライフケア / 伊藤</td><td>登録済み</td></tr>
+<tr><td>3</td><td>佐藤 三夜子 / 屋根塗装ほか / ¥826,925 / 2026/10/06 / 宮下</td><td>19行目：佐藤 三夜子 / エナジージャパン / 宮下</td><td>登録済み</td></tr>
+<tr><td>4</td><td>玉木 拓也 / 床下基礎補強ほか / ¥950,750 / 2026/10/04 / 宮下</td><td>18行目：玉木 拓也 / エナジージャパン / 宮下</td><td>登録済み</td></tr>
+</table></div>
+<p class="ok" style="margin-top:10px">LINEなしで試すには、Driveに写真を置いて <code>testWithDriveFile</code> の fileId を書き換えて実行します。読み取り結果と重複判定だけをログに出し、シートには書きません。</p>
+</section>
+
+<section>
+<h2>Code.gs</h2>
+<div class="codehead"><p>Apps Script のエディタに全文を貼り付けてください。</p><button id="copy" type="button">コードをコピー</button></div>
+<pre id="code">/**
+ * GSOリフォーム 契約書LINEボット
+ *
+ * LINEグループに投稿された請負契約書の写真を受け取り、
+ * Claudeで項目を読み取り、「【GSOリフォーム】経営管理帳票」の
+ * 「入金管理」シートに1行追記し、読み取り結果をグループに返信する。
+ *
+ * 書き込む列（入力列のみ）: B契約日 C代理店 D担当者 E顧客名 Fカテゴリ G契約金額 M入金予定日 O入金状況 Q支払通知書 S備考
+ * 触らない列（数式）  : A契約月 H標準料率 J適用料率 K受領額 L払出額
+ *
+ * スクリプトプロパティ（プロジェクトの設定 &gt; スクリプト プロパティ）:
+ *   LINE_CHANNEL_ACCESS_TOKEN  LINE Messaging API の長期チャネルアクセストークン
+ *   ANTHROPIC_API_KEY          Anthropic APIキー
+ *   SPREADSHEET_ID             1q9cTqWUhwjcBfwF5-hufukyoQkGJC8kcH0_awnQA8FE
+ *   DRIVE_FOLDER_ID            契約書写真の保存先フォルダID
+ *   ALLOWED_GROUP_IDS          （任意）反応するグループIDをカンマ区切り。空なら全グループ
+ */
+
+const CONFIG = {
+  SHEET_LEDGER: &#x27;入金管理&#x27;,
+  SHEET_MASTER: &#x27;マスタ&#x27;,
+  SHEET_STAFF: &#x27;LINE連携&#x27;,
+  SHEET_LOG: &#x27;LINE処理ログ&#x27;,
+  LEDGER_FIRST_DATA_ROW: 5,
+  CLAUDE_MODEL: &#x27;claude-opus-5-5&#x27;,
+  CLAUDE_EFFORT: &#x27;high&#x27;,
+  DEFAULT_PAYMENT_STATUS: &#x27;未入金&#x27;,
+  DEFAULT_NOTICE_STATUS: &#x27;未作成&#x27;,
+};
+
+const COL = { DATE: 2, AGENCY: 3, STAFF: 4, CUSTOMER: 5, CATEGORY: 6, AMOUNT: 7, DUE: 13, PAID_ON: 14, STATUS: 15, NOTICE: 17, NOTE: 19 };
+const FORMULA_COLS = [1, 8, 10, 11, 12]; // A, H, J, K, L
+
+function prop_(key, optional) {
+  const v = PropertiesService.getScriptProperties().getProperty(key);
+  if (!v &amp;&amp; !optional) throw new Error(&#x27;スクリプトプロパティ &#x27; + key + &#x27; が未設定です&#x27;);
+  return v || &#x27;&#x27;;
+}
+
+// ---------------------------------------------------------------------------
+// 初期セットアップ（エディタから1回だけ実行）
+// ---------------------------------------------------------------------------
+function setup() {
+  const ss = SpreadsheetApp.openById(prop_(&#x27;SPREADSHEET_ID&#x27;));
+  let staff = ss.getSheetByName(CONFIG.SHEET_STAFF);
+  if (!staff) {
+    staff = ss.insertSheet(CONFIG.SHEET_STAFF);
+    staff.getRange(1, 1, 1, 4).setValues([[&#x27;担当者&#x27;, &#x27;代理店&#x27;, &#x27;LINE表示名&#x27;, &#x27;LINE userId&#x27;]]);
+    staff.getRange(2, 1, 3, 4).setValues([
+      [&#x27;宮下&#x27;, &#x27;エナジージャパン&#x27;, &#x27;&#x27;, &#x27;&#x27;],
+      [&#x27;治部&#x27;, &#x27;GSOライフケア&#x27;, &#x27;&#x27;, &#x27;&#x27;],
+      [&#x27;伊藤&#x27;, &#x27;GSOライフケア&#x27;, &#x27;&#x27;, &#x27;&#x27;],
+    ]);
+    staff.setFrozenRows(1);
+  }
+  let log = ss.getSheetByName(CONFIG.SHEET_LOG);
+  if (!log) {
+    log = ss.insertSheet(CONFIG.SHEET_LOG);
+    log.getRange(1, 1, 1, 7).setValues([[&#x27;処理日時&#x27;, &#x27;LINE messageId&#x27;, &#x27;投稿者&#x27;, &#x27;結果&#x27;, &#x27;台帳行&#x27;, &#x27;要確認&#x27;, &#x27;画像リンク&#x27;]]);
+    log.setFrozenRows(1);
+  }
+  Logger.log(&#x27;セットアップ完了。ウェブアプリとしてデプロイし、URLをLINE DevelopersのWebhook URLに設定してください。&#x27;);
+}
+
+// ---------------------------------------------------------------------------
+// LINE Webhook 入口
+// ---------------------------------------------------------------------------
+function doPost(e) {
+  try {
+    const body = JSON.parse(e.postData.contents);
+    (body.events || []).forEach(handleEvent_);
+  } catch (err) {
+    console.error(&#x27;doPost error: &#x27; + err + &#x27;\n&#x27; + err.stack);
+  }
+  return ContentService.createTextOutput(&#x27;ok&#x27;);
+}
+
+function handleEvent_(ev) {
+  if (ev.type !== &#x27;message&#x27; || !ev.message || ev.message.type !== &#x27;image&#x27;) return;
+  const allowed = prop_(&#x27;ALLOWED_GROUP_IDS&#x27;, true).split(&#x27;,&#x27;).map(s =&gt; s.trim()).filter(Boolean);
+  const chatId = ev.source.groupId || ev.source.roomId || ev.source.userId;
+  if (allowed.length &amp;&amp; allowed.indexOf(chatId) &lt; 0) return;
+  if (alreadyProcessed_(ev.message.id)) return; // LINEの再送対策
+
+  const imageSet = ev.message.imageSet; // 複数枚同時送信のとき付く {id, index, total}
+  let messageIds = [ev.message.id];
+  if (imageSet &amp;&amp; imageSet.total &gt; 1) {
+    const cache = CacheService.getScriptCache();
+    const key = &#x27;imgset_&#x27; + imageSet.id;
+    const got = JSON.parse(cache.get(key) || &#x27;[]&#x27;);
+    got.push(ev.message.id);
+    cache.put(key, JSON.stringify(got), 21600);
+    if (got.length &lt; imageSet.total) return; // 全部揃うまで待つ
+    messageIds = got;
+    cache.remove(key);
+  }
+
+  const sender = senderName_(ev.source);
+  processContractImages_(messageIds, sender, ev.replyToken, chatId);
+}
+
+// ---------------------------------------------------------------------------
+// 本体: 画像取得 → Claude抽出 → 台帳追記 → 返信
+// ---------------------------------------------------------------------------
+function processContractImages_(messageIds, sender, replyToken, chatId) {
+  const images = messageIds.map(id =&gt; ({ id: id, blob: fetchLineContent_(id) }));
+  const ss = SpreadsheetApp.openById(prop_(&#x27;SPREADSHEET_ID&#x27;));
+  const categories = readCategories_(ss);
+  const staffMap = readStaffMap_(ss);
+
+  let result;
+  try {
+    result = extractWithClaude_(images.map(i =&gt; i.blob), categories);
+  } catch (err) {
+    logRow_(ss, messageIds.join(&#x27;,&#x27;), sender, &#x27;読み取り失敗: &#x27; + err, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;);
+    reply_(replyToken, chatId, &#x27;⚠ 契約書の読み取りに失敗しました。\n&#x27; + String(err).slice(0, 200) + &#x27;\n手入力をお願いします。&#x27;);
+    return;
+  }
+
+  const contracts = (result.contracts || []).filter(c =&gt; c.is_contract_front_page);
+  if (!contracts.length) {
+    logRow_(ss, messageIds.join(&#x27;,&#x27;), sender, &#x27;契約書の表面ではない&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;);
+    return; // 約款ページ・見積書などは黙って無視
+  }
+
+  const replies = [];
+  contracts.forEach(c =&gt; {
+    const row = buildLedgerRow_(c, sender, staffMap, categories);
+    const fileUrl = saveImages_(images, row);
+    row.note = [row.note, &#x27;契約書: &#x27; + fileUrl].filter(Boolean).join(&#x27; / &#x27;);
+
+    const ledger = ss.getSheetByName(CONFIG.SHEET_LEDGER);
+    const dup = findDuplicate_(ledger, row);
+    if (dup) {
+      logRow_(ss, messageIds.join(&#x27;,&#x27;), sender, &#x27;登録済み&#x27;, dup.rowNumber, row.flags.join(&#x27; / &#x27;), fileUrl);
+      replies.push(duplicateMessage_(row, dup));
+      return;
+    }
+    const n = appendLedgerRow_(ledger, row);
+    logRow_(ss, messageIds.join(&#x27;,&#x27;), sender, &#x27;追記&#x27;, n, row.flags.join(&#x27; / &#x27;), fileUrl);
+    replies.push(successMessage_(row, n));
+  });
+  reply_(replyToken, chatId, replies.join(&#x27;\n\n&#x27;));
+}
+
+// ---------------------------------------------------------------------------
+// Claude 読み取り
+// ---------------------------------------------------------------------------
+function extractionSchema_(categories) {
+  const money = { anyOf: [{ type: &#x27;integer&#x27; }, { type: &#x27;null&#x27; }] };
+  const str = { anyOf: [{ type: &#x27;string&#x27; }, { type: &#x27;null&#x27; }] };
+  return {
+    type: &#x27;object&#x27;,
+    additionalProperties: false,
+    required: [&#x27;contracts&#x27;],
+    properties: {
+      contracts: {
+        type: &#x27;array&#x27;,
+        items: {
+          type: &#x27;object&#x27;,
+          additionalProperties: false,
+          required: [&#x27;is_contract_front_page&#x27;, &#x27;work_title&#x27;, &#x27;work_address&#x27;, &#x27;contract_date&#x27;, &#x27;work_start&#x27;, &#x27;work_end&#x27;,
+            &#x27;amount_tax_included&#x27;, &#x27;amount_tax_excluded&#x27;, &#x27;tax_amount&#x27;, &#x27;payments&#x27;, &#x27;customer_family_name&#x27;,
+            &#x27;customer_given_name&#x27;, &#x27;customer_phone&#x27;, &#x27;customer_address&#x27;, &#x27;staff_name&#x27;, &#x27;category&#x27;, &#x27;category_confidence&#x27;,
+            &#x27;unreadable_fields&#x27;, &#x27;notes&#x27;],
+          properties: {
+            is_contract_front_page: { type: &#x27;boolean&#x27; },
+            work_title: str,
+            work_address: str,
+            contract_date: { anyOf: [{ type: &#x27;string&#x27; }, { type: &#x27;null&#x27; }], description: &#x27;YYYY-MM-DD。下部の「日付」欄。空欄なら支払方法の契約締結時の日付&#x27; },
+            work_start: str,
+            work_end: str,
+            amount_tax_included: money,
+            amount_tax_excluded: money,
+            tax_amount: money,
+            payments: {
+              type: &#x27;array&#x27;,
+              items: {
+                type: &#x27;object&#x27;,
+                additionalProperties: false,
+                required: [&#x27;timing&#x27;, &#x27;date&#x27;, &#x27;amount&#x27;],
+                properties: {
+                  timing: { type: &#x27;string&#x27;, enum: [&#x27;契約締結時&#x27;, &#x27;着工時&#x27;, &#x27;完工時&#x27;, &#x27;その他&#x27;] },
+                  date: str,
+                  amount: money,
+                },
+              },
+            },
+            customer_family_name: str,
+            customer_given_name: str,
+            customer_phone: str,
+            customer_address: str,
+            staff_name: str,
+            category: { type: &#x27;string&#x27;, enum: categories },
+            category_confidence: { type: &#x27;string&#x27;, enum: [&#x27;high&#x27;, &#x27;low&#x27;] },
+            unreadable_fields: { type: &#x27;array&#x27;, items: { type: &#x27;string&#x27; } },
+            notes: str,
+          },
+        },
+      },
+    },
+  };
+}
+
+function extractionPrompt_(categories) {
+  return [
+    &#x27;あなたはGSOリフォーム株式会社の経理アシスタントです。LINEで送られてきた「住宅リフォーム工事 請負契約書」の写真を読み取り、台帳に入力する項目をJSONで返してください。&#x27;,
+    &#x27;&#x27;,
+    &#x27;## 書式（毎回同じ用紙）&#x27;,
+    &#x27;1. 工事名称 / 2. 工事場所 / 3. 工事期間（年月日より年月日まで）&#x27;,
+    &#x27;4. 請負金額: 請負金額（税込）・うち工事価格（税抜）・消費税等額&#x27;,
+    &#x27;5. 支払方法: 契約締結時・着工時・完工時・（予備行）それぞれに 年月日 と 金額（税込）&#x27;,
+    &#x27;6. 添付書類 / 日付（契約日） / 注文者（住所・氏名・電話番号、2人分の欄がある）/ 請負者（GSOリフォーム株式会社、担当者欄に手書きのサイン）&#x27;,
+    &#x27;&#x27;,
+    &#x27;## ルール&#x27;,
+    &#x27;- 年号は和暦です。「令和8年」「R8年」「令8年」はすべて 2026年。令和N年 = 2018+N 年。日付は YYYY-MM-DD で返す。&#x27;,
+    &#x27;- 金額は手書きの「¥4,983,000-」「826.925」のような表記。区切りのカンマやピリオドは桁区切りなので、整数円で返す（826.925 → 826925）。&#x27;,
+    &#x27;- 金額欄の「×」「0」「ー」は 0 円。空欄は null。&#x27;,
+    &#x27;- 請負金額（税込）は必ず「うち工事価格 + 消費税等額」と一致するはず。一致しない場合は税込欄の数字を優先し、notes に矛盾を書く。&#x27;,
+    &#x27;- 契約日は下部の「日付」欄。空欄なら支払方法の「契約締結時」の年月日。それも無ければ null。&#x27;,
+    &#x27;- 注文者の氏名は姓と名を分けて返す。注文者欄が2人分埋まっている場合は左側（1人目）を customer にし、2人目は notes に書く。&#x27;,
+    &#x27;- 担当者は請負者欄の「担当者:」の右にある手書きサイン（例: 宮下、伊藤、治部）。印影の文字も手がかりにしてよい。読めなければ null。&#x27;,
+    &#x27;- 読めない・自信がない項目は unreadable_fields に項目名を入れる。推測で埋めない。&#x27;,
+    &#x27;- category は工事名称から次の一覧の中で最も近いものを選ぶ: &#x27; + categories.join(&#x27; / &#x27;),
+    &#x27;  目安: 床下・基礎・防蟻・防腐・調湿 → 床下工事 / 屋根・外壁・塗装・漆喰・棟・屋根裏 → 屋根・外壁 / 給湯器 → ガス給湯器 または エコキュート / 判断に迷う → その他リフォーム にして category_confidence を low。&#x27;,
+    &#x27;- 請負契約書の表面（上記の書式）以外の写真（約款ページ・見積書・別の書類）は is_contract_front_page を false にする。&#x27;,
+    &#x27;- 複数枚の写真に同じ契約書が写っている場合は1件にまとめる。別の契約が複数写っている場合はそれぞれ1件ずつ返す。&#x27;,
+  ].join(&#x27;\n&#x27;);
+}
+
+function extractWithClaude_(blobs, categories) {
+  const content = blobs.map(b =&gt; ({
+    type: &#x27;image&#x27;,
+    source: { type: &#x27;base64&#x27;, media_type: b.getContentType() || &#x27;image/jpeg&#x27;, data: Utilities.base64Encode(b.getBytes()) },
+  }));
+  content.push({ type: &#x27;text&#x27;, text: &#x27;上記の写真から契約書の項目を読み取ってください。&#x27; });
+
+  const payload = {
+    model: CONFIG.CLAUDE_MODEL,
+    max_tokens: 16000,
+    system: extractionPrompt_(categories),
+    messages: [{ role: &#x27;user&#x27;, content: content }],
+    output_config: { effort: CONFIG.CLAUDE_EFFORT, format: { type: &#x27;json_schema&#x27;, schema: extractionSchema_(categories) } },
+    fallbacks: &#x27;default&#x27;,
+  };
+  const res = UrlFetchApp.fetch(&#x27;https://api.anthropic.com/v1/messages&#x27;, {
+    method: &#x27;post&#x27;,
+    contentType: &#x27;application/json&#x27;,
+    headers: {
+      &#x27;x-api-key&#x27;: prop_(&#x27;ANTHROPIC_API_KEY&#x27;),
+      &#x27;anthropic-version&#x27;: &#x27;2026-10-21&#x27;,
+      &#x27;anthropic-beta&#x27;: &#x27;server-side-fallback-2026-07-01&#x27;,
+    },
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true,
+  });
+  if (res.getResponseCode() !== 200) throw new Error(&#x27;Claude API &#x27; + res.getResponseCode() + &#x27;: &#x27; + res.getContentText().slice(0, 300));
+  const msg = JSON.parse(res.getContentText());
+  if (msg.stop_reason === &#x27;refusal&#x27;) throw new Error(&#x27;Claudeが処理を拒否しました&#x27;);
+  const text = (msg.content || []).filter(b =&gt; b.type === &#x27;text&#x27;).map(b =&gt; b.text).join(&#x27;&#x27;);
+  return JSON.parse(text);
+}
+
+// ---------------------------------------------------------------------------
+// 台帳行の組み立て
+// ---------------------------------------------------------------------------
+function buildLedgerRow_(c, sender, staffMap, categories) {
+  const flags = (c.unreadable_fields || []).slice();
+
+  // 担当者 → 代理店。契約書の担当者サインを優先し、無ければLINE投稿者で推定
+  let staff = normalizeStaff_(c.staff_name, staffMap);
+  let agency = staff ? staffMap[staff] : &#x27;&#x27;;
+  if (!staff) {
+    const bySender = staffBySender_(sender, staffMap);
+    if (bySender) { staff = bySender; agency = staffMap[staff]; flags.push(&#x27;担当者欄が空欄のためLINE投稿者(&#x27; + sender + &#x27;)から推定&#x27;); }
+    else flags.push(&#x27;担当者・代理店が特定できず（空欄）&#x27;);
+  }
+
+  const customer = normalizeName_(c.customer_family_name, c.customer_given_name);
+  if (!customer) flags.push(&#x27;顧客名&#x27;);
+
+  const amount = c.amount_tax_included;
+  if (amount == null) flags.push(&#x27;契約金額&#x27;);
+  else if (c.amount_tax_excluded != null &amp;&amp; c.tax_amount != null &amp;&amp; c.amount_tax_excluded + c.tax_amount !== amount) {
+    flags.push(&#x27;税込金額と内訳が不一致(&#x27; + c.amount_tax_excluded + &#x27;+&#x27; + c.tax_amount + &#x27;)&#x27;);
+  }
+
+  const contractDate = parseDate_(c.contract_date);
+  if (!contractDate) flags.push(&#x27;契約日&#x27;);
+
+  const due = pickDueDate_(c.payments || [], amount);
+  if (!due) flags.push(&#x27;入金予定日（支払方法欄に完工時の日付なし）&#x27;);
+
+  let category = categories.indexOf(c.category) &gt;= 0 ? c.category : &#x27;未分類&#x27;;
+  if (c.category_confidence !== &#x27;high&#x27; || category === &#x27;未分類&#x27;) flags.push(&#x27;カテゴリ&#x27;);
+
+  const noteParts = [];
+  if (c.work_title) noteParts.push(&#x27;工事: &#x27; + c.work_title);
+  if (c.work_address) noteParts.push(&#x27;場所: &#x27; + c.work_address);
+  if (c.customer_phone) noteParts.push(&#x27;TEL: &#x27; + c.customer_phone);
+  if (c.work_start || c.work_end) noteParts.push(&#x27;工期: &#x27; + (c.work_start || &#x27;?&#x27;) + &#x27;〜&#x27; + (c.work_end || &#x27;?&#x27;));
+  if (c.notes) noteParts.push(c.notes);
+  noteParts.push(&#x27;LINE自動登録(&#x27; + sender + &#x27;)&#x27;);
+  if (flags.length) noteParts.push(&#x27;要確認: &#x27; + flags.join(&#x27;、&#x27;));
+
+  return {
+    contractDate: contractDate, agency: agency, staff: staff, customer: customer, category: category,
+    amount: amount, due: due, note: noteParts.join(&#x27; / &#x27;), flags: flags, workTitle: c.work_title || &#x27;&#x27;,
+  };
+}
+
+// LINE表示名（例: 「宮下 幸雄」「GSO 伊藤」）から担当者を推定
+function staffBySender_(sender, staffMap) {
+  if (!sender) return &#x27;&#x27;;
+  const n = String(sender).replace(/[\s　]/g, &#x27;&#x27;);
+  const keys = Object.keys(staffMap.__bySender);
+  for (const k of keys) if (k &amp;&amp; n.indexOf(k.replace(/[\s　]/g, &#x27;&#x27;)) &gt;= 0) return staffMap.__bySender[k];
+  return &#x27;&#x27;;
+}
+
+function normalizeStaff_(name, staffMap) {
+  if (!name) return &#x27;&#x27;;
+  const n = String(name).replace(/[\s　]/g, &#x27;&#x27;);
+  const keys = Object.keys(staffMap).filter(k =&gt; k !== &#x27;__bySender&#x27;);
+  for (const k of keys) if (n.indexOf(k) &gt;= 0 || k.indexOf(n) &gt;= 0) return k;
+  return &#x27;&#x27;;
+}
+
+function normalizeName_(family, given) {
+  const f = (family || &#x27;&#x27;).replace(/[\s　]/g, &#x27;&#x27;);
+  const g = (given || &#x27;&#x27;).replace(/[\s　]/g, &#x27;&#x27;);
+  if (!f &amp;&amp; !g) return &#x27;&#x27;;
+  return g ? f + &#x27;　&#x27; + g : f; // 姓と名の間は全角スペースで統一
+}
+
+function parseDate_(s) {
+  if (!s) return null;
+  const m = String(s).match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (!m) return null;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  return isNaN(d.getTime()) ? null : d;
+}
+
+// 入金予定日 = 完工時の日付（金額が入っていれば）。無ければ金額&gt;0の最後の支払予定日。
+function pickDueDate_(payments, total) {
+  const paid = payments.filter(p =&gt; p.amount != null &amp;&amp; p.amount &gt; 0 &amp;&amp; parseDate_(p.date));
+  if (!paid.length) return null;
+  const completion = paid.filter(p =&gt; p.timing === &#x27;完工時&#x27;);
+  const pick = completion.length ? completion[0] : paid[paid.length - 1];
+  return parseDate_(pick.date);
+}
+
+function readCategories_(ss) {
+  const vals = ss.getSheetByName(CONFIG.SHEET_MASTER).getRange(&#x27;L5:L30&#x27;).getValues().map(r =&gt; String(r[0]).trim()).filter(Boolean);
+  return vals.length ? vals : [&#x27;未分類&#x27;];
+}
+
+function readStaffMap_(ss) {
+  const sh = ss.getSheetByName(CONFIG.SHEET_STAFF);
+  const map = { __bySender: {} };
+  if (!sh) return map;
+  sh.getRange(2, 1, Math.max(sh.getLastRow() - 1, 1), 4).getValues().forEach(r =&gt; {
+    const staff = String(r[0]).trim(), agency = String(r[1]).trim(), display = String(r[2]).trim();
+    if (!staff) return;
+    map[staff] = agency;
+    if (display) map.__bySender[display] = staff;
+    map.__bySender[staff] = staff; // 表示名が担当者名そのものの場合
+  });
+  return map;
+}
+
+// ---------------------------------------------------------------------------
+// 台帳の読み書き
+// ---------------------------------------------------------------------------
+function ledgerRows_(ledger) {
+  const last = ledger.getLastRow();
+  if (last &lt; CONFIG.LEDGER_FIRST_DATA_ROW) return [];
+  const vals = ledger.getRange(CONFIG.LEDGER_FIRST_DATA_ROW, 1, last - CONFIG.LEDGER_FIRST_DATA_ROW + 1, COL.NOTE).getValues();
+  return vals.map((r, i) =&gt; ({
+    rowNumber: CONFIG.LEDGER_FIRST_DATA_ROW + i,
+    date: r[COL.DATE - 1], agency: r[COL.AGENCY - 1], staff: r[COL.STAFF - 1], customer: String(r[COL.CUSTOMER - 1] || &#x27;&#x27;),
+    amount: Number(r[COL.AMOUNT - 1]) || 0,
+  }));
+}
+
+function isDate_(d) { return !!d &amp;&amp; typeof d.getTime === &#x27;function&#x27; &amp;&amp; !isNaN(d.getTime()); }
+
+function sameDay_(a, b) {
+  return isDate_(a) &amp;&amp; isDate_(b) &amp;&amp; a.getFullYear() === b.getFullYear() &amp;&amp; a.getMonth() === b.getMonth() &amp;&amp; a.getDate() === b.getDate();
+}
+
+function findDuplicate_(ledger, row) {
+  if (row.amount == null) return null;
+  const key = row.customer.replace(/[\s　]/g, &#x27;&#x27;);
+  const rows = ledgerRows_(ledger).filter(r =&gt; isDate_(r.date));
+  for (const r of rows) {
+    if (r.amount !== row.amount) continue;
+    const rKey = r.customer.replace(/[\s　]/g, &#x27;&#x27;);
+    const sameCustomer = key &amp;&amp; rKey &amp;&amp; (key === rKey || key.indexOf(rKey) === 0 || rKey.indexOf(key) === 0);
+    if (sameCustomer || (row.contractDate &amp;&amp; sameDay_(r.date, row.contractDate))) return r;
+  }
+  return null;
+}
+
+function appendLedgerRow_(ledger, row) {
+  const rows = ledgerRows_(ledger);
+  let n = CONFIG.LEDGER_FIRST_DATA_ROW;
+  rows.forEach(r =&gt; { if (r.date !== &#x27;&#x27; &amp;&amp; r.date != null) n = r.rowNumber + 1; });
+  if (n &gt; ledger.getMaxRows()) ledger.insertRowsAfter(ledger.getMaxRows(), 10);
+
+  // 数式列が空なら1つ上の行からコピー（書式も引き継ぐ）
+  const prev = n - 1;
+  FORMULA_COLS.forEach(col =&gt; {
+    const cell = ledger.getRange(n, col);
+    if (!cell.getFormula() &amp;&amp; prev &gt;= CONFIG.LEDGER_FIRST_DATA_ROW) {
+      ledger.getRange(prev, col).copyTo(cell, SpreadsheetApp.CopyPasteType.PASTE_FORMULA, false);
+    }
+  });
+
+  const set = (col, v) =&gt; ledger.getRange(n, col).setValue(v);
+  set(COL.DATE, row.contractDate || &#x27;&#x27;);
+  set(COL.AGENCY, row.agency || &#x27;&#x27;);
+  set(COL.STAFF, row.staff || &#x27;&#x27;);
+  set(COL.CUSTOMER, row.customer || &#x27;&#x27;);
+  set(COL.CATEGORY, row.category || &#x27;未分類&#x27;);
+  set(COL.AMOUNT, row.amount == null ? &#x27;&#x27; : row.amount);
+  set(COL.DUE, row.due || &#x27;&#x27;);
+  set(COL.STATUS, CONFIG.DEFAULT_PAYMENT_STATUS);
+  set(COL.NOTICE, CONFIG.DEFAULT_NOTICE_STATUS);
+  set(COL.NOTE, row.note || &#x27;&#x27;);
+  return n;
+}
+
+function logRow_(ss, messageId, sender, result, rowNumber, flags, fileUrl) {
+  const sh = ss.getSheetByName(CONFIG.SHEET_LOG);
+  if (sh) sh.appendRow([new Date(), messageId, sender, result, rowNumber, flags, fileUrl]);
+}
+
+function alreadyProcessed_(messageId) {
+  const ss = SpreadsheetApp.openById(prop_(&#x27;SPREADSHEET_ID&#x27;));
+  const sh = ss.getSheetByName(CONFIG.SHEET_LOG);
+  if (!sh || sh.getLastRow() &lt; 2) return false;
+  const ids = sh.getRange(2, 2, sh.getLastRow() - 1, 1).getValues().map(r =&gt; String(r[0]));
+  return ids.some(v =&gt; v.split(&#x27;,&#x27;).indexOf(String(messageId)) &gt;= 0);
+}
+
+// ---------------------------------------------------------------------------
+// LINE API
+// ---------------------------------------------------------------------------
+function lineHeaders_() {
+  return { Authorization: &#x27;Bearer &#x27; + prop_(&#x27;LINE_CHANNEL_ACCESS_TOKEN&#x27;) };
+}
+
+function fetchLineContent_(messageId) {
+  const res = UrlFetchApp.fetch(&#x27;https://api-data.line.me/v2/bot/message/&#x27; + messageId + &#x27;/content&#x27;, { headers: lineHeaders_(), muteHttpExceptions: true });
+  if (res.getResponseCode() !== 200) throw new Error(&#x27;LINE画像取得失敗 &#x27; + res.getResponseCode());
+  return res.getBlob().setName(messageId + &#x27;.jpg&#x27;);
+}
+
+function senderName_(source) {
+  try {
+    let url;
+    if (source.groupId) url = &#x27;https://api.line.me/v2/bot/group/&#x27; + source.groupId + &#x27;/member/&#x27; + source.userId;
+    else if (source.roomId) url = &#x27;https://api.line.me/v2/bot/room/&#x27; + source.roomId + &#x27;/member/&#x27; + source.userId;
+    else url = &#x27;https://api.line.me/v2/bot/profile/&#x27; + source.userId;
+    const res = UrlFetchApp.fetch(url, { headers: lineHeaders_(), muteHttpExceptions: true });
+    if (res.getResponseCode() === 200) return JSON.parse(res.getContentText()).displayName || &#x27;&#x27;;
+  } catch (e) { /* 表示名が取れなくても処理は続ける */ }
+  return &#x27;&#x27;;
+}
+
+function reply_(replyToken, chatId, text) {
+  const headers = Object.assign({ &#x27;Content-Type&#x27;: &#x27;application/json&#x27; }, lineHeaders_());
+  const messages = [{ type: &#x27;text&#x27;, text: text.slice(0, 4900) }];
+  let ok = false;
+  if (replyToken) {
+    const r = UrlFetchApp.fetch(&#x27;https://api.line.me/v2/bot/message/reply&#x27;, { method: &#x27;post&#x27;, headers: headers, payload: JSON.stringify({ replyToken: replyToken, messages: messages }), muteHttpExceptions: true });
+    ok = r.getResponseCode() === 200;
+  }
+  if (!ok &amp;&amp; chatId) { // replyTokenの期限切れ時はpushで送る（無料枠の通数を消費）
+    UrlFetchApp.fetch(&#x27;https://api.line.me/v2/bot/message/push&#x27;, { method: &#x27;post&#x27;, headers: headers, payload: JSON.stringify({ to: chatId, messages: messages }), muteHttpExceptions: true });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Drive 保存・返信文
+// ---------------------------------------------------------------------------
+function saveImages_(images, row) {
+  const folder = DriveApp.getFolderById(prop_(&#x27;DRIVE_FOLDER_ID&#x27;));
+  const d = row.contractDate || new Date();
+  const stamp = Utilities.formatDate(d, &#x27;Asia/Tokyo&#x27;, &#x27;yyyyMMdd&#x27;);
+  let firstUrl = &#x27;&#x27;;
+  images.forEach((img, i) =&gt; {
+    const name = stamp + &#x27;_&#x27; + (row.customer || &#x27;不明&#x27;).replace(/[\s　]/g, &#x27;&#x27;) + &#x27;_契約書&#x27; + (images.length &gt; 1 ? &#x27;_&#x27; + (i + 1) : &#x27;&#x27;) + &#x27;.jpg&#x27;;
+    const f = folder.createFile(img.blob.copyBlob().setName(name));
+    if (!firstUrl) firstUrl = f.getUrl();
+  });
+  return firstUrl;
+}
+
+function yen_(n) { return n == null ? &#x27;不明&#x27; : &#x27;¥&#x27; + Number(n).toLocaleString(&#x27;ja-JP&#x27;); }
+function ymd_(d) { return d ? Utilities.formatDate(d, &#x27;Asia/Tokyo&#x27;, &#x27;yyyy/MM/dd&#x27;) : &#x27;不明&#x27;; }
+
+function successMessage_(row, n) {
+  const lines = [
+    &#x27;📄 契約書を台帳に登録しました（入金管理 &#x27; + n + &#x27;行目）&#x27;,
+    &#x27;顧客名：&#x27; + (row.customer || &#x27;不明&#x27;),
+    &#x27;工事：&#x27; + (row.workTitle || &#x27;不明&#x27;),
+    &#x27;代理店／担当：&#x27; + (row.agency || &#x27;未設定&#x27;) + &#x27;／&#x27; + (row.staff || &#x27;未設定&#x27;),
+    &#x27;契約日：&#x27; + ymd_(row.contractDate),
+    &#x27;契約金額（税込）：&#x27; + yen_(row.amount),
+    &#x27;入金予定日：&#x27; + ymd_(row.due),
+    &#x27;カテゴリ：&#x27; + row.category,
+  ];
+  if (row.flags.length) lines.push(&#x27;⚠ 要確認：&#x27; + row.flags.join(&#x27;、&#x27;));
+  lines.push(&#x27;違っていたらシートの&#x27; + n + &#x27;行目を直接修正してください。&#x27;);
+  return lines.join(&#x27;\n&#x27;);
+}
+
+function duplicateMessage_(row, dup) {
+  const lines = [
+    &#x27;⚠ この契約書は登録済みと判断しました（入金管理 &#x27; + dup.rowNumber + &#x27;行目）&#x27;,
+    &#x27;台帳：&#x27; + dup.customer + &#x27; / &#x27; + yen_(dup.amount) + &#x27; / &#x27; + ymd_(dup.date) + &#x27; / &#x27; + dup.agency + &#x27;／&#x27; + dup.staff,
+    &#x27;読取：&#x27; + (row.customer || &#x27;不明&#x27;) + &#x27; / &#x27; + yen_(row.amount) + &#x27; / &#x27; + ymd_(row.contractDate) + &#x27; / &#x27; + (row.agency || &#x27;?&#x27;) + &#x27;／&#x27; + (row.staff || &#x27;?&#x27;),
+  ];
+  if (dup.customer.replace(/[\s　]/g, &#x27;&#x27;) !== row.customer.replace(/[\s　]/g, &#x27;&#x27;)) lines.push(&#x27;❗顧客名が台帳と違います。&#x27; + dup.rowNumber + &#x27;行目を確認してください。&#x27;);
+  lines.push(&#x27;別の契約なら、金額か顧客名を変えて再投稿せず、シートに直接追記してください。&#x27;);
+  return lines.join(&#x27;\n&#x27;);
+}
+
+// ---------------------------------------------------------------------------
+// 手動テスト（エディタから実行。Driveに置いた写真で動作確認する）
+// ---------------------------------------------------------------------------
+function testWithDriveFile() {
+  const fileId = &#x27;ここにDriveの画像ファイルIDを入れる&#x27;;
+  const blob = DriveApp.getFileById(fileId).getBlob();
+  const ss = SpreadsheetApp.openById(prop_(&#x27;SPREADSHEET_ID&#x27;));
+  const result = extractWithClaude_([blob], readCategories_(ss));
+  Logger.log(JSON.stringify(result, null, 2));
+  const row = buildLedgerRow_(result.contracts[0], &#x27;テスト&#x27;, readStaffMap_(ss), readCategories_(ss));
+  Logger.log(JSON.stringify(row, null, 2));
+  const dup = findDuplicate_(ss.getSheetByName(CONFIG.SHEET_LEDGER), row);
+  Logger.log(dup ? &#x27;登録済み: &#x27; + dup.rowNumber + &#x27;行目&#x27; : &#x27;未登録（本番なら追記される）&#x27;);
+}
+</pre>
+</section>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('copy'),pre=document.getElementById('code');
+  btn.addEventListener('click',function(){
+    var text=pre.textContent;
+    function fallback(){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='選択しました。Ctrl+C / ⌘C でコピー';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){btn.textContent='コピーしました';setTimeout(function(){btn.textContent='コードをコピー';},2000);}).catch(fallback);}else{fallback();}
+  });
+})();
+</script>
