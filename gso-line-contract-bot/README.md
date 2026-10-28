@@ -31,8 +31,8 @@ A・H・J・K・L の数式列は触らない（新しい行には1つ上の行�
    - LINE Developers > Messaging API設定 > 「チャネルアクセストークン（長期）」を発行して控える
 2. **Anthropic APIキー**
    - console.anthropic.com でAPIキーを発行。月の上限（例: 5,000円）を設定しておく
-3. **Googleドライブ**
-   - 契約書写真の保存先フォルダ（例: `GSO契約書`）を作り、URLの `folders/` 以降のIDを控える
+3. **Googleドライブ**（作成済み）
+   - 保存先フォルダ `GSO契約書` は作成済み。フォルダID: `1D9oOych3n60yw0KjUbCTdTwM43pvKbYO`
 4. **Apps Script**
    - スプレッドシート「【GSOリフォーム】経営管理帳票」を開き、拡張機能 > Apps Script
    - `Code.gs` の中身を全部貼り付けて保存
@@ -40,8 +40,8 @@ A・H・J・K・L の数式列は触らない（新しい行には1つ上の行�
      - `LINE_CHANNEL_ACCESS_TOKEN`
      - `ANTHROPIC_API_KEY`
      - `SPREADSHEET_ID` = `1q9cTqWUhwjcBfwF5-hufukyoQkGJC8kcH0_awnQA8FE`
-     - `DRIVE_FOLDER_ID`
-   - エディタ上部で関数 `setup` を選んで実行（初回は権限の承認が出る）。「LINE連携」「LINE処理ログ」シートができる
+     - `DRIVE_FOLDER_ID` = `1D9oOych3n60yw0KjUbCTdTwM43pvKbYO`
+   - エディタ上部で関数 `setup` を選んで実行（初回は権限の承認が出る）。「LINE連携」「LINE処理ログ」シートは作成済みなので、既存のまま使われる
    - デプロイ > 新しいデプロイ > 種類「ウェブアプリ」、実行ユーザー「自分」、アクセス「全員」→ デプロイ → ウェブアプリURLを控える
 5. **Webhook接続**
    - LINE Developers > Messaging API設定 > Webhook URL にウェブアプリURLを貼り、「Webhookの利用」ON

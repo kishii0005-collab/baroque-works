@@ -71,13 +71,13 @@ pre{margin:0;background:var(--code-bg);color:var(--code-fg);padding:16px;border-
 <li>LINE Developers ＞ Messaging API設定 ＞「チャネルアクセストークン（長期）」を発行して控える</li></ul></div></li>
 <li><div><b>Anthropic APIキーを発行する</b>
 <ul><li>console.anthropic.com でAPIキーを発行。月の上限（例：5,000円）を設定しておく</li></ul></div></li>
-<li><div><b>Googleドライブに保存先フォルダを作る</b>
-<ul><li>例：<code>GSO契約書</code>。URLの <code>folders/</code> 以降がフォルダID</li></ul></div></li>
+<li><div><b>Googleドライブの保存先フォルダ（作成済み）</b>
+<ul><li>フォルダ <code>GSO契約書</code> はマイドライブに作成済み。フォルダID：<code>1D9oOych3n60yw0KjUbCTdTwM43pvKbYO</code></li></ul></div></li>
 <li><div><b>Apps Script にコードを入れる</b>
 <ul><li>スプレッドシート「【GSOリフォーム】経営管理帳票」を開き、拡張機能 ＞ Apps Script</li>
 <li>下のコードを全部貼り付けて保存</li>
-<li>歯車「プロジェクトの設定」＞ スクリプト プロパティ に <code>LINE_CHANNEL_ACCESS_TOKEN</code> / <code>ANTHROPIC_API_KEY</code> / <code>SPREADSHEET_ID</code>（<code>1q9cTqWUhwjcBfwF5-hufukyoQkGJC8kcH0_awnQA8FE</code>）/ <code>DRIVE_FOLDER_ID</code> を追加</li>
-<li>エディタ上部で関数 <code>setup</code> を選んで実行（初回は権限の承認が出る）。「LINE連携」「LINE処理ログ」シートができる</li>
+<li>歯車「プロジェクトの設定」＞ スクリプト プロパティ に <code>LINE_CHANNEL_ACCESS_TOKEN</code> / <code>ANTHROPIC_API_KEY</code> / <code>SPREADSHEET_ID</code>（<code>1q9cTqWUhwjcBfwF5-hufukyoQkGJC8kcH0_awnQA8FE</code>）/ <code>DRIVE_FOLDER_ID</code>（<code>1D9oOych3n60yw0KjUbCTdTwM43pvKbYO</code>）を追加</li>
+<li>エディタ上部で関数 <code>setup</code> を選んで実行（初回は権限の承認が出る）。「LINE連携」「LINE処理ログ」シートは作成済みなので、そのまま使われる</li>
 <li>デプロイ ＞ 新しいデプロイ ＞ 種類「ウェブアプリ」、実行ユーザー「自分」、アクセス「全員」→ デプロイ → ウェブアプリURLを控える</li></ul></div></li>
 <li><div><b>Webhook をつなぐ</b>
 <ul><li>LINE Developers ＞ Messaging API設定 ＞ Webhook URL にウェブアプリURLを貼り、「Webhookの利用」ON</li>
