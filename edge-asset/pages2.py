@@ -1,5 +1,5 @@
 # cases (list + detail), flow page, cost section, and sub-page accents. exec'd from build.py after more.py
-NT=' target="_blank" rel="noopener"'
+NT=''
 
 # ---------- sub-page hero: copy on navy, photo bleeding to the right edge ----------
 def phero(en,ja,lead,pid,no=None):
@@ -37,21 +37,21 @@ PARTNER=['品質・納期・価格の3つで評価します','一方的な値下
 def sim_rows():
     out=''
     for rev in (3,6,10):
-        cells=''.join((f'<td>{rev*p/10:g}<small>億円</small></td>' if rev*p>=10 else f'<td>{rev*p*1000:,}<small>万円</small></td>') for p in (1,2,3))
+        cells=''.join((f'<td>{rev*p/10:g}<small>億円</small></td>' if rev*p>=10 else f'<td>{rev*p*1000:,}<small>万円</small></td>') for p in (3,5,7))
         out+=f'<tr><th>年商 {rev}億円</th>{cells}</tr>'
     return out
 def pbars(dark=False):
     row=lambda k,c,g,o:f'<div class="pb-r"><p class="pb-k">{k}</p><div class="pb-bar"><i class="c" style="flex:{c}"><b>原価 {c}</b></i><i class="g" style="flex:{g}"><b>販管費 {g}</b></i><i class="o" style="flex:{o}"><b>{o}</b></i></div></div>'
     return f"""<div class="pbars{' dk' if dark else ''} rv">
-  {row('いま',75,20,5)}{row('原価率 −2pt',73,20,7)}
-  <div class="pb-res"><p class="pb-big">営業利益 <b>1.4</b>倍</p><p class="pb-cap">{W('売上が|同じでも、|原価率が|2ポイント|下がるだけで|営業利益は|5から7へ。')}</p></div>
+  {row('いま',75,20,5)}{row('原価率 −7pt／販管費率 −3pt',68,17,15)}
+  <div class="pb-res"><p class="pb-big">営業利益 <b>3</b>倍</p><p class="pb-cap">{W('業者交渉で|原価を下げ、|集客・採用・財務などの|裏側の仕事を|グループで|一括して|請け負うことで、|販管費も下がる。|売上が同じでも、|営業利益は|5から15へ。')}</p></div>
   <p class="pb-note">売上を100としたモデル（原価率75%・販管費率20%の場合）。濃い青が営業利益です。</p>
 </div>"""
 COST=f"""<section class="cost" id="cost">
   <div class="w">
-    {head('Cost','原価の改善','原価の|1ポイントが、|会社の|利益を|変える。','工務店の利益を一番大きく左右するのは原価です。発注量をまとめた交渉と数字の管理で、仕入れ値を適正な水準に見直し、営業利益率の最大化に取り組みます。')}
+    {head('Cost','原価の改善','原価と|販管費が、|会社の|利益を|変える。','工務店の利益を一番大きく左右するのは原価です。そのうえで、集客・採用・財務などの裏側の仕事をグループで一括して請け負えば、販管費も下がります。発注量をまとめた交渉と数字の管理で、仕入れ値を適正な水準に見直し、営業利益率の最大化に取り組みます。')}
     <div class="cs-why">
-      <div class="cs-wt rv"><p class="cs-k">Why cost</p><h3>{W('原価2ポイントの|改善は、|売上を|8%|伸ばすのと|同じ効果。')}</h3>{P('年間25棟の会社なら、2棟多く受注するのと同じ利益です。受注を増やすには広告費も人も時間もかかりますが、原価の見直しは、いま受けている仕事のままで取り組めます。')}</div>
+      <div class="cs-wt rv"><p class="cs-k">Why cost</p><h3>{W('原価と|販管費の|改善は、|売上を|4割|伸ばすのと|同じ効果。')}</h3>{P('年間25棟の会社なら、10棟多く受注するのと同じ利益です。受注を増やすには広告費も人も時間もかかりますが、原価の見直しは、いま受けている仕事のままで取り組めます。')}</div>
       {pbars()}
     </div>
     <ol class="cs-steps">{''.join(f'<li class="rv"><p class="cs-sn">STEP {i+1:02d}<span>{e}</span></p><h3>{W(h)}</h3>{P(t)}</li>' for i,(e,h,t) in enumerate(CSTEPS))}</ol>
@@ -59,8 +59,8 @@ COST=f"""<section class="cost" id="cost">
     <div class="cost-b">
       <div class="sim rv">
         <p class="sim-k">原価率が下がると、粗利はどれだけ増えるか</p>
-        <div class="tw"><table><thead><tr><th></th><th>1ポイント</th><th>2ポイント</th><th>3ポイント</th></tr></thead><tbody>{sim_rows()}</tbody></table></div>
-        <p class="sim-n">{W('年間の|粗利の|増加額（単純計算）。|年商6億円の|会社で|原価率が|2ポイント|下がれば、|粗利は|年1,200万円|増えます。')}</p>
+        <div class="tw"><table><thead><tr><th></th><th>3ポイント</th><th>5ポイント</th><th>7ポイント</th></tr></thead><tbody>{sim_rows()}</tbody></table></div>
+        <p class="sim-n">{W('年間の|粗利の|増加額（単純計算）。|年商6億円の|会社で|原価率が|7ポイント|下がれば、|粗利は|年4,200万円|増えます。')}</p>
       </div>
       <div class="notdo rv">
         <p class="nd-k">取引先との向き合い方</p>
@@ -134,7 +134,7 @@ CASE_NOTE='掲載している事例は、よくあるご相談をもとにした
 def case_card(c,i):
     pr=''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k,v in c['prof'] if k in ('エリア','規模','社長'))
     return f"""<a class="ccase rv" href="{c['slug']}.html"{NT}>
-  <div class="ph">{img(c['pid'],c['alt'],1200)}<span class="cc-no">CASE<b>{i+1:02d}</b></span></div>
+  <div class="ph">{img(c['pid'],c['alt'],1200)}<span class="cc-no">CASE<b>{i+1:02d}</b></span><span class="cc-model">想定事例</span></div>
   <div class="cc-tx"><p class="cc-tag"><span>{c['tag']}</span>{c['en']}</p><h3>{W(c['title'])}</h3>{P(c['short'])}<dl>{pr}</dl><span class="cc-more">詳しく見る {AR}</span></div>
 </a>"""
 
@@ -148,9 +148,10 @@ CASELIST=f"""<section class="clist">
 
 TOPCASES=f"""<section class="tcases" id="cases">
   <div class="w">
-    {head('Case','モデルケース','こんな|ご相談を|お受け|しています','よくあるご相談を、条件を変えた想定事例としてまとめました。カードを押すと、引き継ぎの形とその後の1年を別タブでご覧いただけます。')}
+    {head('Track record','実績と事例','引き受けてきた|会社と、|よくある|ご相談')}
+    @@TOPREAL@@
     <div class="cgrid">{''.join(case_card(c,i) for i,c in enumerate(CASES))}</div>
-    <div class="tc-foot"><p class="cnote">{CASE_NOTE}</p><a class="btn btn-navy" href="cases.html"{NT}>事例一覧を見る {AR}</a></div>
+    <div class="tc-foot"><p class="cnote">{CASE_NOTE}</p><a class="btn btn-navy" href="results.html"{NT}>実績・事例を見る {AR}</a></div>
   </div>
 </section>"""
 
@@ -233,10 +234,10 @@ PROFILE=f"""<section class="prof" id="profile">
       <div class="pf-card rv"><div class="pf-ph"><img src="img/tanioka-sm.jpg" alt="" width="480" height="600" loading="lazy" decoding="async"></div><p class="pf-role">代表取締役</p><p class="pf-name">谷岡 佑亮</p><p class="pf-en">Yusuke Tanioka</p>
         <ul class="pf-tags">{''.join(f'<li>{t}</li>' for t in ['経営再建','成長戦略','人材採用','営業体制の構築','業務改善','建築業界'])}</ul></div>
       <div class="pf-tx rv">
-        {P('株式会社船井総合研究所で、コンサルタントとして上位0.5%の年間粗利獲得実績を複数年にわたって納めました。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型のコンサルティングに取り組んできました。')}
+        {P('中小企業経営コンサルティング会社で、コンサルタントとして上位0.5%の年間粗利獲得実績を複数年にわたって納めました。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型のコンサルティングに取り組んできました。')}
         {P('同社を退職後も複数の事業の運営に携わりながら、建築業界をはじめとする企業の人材採用、営業体制の構築、業務改善などを支援しています。')}
         {P('理論と実務をつなぐ進め方を大切にしています。現在は株式会社エッジアセットの代表として、地域の工務店・住宅会社の事業承継とグループ経営に取り組んでいます。')}
-        <ol class="pf-tl">{''.join(f'<li><span>{e}</span><b>{h}</b>{P(t)}</li>' for e,h,t in [('Consulting','船井総合研究所','経営再建・成長戦略の実行支援。上位0.5%の年間粗利獲得実績を複数年にわたり達成。'),('Operation','事業運営と支援','複数の事業を運営しながら、建築業界を中心に採用・営業・業務改善を支援。'),('Edge Asset','代表取締役','工務店・住宅会社の事業承継とグループ経営に取り組む。')])}</ol>
+        <ol class="pf-tl">{''.join(f'<li><span>{e}</span><b>{h}</b>{P(t)}</li>' for e,h,t in [('Consulting','中小企業経営コンサルティング会社','経営再建・成長戦略の実行支援。上位0.5%の年間粗利獲得実績を複数年にわたり達成。'),('Operation','事業運営と支援','複数の事業を運営しながら、建築業界を中心に採用・営業・業務改善を支援。'),('Edge Asset','代表取締役','工務店・住宅会社の事業承継とグループ経営に取り組む。')])}</ol>
       </div>
     </div>
   </div>
@@ -249,7 +250,7 @@ TOPSEO=f"""<section class="tseo">
     <div class="ts-g">
       <article class="rv"><p class="ts-n">01</p><h3>{W('建設業は、|後継者が|いない割合が|最も高い業種です')}</h3>{P('その割合は57.3%（帝国データバンク、2025年）。子どもが別の道に進んだ、社員に継がせるには株式を買い取る資金が足りない。黒字であっても、継ぐ人がいないために廃業を選ぶ工務店・住宅会社は少なくありません。廃業すれば、引き渡し済みの家の保証や定期点検を担う会社もなくなります。')}</article>
       <article class="rv"><p class="ts-n">02</p><h3>{W('株式譲渡なら、|会社も許可も|保証も残ります')}</h3>{P('第三者への事業承継（M&A）で多く選ばれるのが株式譲渡です。会社の持ち主が変わるだけなので、社名、社員の雇用、建設業許可、施主様との契約と保証は、原則としてそのまま会社に残ります。社長は株式の対価を受け取り、借入の個人保証からも外れることができます。')}</article>
-      <article class="rv"><p class="ts-n">03</p><h3>{W('エッジアセットは、|住宅会社専門の|長期保有グループです')}</h3>{P('私たちは、引き継いだ会社を数年で売却することを前提にしていません。社名と現場は各社に残し、集客・採用・財務・仕入れなど、規模が小さいほど負担が重くなる仕事をグループ本部で支えます。原価と数字の管理で利益が残る経営をつくり、次の三十年へつなぎます。')}</article>
+      <article class="rv"><p class="ts-n">03</p><h3>{W('エッジアセットは、|工務店・住宅会社・|リフォーム会社専門の|ロールアップグループです')}</h3>{P('私たちは、引き継いだ会社を数年で売却することを前提にしていません。社名と現場は各社に残し、集客・採用・財務・仕入れなど、規模が小さいほど負担が重くなる仕事をグループ本部で支えます。原価と数字の管理で利益が残る経営をつくり、次の三十年へつなぎます。')}</article>
     </div>
     <div class="ts-links"><a class="tl" href="column-1.html">事業承継の3つの選択肢 {AR}</a><a class="tl" href="column-4.html">譲渡価格の考え方 {AR}</a><a class="tl" href="column-3.html">建設業許可の引き継ぎ {AR}</a></div>
   </div>
@@ -271,9 +272,8 @@ SVCFAQ=f"""<section class="topfaq">
 # ---------- structure helpers (trust bar, in-page index, closing CTA, contact aside, slim team) ----------
 TRUST=f"""<section class="trust" aria-label="エッジアセットの特徴">
   <div class="w"><ul>{''.join(f'<li><span class="tr-k">{k}</span><b>{W(b)}</b><small>{s}</small></li>' for k,b,s in [
-    ('Focus','工務店・|住宅会社専門','住宅業界の事業承継だけを扱います'),
-    ('Ownership','売らない|長期保有','数年での売却を前提にしません'),
-    ('Leadership','船井総研出身の|代表','在籍時、上位0.5%の粗利獲得実績'),
+    ('Focus','工務店・|住宅会社・|リフォーム会社専門','住まいに関わる会社の事業承継だけを扱います'),
+    ('Ownership','売らない','私たちが後継者として、思いを引き継ぎます'),
     ('Confidential','初回から|秘密保持','社外・オンラインで面談します')])}</ul></div>
 </section>"""
 
@@ -285,8 +285,8 @@ def close(h='まずは、|話を|聞いてみる|だけで|構いません。',p
   <div class="w">
     <div class="cl-t"><p class="cl-en">Contact</p><h2>{W(h)}</h2>{P(p)}</div>
     <div class="cl-a">
-      <a class="cl-b" href="contact.html"{NT}><span>フォームで相談する</span><small>2営業日以内にご連絡します</small><i class="ar"></i></a>
-      <a class="cl-b tel" href="tel:0300000000"><span>03-0000-0000</span><small>平日 9:00–18:00</small><i class="ar"></i></a>
+      <a class="cl-b" href="contact.html"{NT}><span>フォームで相談する</span><small>2日以内にご連絡します</small><i class="ar"></i></a>
+      <a class="cl-b tel" href="tel:0368231499"><span>03-6823-1499</span><small>年中無休 9:00–18:00</small><i class="ar"></i></a>
     </div>
   </div>
 </section>"""
@@ -299,18 +299,96 @@ CLOSE_FLOW=close('まずは、|初回面談の|日程だけ|決めませんか�
 CONTACT_ASIDE=f"""<aside class="side ca">
   <p class="ca-k">After sending</p>
   <h2 class="ca-h">送信後の流れ</h2>
-  <ol>{''.join(f'<li><b>{n}</b><span>{W(t)}</span></li>' for n,t in [('01','2営業日以内に、|代表から|ご連絡します'),('02','日時と場所を|決めます（社外・|オンライン）'),('03','初回面談。|決算書が|なくても|構いません')])}</ol>
+  <ol>{''.join(f'<li><b>{n}</b><span>{W(t)}</span></li>' for n,t in [('01','2日以内に、|代表から|ご連絡します'),('02','日時と場所を|決めます（社外・|オンライン）'),('03','初回面談。|決算書が|なくても|構いません')])}</ol>
   <p class="ca-sec">{nb('秘密保持契約は、ご希望があれば初回面談の前に結べます。会社の代表番号にお電話することはありません。')}</p>
-  <p class="ca-tel"><span>お電話でのご相談</span>03-0000-0000<small>平日 9:00–18:00　夜間・土日も調整します</small></p>
+  <p class="ca-tel"><span>お電話でのご相談</span>03-6823-1499<small>年中無休 9:00–18:00</small></p>
 </aside>"""
 
 TEAM2=f"""<section class="team" id="team">
   <div class="w">
-    {head('Team','体制','住宅業界の|実務を|知るチームで、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。代表に加え、経営支援と専門家のチームでグループ入りを支えます。')}
+    {head('Team','体制','住宅業界の|実務を|知るチームで、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。代表と取締役が、自ら現場に入ってグループ入りを支えます。')}
     <div class="tm2">{''.join(f'<article class="rv"><p class="t2-r">{r}</p><h3>{n}</h3>{P(t)}{lk}</article>' for r,n,t,lk in [
       ('代表取締役','谷岡 佑亮','全体の統括と、各社の社長との経営会議を担当します。',f'<a class="tl" href="#profile">プロフィールを見る {AR}</a>'),
-      ('取締役／グループ経営支援',TBD,'集客・採用・財務の実務を担当します。',''),
-      ('顧問（税理士）',TBD,'事業承継税制・株価算定を担当します。',''),
-      ('顧問（弁護士）',TBD,'株式譲渡契約・許認可を担当します。','')])}</div>
+      ('取締役／グループ経営支援','石井 健太','集客・採用・財務の実務を担当します。','')])}</div>
   </div>
 </section>"""
+
+# ---------- real track record (results.html) ----------
+REAL=[
+ dict(name='向洋ハウジング',named=True,tag='後継者不在の引き受け',en='Succession',since='2025.01',status='経営中',
+  lead='後継者のいない会社を引き受け、3年連続の赤字から1年で黒字企業に立て直しました。',
+  steps=[('2025.01','後継者不在の会社として、経営を引き受け'),('1年後','3年連続の赤字から、黒字企業へ再建'),('現在','エッジアセットが経営を続けています')],
+  point='社名と現場はそのままに、数字の管理と原価・集客の見直しから着手しました。'),
+ dict(name='GSOリフォーム',named=True,tag='撤退事業の引き受け',en='Carve-out',since='2026.08',status='経営中',
+  lead='撤退を考えていた事業を引き受けてブラッシュアップし、より良いリフォーム会社に生まれ変わらせました。',
+  steps=[('2026.08','撤退予定だった事業を引き受け'),('引き受け後','商品・集客・体制を見直し、リフォーム会社として再出発'),('現在','エッジアセットが経営を続けています')],
+  point='廃業や撤退で失われるはずだった施主様との関係と、社員の仕事を残しました。'),
+ dict(name='A社',named=False,tag='再建して二代目へ',en='Next generation',since='2021.08',status='共同経営中',
+  lead='株式を譲り受けて再建したのち、株式を二代目へ引き継ぎました。いまも一緒に経営に関わっています。',
+  steps=[('2021.08','株式を譲り受け、再建に着手'),('再建後','二代目へ株式を引き継ぎ'),('現在','二代目とともに経営に関わっています')],
+  point='私たちがいったん後継者となり、会社を立て直してから次の世代へつないだ例です。'),
+ dict(name='B社',named=False,tag='立ち上げて社長へ',en='Start-up',since='2022.11',status='社長へ引き継ぎ済み',
+  lead='共同創業者とともに会社を立ち上げ、社長の意向を受けて、2025年に株式をすべて社長へ引き継ぎました。',
+  steps=[('2022.11','共同創業者とともに立ち上げ'),('2025','社長の意向を受け、株式をすべて社長へ引き継ぎ'),('現在','社長が経営しています')],
+  point='経営が軌道に乗ったあと、本人の希望に合わせて株式を引き継いだ例です。'),
+]
+def real_card(r,full=False):
+    nm=f'<b class="rc-name">{r["name"]}</b>'+('' if r['named'] else '<small class="rc-anon">社名は非公開</small>')
+    steps=''.join(f'<li><span>{d}</span><p>{t}</p></li>' for d,t in r['steps']) if full else ''
+    return f"""<article class="rcard rv">
+  <p class="rc-top"><span class="rc-badge">実績</span><span class="rc-en">{r['en']}</span><span class="rc-st">{r['status']}</span></p>
+  <p class="rc-since"><span>引き受け</span>{r['since']}</p>
+  <div class="rc-nm">{nm}</div>
+  <p class="rc-tag">{r['tag']}</p>
+  {P(r['lead'],'rc-lead')}
+  {f'<ol class="rc-steps">{steps}</ol>' if full else ''}
+  {P(r['point'],'rc-pt') if full else ''}
+</article>"""
+RESULTS=f"""<section class="real">
+  <div class="w">
+    {head('Track record','これまでの実績','再建・立ち上げ|4社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。実際に取り組んできた4社です。')}
+    <div class="rgrid">{''.join(real_card(r,True) for r in REAL)}</div>
+    <p class="rnote">A社・B社は、先方のご意向により社名を伏せています。</p>
+  </div>
+</section>
+<section class="mcases">
+  <div class="w">
+    {head('Model cases','モデルケース（想定事例）','こんな|ご相談も|お受けしています','よくいただくご相談をもとにした想定事例です。実在の企業・数値ではありません。')}
+    <div class="cgrid">{''.join(case_card(c,i) for i,c in enumerate(CASES))}</div>
+  </div>
+</section>"""
+
+# ---------- vision: the world we are building ----------
+WORLD=f"""<section class="world">
+  <div class="w">
+    <div class="wd-h rv">
+      <p class="sh-ja">目指す世界</p>
+      <p class="wd-st">{W('家を建てた会社が、|三十年後も|その家を|守れる|世界へ。')}</p>
+      {P('地域の工務店・住宅会社・リフォーム会社が、後継者がいないという理由で消えていく。その流れを止めるために、エッジアセットは会社を引き継ぎ、業績を伸ばし、次の世代へつなぐ仕組みをつくります。')}
+    </div>
+    <div class="wd-chain rv" aria-label="創業者からエッジアセット、二代目・三代目へと引き継ぐ流れ">
+      <div class="wc-i"><span>01</span><b>創業者</b><small>地域で信頼を<br>積み上げてきた会社</small></div>
+      <i class="wc-ar" aria-hidden="true"></i>
+      <div class="wc-i us"><span>02</span><b>エッジアセット</b><small>私たちが後継者として<br>思いを引き継ぎ、業績を伸ばす</small></div>
+      <i class="wc-ar" aria-hidden="true"></i>
+      <div class="wc-i"><span>03</span><b>二代目・三代目</b><small>社内の人材や<br>次の経営者へつなぐ</small></div>
+    </div>
+    <ul class="wd-3">{''.join(f'<li class="rv"><p class="w3-k">{k}</p><h3>{W(h)}</h3>{P(t)}</li>' for k,h,t in [
+      ('施主様にとって','建てた会社に、|ずっと|相談できる','保証も点検も、建てた会社が続けます。三十年後も、同じ会社の担当者が家を見に伺います。'),
+      ('社員にとって','地域で|働き続け、|給与が上がる','会社がなくなる不安から離れ、グループの研修と仕組みの中で、腕と待遇を上げていけます。'),
+      ('地域にとって','住まいの|担い手が|残り続ける','大工・設備・板金の協力業者さんを含めて、地域の家づくりの力が次の世代に残ります。')])}</ul>
+    <div class="wd-grp rv">
+      <p class="wg-k">エッジアセットのグループ</p>
+      <ul>{''.join(f'<li><b>{n}</b><span>{t}</span></li>' for n,t in [('向洋ハウジング','2025年〜'),('GSOリフォーム','2026年〜'),('A社','2021年〜'),('次の一社','ご相談をお待ちしています')])}</ul>
+    </div>
+  </div>
+</section>"""
+
+# top page: real results strip above the model cases
+TOPREAL=f"""<div class="treal">
+  <p class="tr-h"><span class="rc-badge">実績</span>これまでに引き受けた会社</p>
+  <div class="rgrid r4">{''.join(real_card(r) for r in REAL)}</div>
+  <p class="tr-h mc"><span class="rc-badge ghost">想定事例</span>よくあるご相談のモデルケース</p>
+</div>"""
+
+TOPCASES=TOPCASES.replace('@@TOPREAL@@',TOPREAL)

@@ -541,7 +541,7 @@ HTML=f'''<!doctype html>
       <a class="nl" href="#cases">事例</a>
       <a class="nl" href="#flow">ご相談の流れ</a>
       <a class="nl" href="#faq">よくある質問</a>
-      <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
+      <span class="tel">03-6823-1499<small>年中無休 9:00–18:00</small></span>
       <a class="btn btn-white" href="#contact">無料相談 {AR}</a>
     </nav>
   </div>
@@ -607,9 +607,7 @@ HTML=f'''<!doctype html>
   <div class="w">
     <p class="big rv">売らない。</p>
     <div class="rv">
-      {P('私たちは、買った会社を数年で売却して利益を得るファンドではありません。グループに入っていただいた会社は、原則として手放さずに経営を続けます。')}
-      {P('売却益ではなく、毎年の営業利益で成り立つグループです。だからこそ、利益がきちんと残る経営に本気で取り組みます。')}
-      {P('目指すのは、社員の給与が上がり、施主様からの紹介が続く会社であることです。')}
+      {P('私たちは、買った会社を数年で売却して利益を得るファンドではありません。地域の会社の業績アップを応援し、引き継いで一緒に伸ばすロールアップの会社です。まずは私たちが後継者として、これまでの思いを引き継ぎます。その先、二代目、三代目へ引き継いでいくこともできます。')}
     </div>
   </div>
 </section>
@@ -619,14 +617,14 @@ HTML=f'''<!doctype html>
     <div class="rv">
       <div class="frame navy"><div class="ph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div></div>
       <div class="who"><small>代表取締役</small><b>谷岡 佑亮</b></div>
-      <ul class="career"><li>株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングに従事</li><li>同社を退職後、複数の事業運営に携わりながら、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
+      <ul class="career"><li>中小企業経営コンサルティング会社にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成</li><li>経営再建・成長戦略の実行支援を中心に、実務型のコンサルティングに従事</li><li>同社を退職後、複数の事業運営に携わりながら、建築業界をはじめとする企業の人材採用・営業体制の構築・業務改善を支援</li><li>株式会社エッジアセット 代表取締役</li></ul>
     </div>
     <div class="letter rv">
       {head('Message','代表メッセージ','').replace('<h2></h2>','')}
       <p class="lede">{W('会社を|売る、|という|言葉に|抵抗がある方へ。')}</p>
       {P('経営コンサルタントとして、そして事業の運営者として、建築業界を中心に、さまざまな会社の経営の支援に携わってきました。黒字で、腕のいい職人がいて、地域で信頼されている。それでも、継ぐ人がいないという一点で、会社をたたむ選択を考える社長に、何度も出会ってきました。')}
       {P('大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安があるから、多くの社長は相談すること自体をためらいます。')}
-      {P('私たちは、その不安に正面から答えるために会社をつくりました。名前を残すこと、施主様との約束を守ること。どちらも契約書に書き込みます。売却を前提にしないことも、最初にはっきりお伝えします。まずは一度、話を聞かせてください。')}
+      {P('私たちは、その不安に正面から答えるために会社をつくりました。名前を残すこと、施主様との約束を守ること。どちらも契約書に書き込みます。売却を前提にしないこと、私たちが後継者として思いを引き継ぐことも、最初にはっきりお伝えします。まずは一度、話を聞かせてください。')}
       <p class="sign"><span class="nb">株式会社エッジアセット</span>　<span class="nb">代表取締役　谷岡 佑亮</span></p>
     </div>
   </div>
@@ -645,7 +643,7 @@ HTML=f'''<!doctype html>
 <section class="cta">
   <div class="ph">{img('pcYN7Pi8_BQ','',2000)}</div>
   <div class="w">
-    <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-0000-0000</b></p></div>
+    <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-6823-1499</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#faq">よくある質問を見る {AR}</a></div>
   </div>
 </section>
@@ -724,11 +722,12 @@ HTML=f'''<!doctype html>
     <dl class="rv">
       <div><dt>社名</dt><dd>株式会社エッジアセット（EDGE ASSET Inc.）</dd></div>
       <div><dt>代表者</dt><dd>代表取締役　谷岡 佑亮</dd></div>
+      <div><dt>役員</dt><dd>取締役　石井 健太</dd></div>
       <div><dt>所在地</dt><dd>〒105-0022　東京都港区海岸2丁目5-1-1702</dd></div>
-      <div><dt>設立</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
-      <div><dt>資本金</dt><dd><em class="tbd">【確定後に記載】</em></dd></div>
+      <div><dt>設立</dt><dd>2021年3月1日</dd></div>
+      <div><dt>資本金</dt><dd>1,000万円</dd></div>
       <div><dt>事業内容</dt><dd>工務店・住宅会社の株式取得および経営／<span class="nb">グループ会社の経営支援</span></dd></div>
-      <div><dt>連絡先</dt><dd>TEL 03-0000-0000（平日 9:00–18:00）</dd></div>
+      <div><dt>連絡先</dt><dd>TEL 03-6823-1499（年中無休 9:00–18:00）</dd></div>
     </dl>
   </div>
 </section>
@@ -740,10 +739,10 @@ HTML=f'''<!doctype html>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}
     <div class="ways">
       <a class="way" href="#cf" data-topic="面談の予約"><b>面談を予約する</b><span>代表が直接お会いします。<span class="nb">社外でもオンラインでも</span><span class="nb">構いません。</span></span><i>日程を相談する</i></a>
-      <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>平日9時〜18時。<span class="nb">夜間・土日も調整します。</span></span><i>03-0000-0000</i></a>
+      <a class="way" href="#cf" data-topic="電話での相談"><b>電話で相談する</b><span>年中無休、<span class="nb">9時〜18時です。</span></span><i>03-6823-1499</i></a>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
-    <div class="telrow"><b>03-0000-0000</b><span>平日 9:00–18:00　夜間・土日の面談も調整します</span></div>
+    <div class="telrow"><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
     <form id="cf" novalidate data-endpoint="" data-mailto="info@example.com">
       <label for="f-topic">ご相談の種類</label>
       <select id="f-topic" name="ご相談の種類"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
@@ -752,9 +751,9 @@ HTML=f'''<!doctype html>
       <label for="f-msg">ご相談内容</label><textarea id="f-msg" name="ご相談内容" rows="5" placeholder="例：後継者が決まっていない／数年以内に引退を考えている／まず話を聞きたい　など、一言でも構いません"></textarea>
       <label class="chk"><input type="checkbox" id="f-ok" required> <span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label><p class="f-err" id="e-ok" hidden>プライバシーポリシーへの同意が必要です。</p><input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-navy" type="submit"><span class="bt">送信する</span><span class="bt-busy" hidden>送信しています…</span> {AR}</button>
-      <ul class="f-trust"><li>ご相談は無料です</li><li>社名・お名前を伏せたままでも構いません</li><li>2営業日以内にご連絡します</li></ul>
+      <ul class="f-trust"><li>ご相談は無料です</li><li>社名・お名前を伏せたままでも構いません</li><li>2日以内にご連絡します</li></ul>
     </form>
-    <div class="sent" id="sent" hidden><p class="st-k">Thank you</p><p class="st-h">送信を受け付けました。</p><p class="st-p">2営業日以内に、代表の谷岡からご連絡します。お急ぎの場合は、お電話でもお受けしています。</p><a class="tel-a st-tel" href="tel:0300000000">03-0000-0000</a><p class="st-n" id="sent-note" hidden>メールソフトが開かない場合は、上記の電話番号へご連絡ください。</p></div>
+    <div class="sent" id="sent" hidden><p class="st-k">Thank you</p><p class="st-h">送信を受け付けました。</p><p class="st-p">2日以内に、代表の谷岡からご連絡します。お急ぎの場合は、お電話でもお受けしています。</p><a class="tel-a st-tel" href="tel:0368231499">03-6823-1499</a><p class="st-n" id="sent-note" hidden>メールソフトが開かない場合は、上記の電話番号へご連絡ください。</p></div>
   </div>
 </section>
 
@@ -766,8 +765,8 @@ HTML=f'''<!doctype html>
     <div class="fg">
       <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><p class="fh">COMPANY</p><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
-      <div><p class="fh">SUCCESSION</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="#cases">事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
-      <div class="ftel"><p class="fh">CONTACT</p><b>03-0000-0000</b><span>平日 9:00–18:00</span></div>
+      <div><p class="fh">SUCCESSION</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="results.html">実績・事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
+      <div class="ftel"><p class="fh">CONTACT</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
@@ -865,19 +864,19 @@ for key,pat in {
 }.items(): sec[key]=cut(pat)
 
 SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
-JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社の事業承継（株式取得およびグループ経営）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-0000-0000","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
+JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社の事業承継（株式取得およびグループ経営）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-6823-1499","foundingDate":"2021-03-01","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
-    items=[('company.html','私たちについて'),('service.html','グループの支援'),('cases.html','事例'),('flow.html','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('faq.html','よくあるご質問')]
-    NT=' target="_blank" rel="noopener"'
+    items=[('company.html','私たちについて'),('service.html','グループの支援'),('results.html','実績・事例'),('flow.html','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('faq.html','よくあるご質問')]
+    NT=''
     links=''.join(f'<a class="nl" href="{h}"{NT}>{t}</a>' for h,t in items)
-    menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('cases.html','事例','Case'),('flow.html','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('column.html','コラム','Column'),('contact.html','ご相談・お問い合わせ','Contact')]
+    menu=[('index.html','トップ','Top'),('company.html','私たちについて','About us'),('service.html','グループの支援','Our support'),('results.html','実績・事例','Results'),('flow.html','ご相談の流れ','Flow'),('partners.html','仲介会社・金融機関の皆さまへ','For partners'),('news.html','お知らせ','News'),('column.html','コラム','Column'),('contact.html','ご相談・お問い合わせ','Contact')]
     mlinks=''.join(f'<li><a href="{h}"{NT}><span class="mn">{i+1:02d}</span><span class="mt"><span class="me">{e}</span><span class="mj">{j}</span></span><span class="mx" aria-hidden="true"></span></a></li>' for i,(h,j,e) in enumerate(menu))
     return f"""<header class="site">
   <div class="w">
     <a class="logo" href="index.html"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">{links}
-      <span class="tel">03-0000-0000<small>平日 9:00–18:00</small></span>
+      <span class="tel">03-6823-1499<small>年中無休 9:00–18:00</small></span>
     </nav>
   </div>
 </header>
@@ -890,11 +889,10 @@ def nav():
     </div>
     <div class="menu-r">
       <p class="menu-k">ご相談窓口</p>
-      <p class="menu-tel">03-0000-0000</p>
-      <p class="menu-s">平日 9:00–18:00　夜間・土日の面談も調整します</p>
+      <p class="menu-tel">03-6823-1499</p>
+      <p class="menu-s">年中無休 9:00–18:00</p>
       <a class="btn btn-white" href="contact.html"{NT}>無料で相談する {AR}</a>
       <p class="menu-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
-      <p class="menu-note">各ページは新しいタブで開きます</p>
     </div>
   </div>
 </div>"""
@@ -910,7 +908,7 @@ def footer():
     f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="faq.html">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
     f=f.replace('<a href="index.html">プライバシーポリシー</a>','<a href="privacy.html">プライバシーポリシー</a>').replace('<a href="index.html">サイトのご利用について</a>','<a href="terms.html">サイトのご利用について</a>　｜　<a href="sitemap.html">サイトマップ</a>')
     return f
-SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2営業日以内にご連絡</span></p><a class="sb-b" href="contact.html" target="_blank" rel="noopener"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0300000000"><small>平日 9:00–18:00</small>03-0000-0000</a></div></div>'
+SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>'
 def page(fname,title,body,desc):
     t='工務店・住宅会社のM&A・事業承継｜株式会社エッジアセット' if fname=='index.html' else f'{title}｜株式会社エッジアセット'
     return f"""<!doctype html>
@@ -980,7 +978,7 @@ TEAM=f"""<section class="team" id="team">
   <div class="w">
     {head('Team','メンバー','住宅業界の|実務を|知る人間が、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバーをご紹介します。')}
     <div class="tg">
-      <article class="tm lead rv"><div class="ph tph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('株式会社船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
+      <article class="tm lead rv"><div class="ph tph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('中小企業経営コンサルティング会社にて、上位0.5%の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3>{TBD}</h3>{P('集客・採用・財務の実務を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（税理士）</p><h3>{TBD}</h3>{P('事業承継税制・株価算定を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（弁護士）</p><h3>{TBD}</h3>{P('株式譲渡契約・許認可を担当します。')}</div></article>
@@ -989,23 +987,24 @@ TEAM=f"""<section class="team" id="team">
 </section>"""
 CAPITAL=f"""<section class="capital dark" id="capital">
   <div class="w">
-    {head('Capital','資金と体制','買い取る|資金と、|支え続ける|体制','一社目の譲渡を迷わず決めていただけるよう、資金の裏付けと支援体制を明らかにしています。')}
+    {head('Capital','資金と体制','買い取る|資金と、|支え続ける|体制','譲渡を迷わず決めていただけるよう、資金の裏付けと支援体制を明らかにしています。')}
     <div class="cap3">
-      <div class="rv"><p class="k">投資枠</p><p class="v">{TBD}</p>{P('工務店・住宅会社の株式取得に充てる自己資金と借入枠の合計です。','d')}</div>
+      <div class="rv"><p class="k">投資枠</p><p class="v">10億円</p>{P('工務店・住宅会社の株式取得に充てる自己資金と借入枠の合計です。','d')}</div>
       <div class="rv"><p class="k">提携金融機関</p><p class="v">{TBD}</p>{P('買収資金と、グループ会社の運転資金を支えます。','d')}</div>
       <div class="rv"><p class="k">専門家ネットワーク</p><p class="v">税理士・弁護士・M&amp;A実務</p>{P('株価算定、契約、許認可、労務までを社内外の専門家で対応します。','d')}</div>
     </div>
-    <p class="capnote">エッジアセットは、外部の投資家から資金を集めて<span class="nb">運用するファンドではありません。</span><br>{TBD}</p>
+    <p class="capnote">エッジアセットは、外部の投資家から資金を集めて<span class="nb">運用するファンドではありません。</span></p>
   </div>
 </section>"""
+REAL_SUMMARY=[("2021","A社","株式を譲り受けて再建。二代目へ引き継ぎ"),("2022","B社","立ち上げ。共同創業の社長へ引き継ぎ"),("2025","向洋ハウジング","後継者不在の引き受け。1年で黒字化"),("2026","GSOリフォーム","撤退事業を引き受け、リフォーム会社として再生")]
 RECORD=f"""<section class="record" id="record">
   <div class="w rec">
-    <div class="rv">{head('Track record','実績','グループ|1社目の|パートナーを|募集しています')}</div>
+    <div class="rv">{head('Track record','実績','これまでの|実績')}</div>
     <div class="rv">
-      {P('エッジアセットは、2026年に設立した新しい会社です。現時点で、グループに入っていただいた会社はまだありません。')}
-      {P('だからこそ、1社目の会社には、代表が直接、毎週関わります。グループの仕組みは、1社目の社長と一緒につくっていきます。')}
-      <dl class="recdl"><div><dt>グループ会社数</dt><dd>0社（2026年10月時点）</dd></div><div><dt>検討中のご相談</dt><dd><em class="tbd">【確定後に記載】</em></dd></div></dl>
-      <a class="btn btn-navy" href="contact.html">1社目について相談する {AR}</a>
+      {P('エッジアセットは2021年の設立以来、工務店・住宅会社・リフォーム会社の再建と立ち上げに取り組んできました。後継者のいない会社を引き受けて黒字に立て直した例も、引き継いだ会社を二代目へつないだ例もあります。')}
+      <ul class="rec-l">{''.join(f'<li><span class="rl-y">{y}</span><b>{n}</b><span class="rl-t">{t}</span></li>' for y,n,t in REAL_SUMMARY)}</ul>
+      <dl class="recdl"><div><dt>再建・立ち上げの実績</dt><dd>4社</dd></div><div><dt>現在も経営に関わる会社</dt><dd>3社</dd></div></dl>
+      <div class="btns"><a class="btn btn-navy" href="results.html">実績を詳しく見る {AR}</a><a class="tl" href="contact.html">事業承継について相談する {AR}</a></div>
     </div>
   </div>
 </section>"""
@@ -1027,7 +1026,7 @@ PROMISE_P=f"""<section class="pp">
   <div class="w">
     {head('Commitment','ご紹介者さまへのお約束','ご紹介いただいた|案件に、|誠実に|お応えします')}
     <div class="pp3">
-      <div class="rv"><p class="n">01</p><h3>{W('初回のご回答は|5営業日以内')}</h3>{P('ノンネーム情報をいただいてから5営業日以内に、検討を進めるかどうかをご回答します。')}</div>
+      <div class="rv"><p class="n">01</p><h3>{W('初回のご回答は|5日以内')}</h3>{P('ノンネーム情報をいただいてから5日以内に、検討を進めるかどうかをご回答します。')}</div>
       <div class="rv"><p class="n">02</p><h3>{W('見送る場合も|理由をお伝えします')}</h3>{P('検討を見送る場合も、理由を具体的にお伝えします。売り手の方へのご説明にお使いください。')}</div>
       <div class="rv"><p class="n">03</p><h3>{W('既存の契約を|尊重します')}</h3>{P('仲介契約・FA契約の内容を尊重し、売り手の方との直接のやり取りはご紹介者さまを通じて行います。')}</div>
     </div>
@@ -1036,16 +1035,16 @@ PROMISE_P=f"""<section class="pp">
 PFLOW=f"""<section class="pflow">
   <div class="w">
     {head('Process','ご紹介の流れ','ご紹介から|クロージングまで')}
-    <ol class="steps">{''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(d)}</li>' for h,t,d in [('ノンネーム情報の|ご共有','Day 0','エリア・事業内容・規模がわかる範囲で構いません。'),('初回のご回答','5営業日','検討を進めるかどうかと、その理由をお伝えします。'),('秘密保持契約・|資料の検討','2〜4週間','決算書等をもとに、譲渡価格の考え方を整理します。'),('意向表明','2〜3週間','価格・雇用・社長の処遇を書面でご提示します。'),('詳細調査','1〜2ヶ月','財務・法務・労務・許認可・施工中物件を確認します。'),('最終契約・|クロージング','約1ヶ月','株式譲渡契約の締結と、代金のお支払いを行います。')])}</ol>
+    <ol class="steps">{''.join(f'<li class="rv"><h3>{W(h)}</h3><span class="t">{t}</span>{P(d)}</li>' for h,t,d in [('ノンネーム情報の|ご共有','Day 0','エリア・事業内容・規模がわかる範囲で構いません。'),('初回のご回答','5日以内','検討を進めるかどうかと、その理由をお伝えします。'),('秘密保持契約・|資料の検討','2〜4週間','決算書等をもとに、譲渡価格の考え方を整理します。'),('意向表明','2〜3週間','価格・雇用・社長の処遇を書面でご提示します。'),('詳細調査','1〜2ヶ月','財務・法務・労務・許認可・施工中物件を確認します。'),('最終契約・|クロージング','約1ヶ月','株式譲渡契約の締結と、代金のお支払いを行います。')])}</ol>
   </div>
 </section>"""
 PCONTACT=f"""<section class="pcon dark">
   <div class="w pc2">
     <div class="rv">{head('Contact','ご紹介の窓口','案件のご紹介・|ご相談は|こちらへ')}</div>
-    <div class="rv"><dl class="pdl"><div><dt>担当</dt><dd>代表取締役　谷岡 佑亮</dd></div><div><dt>メール</dt><dd><em class="tbd">【確定後に記載】</em></dd></div><div><dt>電話</dt><dd>03-0000-0000（平日 9:00–18:00）</dd></div></dl><a class="btn btn-white" href="contact.html">フォームから連絡する {AR}</a></div>
+    <div class="rv"><dl class="pdl"><div><dt>担当</dt><dd>代表取締役　谷岡 佑亮</dd></div><div><dt>メール</dt><dd><em class="tbd">【確定後に記載】</em></dd></div><div><dt>電話</dt><dd>03-6823-1499（年中無休 9:00–18:00）</dd></div></dl><a class="btn btn-white" href="contact.html">フォームから連絡する {AR}</a></div>
   </div>
 </section>"""
-news_items=[('2026.10.22','お知らせ','コーポレートサイトを公開しました。'),('2026.10.01','お知らせ','株式会社エッジアセットを設立しました。【確定後に記載】')]
+news_items=[('2026.10.22','お知らせ','コーポレートサイトを公開しました。'),('2026.08','グループ','GSOリフォームの経営を開始しました。')]
 NEWS=f"""<section class="newslist">
   <div class="w">
     <ul class="nl-list">{''.join(f'<li><time>{d}</time><span class="cat">{c}</span><p>{t}</p></li>' for d,c,t in news_items)}</ul>
@@ -1068,13 +1067,13 @@ TOPLINKS=f"""<section class="links">
 # ---------- pages ----------
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'more.py')).read())
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pages2.py')).read())
-home=FV+TRUST+tolinks(sec['market'])+ISSUES+tolinks(sec['stance'])+MODEL+tolinks(sec['promise'])+TOPCOST+tolinks(sec['people'].replace(sec['people'][sec['people'].index('<div class="frame">'):sec['people'].index('<div class="pg">')],'')+sec['cta'])+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPSEO+TOPFAQ+TOPCOL+TOPNEWS
+home=FV+TRUST+tolinks(sec['market'])+ISSUES+tolinks(sec['stance'])+WORLD+MODEL+tolinks(sec['promise'])+TOPCOST+tolinks(sec['people'].replace(sec['people'][sec['people'].index('<div class="frame">'):sec['people'].index('<div class="pg">')],'')+sec['cta'])+TOPCASES+tolinks(sec['flow'].replace('<div class="open">',f'<div class="fl-more"><a class="btn btn-navy" href="flow.html"{NT}>ご相談の流れを詳しく見る {AR}</a></div><div class="open">'))+TOPSEO+TOPFAQ+TOPCOL+TOPNEWS
 home=home.replace('<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する','<div class="btns" style="margin-top:44px"><a class="btn btn-navy" href="contact.html">似た状況について相談する')
 company=phero('About us','私たちについて','後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体制をご紹介します。','rD28m9BmXVs')+subnav([('about','考え方'),('message','代表メッセージ'),('profile','代表プロフィール'),('team','体制'),('capital','資金と体制'),('record','実績'),('compare','他の選択肢との比較'),('company','会社概要')])+tolinks(sec['about'].replace('<a class="tl" href="#support">','<a class="tl" href="service.html">').replace('<p class="sh-en" aria-hidden="true">About</p><p class="sh-ja">私たちについて</p>','<p class="sh-en" aria-hidden="true">Philosophy</p><p class="sh-ja">私たちの考え方</p>')+sec['msg'])+PROFILE+COMPANY_BAND+VMV+TEAM2+CAPITAL+GOV+RECORD+tolinks(sec['compare'])+HISTORY+tolinks(sec['company'])+nextlink('service.html','Our support','グループの支援')
-partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT+nextlink('cases.html','Model cases','事例')
+partners=phero('For partners','仲介会社・金融機関の皆さまへ','住宅会社の事業承継案件のご紹介をお待ちしています。投資の目安、ご紹介の流れ、窓口をまとめました。','4mEyvORkbN0')+CRIT+PROMISE_P+INFO+PFLOW+PFAQ+PCONTACT+nextlink('results.html','Track record','実績・事例')
 news=phero('News','お知らせ','','Q6sCJFHCubc')+NEWS+nextlink('company.html','About us','私たちについて')
 contact=phero('Contact','ご相談・お問い合わせ','ご相談は無料です。社名を伏せたままでも構いません。','Q6sCJFHCubc')+re.sub(r'<div class="ph side">.*?</div>',CONTACT_ASIDE,sec['contact'],count=1,flags=re.S).replace('<div class="ways">','<p class="c-alt">仲介会社・金融機関の方は、<a href="partners.html">専用のご案内ページ</a>をご覧ください。</p><div class="ways">',1)+PREP+sec['faq'].replace('<div class="rv">'+head('FAQ','よくあるご質問','ご相談の|前に|よく|聞かれること')+'</div>','<div class="rv">'+head('FAQ','よくあるご質問','ご相談の|前に|よく|聞かれること')+'<a class="tl" href="faq.html">すべての質問を見る {AR}</a></div>')
-service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+nextlink('cases.html','Model cases','事例')
+service=phero('Our support','グループの支援','家づくりの方針には口を出さず、規模が小さいほど負担が重くなる仕事をグループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+SVC_KPI+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+nextlink('results.html','Track record','実績・事例')
 bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
  'company.html':(company,'エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。'),
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
@@ -1086,17 +1085,17 @@ CRIT_CSS=css_main[:css_main.index('/* buttons')] if '/* buttons' in css_main els
 SCRIPT=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'site.js')).read()
 # when viewed through htmlpreview.github.io, keep page-to-page links inside the preview
 PREVIEW_FIX="""if(location.hostname==='htmlpreview.github.io'){var raw=location.search.slice(1).replace(/[^/]*$/,'')+'site.css';if(!document.querySelector('link[href$="site.css"][data-abs]')){var l=document.createElement('link');l.rel='stylesheet';l.href=raw;l.setAttribute('data-abs','1');document.head.appendChild(l)}var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\\/\\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}"""
-TEL='03-0000-0000'
+TEL='03-6823-1499'
 def telify(html):
     html=html.replace('<i>'+TEL+'</i>','<i>@@TEL@@</i>')  # already inside a link
     html=re.sub(r'<a [^>]*href="tel:[^"]*"[^>]*>.*?</a>',lambda m:m.group(0).replace(TEL,'@@TEL@@'),html,flags=re.S)  # existing tel: links
-    html=re.sub(r'(?<![\w"=:/.-])'+re.escape(TEL)+r'(?![\w-])','<a class="tel-a" href="tel:0300000000">'+TEL+'</a>',html)
+    html=re.sub(r'(?<![\w"=:/.-])'+re.escape(TEL)+r'(?![\w-])','<a class="tel-a" href="tel:0368231499">'+TEL+'</a>',html)
     return html.replace('@@TEL@@',TEL)
 for a in ARTICLES:
     PAGES.append((a['slug'],a['title']))
     bodies[a['slug']]=(article_page(a),a['lead'][:110])
-PAGES+= [('cases.html','事例'),('flow.html','ご相談の流れ')]
-bodies['cases.html']=(phero('Model cases','事例','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
+PAGES+= [('cases.html','モデルケース'),('flow.html','ご相談の流れ')]
+bodies['cases.html']=(phero('Model cases','モデルケース','よくいただくご相談を、引き継ぎの形と、グループ入り後の1年まで含めてまとめました。','TJ4CndIc9z8')+CASELIST+CASES_BAND+nextlink('flow.html','Flow','ご相談の流れ'),'工務店・住宅会社の事業承継のモデルケース。後継者不在、成長の壁、廃業の検討、粗利の低下。')
 bodies['flow.html']=(phero('Flow','ご相談の流れ','初回面談から最終契約まで通常は半年前後、その後半年ほどかけて引き継ぎます。各段階でやること、ご用意いただくもの、話が伝わる範囲をまとめました。','Q6sCJFHCubc')+FLOWPAGE+FLOW_BAND+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社の事業承継、ご相談から引き継ぎまでの流れ。')
 for i,c in enumerate(CASES):
     PAGES.append((c['slug']+'.html','モデルケース '+f'{i+1:02d}｜'+c['tag']))

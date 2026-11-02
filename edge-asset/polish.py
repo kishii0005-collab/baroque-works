@@ -1,7 +1,7 @@
 # breadcrumbs, footer CTA, and the chapter structure of the top page. exec'd from build.py just before pages are written
 import json as _json
-CRUMB_PARENT={**{f'case-{i}.html':('cases.html','事例') for i in range(1,5)},**{f'column-{i}.html':('column.html','コラム') for i in range(1,7)}}
-CRUMB_LABEL={'cases.html':'事例','column.html':'コラム'}
+CRUMB_PARENT={**{f'case-{i}.html':('cases.html','モデルケース') for i in range(1,5)},**{f'column-{i}.html':('column.html','コラム') for i in range(1,7)}}
+CRUMB_LABEL={'cases.html':'モデルケース','results.html':'実績・事例','column.html':'コラム'}
 def crumbs(fname,title):
     if fname in ('index.html','404.html'): return ''
     trail=[('index.html','トップ')]
@@ -11,11 +11,11 @@ def crumbs(fname,title):
     ld={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":k+1,"name":t,"item":SITE+('' if h=='index.html' else h)} for k,(h,t) in enumerate(trail)]}
     return f'<nav class="bc" aria-label="パンくずリスト"><ol class="w">{li}</ol></nav><script type="application/ld+json">{_json.dumps(ld,ensure_ascii=False)}</script>'
 
-FOOT_COPY={'service.html':('支援の中身を、|御社の|数字で|ご説明します。','どの支援から始めるかは、会社ごとに違います。現状を伺ったうえで、最初の100日の進め方をご提案します。'),
+FOOT_COPY={'results.html':('似た状況でしたら、|そのまま|ご相談ください。','実績や事例と状況が違っていても構いません。会社の状況を伺い、取りうる形をご説明します。'),'service.html':('支援の中身を、|御社の|数字で|ご説明します。','どの支援から始めるかは、会社ごとに違います。現状を伺ったうえで、最初の100日の進め方をご提案します。'),
  'company.html':('代表が、|直接|お話を|伺います。','面談には代表の谷岡が伺います。社外の会議室でも、オンラインでも構いません。'),
  'cases.html':('似た状況でしたら、|そのまま|ご相談ください。','事例と条件が違っていても構いません。会社の状況を伺い、取りうる形をご説明します。'),
  'flow.html':('まずは、|初回面談の|日程だけ|決めませんか。','初回面談で何かを決めていただく必要はありません。1〜2時間、お話を伺うところから始めます。'),
- 'partners.html':('案件のご紹介・|ご相談を|お待ちしています。','ノンネーム情報の段階から検討します。5営業日以内に、検討を進めるかどうかをお返事します。')}
+ 'partners.html':('案件のご紹介・|ご相談を|お待ちしています。','ノンネーム情報の段階から検討します。5日以内に、検討を進めるかどうかをお返事します。')}
 for i in range(1,5): FOOT_COPY[f'case-{i}.html']=FOOT_COPY['cases.html']
 for i in range(1,7): FOOT_COPY[f'column-{i}.html']=('この記事の内容を、|御社に当てはめると|どうなるか。','個別の状況を伺い、取りうる選択肢と進め方をご説明します。ご相談は無料です。')
 def footer_cta(fname):
@@ -25,13 +25,13 @@ def footer_cta(fname):
       <div class="fc-t"><p class="fc-en">Contact</p><p class="fc-h">{W(h)}</p>{P(p)}</div>
       <div class="fc-a">
         <a class="fc-b" href="contact.html"{NT}><small>24時間受付・無料</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
-        <a class="fc-b tel" href="tel:0300000000"><small>平日 9:00–18:00</small><span>03-0000-0000</span><i aria-hidden="true"></i></a>
+        <a class="fc-b tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small><span>03-6823-1499</span><i aria-hidden="true"></i></a>
       </div>
     </div>"""
 
 # ---------- top page: five chapters, each opened by a marker, tracked by a side rail ----------
-CHAPTERS=[('market','01','課題','いま、工務店に起きていること'),('stance','02','答え','エッジアセットの答え'),('promise','03','約束','引き継ぐときのお約束'),('tcases','04','事例','事例と、ご相談の流れ'),('tseo','05','知る','事業承継を、もっと知る')]
-CH_OF={'market':1,'issues':1,'stance':2,'model':2,'tcost':2,'promise':3,'people':3,'cta':3,'tcases':4,'flow':4,'tseo':5,'topfaq':5,'topcol':5,'topnews':5}
+CHAPTERS=[('market','01','課題','いま、工務店に起きていること'),('stance','02','答え','エッジアセットの答え'),('promise','03','約束','引き継ぐときのお約束'),('tcases','04','実績','実績と、ご相談の流れ'),('tseo','05','知る','事業承継を、もっと知る')]
+CH_OF={'world':2,'market':1,'issues':1,'stance':2,'model':2,'tcost':2,'promise':3,'people':3,'cta':3,'tcases':4,'flow':4,'tseo':5,'topfaq':5,'topcol':5,'topnews':5}
 def chapterize(html):
     def tag(m):
         cls=m.group(1).split()[0]
@@ -48,13 +48,13 @@ def chapterize(html):
 b,d=bodies['index.html']; bodies['index.html']=(chapterize(b),d)
 
 # ---------- menu v3: Japanese first, grouped, current page marked, contact always in view ----------
-MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('cases.html','事例','Cases','4つのモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
+MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('results.html','実績・事例','Results','再建・立ち上げ4社とモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
 MENU_SUB=[('index.html','トップ'),('partners.html','仲介会社・金融機関の方へ'),('column.html','コラム'),('faq.html','よくあるご質問'),('news.html','お知らせ'),('contact.html','お問い合わせ')]
 CUR=''
 _nav_v2=nav
 def nav():
     html=_nav_v2()
-    cur=CUR if not CUR.startswith('case-') else 'cases.html'
+    cur=CUR if not (CUR.startswith('case-') or CUR=='cases.html') else 'results.html'
     cur='column.html' if cur.startswith('column-') else cur
     main=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}><span class="m3-en">{e}</span><span class="m3-ja">{j}</span><span class="m3-d">{d}</span><i aria-hidden="true"></i></a></li>' for h,j,e,d in MENU_MAIN)
     sub=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}>{j}</a></li>' for h,j in MENU_SUB)
@@ -68,7 +68,7 @@ def nav():
       <p class="m3-k">ご相談窓口</p>
       <p class="m3-lead">{W('ご相談は|無料です。|社名を|伏せたままでも|構いません。')}</p>
       <a class="m3-b" href="contact.html"{NT}><small>24時間受付</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
-      <a class="m3-b tel" href="tel:0300000000"><small>平日 9:00–18:00</small><span>03-0000-0000</span><i aria-hidden="true"></i></a>
+      <a class="m3-b tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small><span>03-6823-1499</span><i aria-hidden="true"></i></a>
       <p class="m3-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
     </div>
   </div>"""
@@ -100,14 +100,16 @@ def faq_page():
     navi=''.join(f'<li><a href="#{i}">{t}</a></li>' for i,t,_ in FAQ_CATS)
     cats=''.join(f'<div class="fq-cat" id="{i}"><div class="fq-h"><p class="fq-n">{k+1:02d}</p><h2>{t}</h2></div><div class="fq-l">'+''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in qs)+'</div></div>' for k,(i,t,qs) in enumerate(FAQ_CATS))
     return (phero('FAQ','よくあるご質問','ご相談の前に、社長や仲介会社の方からよく伺う質問をまとめました。ここにない質問は、お問い合わせからお寄せください。','Q6sCJFHCubc')
-      +f'<section class="faqp"><div class="w"><ul class="fq-nav">{navi}</ul>{cats}<p class="fq-more">{nb("ここにない質問は、お問い合わせフォームか電話でお寄せください。2営業日以内にお答えします。")}</p></div></section>'
+      +f'<section class="faqp"><div class="w"><ul class="fq-nav">{navi}</ul>{cats}<p class="fq-more">{nb("ここにない質問は、お問い合わせフォームか電話でお寄せください。2日以内にお答えします。")}</p></div></section>'
       +'<script type="application/ld+json">'+_json.dumps(FAQ_LD,ensure_ascii=False)+'</script>'
       +nextlink('contact.html','Contact','ご相談・お問い合わせ'))
+PAGES.append(('results.html','実績・事例'))
+bodies['results.html']=(phero('Track record','実績・事例','後継者のいない会社の引き受けから、撤退事業の再生、二代目への引き継ぎまで。これまでの実績と、よくいただくご相談のモデルケースをまとめました。','TJ4CndIc9z8')+RESULTS+band('Q6sCJFHCubc','Your case','同じ会社は、|ひとつも|ありません。','実績や事例と違う状況でも、まずはお話を伺います。')+nextlink('flow.html','Flow','ご相談の流れ'),'エッジアセットの実績（向洋ハウジング、GSOリフォームほか4社）と、工務店・住宅会社の事業承継のモデルケース。')
 PAGES.append(('faq.html','よくあるご質問'))
 bodies['faq.html']=(faq_page(),'工務店・住宅会社の事業承継についてよくあるご質問。ご相談、引き継ぎの条件、社員・施主様・取引先、グループ入り後、仲介会社の方へ。')
 
 SM_GROUPS=[('会社を知る',[('index.html','トップ'),('company.html','私たちについて'),('company.html#message','代表メッセージ'),('company.html#profile','代表プロフィール'),('company.html#company','会社概要')]),
- ('事業承継のご相談',[('service.html','グループの支援'),('service.html#cost','原価の改善'),('cases.html','事例'),('flow.html','ご相談の流れ'),('faq.html','よくあるご質問'),('contact.html','ご相談・お問い合わせ')]),
+ ('事業承継のご相談',[('service.html','グループの支援'),('service.html#cost','原価の改善'),('results.html','実績・事例'),('cases.html','モデルケース'),('flow.html','ご相談の流れ'),('faq.html','よくあるご質問'),('contact.html','ご相談・お問い合わせ')]),
  ('仲介会社・金融機関の方へ',[('partners.html','ご紹介のご案内')]),
  ('読む',[('column.html','コラム')]+[(a['slug'],a['title']) for a in ARTICLES]+[('news.html','お知らせ')]),
  ('サイトについて',[('privacy.html','プライバシーポリシー'),('terms.html','サイトのご利用について')])]
@@ -124,7 +126,7 @@ TOPMSG=f"""<section class="tmsg">
       <p class="sh-ja">代表メッセージ</p>
       <h2>{W('会社を|売る、|という|言葉に|抵抗がある方へ。')}</h2>
       {P('大手に売れば、名前は数年で消えるかもしれない。ファンドに売れば、数年後にまた別の誰かに売られるかもしれない。その不安に正面から答えるために、この会社をつくりました。')}
-      <div class="tm-who"><b>谷岡 佑亮</b><span>株式会社エッジアセット 代表取締役</span><small>船井総合研究所にて、上位0.5%の年間粗利獲得実績を複数年。経営再建・成長戦略の実行支援を経て、建築業界の採用・営業・業務改善を支援。</small></div>
+      <div class="tm-who"><b>谷岡 佑亮</b><span>株式会社エッジアセット 代表取締役</span><small>中小企業経営コンサルティング会社にて、上位0.5%の年間粗利獲得実績を複数年。経営再建・成長戦略の実行支援を経て、建築業界の採用・営業・業務改善を支援。</small></div>
       <a class="btn btn-navy" href="company.html#message"{NT}>メッセージの全文を読む {AR}</a>
     </div>
   </div>
