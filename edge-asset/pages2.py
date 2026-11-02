@@ -129,6 +129,7 @@ CASES=[
   voice='どこにいくら払っているのか、初めて全部が見えました。根拠のある交渉だったので、取引先とも揉めずに済みました。',
   point='原価は、まず「どこにいくら払っているか」を見える化し、相場と発注量を根拠に交渉することで下がります。着工前に数字を決める仕組みまで作れば、下がった原価は元に戻りません。立て直してから社長を交代すれば、次の社長の負担も軽くなります。'),
 ]
+CASES=[c for c in CASES if c['slug'] in ('case-3','case-4')]
 CASE_NOTE='掲載している事例は、よくあるご相談をもとにしたモデルケース（想定事例）です。実在の企業・数値ではありません。'
 
 def case_card(c,i):
@@ -140,7 +141,7 @@ def case_card(c,i):
 
 CASELIST=f"""<section class="clist">
   <div class="w">
-    {head('Model cases','モデルケース','4つの|ご相談の|かたち','後継者がいない、成長が止まった、廃業を考えている、粗利が下がり続けている。よくいただくご相談を、引き継ぎの形と、その後の1年まで含めてご紹介します。')}
+    {head('Model cases','モデルケース','よくある|ご相談の|かたち','廃業を考えている、粗利が下がり続けている。実績とは別に、よくいただくご相談を想定事例としてまとめました。引き継ぎの形と、その後の1年までご紹介します。')}
     <div class="cgrid">{''.join(case_card(c,i) for i,c in enumerate(CASES))}</div>
     <p class="cnote">{CASE_NOTE}</p>
   </div>
@@ -183,7 +184,7 @@ def case_page(c,i):
     </div>
   </div>
 </section>
-<section class="cother"><div class="w">{head('Other cases','ほかのモデルケース','ほかの|ご相談の|かたち')}<div class="cgrid c3">{others}</div></div></section>
+<section class="cother"><div class="w">{head('Other cases','ほかの事例','実績と|ほかの|モデルケース')}<div class="rgrid r2s">{''.join(real_card(r) for r in REAL[:2])}</div><div class="cgrid c3">{others}</div><a class="tl" href="results.html" style="margin-top:28px">実績・事例をすべて見る {AR}</a></div></section>
 """ + nextlink(f"{nxt['slug']}.html",f"Case {(i+1)%len(CASES)+1:02d}",nxt['title'].replace('|',''))
 
 # ---------- flow ----------
@@ -252,7 +253,7 @@ TOPSEO=f"""<section class="tseo">
       <article class="rv"><p class="ts-n">02</p><h3>{W('株式譲渡なら、|会社も許可も|保証も残ります')}</h3>{P('第三者への事業承継（M&A）で多く選ばれるのが株式譲渡です。会社の持ち主が変わるだけなので、社名、社員の雇用、建設業許可、施主様との契約と保証は、原則としてそのまま会社に残ります。社長は株式の対価を受け取り、借入の個人保証からも外れることができます。')}</article>
       <article class="rv"><p class="ts-n">03</p><h3>{W('エッジアセットは、|工務店・住宅会社・|リフォーム会社専門の|ロールアップグループです')}</h3>{P('私たちは、引き継いだ会社を数年で売却することを前提にしていません。社名と現場は各社に残し、集客・採用・財務・仕入れなど、規模が小さいほど負担が重くなる仕事をグループ本部で支えます。原価と数字の管理で利益が残る経営をつくり、次の三十年へつなぎます。')}</article>
     </div>
-    <div class="ts-links"><a class="tl" href="column-1.html">事業承継の3つの選択肢 {AR}</a><a class="tl" href="column-4.html">譲渡価格の考え方 {AR}</a><a class="tl" href="column-3.html">建設業許可の引き継ぎ {AR}</a></div>
+    <div class="ts-links"><a class="tl" href="valuation.html">譲渡価格をかんたん試算 {AR}</a><a class="tl" href="column-1.html">事業承継の3つの選択肢 {AR}</a><a class="tl" href="column-4.html">譲渡価格の考え方 {AR}</a><a class="tl" href="column-3.html">建設業許可の引き継ぎ {AR}</a></div>
   </div>
 </section>"""
 
@@ -348,6 +349,7 @@ RESULTS=f"""<section class="real">
   <div class="w">
     {head('Track record','これまでの実績','再建・立ち上げ|4社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。実際に取り組んできた4社です。')}
     <div class="rgrid">{''.join(real_card(r,True) for r in REAL)}</div>
+    <div class="rpolicy"><p class="rp-k">株式の引き継ぎについて</p><p class="rp-t">株式を手放すのは、社内の後継者や経営者ご本人に引き継ぐときだけです。外部のファンドや他社に売ることはしません。</p>{P("A社は私たちがいったん後継者として再建したのち二代目へ、B社は共同創業の社長ご本人へ、それぞれ株式を引き継ぎました。どちらも、会社と社員を次の経営者へつなぐための引き継ぎです。")}</div>
     <p class="rnote">A社・B社は、先方のご意向により社名を伏せています。</p>
   </div>
 </section>

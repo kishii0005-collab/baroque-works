@@ -49,7 +49,7 @@ b,d=bodies['index.html']; bodies['index.html']=(chapterize(b),d)
 
 # ---------- menu v3: Japanese first, grouped, current page marked, contact always in view ----------
 MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('results.html','実績・事例','Results','再建・立ち上げ4社とモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
-MENU_SUB=[('index.html','トップ'),('partners.html','仲介会社・金融機関の方へ'),('column.html','コラム'),('faq.html','よくあるご質問'),('news.html','お知らせ'),('contact.html','お問い合わせ')]
+MENU_SUB=[('index.html','トップ'),('valuation.html','譲渡価格のかんたん試算'),('partners.html','仲介会社・金融機関の方へ'),('column.html','コラム'),('faq.html','よくあるご質問'),('news.html','お知らせ'),('contact.html','お問い合わせ')]
 CUR=''
 _nav_v2=nav
 def nav():
@@ -86,7 +86,8 @@ FAQ_CATS=[
    ('社長個人の借入の保証はどうなりますか。','借入に付いている社長個人の保証は、金融機関と協議のうえ、クロージング時点での解除を目指します。'),
    faqs[5],
    ('株式の一部を持ち続けることはできますか。','できます。社長を続けながら一部の株式を持ち続ける形も、事例としてご紹介しています。ご希望をふまえて設計します。'),
-   faqs[6]]),
+   faqs[6],
+   ('株式を手放すことはありますか。','株式を手放すのは、社内の後継者や経営者ご本人に引き継ぐときだけです。外部のファンドや他社に売ることはしません。これまでにも、再建した会社を二代目へ、立ち上げた会社を共同創業の社長へ引き継いだ実績があります。')]),
  ('people','社員・施主様・取引先',[faqs[1],
    ('引き渡した家の保証や定期点検は、どうなりますか。','株式譲渡では会社そのものが変わらないため、保証も定期点検も会社に残ります。原則として、これまでの担当者が続けます。'),
    faqs[4],SVCFAQ_Q[0],SVCFAQ_Q[2]]),
@@ -139,3 +140,52 @@ b,d=bodies['index.html']
 _cta='<section data-ch="3" class="cta">'
 assert _cta in b
 bodies['index.html']=(b.replace(_cta,TOPMSG.replace('<section ','<section data-ch="3" ',1)+_cta,1),d)
+
+# ---------- quick valuation estimate (valuation.html) ----------
+VAL=f"""<section class="valu">
+  <div class="w">
+    {head('Estimate','譲渡価格のかんたん試算','御社の|譲渡価格の|目安を|知る','中小企業のM&Aで広く使われる「時価純資産＋営業利益の数年分」という考え方で、目安の幅を出します。入力した数字はこの画面の中だけで計算し、どこにも送信されません。')}
+    <div class="vl-g">
+      <form class="vl-f rv" id="vf" novalidate>
+        <div class="vl-i"><label for="v-na">純資産<small>貸借対照表の「純資産の部」の合計</small></label><div class="vl-in"><input id="v-na" type="number" inputmode="numeric" step="100" value="8000"><span>万円</span></div></div>
+        <div class="vl-i"><label for="v-adj">資産の含み損益<small>土地・建物の時価との差など。わからなければ0</small></label><div class="vl-in"><input id="v-adj" type="number" inputmode="numeric" step="100" value="0"><span>万円</span></div></div>
+        <div class="vl-i"><label for="v-op">営業利益<small>直近3期の平均がおすすめです</small></label><div class="vl-in"><input id="v-op" type="number" inputmode="numeric" step="100" value="3000"><span>万円</span></div></div>
+        <div class="vl-i"><label for="v-ex">社長個人の経費・役員報酬の調整<small>会社に残らない費用があれば加算。わからなければ0</small></label><div class="vl-in"><input id="v-ex" type="number" inputmode="numeric" step="100" value="0"><span>万円</span></div></div>
+        <p class="vl-note">入力例は、年商6億円・営業利益率5%の工務店を想定した数字です。</p>
+      </form>
+      <div class="vl-r rv" aria-live="polite">
+        <p class="vr-k">譲渡価格の目安</p>
+        <p class="vr-v"><b id="v-lo">—</b><span>〜</span><b id="v-hi">—</b><small>万円</small></p>
+        <div class="vr-bar"><i class="na" id="v-bna"></i><i class="gw" id="v-bgw"></i></div>
+        <dl class="vr-dl"><div><dt>時価純資産</dt><dd id="v-dna">—</dd></div><div><dt>のれん（営業利益の3〜5年分）</dt><dd id="v-dgw">—</dd></div></dl>
+        <p class="vr-msg" id="v-msg" hidden>営業利益がマイナスの場合、のれんは0として、純資産を基準に計算しています。赤字の会社でも、改善の見通しを含めて個別に算定します。</p>
+        <a class="btn btn-white" href="contact.html">この結果をもとに相談する {AR}</a>
+      </div>
+    </div>
+    <div class="vl-ex rv">
+      <h2>この試算に含まれていないこと</h2>
+      <ul>{''.join(f'<li><b>{h}</b>{P(t)}</li>' for h,t in [('受注残と前受金','契約済みの物件の粗利と、施主様からお預かりしている着手金・中間金。受注が多い会社ほど、価格に影響します。'),('引き渡し済みの家の保証','保証・定期点検の将来の負担。点検の記録が整っているほど、評価しやすくなります。'),('借入と個人保証','借入の残高と、社長個人の保証の扱い。株式の価格とは別に、解除に向けて金融機関と協議します。'),('建設業許可と人','許可の要件を満たす人材と、引き継ぎ後も現場を支える社員の体制。')])}</ul>
+      <p class="vl-disc">本試算は一般的な考え方にもとづく目安で、実際の譲渡価格や当社からのご提示額を示すものではありません。実際の価格は、決算書と詳細調査をもとに個別に算定します。考え方は<a href="column-4.html">コラム「工務店の譲渡価格はどう決まる？」</a>で解説しています。</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){{
+  var f=document.getElementById('vf'); if(!f) return;
+  var n=function(id){{var v=parseFloat(document.getElementById(id).value);return isFinite(v)?v:0}};
+  var fmt=function(v){{return Math.round(v).toLocaleString('ja-JP')}};
+  var set=function(id,t){{document.getElementById(id).textContent=t}};
+  function calc(){{
+    var na=Math.max(0,n('v-na')+n('v-adj')), op=n('v-op')+n('v-ex'), g=op>0;
+    var lo=na+(g?op*3:0), hi=na+(g?op*5:0);
+    set('v-lo',fmt(lo)); set('v-hi',fmt(hi)); set('v-dna',fmt(na)+'万円'); set('v-dgw',g?fmt(op*3)+'〜'+fmt(op*5)+'万円':'0万円');
+    document.getElementById('v-msg').hidden=g;
+    var tot=Math.max(hi,1); document.getElementById('v-bna').style.flex=na/tot; document.getElementById('v-bgw').style.flex=(hi-na)/tot;
+  }}
+  f.addEventListener('input',calc); f.addEventListener('submit',function(e){{e.preventDefault()}}); calc();
+}})();
+</script>"""
+PAGES.append(('valuation.html','譲渡価格のかんたん試算'))
+bodies['valuation.html']=(phero('Estimate','譲渡価格のかんたん試算','純資産と営業利益を入れるだけで、譲渡価格の目安の幅がわかります。入力した数字は送信されません。','4mEyvORkbN0')+VAL+nextlink('contact.html','Contact','ご相談・お問い合わせ'),'工務店・住宅会社・リフォーム会社の譲渡価格の目安を、純資産と営業利益から試算できます。')
+FOOT_COPY['valuation.html']=('試算の結果を、|御社の|実情に|当てはめて|ご説明します。','含み損益、受注残、前受金、保証の負担まで含めて、個別に考え方をお伝えします。ご相談は無料です。')
+SM_GROUPS[1][1].insert(4,('valuation.html','譲渡価格のかんたん試算'))

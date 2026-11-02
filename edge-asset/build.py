@@ -513,7 +513,7 @@ faqs=[('相談したことが、社員や取引先に知られることはあり
  ('赤字の会社でも相談できますか。','はい。赤字の理由と、改善の見通しを一緒に整理するところから始めます。グループ入りが最善でない場合は、その理由と別の選択肢をお伝えします。'),
  ('建設業許可はそのまま使えますか。','株式譲渡であれば会社そのものは変わらないため、許可は引き継がれます。常勤役員等（いわゆる経管）や営業所技術者が退任される場合は後任が必要になるため、交代の時期を事前に設計します。'),
  ('社長は辞めなければいけませんか。','いいえ。引き継ぎ期間だけ残る形も、社長を続ける形もあります。ご本人の希望と、次の社長候補の状況をふまえて決めます。'),
- ('数年後に、別の会社へ売られることはありませんか。','買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を続ける考え方です。')]
+ ('数年後に、別の会社へ売られることはありませんか。','買った会社を売却して利益を得ることを前提にしていません。グループ会社が毎年生む利益で、長く経営を続ける考え方です。株式を手放すのは、社内の後継者や経営者ご本人に引き継ぐときだけです。外部のファンドや他社に売ることはしません。')]
 fq=''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in faqs)
 
 HTML=f'''<!doctype html>
@@ -905,7 +905,7 @@ def footer():
     f=sec['footer']
     f=f.replace('href="#top"','href="index.html"').replace('href="#about"','href="company.html"').replace('href="#message"','href="company.html#message"').replace('href="#compare"','href="company.html#compare"').replace('href="#company"','href="company.html#company"')
     f=f.replace('href="#promise"','href="index.html#promise"').replace('href="#support"','href="service.html"').replace('href="#cases"','href="cases.html"').replace('href="#flow"','href="flow.html"').replace('href="#faq"','href="faq.html"').replace('href="#contact"','href="contact.html"')
-    f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="faq.html">よくあるご質問</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
+    f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="faq.html">よくあるご質問</a></li><li><a href="valuation.html">譲渡価格のかんたん試算</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
     f=f.replace('<a href="index.html">プライバシーポリシー</a>','<a href="privacy.html">プライバシーポリシー</a>').replace('<a href="index.html">サイトのご利用について</a>','<a href="terms.html">サイトのご利用について</a>　｜　<a href="sitemap.html">サイトマップ</a>')
     return f
 SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>'
