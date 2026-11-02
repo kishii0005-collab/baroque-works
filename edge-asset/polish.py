@@ -115,7 +115,10 @@ SM_GROUPS=[('会社を知る',[('index.html','トップ'),('company.html','私�
  ('サイトについて',[('privacy.html','プライバシーポリシー'),('terms.html','サイトのご利用について')])]
 def sitemap_page():
     g=''.join(f'<div class="sm-g"><h2>{t}</h2><ul>'+''.join(f'<li><a href="{h}">{l}</a></li>' for h,l in ls)+'</ul></div>' for t,ls in SM_GROUPS)
-    return phero('Sitemap','サイトマップ','','4mEyvORkbN0')+f'<section class="smap"><div class="w"><div class="sm-grid">{g}</div></div></section>'
+    cred=_json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'img','credits.json'))) if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),'img','credits.json')) else {}
+    cl=''.join(f'<li><a href="{c["page"]}" rel="noopener">{_html.escape(t[5:])}</a><span>{_html.escape(c["artist"])}／{c["license"]}</span></li>' for t,c in cred.items())
+    cr=f'<div class="credits" id="credits"><h2>写真クレジット</h2><p>仮素材として、Wikimedia Commons の写真を各ライセンスに基づいて使用しています（一部トリミング・色調補正あり）。</p><ul>{cl}</ul></div>' if cl else ''
+    return phero('Sitemap','サイトマップ','','4mEyvORkbN0')+f'<section class="smap"><div class="w"><div class="sm-grid">{g}</div>{cr}</div></section>'
 PAGES.append(('sitemap.html','サイトマップ'))
 bodies['sitemap.html']=(sitemap_page(),'株式会社エッジアセットのサイトマップ。')
 

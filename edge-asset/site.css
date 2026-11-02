@@ -1896,3 +1896,10 @@ details{background:var(--bg)}
 .rc-badge{white-space:nowrap}
 .r4 .rc-en{display:none}
 .r4 .rc-st{font-size:11px;padding:2px 9px}
+.fcred{font-size:11px;color:#8ea3bd;margin-top:10px}.fcred a{color:#aab8cb;border-bottom:1px solid rgba(170,184,203,.4)}
+.credits{margin-top:72px;padding-top:32px;border-top:1px solid var(--line);scroll-margin-top:100px}
+.credits h2{font-size:15px;color:#1f5bb5;margin:0 0 10px}
+.credits>p{font-size:13px;color:var(--ink-2);margin:0 0 16px}
+.credits ul{list-style:none;margin:0;padding:0;font-size:12.5px}
+.credits li{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 0;border-bottom:1px solid var(--line)}
+.credits li a{color:var(--ink);word-break:break-all}.credits li span{color:#5d6a7e}

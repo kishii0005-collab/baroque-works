@@ -769,7 +769,7 @@ HTML=f'''<!doctype html>
       <div class="ftel"><p class="fh">CONTACT</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
-    <p style="font-size:10.5px;color:#5f7290;margin-top:10px">写真：Unsplash（仮素材）</p>
+    <p class="fcred">写真：Wikimedia Commons ほか（仮素材）　<a href="sitemap.html#credits">写真クレジット</a></p>
   </div>
 </footer>
 
