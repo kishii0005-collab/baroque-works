@@ -1,0 +1,25 @@
+# Fetches site photos from Wikimedia Commons and commits them under edge-asset/img/.
+name: edge-asset commons photos
+on:
+  push:
+    paths: [edge-asset/tools/fetch_commons.py, .github/workflows/edge-asset-commons.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python edge-asset/tools/fetch_commons.py
+      - run: ls -la edge-asset/img edge-asset/img/candidates
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add edge-asset/img
+          git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
+          git commit -m "Edge Asset site: photos from Wikimedia Commons"
+          git push
