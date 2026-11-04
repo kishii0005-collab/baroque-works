@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Outfit:wght@500;700&display=swap">
 <style>
-/* Layout: 左に営業マンの入力パネル、右にお客様向けの結果（提示モードで結果だけを全幅表示） */
+/* Layout: 左に営業マンの入力パネル、右にお客様向けの結果。提示モードでは結果だけを全幅・大きめの文字で表示 */
 :root{
   --bg:#F4F6F3; --surface:#FFFFFF; --ink:#1B2421; --muted:#5B6863; --line:#DCE2DD; --soft:#EAF1EC;
-  --accent:#0F8763; --accent-ink:#FFFFFF; --sun:#C27A0E; --water:#3B6DB3; --before:#98A49F; --warn:#B4541A;
+  --accent:#0F8763; --accent-ink:#FFFFFF; --sun:#C27A0E; --water:#3B6DB3; --before:#98A49F; --warn:#B4541A; --warn-bg:#FBEFE6;
   --f-body:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
   --f-num:"Outfit","BIZ UDPGothic",system-ui,sans-serif;
   --r:10px;
@@ -20,11 +20,12 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0F1314; --surface:#14191A; --ink:#E6ECE9; --muted:#9BA9A3; --line:#2A3436; --soft:#1A2523;
-  --accent:#2E9C76; --accent-ink:#06140F; --sun:#C2801C; --water:#628BCF; --before:#6E7A76; --warn:#E08A52; color-scheme:dark}}
+  --accent:#2E9C76; --accent-ink:#06140F; --sun:#C2801C; --water:#628BCF; --before:#6E7A76; --warn:#E08A52; --warn-bg:#2A1D14; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F1314; --surface:#14191A; --ink:#E6ECE9; --muted:#9BA9A3; --line:#2A3436; --soft:#1A2523;
-  --accent:#2E9C76; --accent-ink:#06140F; --sun:#C2801C; --water:#628BCF; --before:#6E7A76; --warn:#E08A52; color-scheme:dark}
+  --accent:#2E9C76; --accent-ink:#06140F; --sun:#C2801C; --water:#628BCF; --before:#6E7A76; --warn:#E08A52; --warn-bg:#2A1D14; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 96px}
@@ -34,13 +35,15 @@ header.top{display:flex;align-items:center;justify-content:space-between;gap:12p
 .brand b{font-size:20px;letter-spacing:.02em}
 .brand span{color:var(--muted);font-size:13px}
 .top-actions{display:flex;gap:8px;flex-wrap:wrap}
-button{font:inherit;cursor:pointer}
+button{font:inherit;cursor:pointer;color:inherit}
 .btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px}
+.btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
-.btn:focus-visible,input:focus-visible,select:focus-visible,.seg button:focus-visible,.chip:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.btn.sm{padding:5px 11px;font-size:13px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.seg button:focus-visible,.chip:focus-visible,.linkbtn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
 main{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:20px;align-items:start}
-body.present main{grid-template-columns:minmax(0,1fr)}
-body.present #inputs{display:none}
+body.present main{grid-template-columns:minmax(0,1fr);max-width:1100px}
+body.present #inputs,body.present .rep-only{display:none!important}
 @media (max-width:900px){main{grid-template-columns:minmax(0,1fr)}}
 
 /* 入力パネル */
@@ -49,10 +52,13 @@ body.present #inputs{display:none}
 .step h2{margin:0;font-size:15px;display:flex;align-items:center;gap:8px}
 .step h2 .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:12px;font-family:var(--f-num)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .field{display:grid;gap:4px;min-width:0}
 .field label,.lbl{font-size:12.5px;color:var(--muted)}
+.lblrow{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .inp{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);overflow:hidden}
 .inp input,.inp select{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:9px 10px;font-family:var(--f-num)}
+.inp input.txt{font-family:var(--f-body)}
 .inp select{font-family:var(--f-body);font-size:15px}
 .inp .u{padding:0 10px;color:var(--muted);font-size:13px;white-space:nowrap}
 .seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}
@@ -62,9 +68,14 @@ body.present #inputs{display:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 11px;font-size:13px}
 .chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.quick{display:flex;flex-wrap:wrap;gap:4px}
+.quick button{border:1px solid var(--line);background:transparent;border-radius:6px;padding:3px 8px;font-size:12.5px;color:var(--muted);font-family:var(--f-num)}
+.quick button:hover{border-color:var(--accent);color:var(--ink)}
+.linkbtn{border:0;background:none;padding:0;color:var(--accent);font-size:12.5px;text-decoration:underline;text-underline-offset:2px}
 .item{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:10px}
-.item.off{opacity:.62}
-.item.off .body{display:none}
+.item.off .body{display:none!important}
+.item.off .toggle b{color:var(--muted)}
 .toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer}
 .toggle b{font-size:15px}
 .toggle small{display:block;color:var(--muted);font-size:12px;font-weight:400}
@@ -76,6 +87,9 @@ body.present #inputs{display:none}
 .sw input:checked+i::after{transform:translateX(20px)}
 .sw input:focus-visible+i{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
 .hint{font-size:12px;color:var(--muted);margin:0}
+.hint.warn{color:var(--warn)}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:8px;background:var(--soft);border-radius:8px;padding:10px 12px;font-size:13px}
+.total b{font-size:18px}
 details.adv summary{cursor:pointer;font-size:14px;font-weight:700}
 details.adv[open] summary{margin-bottom:10px}
 
@@ -85,66 +99,95 @@ details.adv[open] summary{margin-bottom:10px}
 .card h3{margin:0 0 12px;font-size:15px}
 .card h3 small{color:var(--muted);font-weight:400;margin-left:6px;font-size:12px}
 .hero{display:grid;gap:14px;background:var(--soft);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
-.hero .who{font-size:14px;color:var(--muted)}
-.hero .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.hero .big .label{font-size:16px;font-weight:700}
-.hero .big .v{font-size:clamp(40px,7vw,64px);line-height:1;font-weight:700;color:var(--accent)}
-.hero .big .v small{font-size:.38em;margin-left:4px;color:var(--ink)}
+.hero-top{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.hero-top b{color:var(--ink);font-size:15px}
+.sentence{margin:0;font-size:clamp(20px,2.6vw,26px);line-height:1.55;font-weight:700;text-wrap:pretty}
+.sentence em{font-style:normal;color:var(--accent)}
 .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:640px){.kpis{grid-template-columns:minmax(0,1fr)}}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:2px;min-width:0}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:2px;min-width:0;align-content:start}
 .kpi .k{font-size:12.5px;color:var(--muted)}
-.kpi .v{font-size:26px;font-weight:700;line-height:1.2}
-.kpi .v small{font-size:13px;font-weight:500;margin-left:2px}
+.kpi .v{font-size:30px;font-weight:700;line-height:1.2}
+.kpi .v.acc{color:var(--accent)}
+.kpi .v small{font-size:13px;font-weight:500;margin-left:2px;color:var(--ink)}
 .kpi .s{font-size:12px;color:var(--muted)}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
 .pill.warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.alert{display:flex;gap:10px;align-items:flex-start;background:var(--warn-bg);color:var(--ink);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);border-radius:8px;padding:10px 12px;font-size:13px}
+.alert b{color:var(--warn)}
 .grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
 @media (max-width:1100px){.grid2{grid-template-columns:minmax(0,1fr)}}
-/* before/after */
-.ba{display:grid;gap:12px}
-.ba-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:10px}
-.ba-row .t{font-size:13px;color:var(--muted)}
-.ba-row .bar{height:28px;border-radius:0 4px 4px 0;background:var(--before);min-width:2px}
+/* compare */
+.cmp-wrap{overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.cmp th,.cmp td{padding:10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cmp th{font-size:12px;color:var(--muted);font-weight:700}
+.cmp th:first-child,.cmp td:first-child{text-align:left}
+.cmp td.v{font-family:var(--f-num);font-size:16px;font-weight:700}
+.cmp tr.cur td{background:var(--soft)}
+.cmp tr.cur td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
+.cmp .name b{display:block;font-size:14.5px}
+.cmp .name small{color:var(--muted);font-size:12px}
+.cmp td.neg{color:var(--warn)}
+/* before/after table */
+.batbl{width:100%;border-collapse:collapse;font-size:14px}
+.batbl th,.batbl td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.batbl th{font-size:12px;color:var(--muted);font-weight:700}
+.batbl th:first-child,.batbl td:first-child{text-align:left;white-space:normal}
+.batbl td{font-family:var(--f-num);font-size:16px}
+.batbl td:first-child{font-family:var(--f-body);font-size:14px}
+.batbl tr.sum td{font-weight:700;font-size:18px;border-bottom:0;border-top:2px solid var(--ink)}
+.batbl tr.sum td:last-child{color:var(--accent)}
+.batbl .minus{color:var(--sun)}
+.ba{display:grid;gap:8px;margin-top:14px}
+.ba-row{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:10px}
+.ba-row .t{font-size:12.5px;color:var(--muted)}
+.ba-row .bar{height:18px;border-radius:0 4px 4px 0;background:var(--before);min-width:2px}
 .ba-row.after .bar{background:var(--accent)}
-.ba-row .val{font-size:18px;font-weight:700;white-space:nowrap}
-.ba-row .val small{font-size:12px;font-weight:500}
-.ba-diff{font-size:14px;margin:0}
 /* breakdown */
 .bd{display:grid;gap:10px}
 .bd-row{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr) 96px;align-items:center;gap:10px;font-size:13.5px}
 .bd-row .sw2{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
-.bd-row .track{height:14px}
 .bd-row .fill{height:14px;border-radius:0 4px 4px 0;min-width:2px}
 .bd-row .val{text-align:right;font-weight:700;white-space:nowrap}
 .bd-row.neg .val{color:var(--warn)}
 .bd-total{border-top:1px solid var(--line);padding-top:10px;display:flex;justify-content:space-between;font-weight:700}
+.range{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.range div{border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:grid}
+.range div.cur{border-color:var(--accent);background:var(--soft)}
+.range .k{font-size:12px;color:var(--muted)}
+.range .v{font-size:17px;font-weight:700}
 /* chart */
 .chart-wrap{position:relative}
 .chart-wrap svg{display:block;width:100%;height:auto;overflow:visible}
 .chart-wrap text{fill:var(--muted);font-family:var(--f-num);font-size:11px}
-.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:6px;padding:6px 9px;font-size:12.5px;line-height:1.45;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .1s}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:6px;padding:6px 9px;font-size:12.5px;line-height:1.45;white-space:nowrap;transform:translate(-50%,-115%);opacity:0;transition:opacity .1s}
 .tip.on{opacity:1}
 .legend-note{font-size:12px;color:var(--muted);margin:6px 0 0}
 /* extras */
 .extras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:640px){.extras{grid-template-columns:minmax(0,1fr)}}
-.extra{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:2px}
+.extra{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:2px;align-content:start}
 .extra .k{font-size:12.5px;color:var(--muted)}
-.extra .v{font-size:20px;font-weight:700}
+.extra .v{font-size:22px;font-weight:700}
 .extra .s{font-size:12px;color:var(--muted)}
 /* table */
 .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
-th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
-th{background:var(--bg);color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0}
-th:first-child,td:first-child{text-align:left}
-tr.be td{background:var(--soft);font-weight:700}
-td.neg{color:var(--warn)}
+table.yr{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+table.yr th,table.yr td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+table.yr th{background:var(--bg);color:var(--muted);font-weight:700;font-size:12px}
+table.yr th:first-child,table.yr td:first-child{text-align:left}
+table.yr tr.be td{background:var(--soft);font-weight:700}
+table.yr td.neg{color:var(--warn)}
 details.tbl summary{cursor:pointer;font-weight:700;font-size:15px}
 details.tbl[open] summary{margin-bottom:12px}
 .assume{font-size:12.5px;color:var(--muted);margin:0;padding-left:1.2em;display:grid;gap:3px}
 .disclaimer{font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;margin-top:12px}
+/* 提示モード：文字を一段大きく */
+body.present{font-size:16px}
+body.present .sentence{font-size:clamp(22px,3vw,30px)}
+body.present .kpi .v{font-size:36px}
+body.present .card h3{font-size:17px}
 /* mobile sticky summary */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);
   padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
@@ -152,14 +195,18 @@ details.tbl[open] summary{margin-bottom:12px}
 .sticky .t{font-size:12px;color:var(--muted)}
 .sticky .v{font-size:20px;font-weight:700;color:var(--accent)}
 @media (max-width:900px){body:not(.present) .sticky{display:flex}}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 10px 9px 18px;font-size:14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.18);max-width:calc(100% - 32px)}
+.toast button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.print-only{display:none}
 @media print{
-  body{padding:0;background:#fff;color:#000}
-  #inputs,.top-actions,.sticky{display:none!important}
-  main{grid-template-columns:1fr}
-  .card{break-inside:avoid}
-  details.tbl{display:block} details.tbl>*{display:block}
+  @page{size:A4;margin:12mm}
+  body{padding:0;background:#fff;color:#000;font-size:12px}
+  #inputs,.top-actions,.sticky,.toast,.rep-only,details.tbl{display:none!important}
+  main{grid-template-columns:1fr;display:block}
+  .card{break-inside:avoid;margin-bottom:10px}
+  .print-only{display:block}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -167,9 +214,10 @@ details.tbl[open] summary{margin-bottom:12px}
 <header class="top">
   <div class="brand"><b>GSOリフォーム 光熱費シミュレーター</b><span>太陽光・蓄電池・エコキュートの経済効果</span></div>
   <div class="top-actions">
-    <button class="btn" id="btnPresent" type="button">お客様に見せる</button>
+    <button class="btn primary" id="btnPresent" type="button">お客様に見せる</button>
+    <button class="btn" id="btnShare" type="button">試算のリンクをコピー</button>
     <button class="btn" id="btnPrint" type="button">印刷・PDF</button>
-    <button class="btn" id="btnReset" type="button">入力をリセット</button>
+    <button class="btn" id="btnReset" type="button">次のお客様へ</button>
   </div>
 </header>
 
@@ -178,21 +226,47 @@ details.tbl[open] summary{margin-bottom:12px}
 <section id="inputs" aria-label="入力">
   <div class="step">
     <h2><span class="n">1</span>お客様のいまの光熱費</h2>
-    <div class="field"><label for="name">お客様名（任意）</label><div class="inp"><input id="name" type="text" placeholder="例：山田" autocomplete="off" style="font-family:var(--f-body)"><span class="u">様</span></div></div>
+    <div class="row">
+      <div class="field"><label for="name">お客様名（任意）</label><div class="inp"><input id="name" class="txt" type="text" placeholder="山田" autocomplete="off"><span class="u">様</span></div></div>
+      <div class="field"><label for="staff">担当者</label><div class="inp"><input id="staff" class="txt" type="text" placeholder="氏名" autocomplete="off"></div></div>
+    </div>
     <div class="row">
       <div class="field"><label for="region">地域</label><div class="inp"><select id="region"></select></div></div>
       <div class="field"><label for="people">ご家族</label><div class="inp"><select id="people"><option value="1">1人</option><option value="2">2人</option><option value="3">3人</option><option value="4">4人</option><option value="5">5人</option><option value="6">6人以上</option></select></div></div>
     </div>
-    <div class="field"><label for="elec">電気代（月平均）</label><div class="inp"><input id="elec" type="number" inputmode="numeric" min="0" step="500"><span class="u">円/月</span></div></div>
+
+    <div class="field">
+      <div class="lblrow"><label for="elec">電気代（月平均）</label><button type="button" class="linkbtn" data-season="elec">季節ごとに入れる</button></div>
+      <div class="inp" id="elecAvgBox"><input id="elec" type="text" inputmode="numeric" data-yen><span class="u">円/月</span></div>
+      <div class="quick" id="elecQuick" aria-label="電気代のよくある金額"><button type="button" data-q="10000">1万</button><button type="button" data-q="15000">1.5万</button><button type="button" data-q="20000">2万</button><button type="button" data-q="25000">2.5万</button><button type="button" data-q="30000">3万</button></div>
+      <div class="row3" id="elecSeason" hidden>
+        <div class="field"><label for="elecW">冬（1〜2月）</label><div class="inp"><input id="elecW" type="text" inputmode="numeric" data-yen></div></div>
+        <div class="field"><label for="elecS">夏（8月）</label><div class="inp"><input id="elecS" type="text" inputmode="numeric" data-yen></div></div>
+        <div class="field"><label for="elecM">春・秋</label><div class="inp"><input id="elecM" type="text" inputmode="numeric" data-yen></div></div>
+      </div>
+      <p class="hint" id="elecHint"></p>
+    </div>
+
     <div class="field"><span class="lbl">いまのお湯（給湯器）</span>
       <div class="seg" id="heater" role="group" aria-label="いまの給湯器">
         <button type="button" data-v="city">都市ガス</button><button type="button" data-v="lp">プロパン</button><button type="button" data-v="kerosene">灯油</button><button type="button" data-v="electric">電気温水器</button>
       </div>
     </div>
-    <div class="field" id="gasField"><label for="gas" id="gasLabel">ガス代（月平均）</label><div class="inp"><input id="gas" type="number" inputmode="numeric" min="0" step="500"><span class="u">円/月</span></div></div>
+    <div class="field" id="gasField">
+      <div class="lblrow"><label for="gas" id="gasLabel">ガス代（月平均）</label><button type="button" class="linkbtn" data-season="gas">季節ごとに入れる</button></div>
+      <div class="inp" id="gasAvgBox"><input id="gas" type="text" inputmode="numeric" data-yen><span class="u">円/月</span></div>
+      <div class="quick" id="gasQuick"><button type="button" data-q="4000">4千</button><button type="button" data-q="6000">6千</button><button type="button" data-q="8000">8千</button><button type="button" data-q="10000">1万</button><button type="button" data-q="12000">1.2万</button></div>
+      <div class="row3" id="gasSeason" hidden>
+        <div class="field"><label for="gasW">冬（1〜2月）</label><div class="inp"><input id="gasW" type="text" inputmode="numeric" data-yen></div></div>
+        <div class="field"><label for="gasS">夏（8月）</label><div class="inp"><input id="gasS" type="text" inputmode="numeric" data-yen></div></div>
+        <div class="field"><label for="gasM">春・秋</label><div class="inp"><input id="gasM" type="text" inputmode="numeric" data-yen></div></div>
+      </div>
+      <p class="hint" id="gasHint"></p>
+    </div>
+
     <div class="item" id="exItem">
       <label class="toggle"><span><b>すでに太陽光がある</b><small>卒FIT・FIT中のお宅に蓄電池やエコキュートを提案するとき</small></span><span class="sw"><input type="checkbox" id="exOn"><i></i></span></label>
-      <div class="body">
+      <div class="body" style="display:grid;gap:10px">
         <div class="row">
           <div class="field"><label for="exKw">設置容量</label><div class="inp"><input id="exKw" type="number" inputmode="decimal" min="0" step="0.1"><span class="u">kW</span></div></div>
           <div class="field"><label for="exSell">いまの売電単価</label><div class="inp"><input id="exSell" type="number" inputmode="decimal" min="0" step="0.1"><span class="u">円/kWh</span></div></div>
@@ -204,12 +278,7 @@ details.tbl[open] summary{margin-bottom:12px}
 
   <div class="step">
     <h2><span class="n">2</span>ご提案プラン</h2>
-    <div class="chips" aria-label="よく使うプラン">
-      <button class="chip" type="button" data-preset="full">3点セット</button>
-      <button class="chip" type="button" data-preset="pvbat">太陽光＋蓄電池</button>
-      <button class="chip" type="button" data-preset="sotsu">卒FITに蓄電池</button>
-      <button class="chip" type="button" data-preset="eco">給湯器だけ交換</button>
-    </div>
+    <div class="chips" id="presetChips" aria-label="よく使うプラン"></div>
 
     <div class="item" id="pvItem">
       <label class="toggle"><span><b>太陽光発電</b><small>新しく設置する分</small></span><span class="sw"><input type="checkbox" id="pvOn"><i></i></span></label>
@@ -233,6 +302,7 @@ details.tbl[open] summary{margin-bottom:12px}
       </div>
     </div>
     <div class="field"><label for="subsidy">補助金（合計）</label><div class="inp"><input id="subsidy" type="number" inputmode="decimal" min="0" step="1"><span class="u">万円</span></div><p class="hint">申請が確定している金額だけを入れてください。</p></div>
+    <div class="total" id="totalBox"></div>
   </div>
 
   <div class="step">
@@ -243,12 +313,12 @@ details.tbl[open] summary{margin-bottom:12px}
       <div class="field"><label for="loanRate">金利（年）</label><div class="inp"><input id="loanRate" type="number" inputmode="decimal" min="0" step="0.1"><span class="u">%</span></div></div>
     </div>
     <div class="field"><span class="lbl">試算期間</span>
-      <div class="seg" id="years" role="group" aria-label="試算期間"><button type="button" data-v="10">10年</button><button type="button" data-v="15">15年</button><button type="button" data-v="20">20年</button><button type="button" data-v="25">25年</button></div>
+      <div class="seg" id="years" role="group" aria-label="試算期間"><button type="button" data-v="10">10年</button><button type="button" data-v="15">15年</button><button type="button" data-v="20">20年</button></div>
     </div>
   </div>
 
-  <details class="step adv">
-    <summary>前提条件を変える（管理者向け）</summary>
+  <details class="step adv" id="advBox">
+    <summary>前提条件（管理者だけが変更）</summary>
     <div style="display:grid;gap:10px">
       <div class="row">
         <div class="field"><label for="buy">電気の買う単価</label><div class="inp"><input id="buy" type="number" step="0.1"><span class="u">円/kWh</span></div></div>
@@ -270,7 +340,8 @@ details.tbl[open] summary{margin-bottom:12px}
         <div class="field"><label for="pcsCost">パワコン交換費（15年目）</label><div class="inp"><input id="pcsCost" type="number" step="1"><span class="u">万円</span></div></div>
         <div class="field"><label for="deg">パネルの劣化</label><div class="inp"><input id="deg" type="number" step="0.1"><span class="u">%/年</span></div></div>
       </div>
-      <p class="hint">売電単価は国の制度（初期投資支援スキーム）と電力会社の買取単価で毎年変わります。契約前に最新の単価に合わせてください。</p>
+      <button type="button" class="btn sm" id="btnStd" style="justify-self:start">会社の標準値に戻す</button>
+      <p class="hint">標準値から変えると、結果画面に「前提を変更しています」と表示されます。売電単価は国の制度と電力会社の買取単価で毎年変わるため、変更は管理者がまとめて行ってください。</p>
     </div>
   </details>
 </section>
@@ -278,23 +349,32 @@ details.tbl[open] summary{margin-bottom:12px}
 <!-- ============ 結果 ============ -->
 <section id="results" aria-live="polite">
   <div class="card hero">
-    <div class="who" id="who"></div>
-    <div class="big"><span class="label" id="heroLabel">20年間の経済効果</span><span class="v num" id="heroV"></span></div>
+    <div class="hero-top"><span><b id="who"></b>　<span id="items"></span></span><span id="meta"></span></div>
+    <p class="sentence" id="sentence"></p>
+    <div class="alert" id="stdAlert" hidden><span><b>前提を変更しています。</b><span id="stdAlertT"></span></span></div>
     <div class="kpis">
-      <div class="kpi"><span class="k">月々の光熱費</span><span class="v num" id="kMonth"></span><span class="s" id="kMonthS"></span></div>
-      <div class="kpi"><span class="k" id="kPayK">投資回収</span><span class="v num" id="kPay"></span><span class="s" id="kPayS"></span></div>
-      <div class="kpi"><span class="k" id="kNetK">実質のプラス</span><span class="v num" id="kNet"></span><span class="s" id="kNetS"></span></div>
+      <div class="kpi"><span class="k">月々の光熱費</span><span class="v num acc" id="kMonth"></span><span class="s" id="kMonthS"></span></div>
+      <div class="kpi"><span class="k" id="kPayK"></span><span class="v num" id="kPay"></span><span class="s" id="kPayS"></span></div>
+      <div class="kpi"><span class="k" id="kNetK"></span><span class="v num" id="kNet"></span><span class="s" id="kNetS"></span></div>
     </div>
+  </div>
+
+  <div class="card">
+    <h3>プランを比べる<small>このお宅の光熱費で計算</small></h3>
+    <div class="cmp-wrap"><table class="cmp" id="cmp"></table></div>
+    <p class="legend-note rep-only">「このプランにする」を押すと、入力とすべての結果がそのプランに切り替わります。</p>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>1か月あたりの光熱費<small>1年目・電気＋ガス（灯油）−売電</small></h3>
+      <h3>1か月の光熱費<small>1年目</small></h3>
+      <table class="batbl" id="batbl"></table>
       <div class="ba" id="ba"></div>
     </div>
     <div class="card">
       <h3 id="bdTitle">経済効果の内訳</h3>
       <div class="bd" id="bd"></div>
+      <p class="hint" style="margin-top:14px">電気代の上がり方による経済効果の幅</p><div class="range" id="range" style="margin-top:6px"></div>
     </div>
   </div>
 
@@ -312,58 +392,88 @@ details.tbl[open] summary{margin-bottom:12px}
   <div class="card">
     <details class="tbl" id="tblBox">
       <summary>年ごとの一覧を見る</summary>
-      <div class="tbl-wrap"><table id="tbl"></table></div>
+      <div class="tbl-wrap"><table class="yr" id="tbl"></table></div>
     </details>
     <div class="disclaimer">
       <b>この試算の前提</b>
       <ul class="assume" id="assume"></ul>
       <p style="margin:10px 0 0">本シミュレーションは入力値と上記の前提にもとづく目安で、将来の削減額・売電収入を保証するものではありません。発電量は天候・屋根の向き・影、削減額は暮らし方・電気料金プラン・制度改定により変わります。</p>
+      <p class="print-only" style="margin:10px 0 0">GSOリフォーム　担当：<span id="printStaff"></span>　作成日：<span id="printDate"></span></p>
     </div>
   </div>
 </section>
 </main>
 
-<div class="sticky" id="sticky"><div><div class="t" id="stickyT">20年間の経済効果</div><div class="v num" id="stickyV"></div></div><button class="btn primary" type="button" id="toResults">結果を見る</button></div>
+<div class="sticky" id="sticky"><div><div class="t" id="stickyT">月々の光熱費</div><div class="v num" id="stickyV"></div></div><button class="btn primary" type="button" id="toResults">結果を見る</button></div>
+<div class="toast" id="toast" hidden><span id="toastT"></span><button type="button" id="toastBtn" hidden></button></div>
 
 <script>
 (function(){
 "use strict";
 const REGIONS=[["北海道",1050],["東北",1100],["関東",1150],["北陸",1050],["東海・甲信",1250],["近畿",1200],["中国",1200],["四国",1250],["九州",1200],["沖縄",1150]];
-const DEFAULTS={
-  name:"",region:"5",people:"4",elec:15000,heater:"city",gas:7000,
+/* 会社の標準前提（管理者が年1回見直す） */
+const STD={buy:36,up:1.5,fit1:24,fit2:8.3,post:8.5,hwShare:70,dayRatio:35,gasBasic:1200,pcsCost:25,deg:0.5};
+const STD_LABEL={buy:"電気の単価",up:"光熱費の上昇率",fit1:"売電単価(1〜4年)",fit2:"売電単価(5〜10年)",post:"卒FIT後の売電単価",hwShare:"給湯の割合",dayRatio:"昼の電気の割合",gasBasic:"ガス基本料金",pcsCost:"パワコン交換費",deg:"パネルの劣化"};
+const DEFAULTS=Object.assign({
+  name:"",staff:"",region:"5",people:"4",
+  elecMode:"avg",elec:15000,elecW:20000,elecS:16000,elecM:12000,
+  heater:"city",gasMode:"avg",gas:7000,gasW:11000,gasS:4000,gasM:6500,
   exOn:false,exKw:4.5,exSell:8.5,exFitLeft:0,
   pvOn:true,pvKw:4.5,pvPrice:125,batOn:true,batKwh:9.8,batPrice:160,ecoOn:true,ecoPrice:48,gasCut:false,subsidy:0,
-  pay:"loan",loanYears:15,loanRate:2.5,years:"20",
-  buy:36,up:1.5,fit1:24,fit2:8.3,post:8.5,hwShare:70,dayRatio:35,gasBasic:1200,pcsCost:25,deg:0.5
-};
-const PRESETS={
-  full:{exOn:false,pvOn:true,batOn:true,ecoOn:true},
-  pvbat:{exOn:false,pvOn:true,batOn:true,ecoOn:false},
-  sotsu:{exOn:true,exFitLeft:0,pvOn:false,batOn:true,ecoOn:false},
-  eco:{exOn:false,pvOn:false,batOn:false,ecoOn:true}
-};
-const KEY="gso-eco-sim-v1";
+  pay:"loan",loanYears:15,loanRate:2.5,years:"20"
+},STD);
+const PLANS_NEW=[
+  {id:"pv",name:"太陽光だけ",sub:"初期費用をおさえる",set:{exOn:false,pvOn:true,batOn:false,ecoOn:false}},
+  {id:"pvbat",name:"太陽光＋蓄電池",sub:"夜も自家発電の電気",set:{exOn:false,pvOn:true,batOn:true,ecoOn:false}},
+  {id:"full",name:"3点セット",sub:"太陽光＋蓄電池＋エコキュート",set:{exOn:false,pvOn:true,batOn:true,ecoOn:true}},
+  {id:"pveco",name:"太陽光＋エコキュート",sub:"昼の電気でお湯をつくる",set:{exOn:false,pvOn:true,batOn:false,ecoOn:true}},
+  {id:"eco",name:"給湯器だけ交換",sub:"エコキュートのみ",set:{exOn:false,pvOn:false,batOn:false,ecoOn:true}}
+];
+const PLANS_EX=[
+  {id:"xbat",name:"蓄電池を追加",sub:"卒FIT・FIT中のお宅",set:{exOn:true,pvOn:false,batOn:true,ecoOn:false}},
+  {id:"xeco",name:"エコキュートを追加",sub:"余った電気でお湯",set:{exOn:true,pvOn:false,batOn:false,ecoOn:true}},
+  {id:"xboth",name:"蓄電池＋エコキュート",sub:"余った電気を使い切る",set:{exOn:true,pvOn:false,batOn:true,ecoOn:true}}
+];
+const KEY="gso-eco-sim-v2", STAFF_KEY="gso-eco-sim-staff";
 const $=id=>document.getElementById(id);
-const numIds=["elec","gas","exKw","exSell","exFitLeft","pvKw","pvPrice","batKwh","batPrice","ecoPrice","subsidy","loanYears","loanRate","buy","up","fit1","fit2","post","hwShare","dayRatio","gasBasic","pcsCost","deg"];
+const yenIds=["elec","elecW","elecS","elecM","gas","gasW","gasS","gasM"];
+const numIds=["exKw","exSell","exFitLeft","pvKw","pvPrice","batKwh","batPrice","ecoPrice","subsidy","loanYears","loanRate"].concat(Object.keys(STD));
 const boolIds=["exOn","pvOn","batOn","ecoOn","gasCut"];
 const segIds=["heater","pay","years"];
 let S={};
 
 REGIONS.forEach((r,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=r[0];$("region").appendChild(o)});
 
-function load(){let s=null;try{s=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}S=Object.assign({},DEFAULTS,s||{});}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const fmt=v=>Math.round(v).toLocaleString("ja-JP");
+const parseYen=s=>{const v=parseFloat(String(s).replace(/[^\d.]/g,""));return isFinite(v)?v:0};
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function fetchStore(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function load(){
+  let s=null;
+  const m=location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
+  if(m){try{s=JSON.parse(decodeURIComponent(escape(atob(m[1].replace(/-/g,"+").replace(/_/g,"/")))));s.name="";toast("共有された試算を開きました")}catch(e){s=null}}
+  if(!s){try{s=JSON.parse(fetchStore(KEY)||"null")}catch(e){s=null}}
+  S=Object.assign({},DEFAULTS,s||{});
+  if(String(S.years)==="25") S.years="20";
+  const st=fetchStore(STAFF_KEY); if(st&&!S.staff) S.staff=st;
+}
+function save(){store(KEY,JSON.stringify(S));if(S.staff) store(STAFF_KEY,S.staff)}
 function toForm(){
-  $("name").value=S.name;$("region").value=S.region;$("people").value=S.people;
-  numIds.forEach(id=>{$(id).value=S[id]});
+  $("name").value=S.name;$("staff").value=S.staff;$("region").value=S.region;$("people").value=S.people;
+  yenIds.forEach(id=>{if(document.activeElement!==$(id)) $(id).value=fmt(S[id])});
+  numIds.forEach(id=>{if(document.activeElement!==$(id)) $(id).value=S[id]});
   boolIds.forEach(id=>{$(id).checked=!!S[id]});
   segIds.forEach(id=>{$(id).querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===String(S[id]))))});
 }
 function fromForm(){
-  S.name=$("name").value.trim();S.region=$("region").value;S.people=$("people").value;
+  S.name=$("name").value.trim();S.staff=$("staff").value.trim();S.region=$("region").value;S.people=$("people").value;
+  yenIds.forEach(id=>{S[id]=parseYen($(id).value)});
   numIds.forEach(id=>{const v=parseFloat($(id).value);S[id]=isFinite(v)?v:0});
   boolIds.forEach(id=>{S[id]=$(id).checked});
 }
+const seasonAvg=(w,s,m)=>(w*3+s*3+m*6)/12; // 冬3か月・夏3か月・春秋6か月
+const elecOf=s=>s.elecMode==="season"?seasonAvg(s.elecW,s.elecS,s.elecM):s.elec;
+const gasOf=s=>s.gasMode==="season"?seasonAvg(s.gasW,s.gasS,s.gasM):s.gas;
 
 /* ---------- 計算 ---------- */
 function calc(s){
@@ -373,9 +483,10 @@ function calc(s){
   const ecoKWh=200*ppl+300;               // エコキュートの年間消費電力量
   const tankL=ppl<=2?300:(ppl<=4?370:460);
   const heaterKWh=s.heater==="electric"?ecoKWh*3:0; // 電気温水器はエコキュートの約3倍
-  const fuelMonthly=s.heater==="electric"?0:s.gas;
+  const elecM=elecOf(s);
+  const fuelMonthly=s.heater==="electric"?0:gasOf(s);
   // いまの状態
-  const P0=Math.max(0,s.elec*12/buy);
+  const P0=Math.max(0,elecM*12/buy);
   const G0=s.exOn?s.exKw*y1:0;
   const d0=G0>0?Math.min(G0,DIRECT*r*P0/(1-DIRECT*r)):0;
   const L0=P0+d0;
@@ -385,12 +496,12 @@ function calc(s){
   if(s.ecoOn&&s.heater!=="electric"){
     fuel1=fuelMonthly*12*(1-share);
     if(s.gasCut&&(s.heater==="city"||s.heater==="lp")) fuel1=Math.max(0,fuel1-s.gasBasic*12);
-    if(s.heater==="kerosene") fuel1=fuelMonthly*12*(1-share);
   }
   const ecoLoad=s.ecoOn?ecoKWh:0;
   const L1=Math.max(0,L0-(s.ecoOn?heaterKWh:0)+ecoLoad);
   const baseLoad1=Math.max(0,L1-ecoLoad-(s.ecoOn?0:heaterKWh));
-  const inv=((s.pvOn?s.pvPrice:0)+(s.batOn?s.batPrice:0)+(s.ecoOn?s.ecoPrice:0)-s.subsidy)*10000;
+  const price0=((s.pvOn?s.pvPrice:0)+(s.batOn?s.batPrice:0)+(s.ecoOn?s.ecoPrice:0))*10000;
+  const inv=Math.max(0,price0-s.subsidy*10000);
   const loan=s.pay==="loan"&&inv>0;
   const n=Math.max(1,Math.round(s.loanYears)), i=s.loanRate/100/12;
   const monthlyPay=loan?(i>0?inv*i/(1-Math.pow(1+i,-n*12)):inv/(n*12)):0;
@@ -413,7 +524,6 @@ function calc(s){
     }
     const P1=Math.max(0,L1-direct-dis);
     const sold=surplus-charge;
-    // 売電単価
     const exPrice=(y<=s.exFitLeft)?s.exSell:s.post;
     const nwPrice=y<=4?s.fit1:(y<=10?s.fit2:s.post);
     const shareEx=G1>0?G0/G1:0;
@@ -424,69 +534,104 @@ function calc(s){
     const fuelSave=(fuelMonthly*12-fuel1)*esc;
     const maint=(s.pvOn&&y===15)?s.pcsCost*10000:0;
     const total=elecSave+sellGain+fuelSave-maint;
-    const cost0=P0*price+fuelMonthly*12*esc-sell0;
-    const cost1=P1*price+fuel1*esc-sell1;
     cumCash+=total;
     const paid=loan&&y<=n?monthlyPay*12:0;
     cumLoan+=total-paid;
-    rows.push({y,elecSave,sellGain,fuelSave,maint,total,cost0,cost1,cum:loan?cumLoan:cumCash,paid,G1,P1,direct,dis,sold});
+    rows.push({y,elecSave,sellGain,fuelSave,maint,total,cum:loan?cumLoan:cumCash,paid,
+      e0:P0*price,e1:P1*price,f0:fuelMonthly*12*esc,f1:fuel1*esc,s0:sell0,s1:sell1});
   }
   const sum=k=>rows.reduce((a,r)=>a+r[k],0);
   const gross=sum("total");
-  const totalPaid=loan?monthlyPay*Math.min(n,N)*12:inv;
-  const payback=(()=>{ // 現金・ローンとも「投資額を効果で取り戻す年」
-    let c=-inv;for(const r of rows){const prev=c;c+=r.total;if(c>=0&&inv>0){return r.y-1+(-prev)/(r.total||1)}}return null})();
+  const payback=(()=>{let c=-inv;for(const r of rows){const prev=c;c+=r.total;if(c>=0&&inv>0){return r.y-1+(-prev)/(r.total||1)}}return null})();
   const usable=s.batOn?s.batKwh*0.9:0;
-  return {rows,N,inv,loan,monthlyPay,n,gross,net:gross-(loan?monthlyPay*n*12:inv),payback,
+  const r1=rows[0];
+  return {rows,N,inv,price0,loan,monthlyPay,n,gross,net:gross-(loan?monthlyPay*n*12:inv),payback,
     sums:{elec:sum("elecSave"),sell:sum("sellGain"),fuel:sum("fuelSave"),maint:sum("maint")},
-    month0:rows[0].cost0/12,month1:rows[0].cost1/12,save1:rows[0].total/12,
+    m:{e0:r1.e0/12,e1:r1.e1/12,f0:r1.f0/12,f1:r1.f1/12,s0:r1.s0/12,s1:r1.s1/12},
+    month0:(r1.e0+r1.f0-r1.s0)/12,month1:(r1.e1+r1.f1-r1.s1)/12,save1:(r1.elecSave+r1.sellGain+r1.fuelSave)/12,
     backupH:usable>0?usable*1000/400:0,tankL,co2:(s.pvOn?s.pvKw*y1:0)*0.43,
-    hasEnergy:(s.pvOn||s.exOn),y1,ecoKWh};
+    hasEnergy:(s.pvOn||s.exOn),y1,ecoKWh,elecM,fuelMonthly};
 }
 
 /* ---------- 表示 ---------- */
-const yen=v=>Math.round(v).toLocaleString("ja-JP");
 const man=v=>{const m=v/10000;return (Math.abs(m)>=100?Math.round(m):Math.round(m*10)/10).toLocaleString("ja-JP")};
+const r100=v=>Math.round(v/100)*100;
+const signMan=v=>(v<0?"−":"")+man(Math.abs(v));
+function planName(s){
+  const a=[s.pvOn&&`太陽光 ${s.pvKw}kW`,s.batOn&&`蓄電池 ${s.batKwh}kWh`,s.ecoOn&&"エコキュート"].filter(Boolean);
+  return a.length?a.join("＋"):"商品が選ばれていません";
+}
+function currentPlanId(){
+  const list=S.exOn?PLANS_EX:PLANS_NEW;
+  const p=list.find(p=>p.set.pvOn===S.pvOn&&p.set.batOn===S.batOn&&p.set.ecoOn===S.ecoOn);
+  return p?p.id:null;
+}
+function sentence(R){
+  const x=r100(R.save1);
+  if(x<=0) return "このプランでは、毎月の光熱費はほとんど変わりません。プランを見直してください。";
+  const head=`毎月の光熱費が<em>約${fmt(x)}円</em>下がる見込みです。`;
+  if(R.loan){
+    const b=R.monthlyPay-R.save1;
+    if(b<=0) return head+`ローンの返済額より大きいため、<em>返済中も家計は月約${fmt(r100(-b))}円のプラス</em>です。`;
+    return head+`ローン返済中の<em>実質のご負担は月約${fmt(r100(b))}円</em>。${R.n}年で返し終わると、下がった光熱費がそのまま家計のプラスになります。`;
+  }
+  if(R.inv<=0) return head;
+  if(R.payback) return head+`導入費用は<em>約${Math.round(R.payback*10)/10}年で取り戻せる</em>見込みです。`;
+  return head+`${R.N}年間では導入費用を取り戻せないため、停電への備えなどの価値とあわせてご検討ください。`;
+}
 function render(){
   const R=calc(S);
-  const who=S.name?`${S.name} 様邸のご提案`:"ご提案シミュレーション";
-  const items=[S.pvOn&&`太陽光 ${S.pvKw}kW`,S.batOn&&`蓄電池 ${S.batKwh}kWh`,S.ecoOn&&"エコキュート"].filter(Boolean).join("・")||"商品が選ばれていません";
-  $("who").textContent=`${who}　｜　${items}`;
-  $("heroLabel").textContent=`${R.N}年間の経済効果`;
-  $("heroV").innerHTML=`約${man(R.gross)}<small>万円</small>`;
-  $("stickyT").textContent=`${R.N}年間の経済効果`;$("stickyV").textContent=`約${man(R.gross)}万円`;
+  const today=new Date(), dstr=`${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`;
+  $("who").textContent=S.name?`${S.name} 様邸のご提案`:"ご提案シミュレーション";
+  $("items").textContent=planName(S);
+  $("meta").textContent=`${dstr}${S.staff?"　担当 "+S.staff:""}`;
+  $("printStaff").textContent=S.staff||"—";$("printDate").textContent=dstr;
+  $("sentence").innerHTML=sentence(R);
+  // 標準からの変更
+  const changed=Object.keys(STD).filter(k=>Math.abs(S[k]-STD[k])>1e-9);
+  $("stdAlert").hidden=!changed.length;
+  $("stdAlertT").textContent=changed.length?` ${changed.map(k=>`${STD_LABEL[k]} ${STD[k]}→${S[k]}`).join("、")}`:"";
   // KPI
-  $("kMonth").innerHTML=`${yen(R.save1)}<small>円おトク</small>`;
-  $("kMonthS").textContent=`月 ${yen(R.month0)}円 → ${yen(R.month1)}円（1年目）`;
+  $("kMonth").innerHTML=`−${fmt(Math.max(0,r100(R.save1)))}<small>円</small>`;
+  $("kMonthS").textContent=`${fmt(R.month0)}円 → ${R.month1<0?"−"+fmt(-R.month1):fmt(R.month1)}円（1年目）`;
   if(R.loan){
-    const burden=R.monthlyPay-R.save1;
+    const b=R.monthlyPay-R.save1;
     $("kPayK").textContent="ローン返済中の実質負担";
-    $("kPay").innerHTML=burden<=0?`<span class="pill">負担なし</span> ${yen(-burden)}<small>円/月 プラス</small>`:`${yen(burden)}<small>円/月</small>`;
-    $("kPayS").textContent=`返済 ${yen(R.monthlyPay)}円/月 − 削減 ${yen(R.save1)}円/月（${R.n}年）`;
+    $("kPay").innerHTML=b<=0?`<span class="pill">負担なし</span> +${fmt(r100(-b))}<small>円/月</small>`:`${fmt(r100(b))}<small>円/月</small>`;
+    $("kPayS").textContent=`返済 ${fmt(R.monthlyPay)}円 − 削減 ${fmt(R.save1)}円（${R.n}年）`;
+    $("kNetK").textContent=`${R.N}年後に手元に残るお金`;
+    $("kNetS").textContent=`経済効果 ${man(R.gross)}万円 − 返済総額 ${man(R.monthlyPay*R.n*12)}万円`;
   }else{
-    $("kPayK").textContent="投資回収";
-    $("kPay").innerHTML=R.inv<=0?"—":(R.payback?`約${(Math.round(R.payback*10)/10)}<small>年</small>`:`<span class="pill warn">${R.N}年以内は未回収</span>`);
+    $("kPayK").textContent="導入費用を取り戻すまで";
+    $("kPay").innerHTML=R.inv<=0?"—":(R.payback?`約${Math.round(R.payback*10)/10}<small>年</small>`:`<span class="pill warn">${R.N}年では未回収</span>`);
     $("kPayS").textContent=`導入費用 ${man(R.inv)}万円（補助金差引後）`;
+    $("kNetK").textContent=`${R.N}年間の実質プラス`;
+    $("kNetS").textContent=`経済効果 ${man(R.gross)}万円 − 導入費用 ${man(R.inv)}万円`;
   }
-  $("kNetK").textContent=R.loan?`${R.N}年後の手元に残るお金`:`${R.N}年後の実質プラス`;
-  $("kNet").innerHTML=`${R.net>=0?"":"−"}${man(Math.abs(R.net))}<small>万円</small>`;
-  $("kNetS").textContent=R.loan?`経済効果 − 返済総額 ${man(R.monthlyPay*R.n*12)}万円`:`経済効果 − 導入費用`;
-  // before/after
+  $("kNet").innerHTML=`${R.net>=0?"+":"−"}${man(Math.abs(R.net))}<small>万円</small>`;
+  $("kNet").style.color=R.net<0?"var(--warn)":"";
+  $("stickyV").textContent=`−${fmt(Math.max(0,r100(R.save1)))}円/月`;
+  renderCompare();
+  // 1か月の光熱費（表）
+  const m=R.m, showSell=m.s0>0||m.s1>0, showFuel=R.fuelMonthly>0;
+  const row=(l,a,b,minus)=>`<tr><td>${l}</td><td>${minus?(a>0?"−":""):""}${fmt(a)}円</td><td class="${minus?"minus":""}">${minus?(b>0?"−":""):""}${fmt(b)}円</td></tr>`;
+  $("batbl").innerHTML=`<tr><th></th><th>いま</th><th>導入後</th></tr>`+
+    row("電気代",m.e0,m.e1)+(showFuel?row(S.heater==="kerosene"?"灯油代":"ガス代",m.f0,m.f1):"")+(showSell?row("売電収入",m.s0,m.s1,true):"")+
+    `<tr class="sum"><td>合計</td><td>${fmt(R.month0)}円</td><td>${R.month1<0?"−"+fmt(-R.month1):fmt(R.month1)}円</td></tr>`;
   const mx=Math.max(R.month0,R.month1,1);
-  const bar=(v)=>`${Math.max(0,v)/mx*100}%`;
-  $("ba").innerHTML=`
-    <div class="ba-row"><span class="t">いま</span><div><div class="bar" style="width:${bar(R.month0)}"></div></div><span class="val num">${yen(R.month0)}<small>円</small></span></div>
-    <div class="ba-row after"><span class="t">導入後</span><div><div class="bar" style="width:${bar(R.month1)}"></div></div><span class="val num">${R.month1<0?"−"+yen(-R.month1):yen(R.month1)}<small>円</small></span></div>
-    <p class="ba-diff">毎月 <b class="num">${yen(R.month0-R.month1)}円</b>、年間 <b class="num">${man((R.month0-R.month1)*12)}万円</b> 光熱費が下がる見込みです。${R.month1<0?"（売電収入が支払いを上回ります）":""}</p>`;
+  $("ba").innerHTML=`<div class="ba-row"><span class="t">いま</span><div class="bar" style="width:${Math.max(0,R.month0)/mx*100}%"></div></div><div class="ba-row after"><span class="t">導入後</span><div class="bar" style="width:${Math.max(0,R.month1)/mx*100}%"></div></div>`;
   // breakdown
   $("bdTitle").innerHTML=`経済効果の内訳<small>${R.N}年間の合計</small>`;
   const parts=[["電気代の削減","var(--accent)",R.sums.elec],["売電収入","var(--sun)",R.sums.sell],["ガス・灯油代の削減","var(--water)",R.sums.fuel]];
   if(R.sums.maint>0) parts.push(["パワコン交換費","var(--before)",-R.sums.maint]);
   const bmax=Math.max(...parts.map(p=>Math.abs(p[2])),1);
-  $("bd").innerHTML=parts.map(([l,c,v])=>`<div class="bd-row${v<0?" neg":""}"><span><span class="sw2" style="background:${c}"></span>${l}</span><div class="track"><div class="fill" style="width:${Math.abs(v)/bmax*100}%;background:${c}"></div></div><span class="val num">${v<0?"−":"+"}${man(Math.abs(v))}万円</span></div>`).join("")+
+  $("bd").innerHTML=parts.map(([l,c,v])=>`<div class="bd-row${v<0?" neg":""}"><span><span class="sw2" style="background:${c}"></span>${l}</span><div><div class="fill" style="width:${Math.abs(v)/bmax*100}%;background:${c}"></div></div><span class="val num">${v<0?"−":"+"}${man(Math.abs(v))}万円</span></div>`).join("")+
     `<div class="bd-total"><span>合計</span><span class="num">約${man(R.gross)}万円</span></div>`+
     (S.ecoOn&&S.heater!=="electric"&&!R.hasEnergy?`<p class="hint">エコキュートの電気代が増えるぶんは「電気代の削減」から差し引いています。</p>`:"")+
-    (S.batOn&&!R.hasEnergy?`<p class="hint">太陽光がないため、蓄電池の経済効果は0円で計算しています（停電対策としての価値は下の「暮らしの安心」）。</p>`:"");
+    (S.batOn&&!R.hasEnergy?`<p class="hint">太陽光がないため、蓄電池の経済効果は0円で計算しています。</p>`:"");
+  // 電気代の上がり方による幅
+  const alt=[0,S.up,3].filter((v,i,a)=>a.indexOf(v)===i).sort((a,b)=>a-b);
+  $("range").innerHTML=alt.map(u=>{const g=calc(Object.assign({},S,{up:u})).gross;return `<div class="${u===S.up?"cur":""}"><span class="k">${u===0?"据え置き":"年"+u+"%上昇"}${u===S.up?"（この試算）":""}</span><span class="v num">約${man(g)}万円</span></div>`}).join("");
   drawCum(R);
   // extras
   const ex=[];
@@ -498,12 +643,13 @@ function render(){
   const head=`<thead><tr><th>年目</th><th>電気代の削減</th><th>売電収入</th><th>ガス・灯油の削減</th><th>メンテ費</th><th>年間の効果</th>${R.loan?"<th>ローン返済</th>":""}<th>${R.loan?"累計（返済後）":"累計（費用差引）"}</th></tr></thead>`;
   let beMarked=false;
   const body=R.rows.map(r=>{let cls="";if(!beMarked&&r.cum>=0&&R.inv>0){cls=' class="be"';beMarked=true}
-    const c=v=>`<td${v<0?' class="neg"':""}>${v<0?"−":""}${yen(Math.abs(v))}</td>`;
+    const c=v=>`<td${v<0?' class="neg"':""}>${v<0?"−":""}${fmt(Math.abs(v))}</td>`;
     return `<tr${cls}><td>${r.y}年目</td>${c(r.elecSave)}${c(r.sellGain)}${c(r.fuelSave)}${c(-r.maint)}${c(r.total)}${R.loan?c(-r.paid):""}${c(r.cum)}</tr>`}).join("");
   $("tbl").innerHTML=head+"<tbody>"+body+"</tbody>";
   // assumptions
   const heaterName={city:"都市ガス",lp:"プロパンガス",kerosene:"灯油",electric:"電気温水器"}[S.heater];
   const A=[
+    `いまの光熱費：電気代 月${fmt(R.elecM)}円${S.elecMode==="season"?"（季節ごとの金額から年平均）":""}${R.fuelMonthly>0?`、${S.heater==="kerosene"?"灯油代":"ガス代"} 月${fmt(R.fuelMonthly)}円${S.gasMode==="season"?"（年平均）":""}`:""}`,
     `電気の買う単価 ${S.buy}円/kWh、光熱費は毎年 ${S.up}% 上昇`,
     (S.pvOn||S.exOn)?`年間発電量は 1kWあたり ${R.y1.toLocaleString()}kWh（${REGIONS[+S.region][0]}）、パネルの劣化 ${S.deg}%/年`:null,
     S.pvOn?`新設太陽光の売電単価 1〜4年目 ${S.fit1}円、5〜10年目 ${S.fit2}円、11年目以降 ${S.post}円/kWh`:null,
@@ -515,34 +661,59 @@ function render(){
     R.loan?`ローン ${R.n}年・金利${S.loanRate}%・元利均等、借入額 ${man(R.inv)}万円`:`導入費用 ${man(R.inv)}万円（補助金 ${S.subsidy}万円差引後）`
   ].filter(Boolean);
   $("assume").innerHTML=A.map(a=>`<li>${a}</li>`).join("");
-  // visibility
+  // 入力側の表示切り替え
   ["pv","bat","eco","ex"].forEach(k=>$(k+"Item").classList.toggle("off",!S[k+"On"]));
   $("loanFields").hidden=S.pay!=="loan";
   $("gasField").hidden=S.heater==="electric";
   $("gasLabel").textContent=S.heater==="kerosene"?"灯油代（月平均）":"ガス代（月平均）";
   $("gasCutRow").hidden=!(S.heater==="city"||S.heater==="lp");
+  ["elec","gas"].forEach(k=>{const season=S[k+"Mode"]==="season";$(k+"AvgBox").hidden=season;$(k+"Quick").hidden=season;$(k+"Season").hidden=!season;
+    document.querySelector(`[data-season="${k}"]`).textContent=season?"月平均で入れる":"季節ごとに入れる"});
+  const eh=$("elecHint");
+  if(S.elecMode==="season"){eh.className="hint";eh.textContent=`年平均 月${fmt(R.elecM)}円 として計算します`}
+  else if(R.elecM<4000){eh.className="hint warn";eh.textContent="電気代が少なすぎませんか。月平均の金額を確認してください。"}
+  else if(R.elecM>60000){eh.className="hint warn";eh.textContent="電気代が多すぎませんか。月平均の金額を確認してください。"}
+  else{eh.className="hint";eh.textContent=""}
+  const gh=$("gasHint");gh.className="hint";gh.textContent=S.gasMode==="season"?`年平均 月${fmt(gasOf(S))}円 として計算します`:"";
+  $("totalBox").innerHTML=`<span>お見積り ${man(R.price0)}万円${S.subsidy?` − 補助金 ${S.subsidy}万円`:""}</span><span>お支払い <b class="num">${man(R.inv)}</b>万円</span>`;
+  const cur=currentPlanId();
+  $("presetChips").innerHTML=(S.exOn?PLANS_EX:PLANS_NEW).map(p=>`<button class="chip" type="button" data-plan="${p.id}" aria-pressed="${p.id===cur}">${p.name}</button>`).join("");
+  $("btnStd").hidden=!changed.length;
+}
+function renderCompare(){
+  const list=S.exOn?PLANS_EX:PLANS_NEW, cur=currentPlanId();
+  const loan=S.pay==="loan";
+  const head=`<tr><th>プラン</th><th>お支払い</th><th>月々の削減</th><th>${loan?"実質負担/月":"取り戻すまで"}</th><th>${S.years}年で${loan?"手元に残る":"実質プラス"}</th><th class="rep-only"></th></tr>`;
+  const rows=list.map(p=>{
+    const s=Object.assign({},S,p.set), R=calc(s);
+    let mid;
+    if(R.loan){const b=R.monthlyPay-R.save1;mid=b<=0?`<span class="pill">負担なし</span>`:`${fmt(r100(b))}円`}
+    else mid=R.inv<=0?"—":(R.payback?`約${Math.round(R.payback*10)/10}年`:`<span class="pill warn">未回収</span>`);
+    return `<tr class="${p.id===cur?"cur":""}"><td class="name"><b>${p.name}</b><small>${p.sub}</small></td><td class="v">${man(R.inv)}万円</td><td class="v">−${fmt(Math.max(0,r100(R.save1)))}円</td><td class="v">${mid}</td><td class="v${R.net<0?" neg":""}">${R.net>=0?"+":"−"}${man(Math.abs(R.net))}万円</td><td class="rep-only">${p.id===cur?'<span class="pill">選択中</span>':`<button class="btn sm" type="button" data-plan="${p.id}">このプランにする</button>`}</td></tr>`;
+  }).join("");
+  $("cmp").innerHTML=head+rows;
 }
 
 /* 累計チャート（SVG） */
 function drawCum(R){
-  const box=$("cum"), W=720, H=280, m={l:56,r:16,t:16,b:30};
+  const box=$("cum"), W=720, H=280, m={l:56,r:16,t:20,b:30};
   const pts=[{y:0,v:R.loan?0:-R.inv}].concat(R.rows.map(r=>({y:r.y,v:r.cum})));
   let lo=Math.min(0,...pts.map(p=>p.v)), hi=Math.max(0,...pts.map(p=>p.v));
   const span=(hi-lo)||1, step=niceStep(span/4);
-  lo=Math.floor(lo/step)*step; hi=Math.ceil(hi/step)*step;
+  lo=Math.floor(lo/step)*step; hi=Math.ceil(hi/step)*step; if(hi===lo) hi=lo+step;
   const x=y=>m.l+(W-m.l-m.r)*y/R.N, yy=v=>m.t+(H-m.t-m.b)*(hi-v)/(hi-lo);
   let g="";
-  for(let v=lo;v<=hi+1e-6;v+=step){g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--line)" stroke-width="${Math.abs(v)<1e-6?1.5:1}" ${Math.abs(v)<1e-6?"":'stroke-dasharray="2 4"'}/><text x="${m.l-8}" y="${yy(v)+4}" text-anchor="end">${Math.round(v/10000).toLocaleString()}万</text>`}
+  for(let v=lo;v<=hi+1e-6;v+=step){const z=Math.abs(v)<1e-6;g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy(v)}" y2="${yy(v)}" stroke="${z?"var(--muted)":"var(--line)"}" stroke-width="1" ${z?"":'stroke-dasharray="2 4"'}/><text x="${m.l-8}" y="${yy(v)+4}" text-anchor="end">${Math.round(v/10000).toLocaleString()}万</text>`}
   const tickEvery=R.N<=10?1:5;
   for(let t=0;t<=R.N;t+=tickEvery){g+=`<text x="${x(t)}" y="${H-8}" text-anchor="middle">${t===0?"導入時":t+"年"}</text>`}
   const line=pts.map((p,i)=>`${i?"L":"M"}${x(p.y).toFixed(1)},${yy(p.v).toFixed(1)}`).join("");
   const area=line+`L${x(R.N)},${yy(0)}L${x(0)},${yy(0)}Z`;
-  // 損益分岐
   let be="";
-  for(let i=1;i<pts.length;i++){if(pts[i-1].v<0&&pts[i].v>=0){const f=-pts[i-1].v/(pts[i].v-pts[i-1].v);const bx=x(pts[i-1].y+f);be=`<line x1="${bx}" x2="${bx}" y1="${m.t}" y2="${yy(0)}" stroke="var(--muted)" stroke-dasharray="3 3"/><text x="${bx+6}" y="${m.t+12}" style="fill:var(--ink)">${R.loan?"手元資金がプラスに":"ここで元が取れる"}（約${(Math.round((pts[i-1].y+f)*10)/10)}年）</text>`;break}}
+  for(let i=1;i<pts.length;i++){if(pts[i-1].v<0&&pts[i].v>=0){const f=-pts[i-1].v/(pts[i].v-pts[i-1].v);const bx=x(pts[i-1].y+f);const left=bx>W*0.62;be=`<line x1="${bx}" x2="${bx}" y1="${yy(0)-8}" y2="${yy(0)+8}" stroke="var(--ink)" stroke-width="2"/><text x="${left?bx-8:bx+8}" y="${yy(0)+20}" text-anchor="${left?"end":"start"}" style="fill:var(--ink)">${R.loan?"手元資金がプラスに":"ここで元が取れる"}（約${Math.round((pts[i-1].y+f)*10)/10}年）</text>`;break}}
   const last=pts[pts.length-1];
-  const endLabel=`<circle cx="${x(last.y)}" cy="${yy(last.v)}" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="${x(last.y)-8}" y="${yy(last.v)-12}" text-anchor="end" style="fill:var(--ink);font-weight:700;font-size:13px">${last.v<0?"−":"+"}${man(Math.abs(last.v))}万円</text>`;
-  const svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="累計のおトク額の推移"><defs><clipPath id="cpos"><rect x="0" y="0" width="${W}" height="${yy(0)}"/></clipPath><clipPath id="cneg"><rect x="0" y="${yy(0)}" width="${W}" height="${H}"/></clipPath></defs>${g}
+  const ly=yy(last.v)<m.t+24?yy(last.v)+22:yy(last.v)-12;
+  const endLabel=`<circle cx="${x(last.y)}" cy="${yy(last.v)}" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="${x(last.y)-10}" y="${ly}" text-anchor="end" style="fill:var(--ink);font-weight:700;font-size:13px">${last.v<0?"−":"+"}${man(Math.abs(last.v))}万円</text>`;
+  const svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="累計の推移"><defs><clipPath id="cpos"><rect x="0" y="0" width="${W}" height="${yy(0)}"/></clipPath><clipPath id="cneg"><rect x="0" y="${yy(0)}" width="${W}" height="${H}"/></clipPath></defs>${g}
     <path d="${area}" fill="var(--accent)" fill-opacity=".14" clip-path="url(#cpos)"/><path d="${area}" fill="var(--warn)" fill-opacity=".12" clip-path="url(#cneg)"/>
     <path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>${be}${endLabel}
     <line id="hx" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="var(--muted)" stroke-width="1" opacity="0"/><circle id="hc" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
@@ -550,29 +721,57 @@ function drawCum(R){
   box.querySelector("svg")?.remove();
   box.insertAdjacentHTML("afterbegin",svg);
   $("cumTitle").innerHTML=R.loan?`累計の手元資金<small>経済効果 − ローン返済</small>`:`累計のおトク額<small>経済効果 − 導入費用</small>`;
-  $("cumNote").textContent=R.loan?`返済期間中は「毎月の削減額 − 返済額」、完済後は削減額がまるごとプラスになります。`:`導入時の費用（マイナス）から始まり、毎年の経済効果で取り戻していきます。`;
+  $("cumNote").textContent=R.loan?`返済期間中は「毎月の削減額 − 返済額」、完済後は削減額がまるごとプラスになります。15年目の段差はパワコン交換費です。`:`導入時の費用（マイナス）から始まり、毎年の経済効果で取り戻していきます。`;
   const svgEl=box.querySelector("svg"), tip=$("tip"), hx=svgEl.querySelector("#hx"), hc=svgEl.querySelector("#hc");
   const move=e=>{const rc=svgEl.getBoundingClientRect();const px=(e.clientX-rc.left)*W/rc.width;let yr=Math.round((px-m.l)/(W-m.l-m.r)*R.N);yr=Math.max(0,Math.min(R.N,yr));
     const p=pts[yr];hx.setAttribute("x1",x(yr));hx.setAttribute("x2",x(yr));hx.setAttribute("opacity",".6");hc.setAttribute("cx",x(yr));hc.setAttribute("cy",yy(p.v));hc.setAttribute("opacity","1");
     const row=R.rows[yr-1];
     tip.innerHTML=`<b>${yr===0?"導入時":yr+"年目"}</b><br>累計 ${p.v<0?"−":"+"}${man(Math.abs(p.v))}万円${row?`<br>この年の効果 ${man(row.total)}万円`:""}`;
-    tip.style.left=(x(yr)/W*rc.width)+"px";tip.style.top=(yy(p.v)/H*rc.height)+"px";tip.classList.add("on")};
+    const tx=Math.max(70,Math.min(rc.width-70,x(yr)/W*rc.width));
+    tip.style.left=tx+"px";tip.style.top=(yy(p.v)/H*rc.height)+"px";tip.classList.add("on")};
   const leave=()=>{tip.classList.remove("on");hx.setAttribute("opacity","0");hc.setAttribute("opacity","0")};
   const hit=svgEl.querySelector("#hit");hit.addEventListener("pointermove",move);hit.addEventListener("pointerdown",move);hit.addEventListener("pointerleave",leave);
 }
 function niceStep(raw){const p=Math.pow(10,Math.floor(Math.log10(raw)));const f=raw/p;return (f<=1?1:f<=2?2:f<=5?5:10)*p}
 
+/* ---------- 通知 ---------- */
+let toastTimer=null;
+function toast(msg,btnLabel,onBtn){
+  $("toastT").textContent=msg;const b=$("toastBtn");b.hidden=!btnLabel;b.textContent=btnLabel||"";b.onclick=()=>{$("toast").hidden=true;onBtn&&onBtn()};
+  $("toast").hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$("toast").hidden=true},btnLabel?7000:3000);
+}
+
 /* ---------- イベント ---------- */
 function update(){fromForm();save();render()}
 document.querySelectorAll("#inputs input,#inputs select").forEach(el=>el.addEventListener("input",update));
-segIds.forEach(id=>$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S[id]=b.dataset.v;toForm();save();render()}));
-document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{fromForm();Object.assign(S,PRESETS[b.dataset.preset]);toForm();save();render()}));
-$("btnReset").addEventListener("click",()=>{S=Object.assign({},DEFAULTS);toForm();save();render()});
+// 円の欄：入力中は数字だけ、離れたらカンマ区切り
+document.querySelectorAll("[data-yen]").forEach(el=>{
+  el.addEventListener("focus",()=>{el.value=String(parseYen(el.value)||"");try{el.select()}catch(e){}});
+  el.addEventListener("blur",()=>{el.value=fmt(parseYen(el.value))});
+});
+document.querySelectorAll(".quick").forEach(q=>q.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const id=q.id.replace("Quick","");S[id]=+b.dataset.q;toForm();save();render()}));
+document.querySelectorAll("[data-season]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.season;fromForm();S[k+"Mode"]=S[k+"Mode"]==="season"?"avg":"season";if(S[k+"Mode"]==="avg") S[k]=Math.round((k==="elec"?elecOf:gasOf)(Object.assign({},S,{[k+"Mode"]:"season"})));toForm();save();render()}));
+segIds.forEach(id=>$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fromForm();S[id]=b.dataset.v;toForm();save();render()}));
+function applyPlan(id){const p=PLANS_NEW.concat(PLANS_EX).find(p=>p.id===id);if(!p)return;fromForm();Object.assign(S,p.set);toForm();save();render()}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-plan]");if(b) applyPlan(b.dataset.plan)});
+$("btnStd").addEventListener("click",()=>{fromForm();Object.assign(S,STD);toForm();save();render();toast("前提を会社の標準値に戻しました")});
+$("btnReset").addEventListener("click",()=>{
+  fromForm();const prev=JSON.stringify(S);
+  S=Object.assign({},DEFAULTS,{staff:S.staff});toForm();save();render();window.scrollTo({top:0,behavior:"smooth"});
+  toast("入力をリセットしました","元に戻す",()=>{S=JSON.parse(prev);toForm();save();render()});
+});
 $("btnPresent").addEventListener("click",()=>{const on=document.body.classList.toggle("present");$("btnPresent").textContent=on?"入力に戻る":"お客様に見せる";window.scrollTo({top:0,behavior:"smooth"})});
 $("toResults").addEventListener("click",()=>$("results").scrollIntoView({behavior:"smooth"}));
-// 印刷は埋め込み表示では使えないので、単体で開いたときだけ出す
+$("btnShare").addEventListener("click",()=>{
+  fromForm();const o=Object.assign({},S,{name:""});
+  const code=btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  const url=location.href.split("#")[0]+"#s="+code;
+  const done=()=>toast("リンクをコピーしました（お客様名は含みません）");
+  try{navigator.clipboard.writeText(url).then(done,()=>{toast("コピーできませんでした。アドレスバーのURLを使ってください");history.replaceState(null,"","#s="+code)})}catch(e){history.replaceState(null,"","#s="+code);toast("アドレスバーのURLをコピーしてください")}
+});
 let framed=true;try{framed=window.self!==window.top}catch(e){}
-if(framed) $("btnPrint").hidden=true; else $("btnPrint").addEventListener("click",()=>{$("tblBox").open=true;window.print()});
+if(framed){$("btnPrint").hidden=true;$("btnShare").hidden=true}
+else $("btnPrint").addEventListener("click",()=>window.print());
 
 load();toForm();render();
 window.__gsoCalc=calc;
