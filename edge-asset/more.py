@@ -12,7 +12,7 @@ FV=f"""<section class="hx" aria-label="メインビジュアル">
   <div class="hx-in">
     <p class="hx-kick"><span>01</span>工務店・住宅会社の事業承継</p>
     <h1 class="hx-h">{split_chars('地域の|工務店を、|つぎの|三十年へ。')}</h1>
-    {P('後継者が決まっていない工務店・住宅会社を引き継ぎ、売らずに長く経営する。社名も、社員も、施主様へのアフターのお約束も、そのまま次の世代へつなぎます。','hx-lead')}
+    {P('後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する。社名も、社員も、施主様へのアフターのお約束も、そのまま次の世代へつなぎます。','hx-lead')}
     <div class="hx-act"><a class="hx-cta" href="contact.html"><span class="hc-t"><small>無料・秘密厳守</small>事業承継について相談する</span><span class="hc-ar" aria-hidden="true"></span></a><a class="hx-sub" href="partners.html"><span>仲介会社・金融機関の方へ</span><i aria-hidden="true"></i></a></div>
   </div>
   <div class="hx-foot">
@@ -42,9 +42,9 @@ MODEL=f"""<section class="model dark" id="model">
       <div class="md-hq"><p class="k">HEADQUARTERS</p><p class="t">エッジアセット</p><p class="s">グループ本部</p></div>
       <ul class="md-fn"><li>集客</li><li>採用</li><li>財務・資金</li><li>仕入</li><li>システム</li><li>人材育成</li></ul>
       <div class="md-co">
-        <div><p class="t">A社</p><p class="s">社名・ブランド継続</p></div>
-        <div><p class="t">B社</p><p class="s">社名・ブランド継続</p></div>
-        <div><p class="t">C社</p><p class="s">社名・ブランド継続</p></div>
+        <div><p class="t">向洋ハウジング</p><p class="s">社名・ブランド継続</p></div>
+        <div><p class="t">GSOリフォーム</p><p class="s">社名・ブランド継続</p></div>
+        <div><p class="t">次の一社</p><p class="s">社名・ブランドはそのまま</p></div>
       </div>
       <p class="md-note">各社が担うこと：設計・施工・施主様との打ち合わせ・アフター対応・地域での営業</p>
     </div>
@@ -310,6 +310,6 @@ TERMS=legal('サイトのご利用について','Terms of use',[
  ('著作権',['本サイトに掲載している文章・画像等の著作権は、当社または正当な権利者に帰属します。私的利用の範囲を超える無断での複製・転載を禁止します。']),
  ('免責事項',['本サイトの情報は、掲載時点での一般的な情報の提供を目的としています。内容の正確性には注意を払っていますが、その完全性・最新性を保証するものではありません。本サイトの利用によって生じた損害について、当社の故意または重大な過失による場合を除き、当社は責任を負いません。']),
  ('リンクについて',['本サイトへのリンクは原則として自由です。ただし、当社の信用を損なうおそれのあるサイトからのリンクはお断りします。']),
- ('写真について',['本サイトに掲載している写真の一部は、イメージ素材（Unsplash）を使用しています。']),
+ ('写真について',['本サイトに掲載している写真の一部は、Wikimedia Commons の写真を各ライセンスに基づいて使用しています（仮素材）。作者とライセンスは<a href="sitemap.html#credits">写真クレジット</a>に掲載しています。']),
 ],'株式会社エッジアセット')
 NOTFOUND=f"""<section class="nf"><div class="w"><p class="crumb"><a href="index.html">トップ</a><span>/</span>404</p><p class="pen">404</p><h1>ページが見つかりませんでした</h1>{P('お探しのページは移動または削除された可能性があります。')}<div class="btns"><a class="btn btn-navy" href="index.html">トップへ戻る {AR}</a><a class="tl" href="sitemap.html">サイトマップを見る {AR}</a></div></div></section>"""
