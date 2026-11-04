@@ -1956,3 +1956,15 @@ details{background:var(--bg)}
 /* group model: real names are longer than "A社" */
 .md .t{word-break:keep-all;overflow-wrap:anywhere}
 @media (max-width:560px){.cta .tel{flex-direction:column;align-items:flex-start;gap:4px}}
+
+/* ===== square buttons (consult CTAs and every button with them) ===== */
+.btn,.hx-cta,.sb-b,.sb-in,.cl-b,.fc-b,.m3-b{border-radius:0!important}
+.btn .ar,.hc-ar,.sb-b i,.fc-b i,.m3-b i,.cl-b .ar{border-radius:0!important}
+.hx-cta{padding:8px 8px 8px 28px}
+.hc-ar{width:50px;height:50px}
+.btn{padding:8px 8px 8px 28px}
+.btn .ar{width:40px;height:40px}
+.sb-b{padding:6px 6px 6px 22px}
+.sb-b i{width:36px;height:36px}
+@media (min-width:761px){.sb-in{border-radius:0!important;padding:8px 8px 8px 24px}}
+.hx-sub i,.nx-ar,.pagetop{border-radius:0}
