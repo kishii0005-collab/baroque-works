@@ -278,7 +278,7 @@ section{padding-block:140px}
     <header class="sh"><div class="sh-t"><p class="sh-en" aria-hidden="true">Flow</p><p class="sh-ja">ご相談の流れ</p><h2>ご相談から<wbr>最終契約まで、<wbr>通常は<wbr>半年前後です</h2></div><div class="sh-lead"><p>ご了承なく、社員や取引先にお伝えすることはありません。面談は<span class="nb">社外かオンラインで行います。</span></p></div></header>
     <ol class="steps"><li class="rv"><h3>初回面談</h3><span class="t">1〜2時間</span><p>会社とご家族、ご自身の今後について伺います。<span class="nb">決算書は不要です。</span></p></li><li class="rv"><h3>秘密保持契約・<wbr>資料のご提供</h3><span class="t">2〜4週間</span><p>決算書・受注残・社員構成<span class="nb">などを拝見します。</span></p></li><li class="rv"><h3>条件の<wbr>ご提示</h3><span class="t">2〜3週間</span><p>譲渡価格の考え方、雇用、引き継ぎ期間を<span class="nb">書面でお示しします。</span></p></li><li class="rv"><h3>詳細調査</h3><span class="t">1〜2ヶ月</span><p>財務・法務・労務、施工中物件、保証履歴、<span class="nb">建設業許可を確認します。</span></p></li><li class="rv"><h3>最終契約・<wbr>お支払い</h3><span class="t">約1ヶ月</span><p>株式譲渡契約を結び、個人保証の解除に<span class="nb">向けて金融機関と協議します。</span></p></li><li class="rv"><h3>ご説明と<wbr>引き継ぎ</h3><span class="t">6ヶ月〜</span><p>社員・施主様への説明に、<span class="nb">私たちも同席します。</span></p></li></ol>
     <div class="fl-more"><a class="btn btn-navy" href="flow.html">ご相談の流れを詳しく見る <span class="ar"></span></a></div><div class="open">
-      <div class="ph"><img src="img/Q6sCJFHCubc.jpg" alt="東京の住宅街" loading="lazy" data-fb="https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FQ6sCJFHCubc%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|img/rD28m9BmXVs.jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
+      <div class="ph"><img src="img/4UVtFIfK1eo.jpg" alt="建築中の木造住宅" loading="lazy" data-fb="https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|img/Q6sCJFHCubc.jpg|https://unsplash.com/photos/Q6sCJFHCubc/download?force=true&amp;w=1800" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div>
       <div class="tx rv">
         <h3>規模や<wbr>エリアだけで、<wbr>お断りする<wbr>ことは<wbr>ありません。</h3>
         <p class="lead">年商や棟数、赤字か黒字かで門前払いすることはありません。リフォーム専業、設計事務所、不動産と兼業の会社も含めて、住まいに関わる会社で<span class="nb">あればまずはお話を伺います。</span></p>
@@ -340,6 +340,14 @@ section{padding-block:140px}
 <script>if(location.hostname==='htmlpreview.github.io'){var raw=location.search.slice(1).replace(/[^/]*$/,'')+'site.css';if(!document.querySelector('link[href$="site.css"][data-abs]')){var l=document.createElement('link');l.rel='stylesheet';l.href=raw;l.setAttribute('data-abs','1');document.head.appendChild(l)}var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\/\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}</script>
 <script>(() => {
   document.documentElement.classList.add('js');
+
+  // every page opens at its top: the viewer would otherwise keep the previous page's scroll position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) {
+    const top = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    top(); addEventListener('DOMContentLoaded', top); addEventListener('load', top);
+    addEventListener('pageshow', e => { if (e.persisted) top(); });
+  }
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   // hamburger menu

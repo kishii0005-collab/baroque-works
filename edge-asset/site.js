@@ -1,5 +1,13 @@
 (() => {
   document.documentElement.classList.add('js');
+
+  // every page opens at its top: the viewer would otherwise keep the previous page's scroll position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) {
+    const top = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    top(); addEventListener('DOMContentLoaded', top); addEventListener('load', top);
+    addEventListener('pageshow', e => { if (e.persisted) top(); });
+  }
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   // hamburger menu

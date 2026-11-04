@@ -143,6 +143,14 @@ section{padding-block:140px}
 <script>if(location.hostname==='htmlpreview.github.io'){var raw=location.search.slice(1).replace(/[^/]*$/,'')+'site.css';if(!document.querySelector('link[href$="site.css"][data-abs]')){var l=document.createElement('link');l.rel='stylesheet';l.href=raw;l.setAttribute('data-abs','1');document.head.appendChild(l)}var base=location.search.slice(1).replace(/[^/]*$/,'');document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(/^(https?:|mailto:|tel:|#|\/\/)/.test(h))return;e.preventDefault();var p=h.split('#');var u=location.pathname+'?'+base+p[0]+(p[1]?'#'+p[1]:'');if(a.target==='_blank'){window.open(u,'_blank','noopener')}else{location.href=u}});}</script>
 <script>(() => {
   document.documentElement.classList.add('js');
+
+  // every page opens at its top: the viewer would otherwise keep the previous page's scroll position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) {
+    const top = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    top(); addEventListener('DOMContentLoaded', top); addEventListener('load', top);
+    addEventListener('pageshow', e => { if (e.persisted) top(); });
+  }
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   // hamburger menu
