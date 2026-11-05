@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GSO試算">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>GSO シミュレーター</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#14231E">
@@ -186,6 +193,13 @@ details.more .form{gap:14px}
 .sec details.more{border-top:1px dashed var(--line);padding-top:10px}
 .admin{margin:4px 2px 0}
 .admin summary{font-size:13px!important;color:var(--muted)!important}
+.install{position:fixed;left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;align-items:center;gap:10px;background:var(--surface);border:1.5px solid var(--accent);border-radius:16px;padding:12px 12px 12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.18);max-width:460px;margin:0 auto}
+.install div{display:grid;gap:2px;flex:1;min-width:0}
+.install b{font-size:14px}
+.install span{font-size:12.5px;color:var(--muted)}
+.install #installBtn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:9px 14px;font-weight:700;white-space:nowrap}
+.install .ix{border:0;background:none;font-size:20px;color:var(--muted);width:32px;height:32px}
+@media (display-mode:standalone){.install{display:none!important}}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 16px;font-size:14px;width:max-content;max-width:calc(100% - 32px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -416,6 +430,7 @@ details.more .form{gap:14px}
 </nav>
 <div class="sheet-bg" id="sheetBg" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT" hidden><div class="in"><div class="grab"></div><button type="button" class="x" id="sheetX" aria-label="閉じる">×</button><h2 id="sheetT">計算式</h2><p class="sub" id="sheetSub"></p><div id="sheetBody"></div><button type="button" class="close" id="sheetClose">閉じる</button></div></div>
+<div class="install" id="install" hidden><div><b>ホーム画面に追加すると、アプリとして使えます</b><span id="installHow"></span></div><button type="button" id="installBtn" hidden>追加する</button><button type="button" class="ix" id="installX" aria-label="閉じる">×</button></div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -855,6 +870,24 @@ document.addEventListener("focusin",e=>{const el=e.target;if(el.tagName==="INPUT
 document.querySelectorAll("input").forEach(i=>i.setAttribute("enterkeyhint","done"));
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.tagName==="INPUT")e.target.blur()});
 $("sheetX").addEventListener("click",()=>closeSheet());
+
+/* ================= アプリ化（ホーム画面に追加・オフライン） ================= */
+(function(){
+  let framed=true;try{framed=window.self!==window.top}catch(e){}
+  const standalone=window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true;
+  if(!framed&&location.protocol==="https:"&&"serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{})}
+  if(framed||standalone) return;
+  let seen=false;try{seen=localStorage.getItem("gso-install-hint")==="1"}catch(e){}
+  if(seen) return;
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  let deferred=null;
+  const show=()=>{$("install").hidden=false};
+  $("installHow").textContent=ios?"Safariの共有ボタン（□↑）→「ホーム画面に追加」":"ブラウザのメニュー →「ホーム画面に追加」";
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;$("installBtn").hidden=false;$("installHow").textContent="ボタンを押すとホーム画面に追加されます";show()});
+  $("installBtn").addEventListener("click",async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;$("install").hidden=true});
+  $("installX").addEventListener("click",()=>{$("install").hidden=true;try{localStorage.setItem("gso-install-hint","1")}catch(e){}});
+  if(ios) setTimeout(show,1500);
+})();
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(TABS.includes(h)&&h!==tab)showTab(h)});
 showTab(location.hash.slice(1));
 window.__sim={calc,S:()=>S,showTab};
