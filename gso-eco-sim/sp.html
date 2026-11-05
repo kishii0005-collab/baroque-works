@@ -574,7 +574,7 @@ function renderPanel(){
   $("pBigs").innerHTML=bigRow("のせられる枚数",`${P.n}<small>枚</small>`,"ink")+bigRow("容量",`${P.kw.toFixed(2)}<small>kW</small>`)+bigRow("1年の発電量",`${fmt(P.gen)}<small>kWh</small>`,"ink")+bigRow("費用の目安",`${man(P.kw*S.pPrice*10000)}<small>万円</small>`,"ink");
   setSum("のせられる量",P.n?`${P.n}枚・${P.kw.toFixed(1)}kW`:"—",P.n?`1年で約${fmt(P.gen)}kWh発電`:"寸法を確認してください");
   $("pGo").hidden=!P.n;
-  $("pGo").textContent=`この容量（${P.kw.toFixed(1)}kW）で光熱費を計算する →`;
+  $("pGo").textContent=`${P.kw.toFixed(1)}kWで光熱費を計算 →`;
   $("pFaces").innerHTML=`<tr><th>面</th><th>置き方</th><th>枚数</th><th>容量</th><th>向きの補正</th></tr>`+P.list.map(f=>`<tr><td>${f.name}</td><td>${f.fit.o}置き</td><td>${f.fit.n}枚</td><td>${f.kw.toFixed(2)}kW</td><td>×${f.fac}</td></tr>`).join("");
   const notes=["実際にのせられるかは、屋根材・強度・影・積雪や塩害の条件で変わります。必ず現地調査で確認してください。",`軒先・けらば・棟から${S.pMargin}mずつ空けて計算しています。`];
   if(S.roofType==="yose") notes.push("寄棟は台形として、斜めの部分を除いて計算しています。");
@@ -614,7 +614,7 @@ function renderBattery(){
     bigRow("停電で使える時間<small>選んだものを使い続けた場合</small>",`${Math.round(hours)}<small>時間</small>`,"ink")+
     bigRow("タイプ<small>"+(type==="全負荷型"?"家じゅう・200Vの機器も使える":"決めた部屋のコンセントだけ使える")+"</small>",`<small>${type}</small>`,"ink");
   setSum("おすすめの容量",`${B.rec}kWh`,`停電で約${Math.round(hours)}時間・${type}`);
-  $("bGo").hidden=false;$("bGo").textContent=`${B.rec}kWhで光熱費を計算する →`;
+  $("bGo").hidden=false;$("bGo").textContent=`${B.rec}kWhで光熱費を計算 →`;
   $("bSizes").innerHTML=`<tr><th>容量</th><th>使える量</th><th>停電で</th><th>毎日の余り電気で</th></tr>`+SIZES.map(z=>{const u=z*0.9;const h=B.daily>0?u/(B.daily/24):0;
     return `<tr class="${z===B.rec?"cur":""}"><td>${z}kWh</td><td>${u.toFixed(1)}kWh</td><td>約${Math.round(h)}時間</td><td>${B.hasPV?(u<=B.econ*1.1?"使い切れる":"余りやすい"):"—"}</td></tr>`}).join("");
   const notes=[`選んだものの1日の電気：約${B.daily.toFixed(1)}kWh。${modeL}分（×${B.mult}）で計算`,"使える量は容量の9割で計算しています","エアコンは電気を多く使うため、つけっぱなしだと早くなくなります"];
