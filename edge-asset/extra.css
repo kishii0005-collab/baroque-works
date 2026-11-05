@@ -1540,3 +1540,48 @@ details{background:var(--bg)}
 @media (max-width:1100px){.tcases .cgrid,.clist .cgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.clist .cgrid{grid-template-columns:1fr}}
 .rgrid.r4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+/* ===================================================================
+   DE-AI PASS: remove the stacked decoration that reads as generated.
+   One accent per section, Japanese headings lead, flat surfaces.
+   =================================================================== */
+/* 1. no giant English word on every section; Japanese heading leads */
+.sh-en{display:none!important}
+.sh-ja{font-size:13px;letter-spacing:.12em;color:var(--blue);margin:0 0 14px;gap:0}
+.sh-ja::before{display:none!important}
+.dark .sh-ja{color:#9fc0ff}
+.sh h2{font-size:clamp(26px,2.6vw,34px);font-weight:700;letter-spacing:.04em;line-height:1.55}
+.sh{margin-bottom:56px;align-items:end}
+/* 2. no counters, chapter boxes or side rail */
+body:not(.home) main>section:not(.phero):not(.chero) .sh-t::before{display:none!important}
+.chap,.rail{display:none!important}
+.home section[data-ch]:not(:has(.chap)) .sh-en{display:none}
+/* 3. flat surfaces: no grid lines, film grain, glows or decorative rings */
+.sf{display:none!important}
+.hx-grid,.hx-marq,.hx-scroll,.pscroll,.phero .pg-blk{display:none!important}
+.rcard::after,.pf-card::after,footer .fcx::after,.closing::after,.menu::before{display:none!important}
+.hx-kick span{display:none}
+.hx-kick{font-family:var(--fh);font-size:14px;letter-spacing:.1em;color:#d6e4fb}
+/* 4. hero headline: still, no letter-by-letter animation */
+.hx-h .ch{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}
+.hx-lead,.hx-act{opacity:1!important;animation:none!important}
+/* 5. group model: a plain block instead of a glowing orb */
+.md-hq{width:auto;height:auto;border-radius:0;background:var(--blue);box-shadow:none;padding:22px 40px}
+.md-hq::before,.md-hq::after{display:none!important}
+.md-hq .k{display:none}
+/* 6. calmer motion: a short fade, no rise, no stagger */
+.js .rv{transform:none!important;transition:opacity .6s ease!important}
+:is(.is4,.cgrid,.ts-g,.lever,.cs-steps,.tm2,.sc-l,.pg,.plist,.cg,.tk-l,.val,.m3-main,.fsteps,.cb-iss,.rw-l,.kpi ul)>*{transition-delay:0s!important}
+.js .mask img{transform:none!important}
+.ccase:hover,.cc:hover,.cf:hover,.ts-g article:hover,.btn:hover,.hx-cta:hover,.fc-b:hover,.cl-b:hover,.m3-b:hover,.sb-b:hover{transform:none!important}
+/* 7. English micro-labels on cards and blocks */
+.rc-en,.cf-k,.nx-k,.band-en,.fc-en,.cl-en,.cs-k,.tr-k,.ca-k,.m3-en,.st-k,.cb-k,.sn-k{display:none!important}
+.nx-en{font-size:clamp(28px,3.4vw,44px)}
+/* 8. fewer pills and boxes */
+.rc-st{border-radius:0}
+.md .pill,.md li{border-radius:0}
+/* sections whose only title was the English word: the Japanese label becomes the heading */
+.topfaq .sh-ja,.topnews .sh-ja,.pfaq .sh-ja,.faq .sh-ja,.hist .sh-ja{font-family:var(--fh);font-size:clamp(24px,2.4vw,30px);font-weight:700;color:var(--ink);letter-spacing:.04em;margin-bottom:20px}
+.dark .topfaq .sh-ja{color:#fff}
+
+.bgword{display:none!important}

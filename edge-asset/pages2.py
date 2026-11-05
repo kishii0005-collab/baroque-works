@@ -147,7 +147,7 @@ def case_card(c,i):
     pr=''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k,v in c['prof'] if k in ('エリア','規模','社長'))
     return f"""<a class="ccase rv" href="{c['slug']}.html"{NT}>
   <div class="ph">{img(c['pid'],c['alt'],1200)}<span class="cc-no">CASE<b>{i+1:02d}</b></span><span class="cc-model">想定事例</span></div>
-  <div class="cc-tx"><p class="cc-tag"><span>{c['tag']}</span>{c['en']}</p><h3>{W(c['title'])}</h3>{P(c['short'])}<dl>{pr}</dl><span class="cc-more">詳しく見る {AR}</span></div>
+  <div class="cc-tx"><p class="cc-tag"><span>{c['tag']}</span></p><h3>{W(c['title'])}</h3>{P(c['short'])}<dl>{pr}</dl><span class="cc-more">詳しく見る {AR}</span></div>
 </a>"""
 
 CASELIST=f"""<section class="clist">
