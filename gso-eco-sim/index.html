@@ -107,13 +107,34 @@ details.more .form{gap:14px}
   padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
 .tabs button{border:0;border-radius:12px;background:transparent;padding:12px 2px;font-size:13px;font-weight:700;white-space:nowrap;min-height:50px;color:var(--muted)}
 .tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.top{cursor:pointer;-webkit-user-select:none;user-select:none}
+.top .tap{position:absolute;top:12px;right:14px;font-size:12px;font-weight:700;color:var(--bar-ink);opacity:.85;border:1px solid color-mix(in srgb,var(--bar-ink) 40%,transparent);border-radius:999px;padding:3px 10px}
+.top:active{transform:scale(.99)}
+.sheet-bg{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45)}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:86vh;overflow:auto;background:var(--surface);color:var(--ink);border-radius:20px 20px 0 0;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -10px 30px rgba(0,0,0,.2)}
+.sheet .in{max-width:480px;margin:0 auto}
+.sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+.sheet h2{margin:0 0 4px;font-size:18px}
+.sheet .sub{margin:0 0 14px;font-size:12.5px;color:var(--muted)}
+.fx{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.fx h3{margin:0 0 8px;font-size:14.5px}
+.fx table{width:100%;border-collapse:collapse;font-size:15px}
+.fx td{padding:5px 0;font-variant-numeric:tabular-nums}
+.fx td:last-child{text-align:right;font-family:var(--f-num)}
+.fx tr.op td{color:var(--muted);font-size:13.5px}
+.fx tr.eq td{border-top:2px solid var(--ink);padding-top:8px;font-weight:700;font-size:16.5px}
+.fx tr.eq td:last-child{color:var(--accent)}
+.fx tr.eq.w td:last-child{color:var(--warn)}
+.fx p{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.sheet .close{display:block;width:100%;margin-top:6px;border:0;background:var(--accent);color:var(--accent-ink);border-radius:14px;padding:14px;font-size:16px;font-weight:700}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 16px;font-size:14px;width:max-content;max-width:calc(100% - 32px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="top" id="top" aria-live="polite"><span class="k" id="topK"></span><span class="v" id="topV"></span><span class="s" id="topS"></span></div>
+<div class="top" id="top" aria-live="polite" role="button" tabindex="0" aria-label="計算式を見る"><span class="tap">計算式 ›</span><span class="k" id="topK"></span><span class="v" id="topV"></span><span class="s" id="topS"></span></div>
 
 <!-- 1 光熱費 -->
 <section class="tab" id="tab-keizai">
@@ -221,6 +242,8 @@ details.more .form{gap:14px}
   <button type="button" role="tab" data-tab="panel">パネル容量</button>
   <button type="button" role="tab" data-tab="battery">蓄電池容量</button>
 </nav>
+<div class="sheet-bg" id="sheetBg" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT" hidden><div class="in"><div class="grab"></div><h2 id="sheetT">計算式</h2><p class="sub" id="sheetSub"></p><div id="sheetBody"></div><button type="button" class="close" id="sheetClose">閉じる</button></div></div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -476,6 +499,96 @@ function renderBattery(){
   const notes=[`選んだものの1日の電気：約${B.daily.toFixed(1)}kWh。${modeL}分で計算`,"使える量は容量の9割で計算しています","エアコンは電気を多く使うため、つけっぱなしだと早くなくなります",`同時に使う電気は最大約${(B.peak/1000).toFixed(1)}kW。IH・エコキュートなど200Vの機器を使うなら全負荷型が必要です`];
   $("bNotes").innerHTML=notes.map(n=>`<li>${n}</li>`).join("");
 }
+
+
+/* ================= 計算式（上の帯をタップ） ================= */
+const yen=v=>fmt(r100(v))+"円";
+function fxTable(title,rows,note){
+  return `<div class="fx"><h3>${title}</h3><table>${rows.map(r=>`<tr class="${r[2]||""}"><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>${note?`<p>${note}</p>`:""}</div>`;
+}
+function periodAvg(R,p){
+  const seg=R.rows.slice(p.a-1,p.b), n=seg.length, a=k=>seg.reduce((x,r)=>x+r[k],0)/n/12;
+  return {e0:a("e0"),f0:a("f0"),s0:a("s0"),e1:a("e1"),f1:a("f1"),s1:a("s1")};
+}
+function fxSaving(R,p,title,label){
+  const m=periodAvg(R,p), now=m.e0+m.f0-m.s0, aft=m.e1+m.f1-m.s1, fn=fuelName();
+  const rows=[["<b>いま</b>",""],["　電気代",yen(m.e0)]];
+  if(m.f0>0) rows.push(["　"+fn,"＋ "+yen(m.f0)]);
+  if(m.s0>0) rows.push(["　売電収入","− "+yen(m.s0)]);
+  rows.push(["　合計",yen(now)],["<b>導入後</b>",""],["　電気代",yen(m.e1)]);
+  if(m.f0>0) rows.push(["　"+fn,"＋ "+yen(m.f1)]);
+  if(m.s1>0) rows.push(["　売電収入","− "+yen(m.s1)]);
+  rows.push(["　合計",yen(aft)],[label,yen(now-aft),"eq"]);
+  return fxTable(title,rows,`${p.label}の平均（1か月あたり）。電気代・${fn}は毎年${S.up}%上がる前提です。`);
+}
+function fxPayback(R){
+  const sumTo=y=>R.rows.slice(0,y).reduce((a,r)=>a+r.total,0);
+  if(!R.payback) return fxTable("費用を取り戻すまで",[["費用（補助金差引後）",man(R.inv)+"万円"],[`${R.N}年間の効果の合計`,man(sumTo(R.N))+"万円"],["取り戻すまで",`${R.N}年では無理`,"eq w"]],"効果の合計が費用に届きません。");
+  const y=Math.ceil(R.payback);
+  return fxTable("費用を取り戻すまで",[["費用（補助金差引後）",man(R.inv)+"万円"],[`${y-1}年目までの効果の合計`,man(sumTo(y-1))+"万円"],[`${y}年目までの効果の合計`,man(sumTo(y))+"万円"],["費用を超えるのは",`約${Math.round(R.payback*10)/10}年`,"eq"]],"1年ごとの効果（光熱費の値上がり・売電単価の変化・パワコン交換を含む）を足していき、費用を超えた時点です。");
+}
+function explainKeizai(){
+  const R=calc(S), p1=R.periods[0], two=twoPhase(R);
+  let h=fxSaving(R,p1,`今より安くなる額（${p1.label}）`,"安くなる額");
+  if(two){const L=R.periods.slice(1).reduce((m,p)=>p.save<m.save?p:m,R.periods[1]);
+    h+=fxSaving(R,L,`5年目からの安くなる額（${L.label}）`,"安くなる額").replace(`${L.label}の平均`,`売電単価が${S.fit1}円から${S.fit2}円に下がるため、売電収入が減ります。${L.label}の平均`);}
+  if(R.loan){const lp=R.periods.filter(p=>p.pay>0).reduce((m,p)=>(p.pay-p.save)>(m.pay-m.save)?p:m);
+    const b=lp.pay-lp.save;
+    h+=fxTable(`ローン中の実質負担（${lp.label}）`,[["ローン返済（月）",yen(lp.pay)],["安くなる額（月）","− "+yen(lp.save)],[b>0?"実質の負担":"家計のプラス",yen(Math.abs(b)),b>0?"eq w":"eq"]],`借入 ${man(R.inv)}万円・${R.n}年・金利${S.loanRate}%の元利均等返済。負担がいちばん多い期間で計算しています。`);}
+  else if(R.inv>0) h+=fxPayback(R);
+  const sm=R.sums, rows=[["電気代の削減",man(sm.elec)+"万円"],["売電収入の増加","＋ "+man(sm.sell)+"万円"],[fuelName()+"の削減","＋ "+man(sm.fuel)+"万円"]];
+  if(sm.maint>0) rows.push(["パワコン交換（15年目）","− "+man(sm.maint)+"万円"]);
+  rows.push([`${R.N}年間の合計`,man(R.gross)+"万円","eq"]);
+  h+=fxTable(`${R.N}年でおトクになる額`,rows,"1年ごとの金額を20年分足しています。");
+  return ["光熱費の計算式","帯に出ている数字の出し方です。",h];
+}
+function explainDenka(){
+  const o=Object.assign({},S,{pvOn:false,batOn:false,ecoOn:true,pay:"cash",totalPrice:S.ecoPrice,subsidy:S.ecoSubsidy||0,gasCut:S.gasCutS==="ih"});
+  const R=calc(o), r=R.rows[0], fn=fuelName(), el=S.heater==="electric";
+  const rows=[["<b>いま</b>",""],["　電気代",yen(r.e0/12)]];
+  if(!el) rows.push(["　"+fn,"＋ "+yen(r.f0/12)]);
+  rows.push(["　合計",yen((r.e0+r.f0)/12)],["<b>エコキュートに替えた後</b>",""],["　電気代",yen(r.e1/12)]);
+  if(!el) rows.push(["　"+fn,"＋ "+yen(r.f1/12)]);
+  rows.push(["　合計",yen((r.e1+r.f1)/12)],["安くなる額",yen(r.save),"eq"]);
+  let h=fxTable("今より安くなる額（1年目・1か月あたり）",rows,el?"電気温水器はエコキュートの約3倍の電気を使う前提です。":`${fn}のうち基本料金を除いた${S.hwShare}%をお湯の分、エコキュートの電気は年${R.ecoKWh.toLocaleString()}kWh（${S.buy}円/kWh）で計算。`);
+  if(R.inv>0) h+=fxPayback(R);
+  return ["電気で節約の計算式","帯に出ている数字の出し方です。",h];
+}
+function explainPanel(){
+  const P=panelResult();
+  let h="";
+  P.list.forEach(f=>{const cols=Math.max(0,...f.fit.rows);
+    h+=fxTable(`${f.name}面にのる枚数`,[["軒の長さ・流れの長さ",`${S.roofW}m × ${S.roofD}m`],["端から空ける幅",`${S.pMargin}m ずつ`],["パネル（"+f.fit.o+"置き）",`${f.fit.pw}m × ${f.fit.ph}m`],["並べ方",`${f.fit.rows.length}段（1段 最大${cols}枚）`],["のる枚数",f.fit.n+"枚","eq"]],S.roofType==="yose"?"寄棟は台形として、斜めの部分を除いて数えています。":"");});
+  const fac=P.list.length?P.list[0].fac:1;
+  h+=fxTable("容量と発電量",[["枚数 × 1枚の出力",`${P.n}枚 × ${S.pW}W`],["容量",P.kw.toFixed(2)+"kW","eq"],["1kWあたりの年間発電（"+REGIONS[+S.region][0]+"）",`× ${P.y1.toLocaleString()}kWh`],["屋根の向きの補正",`× ${fac}`],["1年の発電量",fmt(P.gen)+"kWh","eq"]]);
+  h+=fxTable("費用の目安",[["容量",P.kw.toFixed(2)+"kW"],["1kWあたりの標準価格",`× ${S.pPrice}万円`],["費用の目安",man(P.kw*S.pPrice*10000)+"万円","eq"]],"実際の金額はお見積りで確認してください。");
+  return ["パネル設置容量の計算式","帯に出ている数字の出し方です。",h];
+}
+function explainBattery(){
+  const B=batteryResult();
+  if(!B.sel.length) return ["蓄電池容量の計算式","","<p class=\"hint\">停電のときに使いたいものを選ぶと、計算式が出ます。</p>"];
+  const ecoDay=(200*(+S.people)+300)/365;
+  const rows=B.sel.map(l=>[l[1],(l[0]==="eco"?ecoDay:l[3]).toFixed(2)+"kWh"]);
+  rows.push(["1日に使う電気",B.daily.toFixed(1)+"kWh","eq"]);
+  let h=fxTable("選んだものの1日の電気",rows);
+  const modeL={night:"1晩（6割）","1day":"丸1日","2day":"2日間"}[S.bMode];
+  h+=fxTable("必要な容量",[["1日に使う電気",B.daily.toFixed(1)+"kWh"],["備える長さ："+modeL,"× "+B.mult],["停電で必要な量",B.need.toFixed(1)+"kWh","eq"]]);
+  const u=B.rec*0.9, hrs=B.daily>0?u/(B.daily/24):0;
+  h+=fxTable("おすすめの容量",[["容量",B.rec+"kWh"],["実際に使える量（9割）",u.toFixed(1)+"kWh"],["必要な量",B.need.toFixed(1)+"kWh"],[B.enough?"足りる":"足りない",B.enough?"OK":"2台が必要",B.enough?"eq":"eq w"]],"必要な量を満たすいちばん小さい容量をすすめています。");
+  h+=fxTable("停電で使える時間",[["使える量",u.toFixed(1)+"kWh"],["1時間あたりの電気",`÷ ${(B.daily/24).toFixed(2)}kWh`],["使える時間",`約${Math.round(hrs)}時間`,"eq"]],`同時に使う電気は最大約${(B.peak/1000).toFixed(1)}kW。2kWを超えるか200Vの機器を使うときは全負荷型です。`);
+  return ["蓄電池容量の計算式","帯に出ている数字の出し方です。",h];
+}
+function openSheet(){
+  const [t,sub,body]=({keizai:explainKeizai,denka:explainDenka,panel:explainPanel,battery:explainBattery})[tab]();
+  $("sheetT").textContent=t;$("sheetSub").textContent=sub;$("sheetBody").innerHTML=body;
+  $("sheet").hidden=false;$("sheetBg").hidden=false;document.body.style.overflow="hidden";$("sheetClose").focus({preventScroll:true});$("sheet").scrollTop=0;
+}
+function closeSheet(){$("sheet").hidden=true;$("sheetBg").hidden=true;document.body.style.overflow="";$("top").focus()}
+$("top").addEventListener("click",openSheet);
+$("top").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openSheet()}});
+$("sheetClose").addEventListener("click",closeSheet);
+$("sheetBg").addEventListener("click",closeSheet);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("sheet").hidden)closeSheet()});
 
 /* ================= 操作 ================= */
 const TABS=["keizai","denka","panel","battery"];
