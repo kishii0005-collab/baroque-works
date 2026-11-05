@@ -1,6 +1,6 @@
 # breadcrumbs, footer CTA, and the chapter structure of the top page. exec'd from build.py just before pages are written
 import json as _json
-CRUMB_PARENT={**{f'case-{i}.html':('cases.html','モデルケース') for i in range(1,5)},**{f'column-{i}.html':('column.html','コラム') for i in range(1,7)}}
+CRUMB_PARENT={**{f'case-{i}.html':('cases.html','モデルケース') for i in range(1,6)},**{f'column-{i}.html':('column.html','コラム') for i in range(1,7)}}
 CRUMB_LABEL={'cases.html':'モデルケース','results.html':'実績・事例','column.html':'コラム'}
 def crumbs(fname,title):
     if fname in ('index.html','404.html'): return ''
@@ -16,7 +16,7 @@ FOOT_COPY={'results.html':('似た状況でしたら、|そのまま|ご相談�
  'cases.html':('似た状況でしたら、|そのまま|ご相談ください。','事例と条件が違っていても構いません。会社の状況を伺い、取りうる形をご説明します。'),
  'flow.html':('まずは、|初回面談の|日程だけ|決めませんか。','初回面談で何かを決めていただく必要はありません。1〜2時間、お話を伺うところから始めます。'),
  'partners.html':('案件のご紹介・|ご相談を|お待ちしています。','ノンネーム情報の段階から検討します。5日以内に、検討を進めるかどうかをお返事します。')}
-for i in range(1,5): FOOT_COPY[f'case-{i}.html']=FOOT_COPY['cases.html']
+for i in range(1,6): FOOT_COPY[f'case-{i}.html']=FOOT_COPY['cases.html']
 for i in range(1,7): FOOT_COPY[f'column-{i}.html']=('この記事の内容を、|御社に当てはめると|どうなるか。','個別の状況を伺い、取りうる選択肢と進め方をご説明します。ご相談は無料です。')
 def footer_cta(fname):
     if fname in ('contact.html','404.html'): return ''
@@ -87,7 +87,7 @@ FAQ_CATS=[
    faqs[5],
    ('株式の一部を持ち続けることはできますか。','できます。社長を続けながら一部の株式を持ち続ける形も、事例としてご紹介しています。ご希望をふまえて設計します。'),
    faqs[6],
-   ('株式は、誰に譲渡することになりますか。','エッジアセットに譲渡していただきます。私たちが株式を持ち、後継者として経営を引き継ぎます。その後、社内の後継者や次の経営者が育った段階で、その方に株式を渡すことはありますが、外部のファンドや他社に売ることはしません。')]),
+   ('株式は、誰に譲渡することになりますか。','エッジアセットに譲渡していただきます。私たちが株式を持ち、後継者として経営を引き継ぎます。その後、社内の後継者や次の経営者が育った段階で、その方に株式を引き継ぐこともあります。')]),
  ('people','社員・施主様・取引先',[faqs[1],
    ('引き渡した家の保証や定期点検は、どうなりますか。','株式譲渡では会社そのものが変わらないため、保証も定期点検も会社に残ります。原則として、これまでの担当者が続けます。'),
    faqs[4],SVCFAQ_Q[0],SVCFAQ_Q[2]]),

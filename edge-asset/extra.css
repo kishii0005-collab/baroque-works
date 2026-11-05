@@ -1536,3 +1536,6 @@ details{background:var(--bg)}
 .rgrid{grid-auto-rows:1fr}
 .rcard .tbd{color:#ffb38a}
 .rgrid:not(.r4):not(.r2s) .rcard:last-child:nth-child(odd){grid-column:1/-1}
+.tcases .cgrid,.clist .cgrid{grid-template-columns:repeat(3,1fr)}
+@media (max-width:1100px){.tcases .cgrid,.clist .cgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.clist .cgrid{grid-template-columns:1fr}}
