@@ -32,12 +32,12 @@ LEVERS=[('共同購買','住設・建材・構造材をグループでまとめ�
  ('間接費','保険・リース・車両・広告を共同契約')]
 CSTEPS=[('Visualize','見える化','過去の発注を、品目別・取引先別に一覧にします。同じ商品を現場ごとに違う値段で買っていないか、相場より高い取引はどれかを確かめます。'),
  ('Negotiate','適正価格での交渉','相場や他の仕入れ先の価格と比べ、根拠を示して交渉します。住設・建材はグループでまとめて発注し、1社では届かない条件を引き出します。'),
- ('Systemize','仕組み化','着工前の実行予算、発注のルール、標準仕様を整えます。一度下げた原価が、元に戻らない仕組みにします。')]
+ ('Systemize','仕組み化','着工前の実行予算、発注のルール、標準仕様を整えます。下げた原価が元に戻らないよう、発注と予算のルールを決めます。')]
 PARTNER=['品質・納期・価格の3つで評価します','一方的な値下げではなく、相場と発注量を根拠に交渉します','条件が折り合わない場合は、取引先の見直しも行います']
 def sim_rows():
     out=''
     for rev in (3,6,10):
-        cells=''.join((f'<td>{rev*p/10:g}<small>億円</small></td>' if rev*p>=10 else f'<td>{rev*p*1000:,}<small>万円</small></td>') for p in (3,5,7))
+        cells=''.join(f'<td>{rev*p*100:,}<small>万円</small></td>' for p in (3,5,7))
         out+=f'<tr><th>年商 {rev}億円</th>{cells}</tr>'
     return out
 def pbars(dark=False):
@@ -307,7 +307,7 @@ CONTACT_ASIDE=f"""<aside class="side ca">
 
 TEAM2=f"""<section class="team" id="team">
   <div class="w">
-    {head('Team','体制','住宅業界の|実務を|知るチームで、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。代表と取締役が、自ら現場に入ってグループ入りを支えます。')}
+    {head('Team','体制','住宅業界の|実務を|知るチームで、|引き継ぎます','グループ入りのあとは、代表と取締役が自ら現場に入ります。')}
     <div class="tm2">{''.join(f'<article class="rv"><p class="t2-r">{r}</p><h3>{n}</h3>{P(t)}{lk}</article>' for r,n,t,lk in [
       ('代表取締役','谷岡 佑亮','全体の統括と、各社の社長との経営会議を担当します。',f'<a class="tl" href="#profile">プロフィールを見る {AR}</a>'),
       ('取締役／グループ経営支援','石井 健太','集客・採用・財務の実務を担当します。','')])}</div>
@@ -324,9 +324,12 @@ REAL=[
   lead='撤退を考えていた事業を引き受けてブラッシュアップし、より良いリフォーム会社に生まれ変わらせました。',
   steps=[('2026.08','撤退予定だった事業を引き受け'),('引き受け後','商品・集客・体制を見直し、リフォーム会社として再出発'),('現在','エッジアセットが経営を続けています')],
   point='廃業や撤退で失われるはずだった施主様との関係と、社員の仕事を残しました。'),
- dict(name='A社',named=False,tag='再建して二代目へ',en='Next generation',since='2021.08',status='共同経営中',
-  lead='株式を譲り受けて再建したのち、株式を二代目へ引き継ぎました。いまも一緒に経営に関わっています。',
-  steps=[('2021.08','株式を譲り受け、再建に着手'),('再建後','二代目へ株式を引き継ぎ'),('現在','二代目とともに経営に関わっています')],
+ dict(name='カノウヤ',named=True,tag='福島県',en='Fukushima',since='—',status='内容を確認中',pending=True,
+  lead='福島県の住宅会社。引き受けの経緯と現在の状況は<em class="tbd">【確定後に記載】</em>',
+  steps=[],point=''),
+ dict(name='A社',named=False,tag='再建して二代目へ',en='Next generation',since='2021',status='経営は引き継ぎ済み',
+  lead='株式を譲り受けて再建したのち、経営と株式を二代目へ引き継ぎました。',
+  steps=[('2021','株式を譲り受け、再建に着手'),('再建後','経営と株式を二代目へ引き継ぎ'),('現在','二代目が経営しています')],
   point='私たちがいったん後継者となり、会社を立て直してから次の世代へつないだ例です。'),
  dict(name='B社',named=False,tag='立ち上げて社長へ',en='Start-up',since='2022.11',status='社長へ引き継ぎ済み',
   lead='共同創業者とともに会社を立ち上げ、社長の意向を受けて、2025年に株式をすべて社長へ引き継ぎました。',
@@ -342,14 +345,14 @@ def real_card(r,full=False):
   <div class="rc-nm">{nm}</div>
   <p class="rc-tag">{r['tag']}</p>
   {P(r['lead'],'rc-lead')}
-  {f'<ol class="rc-steps">{steps}</ol>' if full else ''}
-  {P(r['point'],'rc-pt') if full else ''}
+  {f'<ol class="rc-steps">{steps}</ol>' if full and steps else ''}
+  {P(r['point'],'rc-pt') if full and r['point'] else ''}
 </article>"""
 RESULTS=f"""<section class="real">
   <div class="w">
-    {head('Track record','これまでの実績','再建・立ち上げ|4社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。実際に取り組んできた4社です。')}
+    {head('Track record','これまでの実績','再建・立ち上げ|5社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。これまでに取り組んできた会社です。')}
     <div class="rgrid">{''.join(real_card(r,True) for r in REAL)}</div>
-    <div class="rpolicy"><p class="rp-k">株式の引き継ぎについて</p><p class="rp-t">株式を手放すのは、社内の後継者や経営者ご本人に引き継ぐときだけです。外部のファンドや他社に売ることはしません。</p>{P("A社は私たちがいったん後継者として再建したのち二代目へ、B社は共同創業の社長ご本人へ、それぞれ株式を引き継ぎました。どちらも、会社と社員を次の経営者へつなぐための引き継ぎです。")}</div>
+    <div class="rpolicy"><p class="rp-k">株式の引き継ぎについて</p><p class="rp-t">株式は、いったんエッジアセットが譲り受けます。その後に株式を渡すのは、社内の後継者や次の経営者だけです。外部のファンドや他社に売ることはしません。</p>{P("A社は私たちが後継者として再建したのち二代目へ、B社は共同創業の社長ご本人へ、それぞれ株式を引き継ぎました。")}</div>
     <p class="rnote">A社・B社は、先方のご意向により社名を伏せています。</p>
   </div>
 </section>
@@ -366,7 +369,7 @@ WORLD=f"""<section class="world">
     <div class="wd-h rv">
       <p class="sh-ja">目指す世界</p>
       <p class="wd-st">{W('家を建てた会社が、|三十年後も|その家を|守れる|世界へ。')}</p>
-      {P('地域の工務店・住宅会社・リフォーム会社が、後継者がいないという理由で消えていく。その流れを止めるために、エッジアセットは会社を引き継ぎ、業績を伸ばし、次の世代へつなぐ仕組みをつくります。')}
+      {P('地域の工務店・住宅会社・リフォーム会社が、後継者がいないという理由で消えていく。その流れを止めるために、エッジアセットが会社を引き継いで業績を伸ばし、次の経営者へ渡していきます。')}
     </div>
     <div class="wd-chain rv" aria-label="創業者からエッジアセット、二代目・三代目へと引き継ぐ流れ">
       <div class="wc-i"><span>01</span><b>創業者</b><small>地域で信頼を<br>積み上げてきた会社</small></div>
@@ -377,11 +380,11 @@ WORLD=f"""<section class="world">
     </div>
     <ul class="wd-3">{''.join(f'<li class="rv"><p class="w3-k">{k}</p><h3>{W(h)}</h3>{P(t)}</li>' for k,h,t in [
       ('施主様にとって','建てた会社に、|ずっと|相談できる','保証も点検も、建てた会社が続けます。三十年後も、同じ会社の担当者が家を見に伺います。'),
-      ('社員にとって','地域で|働き続け、|給与が上がる','会社がなくなる不安から離れ、グループの研修と仕組みの中で、腕と待遇を上げていけます。'),
+      ('社員にとって','地域で|働き続け、|給与が上がる','会社がなくなる心配をせずに、グループの研修を受けながら腕と待遇を上げていけます。'),
       ('地域にとって','住まいの|担い手が|残り続ける','大工・設備・板金の協力業者さんを含めて、地域の家づくりの力が次の世代に残ります。')])}</ul>
     <div class="wd-grp rv">
       <p class="wg-k">エッジアセットのグループ</p>
-      <ul>{''.join(f'<li><b>{n}</b><span>{t}</span></li>' for n,t in [('向洋ハウジング','2025年〜'),('GSOリフォーム','2026年〜'),('A社','2021年〜'),('次の一社','ご相談をお待ちしています')])}</ul>
+      <ul>{''.join(f'<li><b>{n}</b><span>{t}</span></li>' for n,t in [('向洋ハウジング','2025年〜'),('GSOリフォーム','2026年〜'),('次の一社','ご相談をお待ちしています')])}</ul>
     </div>
   </div>
 </section>"""
@@ -389,7 +392,7 @@ WORLD=f"""<section class="world">
 # top page: real results strip above the model cases
 TOPREAL=f"""<div class="treal">
   <p class="tr-h"><span class="rc-badge">実績</span>これまでに引き受けた会社</p>
-  <div class="rgrid r4">{''.join(real_card(r) for r in REAL)}</div>
+  <div class="rgrid r4">{''.join(real_card(r) for r in REAL if not r.get('pending'))}</div>
   <p class="tr-h mc"><span class="rc-badge ghost">想定事例</span>よくあるご相談のモデルケース</p>
 </div>"""
 

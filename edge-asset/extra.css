@@ -1533,3 +1533,6 @@ details{background:var(--bg)}
 .sb-b i{width:36px;height:36px}
 @media (min-width:761px){.sb-in{border-radius:0!important;padding:8px 8px 8px 24px}}
 .hx-sub i,.nx-ar,.pagetop{border-radius:0}
+.rgrid{grid-auto-rows:1fr}
+.rcard .tbd{color:#ffb38a}
+.rgrid:not(.r4):not(.r2s) .rcard:last-child:nth-child(odd){grid-column:1/-1}
