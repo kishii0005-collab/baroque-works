@@ -160,6 +160,11 @@ details.more .form{gap:14px}
     <div class="f"><span class="l">いまのお湯</span><div class="seg" data-k="heater"><button type="button" data-v="city">都市ガス</button><button type="button" data-v="lp">プロパン</button><button type="button" data-v="kerosene">灯油</button><button type="button" data-v="electric">電気</button></div></div>
     <div class="f gasF"><span class="l gasL">ガス代（月平均）</span><div class="box"><input type="text" inputmode="numeric" data-k="gas" data-t="yen" aria-label="ガス代"><span class="u">円</span></div>
       <div class="chips" data-q="gas"><button type="button" data-v="4000">4千</button><button type="button" data-v="6000">6千</button><button type="button" data-v="8000">8千</button><button type="button" data-v="10000">1万</button><button type="button" data-v="12000">1.2万</button></div></div>
+    <div class="f"><span class="l">いまの太陽光</span><div class="seg" data-k="exMode"><button type="button" data-v="no">なし</button><button type="button" data-v="yes">すでにある</button></div></div>
+    <div class="f" id="exF"><span class="l">いまの太陽光の容量</span><div class="box st"><button type="button" data-step="exKw:-0.5" aria-label="減らす">−</button><input type="number" inputmode="decimal" step="0.1" data-k="exKw" data-t="num" aria-label="いまの太陽光の容量"><span class="u">kW</span><button type="button" data-step="exKw:0.5" aria-label="増やす">＋</button></div>
+      <div class="seg" data-k="exFitMode" style="margin-top:6px"><button type="button" data-v="sotsu">卒FIT済み</button><button type="button" data-v="fit">FIT期間中</button></div>
+      <div class="two" id="exFitF" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:6px"><div class="box"><input type="number" inputmode="numeric" step="1" data-k="exFitLeft" data-t="num" aria-label="FITの残り年数"><span class="u">年残り</span></div><div class="box"><input type="number" inputmode="decimal" step="0.1" data-k="exSell" data-t="num" aria-label="いまの売電単価"><span class="u">円/kWh</span></div></div>
+      <p class="hint">卒FIT後の売電単価は 8.5 円/kWh で計算します。</p></div>
     <div class="f"><span class="l">つけるもの</span><div class="tg"><button type="button" data-tg="pvOn">太陽光</button><button type="button" data-tg="batOn">蓄電池</button><button type="button" data-tg="ecoOn">エコキュート</button></div></div>
     <div class="f" id="pvF"><span class="l">太陽光の容量</span><div class="box st"><button type="button" data-step="pvKw:-0.5" aria-label="減らす">−</button><input type="number" inputmode="decimal" step="0.1" data-k="pvKw" data-t="num" aria-label="太陽光の容量"><span class="u">kW</span><button type="button" data-step="pvKw:0.5" aria-label="増やす">＋</button></div></div>
     <div class="f" id="batF"><span class="l">蓄電池の容量</span><div class="box st"><button type="button" data-step="batKwh:-0.5" aria-label="減らす">−</button><input type="number" inputmode="decimal" step="0.1" data-k="batKwh" data-t="num" aria-label="蓄電池の容量"><span class="u">kWh</span><button type="button" data-step="batKwh:0.5" aria-label="増やす">＋</button></div></div>
@@ -267,12 +272,12 @@ details.more .form{gap:14px}
 (function(){
 "use strict";
 const $=id=>document.getElementById(id);
-const REGIONS=[["北海道",1050],["東北",1100],["関東",1150],["北陸",1050],["東海・甲信",1250],["近畿",1200],["中国",1200],["四国",1250],["九州",1200],["沖縄",1150]];
+const REGIONS=[["北海道",1000],["東北",1000],["関東",1050],["北陸",950],["東海・甲信",1150],["近畿",1100],["中国",1100],["四国",1150],["九州",1100],["沖縄",1050]];
 const STD={buy:35,elecBasic:1000,up:1.5,fit1:24,fit2:8.3,post:8.5,hwShare:70,dayRatio:35,gasBasicCity:1000,gasBasicLP:1900,pcsCost:25,deg:0.5};
 const STD_LABEL={buy:["電気の従量単価","円/kWh"],elecBasic:["電気の基本料金","円/月"],up:["光熱費の上昇率","%/年"],fit1:["売電単価 1〜4年目","円"],fit2:["売電単価 5〜10年目","円"],post:["卒FIT後の売電単価","円"],hwShare:["ガス代のうち給湯の割合","%"],dayRatio:["昼に使う電気の割合","%"],gasBasicCity:["都市ガス基本料金","円/月"],gasBasicLP:["プロパン基本料金","円/月"],pcsCost:["パワコン交換費（15年目）","万円"],deg:["パネルの劣化","%/年"]};
 const DEFAULTS=Object.assign({
   region:"5",people:"4",elec:15000,heater:"city",gas:7000,
-  exOn:false,exKw:4.5,exSell:8.5,exFitLeft:0,
+  exOn:false,exMode:"no",exFitMode:"sotsu",exKw:4.5,exSell:8.5,exFitLeft:0,
   pvOn:true,pvKw:4.5,pvPrice:0,pvFactor:1,batOn:false,batKwh:9.8,batPrice:0,ecoOn:true,ecoPrice:48,gasCut:false,subsidy:0,
   totalPrice:174,totalAuto:true,bPrice:16.3,
   payMode:"loan15",pay:"loan",loanYears:15,loanRate:2.5,years:20,
@@ -369,9 +374,9 @@ function renderKeizai(){
   if(S.totalAuto) S.totalPrice=priceFor(S);
   const R=calc(S), M=calc(Object.assign({},S,{up:0})), p1=M.periods[0], two=twoPhase(M), p2=two?M.periods[1]:null;
   let lead;
-  if(M.minSave<=0&&p1.save<=0) lead="このプランでは、毎月の光熱費はほとんど変わりません。";
+  if(p1.save<=0) lead="このプランでは、毎月の光熱費はほとんど変わりません。";
   else{
-    lead=two?`光熱費は${p1.label}は今より毎月<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(p2.save)}円</em>安くなります。`:`光熱費が今より毎月<em>約${f100(M.minSave)}円</em>安くなります。`;
+    lead=two?`光熱費は${p1.label}は今より毎月<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(p2.save)}円</em>安くなります。`:`光熱費が今より毎月<em>約${f100(p1.save)}円</em>安くなります。`;
     if(R.loan) lead+=M.worst>0?`ローン中の実質の負担は<em class="w">多い時期で月約${fmt(r100(M.worst))}円</em>です。`:`ローン中も<em>家計は毎月プラス</em>です。`;
     else if(R.inv>0) lead+=R.payback?`費用は<em>約${Math.round(R.payback*10)/10}年で取り戻せます</em>。`:`${R.N}年では<em class="w">費用を取り戻せません</em>。`;
   }
@@ -387,14 +392,16 @@ function renderKeizai(){
   if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>安くなる額</th><th>ローン</th><th>家計</th></tr>`+M.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+"+fmt(r100(net)):fmt(Math.abs(r100(net)))+" 負担"}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝安くなる額 − ローン返済</td></tr>`;
   const c=(v,m)=>`<td>${m&&v>0?"−":""}${fmt(v)}</td>`;
   $("kMonth").innerHTML=`<tr><th>円/月</th><th>いま</th><th>導入後</th></tr><tr><td>電気代</td>${c(M.now.e)}${c(M.a1.e)}</tr>`+(R.fuelM>0?`<tr><td>${fuelName()}</td>${c(M.now.f)}${c(M.a1.f)}</tr>`:"")+((M.now.s>0||M.a1.s>0)?`<tr><td>売電収入</td>${c(M.now.s,1)}${c(M.a1.s,1)}</tr>`:"")+`<tr class="cur"><td>合計</td><td>${fmt(M.now.t)}</td><td>${fmt(M.a1.t)}</td></tr>`;
-  const plans=[["太陽光だけ",{pvOn:true,batOn:false,ecoOn:false}],["太陽光＋エコキュート",{pvOn:true,batOn:false,ecoOn:true}],["太陽光＋蓄電池",{pvOn:true,batOn:true,ecoOn:false}],["3点セット",{pvOn:true,batOn:true,ecoOn:true}],["エコキュートだけ",{pvOn:false,batOn:false,ecoOn:true}]];
+  const plans=S.exOn?[["蓄電池を追加",{pvOn:false,batOn:true,ecoOn:false}],["エコキュートを追加",{pvOn:false,batOn:false,ecoOn:true}],["蓄電池＋エコキュート",{pvOn:false,batOn:true,ecoOn:true}]]:[["太陽光だけ",{pvOn:true,batOn:false,ecoOn:false}],["太陽光＋エコキュート",{pvOn:true,batOn:false,ecoOn:true}],["太陽光＋蓄電池",{pvOn:true,batOn:true,ecoOn:false}],["3点セット",{pvOn:true,batOn:true,ecoOn:true}],["エコキュートだけ",{pvOn:false,batOn:false,ecoOn:true}]];
   $("kCmp").innerHTML=`<tr><th>プラン</th><th>費用</th><th>20年後の手元</th></tr>`+plans.map(([nm,set])=>{const s=Object.assign({},S,set);s.totalPrice=priceFor(s);const q=calc(s);const cur=set.pvOn===S.pvOn&&set.batOn===S.batOn&&set.ecoOn===S.ecoOn;
     return `<tr class="${cur?"cur":""}"><td>${nm}</td><td>${man(q.inv)}万</td><td class="${q.net>=0?"p":"m"}">${q.net>=0?"+":"−"}${man(Math.abs(q.net))}万</td></tr>`}).join("");
   $("kAssume").innerHTML=[
     `電気代は基本料金 月${fmt(R.eBasic)}円（導入後も残る）＋従量単価 ${S.buy}円/kWh`,`月々の金額は今の単価のまま。20年の合計と回収年数だけ、光熱費が毎年 ${S.up}% 上がる前提`,
-    S.pvOn?`発電量 1kWあたり年${R.y1.toLocaleString()}kWh（${REGIONS[+S.region][0]}）${S.pvFactor!==1?"×屋根の向き "+S.pvFactor:""}、劣化 ${S.deg}%/年`:null,
+    (S.pvOn||S.exOn)?`発電量 1kWあたり年${R.y1.toLocaleString()}kWh（${REGIONS[+S.region][0]}。業界の目安 約1,000kWhに地域差を反映）${S.pvFactor!==1?"×屋根の向き "+S.pvFactor:""}、劣化 ${S.deg}%/年`:null,
     S.pvOn?`売電単価 1〜4年目 ${S.fit1}円、5〜10年目 ${S.fit2}円、11年目以降 ${S.post}円/kWh。15年目にパワコン交換 ${S.pcsCost}万円`:null,
-    S.batOn?"蓄電池は容量の9割を使用、晴れの日は年の8割、充放電ロス8%":null,
+    S.exOn?`いまの太陽光 ${S.exKw}kW（${S.exFitLeft>0?`FIT残り${S.exFitLeft}年・${S.exSell}円/kWh、その後`:"卒FIT済み・"}${S.post}円/kWhで売電）`:null,
+    S.batOn?"蓄電池は容量の9割を使用、晴れの日は年の8割、充放電ロス8%。蓄電池の交換費用は含めていません（保証は10〜15年が一般的）":null,
+    S.ecoOn?"エコキュート・いまの給湯器の交換費用は、どちらも寿命で必要になるため含めていません":null,
     S.ecoOn?`エコキュートの電気 年${R.ecoKWh.toLocaleString()}kWh。${S.heater==="electric"?"電気温水器はその約3倍の電気を使う想定":`${fuelName()}のうち基本料金を除いた ${S.hwShare}% が給湯分`}`:null,
     R.loan?`ローン ${R.n}年・金利 ${S.loanRate}%、借入 ${man(R.inv)}万円`:`費用 ${man(R.inv)}万円（補助金差引後）`
   ].filter(Boolean).map(a=>`<li>${a}</li>`).join("");
@@ -402,7 +409,8 @@ function renderKeizai(){
   $("totalHint").innerHTML=S.totalAuto?"標準価格から自動で入っています。見積額に直してください。":(Math.abs(auto-S.totalPrice)>0.5?`見積額で計算中（標準価格なら${auto}万円） <button type="button" class="linkb" id="autoBack">標準価格に戻す</button>`:"見積額で計算中");
   const changed=Object.keys(STD).filter(k=>Math.abs(S[k]-STD[k])>1e-9);
   $("stdNote").innerHTML=changed.length?`<span class="hint warn">標準から変更中：${changed.map(k=>STD_LABEL[k][0]).join("、")}</span> <button type="button" class="linkb" id="stdReset">標準に戻す</button>`:"会社の標準値です。";
-  $("pvF").hidden=!S.pvOn;$("batF").hidden=!S.batOn;
+  $("pvF").hidden=!S.pvOn;$("batF").hidden=!S.batOn;$("exF").hidden=!S.exOn;$("exFitF").hidden=S.exFitMode!=="fit";
+  document.querySelectorAll("#exF .hint").forEach(h=>h.textContent=`卒FIT後の売電単価は ${S.post} 円/kWh で計算します。`);
 }
 
 /* ---------- 2 電気で節約 ---------- */
@@ -494,7 +502,7 @@ function batteryResult(){
   const need=daily*mult;
   const hasPV=S.bPV==="yes";
   let econ=0,sur=0,nig=0;
-  if(hasPV){const R0=calc(Object.assign({},S,{pvOn:true,exOn:false,batOn:false,years:20})),r0=R0.rows[0];sur=r0.surplus/365;nig=r0.night/365;econ=Math.min(r0.surplus/(365*0.8),r0.night/0.92/365)}
+  if(hasPV){const R0=calc(Object.assign({},S,S.exOn?{pvOn:false,batOn:false,years:20}:{pvOn:true,exOn:false,batOn:false,years:20})),r0=R0.rows[0];sur=r0.surplus/365;nig=r0.night/365;econ=Math.min(r0.surplus/(365*0.8),r0.night/0.92/365)}
   const rec=SIZES.find(z=>z*0.9>=need)||SIZES[SIZES.length-1];
   return {sel,daily,peak,big200,mult,need,hasPV,econ,econNom:econ/0.9,sur,nig,rec,enough:rec*0.9>=need};
 }
@@ -632,6 +640,9 @@ function sync(){
   document.querySelectorAll("#bLoads button").forEach(b=>b.setAttribute("aria-pressed",String(!!S.loads[b.dataset.id])));
 }
 function apply(k,v){
+  if(k==="exMode"){S.exOn=v==="yes";if(S.exOn&&S.pvOn&&S.ecoOn&&!S.batOn){S.pvOn=false;S.batOn=true;S.ecoOn=false;S.totalAuto=true}}
+  if(k==="exFitMode"&&v==="sotsu") S.exFitLeft=0;
+  if(k==="exFitMode"&&v==="fit"&&!(S.exFitLeft>0)) S.exFitLeft=3;
   S[k]=v;
   if(k==="payMode"){S.pay=v==="cash"?"cash":"loan";if(v!=="cash")S.loanYears=v==="loan10"?10:15}
   if(k==="gasCutS") S.gasCut=v==="ih";
