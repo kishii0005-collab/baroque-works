@@ -331,7 +331,7 @@ function renderKeizai(){
   let lead;
   if(R.minSave<=0&&p1.save<=0) lead="このプランでは、毎月の光熱費はほとんど変わりません。";
   else{
-    lead=two?`毎月の光熱費は、${p1.label}は<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(R.minSave)}円</em>下がります。`:`毎月の光熱費が<em>約${f100(R.minSave)}円</em>下がります。`;
+    lead=two?`光熱費は${p1.label}は今より毎月<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(R.minSave)}円</em>安くなります。`:`光熱費が今より毎月<em>約${f100(R.minSave)}円</em>安くなります。`;
     if(R.loan) lead+=R.worst>0?`ローン中の実質の負担は<em class="w">多い時期で月約${fmt(r100(R.worst))}円</em>です。`:`ローン中も<em>家計は毎月プラス</em>です。`;
     else if(R.inv>0) lead+=R.payback?`費用は<em>約${Math.round(R.payback*10)/10}年で取り戻せます</em>。`:`${R.N}年では<em class="w">費用を取り戻せません</em>。`;
   }
@@ -339,10 +339,10 @@ function renderKeizai(){
   let second;
   if(R.loan) second=R.worst>0?`<span class="w">実質負担 月<b>${fmt(r100(R.worst))}円</b></span>`:`ローン中も<b>毎月プラス</b>`;
   else second=R.inv<=0?"":(R.payback?`<b>${Math.round(R.payback*10)/10}年</b>で費用を回収`:`<span class="w">${R.N}年では回収できない</span>`);
-  setTop("月々の光熱費",`−${f100(p1.save)}<small>円</small>`,[two?`5年目から −${f100(R.minSave)}円`:"",second,`20年で ${man(R.gross)}万円`]);
+  if(p1.save<=0) setTop("光熱費","<small>今とほぼ変わりません</small>",[second]); else setTop("今より毎月",`${f100(p1.save)}<small>円 安くなる</small>`,[two?`5年目からは ${f100(R.minSave)}円 安くなる`:"",second,`20年で ${man(R.gross)}万円 おトク`]);
   const showP=R.loan&&R.periods.length>1;
   $("kPBox").hidden=!showP;
-  if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>光熱費</th><th>ローン</th><th>家計</th></tr>`+R.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>−${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+":"−"}${fmt(Math.abs(r100(net)))}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝光熱費の削減 − ローン返済</td></tr>`;
+  if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>安くなる額</th><th>ローン</th><th>家計</th></tr>`+R.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+"+fmt(r100(net)):fmt(Math.abs(r100(net)))+" 負担"}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝安くなる額 − ローン返済</td></tr>`;
   const c=(v,m)=>`<td>${m&&v>0?"−":""}${fmt(v)}</td>`;
   $("kMonth").innerHTML=`<tr><th>円/月</th><th>いま</th><th>導入後</th></tr><tr><td>電気代</td>${c(R.now.e)}${c(R.a1.e)}</tr>`+(R.fuelM>0?`<tr><td>${fuelName()}</td>${c(R.now.f)}${c(R.a1.f)}</tr>`:"")+((R.now.s>0||R.a1.s>0)?`<tr><td>売電収入</td>${c(R.now.s,1)}${c(R.a1.s,1)}</tr>`:"")+`<tr class="cur"><td>合計</td><td>${fmt(R.now.t)}</td><td>${fmt(R.a1.t)}</td></tr>`;
   const plans=[["太陽光だけ",{pvOn:true,batOn:false,ecoOn:false}],["太陽光＋エコキュート",{pvOn:true,batOn:false,ecoOn:true}],["太陽光＋蓄電池",{pvOn:true,batOn:true,ecoOn:false}],["3点セット",{pvOn:true,batOn:true,ecoOn:true}],["エコキュートだけ",{pvOn:false,batOn:false,ecoOn:true}]];
@@ -370,10 +370,10 @@ function renderDenka(){
   const fuelDown=R.now.f-R.a1.f, elecUp=R.a1.e-R.now.e;
   let lead;
   if(save<=0) lead="いまの料金プランのままでは、エコキュートに替えても光熱費はほとんど下がりません。";
-  else if(el) lead=`電気温水器をエコキュートに替えると、電気代が<em>毎月約${f100(save)}円</em>下がります。`;
-  else lead=`${fuelName()}が月約${f100(fuelDown)}円減り、電気代が月約${f100(elecUp)}円増えて、差し引き<em>毎月約${f100(save)}円</em>下がります。`;
+  else if(el) lead=`電気温水器をエコキュートに替えると、電気代が今より<em>毎月約${f100(save)}円</em>安くなります。`;
+  else lead=`${fuelName()}が月約${f100(fuelDown)}円減り、電気代が月約${f100(elecUp)}円増えて、差し引き今より<em>毎月約${f100(save)}円</em>安くなります。`;
   $("dLead").innerHTML=lead;
-  setTop("月々の光熱費",`−${f100(save)}<small>円</small>`,[`1年で ${man(Math.max(0,save*12))}万円`,R.inv<=0?"":(R.payback?`<b>${Math.round(R.payback*10)/10}年</b>で費用を回収`:`<span class="w">${R.N}年では回収できない</span>`)]);
+  if(save<=0) setTop("光熱費","<small>今とほぼ変わりません</small>",[]); else setTop("今より毎月",`${f100(save)}<small>円 安くなる</small>`,[`1年で ${man(Math.max(0,save*12))}万円 安くなる`,R.inv<=0?"":(R.payback?`<b>${Math.round(R.payback*10)/10}年</b>で費用を回収`:`<span class="w">${R.N}年では回収できない</span>`)]);
   const c=v=>`<td>${fmt(v)}</td>`, d=(a,b)=>`<td class="${b<=a?"p":"m"}">${b<=a?"−":"+"}${fmt(Math.abs(b-a))}</td>`;
   $("dMonth").innerHTML=`<tr><th>円/月</th><th>いま</th><th>替えた後</th><th>差</th></tr>`+(el?"":`<tr><td>${fuelName()}</td>${c(R.now.f)}${c(R.a1.f)}${d(R.now.f,R.a1.f)}</tr>`)+`<tr><td>電気代</td>${c(R.now.e)}${c(R.a1.e)}${d(R.now.e,R.a1.e)}</tr><tr class="cur"><td>合計</td>${c(R.now.e+R.now.f)}${c(R.a1.e+R.a1.f)}${d(R.now.e+R.now.f,R.a1.e+R.a1.f)}</tr>`;
   const notes=[`エコキュートの電気は年${R.ecoKWh.toLocaleString()}kWh（${S.people}人）。今の料金プランの単価（${S.buy}円/kWh）で計算`];
