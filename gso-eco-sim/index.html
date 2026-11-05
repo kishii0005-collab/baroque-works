@@ -128,6 +128,22 @@ details.more .form{gap:14px}
 .fx tr.eq.w td:last-child{color:var(--warn)}
 .fx p{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
 .sheet .close{display:block;width:100%;margin-top:6px;border:0;background:var(--accent);color:var(--accent-ink);border-radius:14px;padding:14px;font-size:16px;font-weight:700}
+.ba{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.ba div{display:grid;flex:1;min-width:0}
+.ba span{font-size:12px;color:var(--muted)}
+.ba b{font-family:var(--f-num);font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+.ba b small{font-family:var(--f-body);font-size:13px;margin-left:2px}
+.ba div:last-child b{color:var(--accent)}
+.ba i{font-style:normal;font-size:22px;color:var(--muted)}
+.top{transition:padding .15s}
+.top .v{transition:font-size .15s}
+.top.mini{padding:9px 14px 8px}
+.top.mini .k{display:none}
+.top.mini .v{font-size:26px}
+.top.mini .s span:nth-child(n+2){display:none}
+.top.mini .tap{top:9px}
+.sheet .in{position:relative}
+.sheet .x{position:absolute;top:-4px;right:0;width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);font-size:20px;line-height:1;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 16px;font-size:14px;width:max-content;max-width:calc(100% - 32px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -160,6 +176,7 @@ details.more .form{gap:14px}
     </details>
   </div></div>
   <div class="card res">
+    <div class="ba" id="kBA"></div>
     <p class="lead" id="kLead"></p>
     <div class="tw" id="kPBox"><table class="tbl" id="kPeriods"></table></div>
     <details class="more"><summary>くわしく見る</summary>
@@ -243,7 +260,7 @@ details.more .form{gap:14px}
   <button type="button" role="tab" data-tab="battery">蓄電池容量</button>
 </nav>
 <div class="sheet-bg" id="sheetBg" hidden></div>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT" hidden><div class="in"><div class="grab"></div><h2 id="sheetT">計算式</h2><p class="sub" id="sheetSub"></p><div id="sheetBody"></div><button type="button" class="close" id="sheetClose">閉じる</button></div></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT" hidden><div class="in"><div class="grab"></div><button type="button" class="x" id="sheetX" aria-label="閉じる">×</button><h2 id="sheetT">計算式</h2><p class="sub" id="sheetSub"></p><div id="sheetBody"></div><button type="button" class="close" id="sheetClose">閉じる</button></div></div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -350,29 +367,31 @@ const twoPhase=R=>R.periods.length>1&&R.minSave<R.periods[0].save*0.9;
 /* ---------- 1 光熱費 ---------- */
 function renderKeizai(){
   if(S.totalAuto) S.totalPrice=priceFor(S);
-  const R=calc(S), p1=R.periods[0], two=twoPhase(R);
+  const R=calc(S), M=calc(Object.assign({},S,{up:0})), p1=M.periods[0], two=twoPhase(M), p2=two?M.periods[1]:null;
   let lead;
-  if(R.minSave<=0&&p1.save<=0) lead="このプランでは、毎月の光熱費はほとんど変わりません。";
+  if(M.minSave<=0&&p1.save<=0) lead="このプランでは、毎月の光熱費はほとんど変わりません。";
   else{
-    lead=two?`光熱費は${p1.label}は今より毎月<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(R.minSave)}円</em>安くなります。`:`光熱費が今より毎月<em>約${f100(R.minSave)}円</em>安くなります。`;
-    if(R.loan) lead+=R.worst>0?`ローン中の実質の負担は<em class="w">多い時期で月約${fmt(r100(R.worst))}円</em>です。`:`ローン中も<em>家計は毎月プラス</em>です。`;
+    lead=two?`光熱費は${p1.label}は今より毎月<em>約${f100(p1.save)}円</em>、5年目以降も<em>約${f100(p2.save)}円</em>安くなります。`:`光熱費が今より毎月<em>約${f100(M.minSave)}円</em>安くなります。`;
+    if(R.loan) lead+=M.worst>0?`ローン中の実質の負担は<em class="w">多い時期で月約${fmt(r100(M.worst))}円</em>です。`:`ローン中も<em>家計は毎月プラス</em>です。`;
     else if(R.inv>0) lead+=R.payback?`費用は<em>約${Math.round(R.payback*10)/10}年で取り戻せます</em>。`:`${R.N}年では<em class="w">費用を取り戻せません</em>。`;
   }
   $("kLead").innerHTML=lead;
+  {const a=periodAvg(M,p1),now=a.e0+a.f0-a.s0,aft=a.e1+a.f1-a.s1,L=p2,al=L?periodAvg(M,L):null;
+   $("kBA").innerHTML=`<div><span>いまの光熱費</span><b>${fmt(r100(now))}<small>円</small></b></div><i aria-hidden="true">→</i><div><span>導入後${two?"（"+p1.label+"）":""}</span><b>${fmt(r100(aft))}<small>円</small></b>${two?`<span>5年目から ${fmt(r100(al.e1+al.f1-al.s1))}円</span>`:""}</div>`;}
   let second;
-  if(R.loan) second=R.worst>0?`<span class="w">実質負担 月<b>${fmt(r100(R.worst))}円</b></span>`:`ローン中も<b>毎月プラス</b>`;
+  if(R.loan) second=M.worst>0?`<span class="w">実質負担 月<b>${fmt(r100(M.worst))}円</b></span>`:`ローン中も<b>毎月プラス</b>`;
   else second=R.inv<=0?"":(R.payback?`<b>${Math.round(R.payback*10)/10}年</b>で費用を回収`:`<span class="w">${R.N}年では回収できない</span>`);
-  if(p1.save<=0) setTop("光熱費","<small>今とほぼ変わりません</small>",[second]); else setTop("今より毎月",`${f100(p1.save)}<small>円 安くなる</small>`,[two?`5年目からは ${f100(R.minSave)}円 安くなる`:"",second,`20年で ${man(R.gross)}万円 おトク`]);
-  const showP=R.loan&&R.periods.length>1;
+  if(p1.save<=0) setTop("光熱費","<small>今とほぼ変わりません</small>",[second]); else setTop("今より毎月",`${f100(p1.save)}<small>円 安くなる</small>`,[two?`5年目からは ${f100(p2.save)}円 安くなる`:"",second,`20年で ${man(R.gross)}万円 おトク`]);
+  const showP=R.loan&&M.periods.length>1;
   $("kPBox").hidden=!showP;
-  if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>安くなる額</th><th>ローン</th><th>家計</th></tr>`+R.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+"+fmt(r100(net)):fmt(Math.abs(r100(net)))+" 負担"}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝安くなる額 − ローン返済</td></tr>`;
+  if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>安くなる額</th><th>ローン</th><th>家計</th></tr>`+M.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+"+fmt(r100(net)):fmt(Math.abs(r100(net)))+" 負担"}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝安くなる額 − ローン返済</td></tr>`;
   const c=(v,m)=>`<td>${m&&v>0?"−":""}${fmt(v)}</td>`;
-  $("kMonth").innerHTML=`<tr><th>円/月</th><th>いま</th><th>導入後</th></tr><tr><td>電気代</td>${c(R.now.e)}${c(R.a1.e)}</tr>`+(R.fuelM>0?`<tr><td>${fuelName()}</td>${c(R.now.f)}${c(R.a1.f)}</tr>`:"")+((R.now.s>0||R.a1.s>0)?`<tr><td>売電収入</td>${c(R.now.s,1)}${c(R.a1.s,1)}</tr>`:"")+`<tr class="cur"><td>合計</td><td>${fmt(R.now.t)}</td><td>${fmt(R.a1.t)}</td></tr>`;
+  $("kMonth").innerHTML=`<tr><th>円/月</th><th>いま</th><th>導入後</th></tr><tr><td>電気代</td>${c(M.now.e)}${c(M.a1.e)}</tr>`+(R.fuelM>0?`<tr><td>${fuelName()}</td>${c(M.now.f)}${c(M.a1.f)}</tr>`:"")+((M.now.s>0||M.a1.s>0)?`<tr><td>売電収入</td>${c(M.now.s,1)}${c(M.a1.s,1)}</tr>`:"")+`<tr class="cur"><td>合計</td><td>${fmt(M.now.t)}</td><td>${fmt(M.a1.t)}</td></tr>`;
   const plans=[["太陽光だけ",{pvOn:true,batOn:false,ecoOn:false}],["太陽光＋エコキュート",{pvOn:true,batOn:false,ecoOn:true}],["太陽光＋蓄電池",{pvOn:true,batOn:true,ecoOn:false}],["3点セット",{pvOn:true,batOn:true,ecoOn:true}],["エコキュートだけ",{pvOn:false,batOn:false,ecoOn:true}]];
   $("kCmp").innerHTML=`<tr><th>プラン</th><th>費用</th><th>20年後の手元</th></tr>`+plans.map(([nm,set])=>{const s=Object.assign({},S,set);s.totalPrice=priceFor(s);const q=calc(s);const cur=set.pvOn===S.pvOn&&set.batOn===S.batOn&&set.ecoOn===S.ecoOn;
     return `<tr class="${cur?"cur":""}"><td>${nm}</td><td>${man(q.inv)}万</td><td class="${q.net>=0?"p":"m"}">${q.net>=0?"+":"−"}${man(Math.abs(q.net))}万</td></tr>`}).join("");
   $("kAssume").innerHTML=[
-    `電気代は基本料金 月${fmt(R.eBasic)}円（導入後も残る）＋従量単価 ${S.buy}円/kWh。光熱費は毎年 ${S.up}% 上昇`,
+    `電気代は基本料金 月${fmt(R.eBasic)}円（導入後も残る）＋従量単価 ${S.buy}円/kWh`,`月々の金額は今の単価のまま。20年の合計と回収年数だけ、光熱費が毎年 ${S.up}% 上がる前提`,
     S.pvOn?`発電量 1kWあたり年${R.y1.toLocaleString()}kWh（${REGIONS[+S.region][0]}）${S.pvFactor!==1?"×屋根の向き "+S.pvFactor:""}、劣化 ${S.deg}%/年`:null,
     S.pvOn?`売電単価 1〜4年目 ${S.fit1}円、5〜10年目 ${S.fit2}円、11年目以降 ${S.post}円/kWh。15年目にパワコン交換 ${S.pcsCost}万円`:null,
     S.batOn?"蓄電池は容量の9割を使用、晴れの日は年の8割、充放電ロス8%":null,
@@ -519,7 +538,7 @@ function fxSaving(R,p,title,label){
   if(m.f0>0) rows.push(["　"+fn,"＋ "+yen(m.f1)]);
   if(m.s1>0) rows.push(["　売電収入","− "+yen(m.s1)]);
   rows.push(["　合計",yen(aft)],[label,yen(now-aft),"eq"]);
-  return fxTable(title,rows,`${p.label}の平均（1か月あたり）。電気代・${fn}は毎年${S.up}%上がる前提です。`);
+  return fxTable(title,rows,`${p.label}の平均（1か月あたり）。今の電気代・${fn}の単価のまま計算しています。`);
 }
 function fxPayback(R){
   const sumTo=y=>R.rows.slice(0,y).reduce((a,r)=>a+r.total,0);
@@ -528,18 +547,18 @@ function fxPayback(R){
   return fxTable("費用を取り戻すまで",[["費用（補助金差引後）",man(R.inv)+"万円"],[`${y-1}年目までの効果の合計`,man(sumTo(y-1))+"万円"],[`${y}年目までの効果の合計`,man(sumTo(y))+"万円"],["費用を超えるのは",`約${Math.round(R.payback*10)/10}年`,"eq"]],"1年ごとの効果（光熱費の値上がり・売電単価の変化・パワコン交換を含む）を足していき、費用を超えた時点です。");
 }
 function explainKeizai(){
-  const R=calc(S), p1=R.periods[0], two=twoPhase(R);
-  let h=fxSaving(R,p1,`今より安くなる額（${p1.label}）`,"安くなる額");
-  if(two){const L=R.periods.slice(1).reduce((m,p)=>p.save<m.save?p:m,R.periods[1]);
-    h+=fxSaving(R,L,`5年目からの安くなる額（${L.label}）`,"安くなる額").replace(`${L.label}の平均`,`売電単価が${S.fit1}円から${S.fit2}円に下がるため、売電収入が減ります。${L.label}の平均`);}
-  if(R.loan){const lp=R.periods.filter(p=>p.pay>0).reduce((m,p)=>(p.pay-p.save)>(m.pay-m.save)?p:m);
+  const R=calc(S), M=calc(Object.assign({},S,{up:0})), p1=M.periods[0], two=twoPhase(M);
+  let h=fxSaving(M,p1,`今より安くなる額（${p1.label}）`,"安くなる額");
+  if(two){const L=M.periods[1];
+    h+=fxSaving(M,L,`5年目からの安くなる額（${L.label}）`,"安くなる額").replace(`${L.label}の平均`,`売電単価が${S.fit1}円から${S.fit2}円に下がるため、売電収入が減ります。${L.label}の平均`);}
+  if(M.loan){const lp=M.periods.filter(p=>p.pay>0).reduce((m,p)=>(p.pay-p.save)>(m.pay-m.save)?p:m);
     const b=lp.pay-lp.save;
-    h+=fxTable(`ローン中の実質負担（${lp.label}）`,[["ローン返済（月）",yen(lp.pay)],["安くなる額（月）","− "+yen(lp.save)],[b>0?"実質の負担":"家計のプラス",yen(Math.abs(b)),b>0?"eq w":"eq"]],`借入 ${man(R.inv)}万円・${R.n}年・金利${S.loanRate}%の元利均等返済。負担がいちばん多い期間で計算しています。`);}
+    h+=fxTable(`ローン中の実質負担（${lp.label}）`,[["ローン返済（月）",yen(lp.pay)],["安くなる額（月）","− "+yen(lp.save)],[b>0?"実質の負担":"家計のプラス",yen(Math.abs(b)),b>0?"eq w":"eq"]],`借入 ${man(R.inv)}万円・${R.n}年・金利${S.loanRate}%の元利均等返済。負担がいちばん多い期間で、今の単価のまま計算しています。`);}
   else if(R.inv>0) h+=fxPayback(R);
   const sm=R.sums, rows=[["電気代の削減",man(sm.elec)+"万円"],["売電収入の増加","＋ "+man(sm.sell)+"万円"],[fuelName()+"の削減","＋ "+man(sm.fuel)+"万円"]];
   if(sm.maint>0) rows.push(["パワコン交換（15年目）","− "+man(sm.maint)+"万円"]);
   rows.push([`${R.N}年間の合計`,man(R.gross)+"万円","eq"]);
-  h+=fxTable(`${R.N}年でおトクになる額`,rows,"1年ごとの金額を20年分足しています。");
+  h+=fxTable(`${R.N}年でおトクになる額`,rows,`1年ごとの金額を${R.N}年分足しています。ここだけ光熱費が毎年${S.up}%上がる前提です。`);
   return ["光熱費の計算式","帯に出ている数字の出し方です。",h];
 }
 function explainDenka(){
@@ -642,6 +661,13 @@ document.addEventListener("click",e=>{
 $("pGo").addEventListener("click",()=>{const P=panelResult();S.pvOn=true;S.exOn=false;S.pvKw=Math.round(P.kw*100)/100;S.pvFactor=Math.round(P.factor*1000)/1000;S.totalAuto=true;save();showTab("keizai");window.scrollTo({top:0});toast(`太陽光 ${S.pvKw}kW を入れました`)});
 $("bGo").addEventListener("click",()=>{const B=batteryResult();S.batOn=true;S.batKwh=B.rec;if(B.hasPV)S.pvOn=true;S.totalAuto=true;save();showTab("keizai");window.scrollTo({top:0});toast(`蓄電池 ${S.batKwh}kWh を入れました`)});
 $("btnClear").addEventListener("click",()=>{S=clone(DEFAULTS);save();render();window.scrollTo({top:0});toast("入力を最初に戻しました")});
+
+// 見やすさ：スクロールしたら上の帯を小さく／数字の欄は触ると全選択／完了キーで閉じる
+window.addEventListener("scroll",()=>{const t=$("top");if(scrollY>220)t.classList.add("mini");else if(scrollY<60)t.classList.remove("mini")},{passive:true});
+document.addEventListener("focusin",e=>{const el=e.target;if(el.tagName==="INPUT"&&el.type==="number"){setTimeout(()=>{try{el.select()}catch(x){}},0)}});
+document.querySelectorAll("input").forEach(i=>i.setAttribute("enterkeyhint","done"));
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.tagName==="INPUT")e.target.blur()});
+$("sheetX").addEventListener("click",()=>closeSheet());
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(TABS.includes(h)&&h!==tab)showTab(h)});
 showTab(location.hash.slice(1));
 window.__sim={calc,S:()=>S,showTab};
