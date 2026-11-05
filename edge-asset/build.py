@@ -996,14 +996,14 @@ CAPITAL=f"""<section class="capital dark" id="capital">
     <p class="capnote">エッジアセットは、外部の投資家から資金を集めて<span class="nb">運用するファンドではありません。</span></p>
   </div>
 </section>"""
-REAL_SUMMARY=[("2021","A社","株式を譲り受けて再建。経営を二代目へ引き継ぎ"),("2022","B社","立ち上げ。共同創業の社長へ引き継ぎ"),("2025","向洋ハウジング","後継者不在の引き受け。1年で黒字化"),("2026","GSOリフォーム","撤退事業を引き受け、リフォーム会社として再生")]
+REAL_SUMMARY=[("2021","A社","株式を譲り受けて再建。経営を二代目へ引き継ぎ"),("2022","B社","立ち上げ。共同創業の社長へ引き継ぎ"),("2025","向洋ハウジング","後継者不在の引き受け。1年で黒字化"),("2026","GSOリフォーム","撤退事業を引き受け、リフォーム会社として再生"),("—","カノウヤ（福島県）","福島県の住宅会社の案件")]
 RECORD=f"""<section class="record" id="record">
   <div class="w rec">
     <div class="rv">{head('Track record','実績','これまでの|実績')}</div>
     <div class="rv">
       {P('エッジアセットは2021年の設立以来、工務店・住宅会社・リフォーム会社の再建と立ち上げに取り組んできました。後継者のいない会社を引き受けて黒字に立て直した例も、引き継いだ会社を二代目へつないだ例もあります。')}
       <ul class="rec-l">{''.join(f'<li><span class="rl-y">{y}</span><b>{n}</b><span class="rl-t">{t}</span></li>' for y,n,t in REAL_SUMMARY)}</ul>
-      <dl class="recdl"><div><dt>再建・立ち上げの実績</dt><dd>4社</dd></div></dl>
+      <dl class="recdl"><div><dt>再建・立ち上げの実績</dt><dd>5社</dd></div></dl>
       <div class="btns"><a class="btn btn-navy" href="results.html">実績を詳しく見る {AR}</a><a class="tl" href="contact.html">事業承継について相談する {AR}</a></div>
     </div>
   </div>

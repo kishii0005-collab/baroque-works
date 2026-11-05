@@ -335,6 +335,8 @@ REAL=[
   lead='撤退を考えていた事業を引き受けてブラッシュアップし、より良いリフォーム会社に生まれ変わらせました。',
   steps=[('2026.08','撤退予定だった事業を引き受け'),('引き受け後','商品・集客・体制を見直し、リフォーム会社として再出発'),('現在','エッジアセットが経営を続けています')],
   point='廃業や撤退で失われるはずだった施主様との関係と、社員の仕事を残しました。'),
+ dict(name='カノウヤ',named=True,tag='福島県の住宅会社',en='Fukushima',since='福島県',status='実績',
+  lead='福島県の住宅会社の案件に取り組みました。',steps=[],point='',short=True),
  dict(name='A社',named=False,tag='再建して二代目へ',en='Next generation',since='2021',status='経営は引き継ぎ済み',
   lead='株式を譲り受けて再建したのち、経営と株式を二代目へ引き継ぎました。',
   steps=[('2021','株式を譲り受け、再建に着手'),('再建後','経営と株式を二代目へ引き継ぎ'),('現在','二代目が経営しています')],
@@ -348,8 +350,8 @@ def real_card(r,full=False):
     nm=f'<b class="rc-name">{r["name"]}</b>'+('' if r['named'] else '<small class="rc-anon">社名は非公開</small>')
     steps=''.join(f'<li><span>{d}</span><p>{t}</p></li>' for d,t in r['steps']) if full else ''
     return f"""<article class="rcard rv">
-  <p class="rc-top"><span class="rc-badge">実績</span><span class="rc-en">{r['en']}</span><span class="rc-st">{r['status']}</span></p>
-  <p class="rc-since"><span>引き受け</span>{r['since']}</p>
+  <p class="rc-top"><span class="rc-badge">実績</span><span class="rc-en">{r['en']}</span>{'' if r.get('short') else f'<span class="rc-st">{r["status"]}</span>'}</p>
+  {'<p class="rc-since"><span>所在地</span>'+r['since']+'</p>' if r.get('short') else f'<p class="rc-since"><span>引き受け</span>{r["since"]}</p>'}
   <div class="rc-nm">{nm}</div>
   <p class="rc-tag">{r['tag']}</p>
   {P(r['lead'],'rc-lead')}
@@ -358,7 +360,7 @@ def real_card(r,full=False):
 </article>"""
 RESULTS=f"""<section class="real">
   <div class="w">
-    {head('Track record','これまでの実績','再建・立ち上げ|4社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。これまでに取り組んできた会社です。')}
+    {head('Track record','これまでの実績','再建・立ち上げ|5社','後継者のいない会社の引き受け、撤退事業の引き受け、再建してからの二代目への引き継ぎ、立ち上げから社長への引き継ぎ。これまでに取り組んできた会社です。')}
     <div class="rgrid">{''.join(real_card(r,True) for r in REAL)}</div>
     <div class="rpolicy"><p class="rp-k">株式の引き継ぎについて</p><p class="rp-t">株式は、いったんエッジアセットが譲り受けます。その後は、社内の後継者や次の経営者への引き継ぎを第一に考えます。</p>{P("A社は私たちが後継者として再建したのち二代目へ、B社は共同創業の社長ご本人へ、それぞれ株式を引き継ぎました。")}</div>
     <p class="rnote">A社・B社は、先方のご意向により社名を伏せています。</p>
