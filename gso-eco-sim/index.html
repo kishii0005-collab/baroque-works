@@ -20,17 +20,17 @@
 /* Layout (SP): 上に答えの帯（ここだけに数字）、真ん中に少ない入力、下に固定の4タブ */
 :root{
   --bg:#F3F5F2; --surface:#FFFFFF; --ink:#1B2421; --muted:#5B6863; --line:#DCE2DD; --soft:#EAF1EC;
-  --accent:#0F8763; --accent-ink:#FFFFFF; --bar:#14231E; --bar-ink:#F1F5F2; --bar-acc:#5FD3A6; --water:#3B6DB3; --warn:#B4541A; --bar-warn:#F0A06A;
+  --accent:#0F8763; --accent-ink:#FFFFFF; --bar:#14231E; --bar-ink:#F1F5F2; --bar-acc:#5FD3A6; --water:#3B6DB3; --sun:#C27A0E; --warn:#B4541A; --bar-warn:#F0A06A;
   --f-body:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
   --f-num:"Outfit","BIZ UDPGothic",system-ui,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0F1314; --surface:#161C1D; --ink:#E6ECE9; --muted:#9BA9A3; --line:#2A3436; --soft:#1C2826;
-  --accent:#2E9C76; --accent-ink:#06140F; --bar:#E6ECE9; --bar-ink:#0F1314; --bar-acc:#0F7A59; --water:#628BCF; --warn:#E08A52; --bar-warn:#A8460F; color-scheme:dark}}
+  --accent:#2E9C76; --accent-ink:#06140F; --bar:#E6ECE9; --bar-ink:#0F1314; --bar-acc:#0F7A59; --water:#628BCF; --sun:#D9962E; --warn:#E08A52; --bar-warn:#A8460F; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F1314; --surface:#161C1D; --ink:#E6ECE9; --muted:#9BA9A3; --line:#2A3436; --soft:#1C2826;
-  --accent:#2E9C76; --accent-ink:#06140F; --bar:#E6ECE9; --bar-ink:#0F1314; --bar-acc:#0F7A59; --water:#628BCF; --warn:#E08A52; --bar-warn:#A8460F; color-scheme:dark}
+  --accent:#2E9C76; --accent-ink:#06140F; --bar:#E6ECE9; --bar-ink:#0F1314; --bar-acc:#0F7A59; --water:#628BCF; --sun:#D9962E; --warn:#E08A52; --bar-warn:#A8460F; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0}
@@ -200,6 +200,21 @@ details.more .form{gap:14px}
 .install #installBtn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:9px 14px;font-weight:700;white-space:nowrap}
 .install .ix{border:0;background:none;font-size:20px;color:var(--muted);width:32px;height:32px}
 @media (display-mode:standalone){.install{display:none!important}}
+.gbox{margin-top:16px;border:1px solid var(--line);border-radius:16px;padding:14px}
+.gbox h4{margin:0 0 4px;font-size:15px}
+.gwrap{position:relative;margin-top:8px}
+.gwrap svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.gwrap text{fill:var(--muted);font-family:var(--f-num);font-size:10.5px}
+.gtip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:8px;padding:7px 10px;font-size:12.5px;line-height:1.5;white-space:nowrap;transform:translate(-50%,-110%)}
+.glegend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.glegend span{display:flex;align-items:center;gap:6px}
+.glegend i{display:inline-block}
+.glegend .lb{width:12px;height:12px;border-radius:3px;background:var(--accent)}
+.glegend .ll{width:18px;height:3px;border-radius:2px;background:var(--sun)}
+.glegend b{font-weight:400}
+.gcall{margin:10px 0 0;font-size:14px;font-weight:700}
+.gcall em{font-style:normal;color:var(--accent)}
+.gcall em.w{color:var(--warn)}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 16px;font-size:14px;width:max-content;max-width:calc(100% - 32px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -287,6 +302,13 @@ details.more .form{gap:14px}
       <div class="ba" id="kBA"></div>
       <p class="lead" id="kLead"></p>
       <div class="tw" id="kPBox"><table class="tbl" id="kPeriods"></table></div>
+      <div class="gbox">
+        <h4>20年間の積み上がり</h4>
+        <p class="hint" id="kChartNote"></p>
+        <div class="gwrap" id="kChart"><div class="gtip" id="kTip" hidden></div></div>
+        <div class="glegend"><span><i class="lb"></i>減った光熱費の合計</span><span><i class="ll"></i><b id="kLineName">返済した額の合計</b></span></div>
+        <p class="gcall" id="kCall"></p>
+      </div>
       <div class="twenty" id="kTwenty"></div>
       <details class="more"><summary>くわしく見る</summary>
         <h4>1か月の光熱費</h4><div class="tw"><table class="tbl" id="kMonth"></table></div>
@@ -568,6 +590,8 @@ function renderKeizai(){
      <tr class="net"><td>${R.loan?"返済総額":"費用"}${R.sums.maint>0?"・パワコン交換":""}を引くと</td><td class="${net<0?"w":""}">${net>=0?"手元に +":"−"}${man(Math.abs(net))}万円</td></tr></table>
      <p style="margin:12px 0 0;font-size:12.5px;color:var(--ink);font-weight:700">電気代の上がり方で、減る光熱費はこう変わります</p><div class="sc">${sc.map(x=>`<div class="${x.u===S.up?"cur":""}"><span>${x.u===0?"上がらない":"年"+x.u+"%上がる"}${x.u===S.up?"（標準）":""}</span><b>${man(x.cut)}万円減</b></div>`).join("")}</div>
      <p>光熱費が値上がりするほど、減る額は大きくなります。値上がり率は将来の見込みで、保証ではありません。</p>`;}
+
+  drawKChart(R);
   const showP=R.loan&&M.periods.length>1;
   $("kPBox").hidden=!showP;
   if(showP) $("kPeriods").innerHTML=`<tr><th>期間</th><th>安くなる額</th><th>ローン</th><th>家計</th></tr>`+M.periods.map(p=>{const net=p.save-p.pay;return `<tr><td>${p.label}</td><td>${f100(p.save)}</td><td>${p.pay>0?fmt(r100(p.pay)):"なし"}</td><td class="${net>=0?"p":"m"}">${net>=0?"+"+fmt(r100(net)):fmt(Math.abs(r100(net)))+" 負担"}</td></tr>`}).join("")+`<tr><td colspan="4" style="text-align:left;font-family:var(--f-body);font-size:12px;color:var(--muted);border:0">単位：円/月。家計＝安くなる額 − ローン返済</td></tr>`;
@@ -597,6 +621,41 @@ function renderKeizai(){
   document.querySelectorAll("#exF .hint").forEach(h=>h.textContent=`卒FIT後の売電単価は ${S.post} 円/kWh で計算します。`);
 }
 
+
+/* ---------- 20年間の積み上がりグラフ（棒：減った光熱費の合計、線：返済した額の合計） ---------- */
+function drawKChart(R){
+  const N=R.N, rows=R.rows;
+  let cs=0;const save=rows.map(r=>(cs+=r.total,cs));          // 減った光熱費の合計（パワコン交換を差し引き）
+  let cp=0;const pay=rows.map(r=>R.loan?(cp+=r.paid,cp):R.inv); // 返済した額の合計／現金は導入費用
+  const final=R.loan?R.monthlyPay*R.n*12:R.inv;
+  let cross=null;for(let i=0;i<N;i++){if(final>0&&save[i]>=final){cross=i+1;break}}
+  $("kLineName").textContent=R.loan?"返済した額の合計":"導入費用";
+  $("kChartNote").textContent=R.loan?"緑の棒が、オレンジの線の最後の高さ（返済総額）を超えた年から、手元にお金が残ります。":"緑の棒が、オレンジの線（導入費用）を超えた年で費用を取り戻せます。";
+  $("kCall").innerHTML=final<=0?"":(cross?`<em>${cross}年目</em>に、減った光熱費の合計が${R.loan?"返済総額":"導入費用"}（${man(final)}万円）を上回ります。`:`<em class="w">${N}年間では</em>、減った光熱費の合計が${R.loan?"返済総額":"導入費用"}（${man(final)}万円）に届きません。`);
+  const W=340,H=210,m={l:40,r:10,t:12,b:24};
+  const hi0=Math.max(...save,...pay,final,1), raw=hi0/4, p10=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/p10, st=(f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p10;
+  const lo=Math.min(0,...save), lo2=lo<0?Math.floor(lo/st)*st:0, hi=Math.ceil(hi0/st)*st;
+  const pw=W-m.l-m.r, ph=H-m.t-m.b, step=pw/N, bw=Math.max(3,step*0.62);
+  const X=i=>m.l+step*i+step/2, Y=v=>m.t+ph*(hi-v)/(hi-lo2);
+  let g="";
+  for(let v=lo2;v<=hi+1e-6;v+=st){const z=Math.abs(v)<1e-6;g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${z?"var(--muted)":"var(--line)"}" ${z?"":'stroke-dasharray="2 3"'}/><text x="${m.l-5}" y="${Y(v)+3.5}" text-anchor="end">${Math.round(v/10000)}万</text>`}
+  for(let i=0;i<N;i++){if((i+1)%5===0||i===0)g+=`<text x="${X(i)}" y="${H-6}" text-anchor="middle">${i+1}年</text>`}
+  let bars="";
+  for(let i=0;i<N;i++){const v=save[i],y0=Y(0),y1=Y(v),top=Math.min(y0,y1),h=Math.max(1,Math.abs(y1-y0));
+    bars+=`<rect x="${X(i)-bw/2}" y="${top}" width="${bw}" height="${h}" rx="2" fill="var(--accent)" opacity="${cross&&i+1>=cross?1:0.55}"/>`}
+  const line=pay.map((v,i)=>`${i?"L":"M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join("");
+  let dots="";pay.forEach((v,i)=>{dots+=`<circle cx="${X(i)}" cy="${Y(v)}" r="2.6" fill="var(--surface)" stroke="var(--sun)" stroke-width="1.6"/>`});
+  let mark="";
+  if(cross){const x=X(cross-1);mark=`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${Y(0)}" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 3"/><text x="${Math.min(x+4,W-m.r-60)}" y="${m.t+9}" style="fill:var(--ink);font-weight:700">${cross}年目で上回る</text>`}
+  const hit=Array.from({length:N},(_,i)=>`<rect x="${m.l+step*i}" y="${m.t}" width="${step}" height="${ph}" fill="transparent" data-i="${i}"/>`).join("");
+  const box=$("kChart");box.querySelector("svg")?.remove();
+  box.insertAdjacentHTML("afterbegin",`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="20年間の、減った光熱費の合計と${R.loan?"返済した額の合計":"導入費用"}の推移">${g}${bars}<path d="${line}" fill="none" stroke="var(--sun)" stroke-width="2"/>${dots}${mark}${hit}</svg>`);
+  const svg=box.querySelector("svg"), tip=$("kTip");
+  const show=e=>{const t=e.target.closest("[data-i]");if(!t){tip.hidden=true;return}const i=+t.dataset.i,rc=svg.getBoundingClientRect();
+    tip.innerHTML=`<b>${i+1}年目まで</b><br>減った光熱費 ${man(save[i])}万円<br>${R.loan?"返済した額":"導入費用"} ${man(pay[i])}万円`;
+    tip.style.left=Math.max(70,Math.min(rc.width-70,X(i)/W*rc.width))+"px";tip.style.top=(Math.min(Y(save[i]),Y(pay[i]))/H*rc.height)+"px";tip.hidden=false};
+  svg.addEventListener("pointermove",show);svg.addEventListener("pointerdown",show);svg.addEventListener("pointerleave",()=>{tip.hidden=true});
+}
 /* ---------- 2 電気で節約 ---------- */
 function renderDenka(){
   const o=Object.assign({},S,{pvOn:false,batOn:false,ecoOn:true,pay:"cash",totalPrice:S.ecoPrice,subsidy:S.ecoSubsidy||0,gasCut:S.gasCutS==="ih"});
