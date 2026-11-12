@@ -2020,3 +2020,11 @@ body:not(.home) main>section:not(.phero):not(.chero) .sh-t::before{display:none!
 .dark .topfaq .sh-ja{color:#fff}
 
 .bgword{display:none!important}
+/* 2026-11-12 */
+.msg .w.grid{grid-template-columns:1fr;max-width:860px}
+.cap3{grid-template-columns:repeat(2,1fr)!important}
+@media (min-width:961px){.md-co{grid-template-columns:repeat(5,1fr)!important}}
+.stance .big{font-size:clamp(34px,4.4vw,60px);line-height:1.4;letter-spacing:.04em}
+@media (max-width:760px){.cap3{grid-template-columns:1fr!important}}
+.cost-b{grid-template-columns:1fr!important;max-width:760px}
+@media (min-width:961px){.md-co .t{font-size:15px;white-space:nowrap}.md-co>div{padding-inline:10px}}
