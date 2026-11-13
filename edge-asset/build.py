@@ -484,7 +484,7 @@ support=[
  ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も、グループで行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
  ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様・設計の判断、施主様との打ち合わせ、現場での判断'),
 ]
-rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}">{('<div class="ph mask">'+img(pid,alt,1400)+'</div>') if en in ('MARKETING','FINANCE') else ('<div class="ph mask viz">'+VIZ[en]+'</div>')}</div><div class="tx rv" data-no="0{k+1}"><p class="n">{en}</p><h3>{ja}</h3>{P(desc)}<ul class="rw-l">{''.join(f'<li>{x}</li>' for x in SUPPORT_MORE[en])}</ul></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
+rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}">{('<div class="ph mask">'+img(pid,alt,1400)+'</div>') if en in ('MARKETING','FINANCE') else ('<div class="ph mask viz">'+VIZ[en]+'</div>')}</div><div class="tx rv" data-no="0{k+1}"><h3>{ja}</h3>{P(desc)}<ul class="rw-l">{''.join(f'<li>{x}</li>' for x in SUPPORT_MORE[en])}</ul></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
 
 promises=[('社名・|屋号は|そのまま|残します','看板も、ホームページも、職人さんの作業着も変えません。地域で積み上げた名前が、いちばんの資産です。'),
  ('雇用と|給与水準を|守ります','グループ入りを理由にした人員削減や給与の引き下げは行いません。期間は契約書に明記します。'),
@@ -759,9 +759,9 @@ HTML=f'''<!doctype html>
   <div class="w">
     <div class="fg">
       <div><a class="logo" href="#top" style="color:#fff"><span><b>EDGE ASSET</b><small>株式会社エッジアセット</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
-      <div><p class="fh">COMPANY</p><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
-      <div><p class="fh">SUCCESSION</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="results.html">実績・事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
-      <div class="ftel"><p class="fh">CONTACT</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
+      <div><p class="fh">会社について</p><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
+      <div><p class="fh">事業承継のご相談</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="results.html">実績・事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
+      <div class="ftel"><p class="fh">お問い合わせ</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
     <p class="fcred">写真：Wikimedia Commons ほか（仮素材）　<a href="sitemap.html#credits">写真クレジット</a></p>

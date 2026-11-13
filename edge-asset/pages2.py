@@ -21,7 +21,7 @@ def kpis(items,dark=False):
     return f'<section class="kpi{" dark" if dark else ""}"><div class="w"><ul>{li}</ul></div></section>'
 
 def nextlink(href,en,ja):
-    return f"""<section class="nextp"><a href="{href}"{NT} class="w"><span class="nx-k">Next page</span><span class="nx-en">{en}</span><span class="nx-ja">{ja}</span><span class="nx-ar" aria-hidden="true"></span></a></section>"""
+    return f"""<section class="nextp"><a href="{href}"{NT} class="w"><span class="nx-k">次のページ</span><span class="nx-en">{en}</span><span class="nx-ja">{ja}</span><span class="nx-ar" aria-hidden="true"></span></a></section>"""
 
 # ---------- cost ----------
 LEVERS=[('共同購買','住設・建材・構造材をグループでまとめて発注'),
@@ -54,7 +54,7 @@ COST=f"""<section class="cost" id="cost">
       <div class="cs-wt rv"><p class="cs-k">Why cost</p><h3>{W('原価と|販管費の|改善は、|売上を|4割|伸ばすのと|同じ効果。')}</h3>{P('年間25棟の会社なら、10棟多く受注するのと同じ利益です。受注を増やすには広告費も人も時間もかかりますが、原価の見直しは、いま受けている仕事のままで取り組めます。')}</div>
       {pbars()}
     </div>
-    <ol class="cs-steps">{''.join(f'<li class="rv"><p class="cs-sn">STEP {i+1:02d}<span>{e}</span></p><h3>{W(h)}</h3>{P(t)}</li>' for i,(e,h,t) in enumerate(CSTEPS))}</ol>
+    <ol class="cs-steps">{''.join(f'<li class="rv"><p class="cs-sn">{i+1}</p><h3>{W(h)}</h3>{P(t)}</li>' for i,(e,h,t) in enumerate(CSTEPS))}</ol>
     <div class="cs-lv rv"><p class="cs-k">6つの打ち手</p><ul>{''.join(f'<li><b>{h}</b><span>{W(t)}</span></li>' for h,t in LEVERS)}</ul></div>
     <div class="cost-b">
       <div class="notdo rv">
@@ -209,7 +209,7 @@ FLOWDETAIL=f"""<section class="fdet">
   <div class="w">
     {head('Process','ご相談から引き継ぎまで','6つの|ステップで、|最終契約まで|通常は|半年前後です','急いで決めていただく必要はありません。各段階で、何をして、何をご用意いただき、誰にまで話が伝わるのかを先にお伝えします。')}
     {gantt()}
-    <ol class="fsteps">{''.join(f'''<li class="rv"><div class="fs-h"><span class="fs-n">STEP {i+1:02d}</span><p class="fs-en">{e}</p><h3>{W(h)}</h3><p class="fs-t">期間の目安　{t}</p></div><div class="fs-b">{P(d)}<div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul>{''.join(f'<li>{x}</li>' for x in prep)}</ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">{who}</p></div></div></div></li>''' for i,(h,e,t,d,prep,who) in enumerate(FSTEPS))}</ol>
+    <ol class="fsteps">{''.join(f'''<li class="rv"><div class="fs-h"><span class="fs-n">{i+1}</span><p class="fs-en">{e}</p><h3>{W(h)}</h3><p class="fs-t">期間の目安　{t}</p></div><div class="fs-b">{P(d)}<div class="fs-m"><div><p class="fs-k">ご用意いただくもの</p><ul>{''.join(f'<li>{x}</li>' for x in prep)}</ul></div><div><p class="fs-k">話が伝わる範囲</p><p class="fs-who">{who}</p></div></div></div></li>''' for i,(h,e,t,d,prep,who) in enumerate(FSTEPS))}</ol>
   </div>
 </section>"""
 SECRET=f"""<section class="secret dark">
@@ -244,7 +244,7 @@ PROFILE=f"""<section class="prof" id="profile">
         {P('中小企業経営コンサルティング会社で、コンサルタントとして全社で2位の年間粗利獲得実績を複数年にわたって達成しました。経営再建や成長戦略の実行支援を中心に、現場に寄り添った実務型のコンサルティングに取り組んできました。')}
         {P('同社を退職後は、複数の事業の運営に携わりながら、建築業界の企業の採用・営業体制の構築・業務改善を支援。業績アップを通じて、経営の改善に取り組んできました。')}
         {P('理論と実務をつなぐ進め方を大切にしています。現在は株式会社エッジアセットの代表として、地域の工務店・住宅会社の事業承継とグループ経営に取り組んでいます。')}
-        <ol class="pf-tl">{''.join(f'<li><span>{e}</span><b>{h}</b>{P(t)}</li>' for e,h,t in [('Consulting','中小企業経営コンサルティング会社','経営再建・成長戦略の実行支援。全社で2位の年間粗利獲得実績を複数年にわたり達成。'),('Operation','事業運営と支援','複数の事業を運営しながら、建築業界を中心に採用・営業・業務改善を支援。'),('Edge Asset','代表取締役','工務店・住宅会社の事業承継とグループ経営に取り組む。')])}</ol>
+        <ol class="pf-tl">{''.join(f'<li><span>{e}</span><b>{h}</b>{P(t)}</li>' for e,h,t in [('コンサルタント時代','中小企業経営コンサルティング会社','経営再建・成長戦略の実行支援。全社で2位の年間粗利獲得実績を複数年にわたり達成。'),('独立後','事業運営と支援','複数の事業を運営しながら、建築業界を中心に採用・営業・業務改善を支援。'),('現在','代表取締役','工務店・住宅会社の事業承継とグループ経営に取り組む。')])}</ol>
       </div>
     </div>
   </div>

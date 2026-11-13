@@ -1593,3 +1593,43 @@ body:not(.home) main>section:not(.phero):not(.chero) .sh-t::before{display:none!
 @media (max-width:760px){.cap3{grid-template-columns:1fr!important}}
 .cost-b{grid-template-columns:1fr!important;max-width:760px}
 @media (min-width:961px){.md-co .t{font-size:15px;white-space:nowrap}.md-co>div{padding-inline:10px}}
+
+/* ===================================================================
+   DE-AI PASS 2: template habits that remained after pass 1
+   =================================================================== */
+/* sub-page heads: Japanese title, no giant English, no diagonal photo cut */
+.phero .pen{display:none!important}
+.phero{min-height:0;padding-block:96px 72px}
+.phero h1{font-size:clamp(30px,3.4vw,44px);font-weight:700;letter-spacing:.04em;line-height:1.4;margin:0 0 18px}
+.phero h1::before{display:none!important}
+.phero .pg-ph .ph{clip-path:none!important}
+.phero .pg-ph .ph::after{background:linear-gradient(90deg,rgba(12,39,71,.9),rgba(12,39,71,0) 40%)}
+.chero .ch-no{font-size:12px;letter-spacing:.1em}.chero .ch-no b{font-size:inherit;font-weight:500}
+/* photos sit on the page; no offset color block behind them */
+.frame::before,.tm-ph::before{display:none!important}
+/* no ghost numerals behind text */
+.row .tx::before{display:none!important}
+/* numbered items: small, plain numbers */
+.is3 .n,.ts-n,.lv-n,.sc-l>li>span,.wc-i span,.fq-n,.cb-n{font-family:var(--fh)!important;font-size:13px!important;font-weight:700!important;letter-spacing:.06em!important;color:var(--blue);margin-bottom:10px!important;border:0!important;padding:0!important}
+.pi .n{width:auto;height:auto;border:0;border-radius:0;font-family:var(--fh);font-size:15px;font-weight:700;color:var(--blue)}
+/* mid-page CTA: photo with one flat tint, no diagonal blue panel */
+.cta::after{display:none!important}
+/* next-page link: Japanese, modest */
+.nx-en{display:none!important}
+.nx-ja{font-family:var(--fh);font-size:clamp(22px,2.4vw,30px);font-weight:700;color:#fff;margin:6px 0 0}
+.nextp a{padding-block:48px}
+.nx-ar{width:56px;height:56px}
+/* fewer outlined pills and tags */
+.pf-tags li,.rc-st,.col-cats li>*,.fq-nav a{border-radius:0}
+.cc-model,.rc-badge.ghost{border-style:solid}
+/* hero: less letter-spacing on the big headline, text reads as set type */
+.hx-h{letter-spacing:.02em;font-weight:700}
+/* footer labels in Japanese */
+footer .fh{font-family:var(--fh);font-size:13px;letter-spacing:.06em}
+.nx-k{display:block!important;font-family:var(--fh);font-size:12px;letter-spacing:.08em;color:#9fb3cc;text-transform:none}
+/* DE-AI PASS 3 */
+.vz-en{display:none}
+.cs-sn{font-size:13px;letter-spacing:0;font-weight:700}
+.pf-en,.tm-en{display:none}
+.en-name{display:none}
+.fs-en{display:none}
