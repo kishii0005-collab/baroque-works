@@ -1680,3 +1680,38 @@ header.site.scrolled,header.site.on,.scrolled header.site{background:var(--bg)!i
 .hd-s header.site{background:var(--bg)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 .menu-open.hd-s header.site{background:transparent!important}
 header.site,header.site .w{transition:none!important}
+/* ===== PASS 5: 和の会社案内らしいあしらいを戻す ===== */
+html:root{--shu:#a8432a}
+/* 紙の質感 */
+body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 朱の落款 */
+.seal{display:inline-grid;place-items:center;width:30px;height:30px;margin-right:14px;background:var(--shu);color:#fff;font-family:var(--fh);font-weight:700;font-size:17px;line-height:1;letter-spacing:0;vertical-align:middle;border-radius:2px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)!important}
+.hx-kick{display:flex;align-items:center}
+/* ヒーローの縦書き */
+.hx-tate{position:absolute;z-index:3;right:max(64px,env(safe-area-inset-right,0px));top:150px;writing-mode:vertical-rl;font-family:var(--fh);font-weight:500;font-size:17px;line-height:2.2;letter-spacing:.32em;color:rgba(255,255,255,.92);margin:0;padding-right:22px;border-right:1px solid rgba(255,255,255,.45)}
+@media (max-width:960px){.hx-tate{display:none}}
+/* 見出しの上の小見出しを、朱の線＋明朝で戻す */
+.sh-ja{display:flex!important;align-items:center;gap:14px!important;font-family:var(--fh)!important;font-weight:600!important;font-size:14px!important;letter-spacing:.2em!important;color:var(--shu)!important;margin:0 0 18px!important}
+.sh-ja::before{display:block!important;content:""!important;width:28px!important;height:1px!important;background:var(--shu)!important}
+.sh.c .sh-ja,.c .sh-ja{justify-content:center}
+.sh.c .sh-ja::after{content:"";width:28px;height:1px;background:var(--shu)}
+[class*="dk"] .sh-ja,.market .sh-ja,.stance .sh-ja,.tcost .sh-ja,.model .sh-ja{color:#e3a28f!important}
+[class*="dk"] .sh-ja::before,.market .sh-ja::before,.stance .sh-ja::before,.tcost .sh-ja::before,.model .sh-ja::before{background:#e3a28f!important}
+/* 番号は明朝＋朱の短い線 */
+.ts-n,.pi .n,.cs-sn,.fs-n{font-family:var(--fh)!important;color:var(--shu)!important;font-weight:600!important}
+/* 写真に細い額縁 */
+section .ph:not(.slide){outline:1px solid rgba(29,42,58,.18);outline-offset:-12px}
+/* 見出しの下に朱の短い線 */
+.sh h2::after{content:"";display:block;width:40px;height:2px;background:var(--shu);margin-top:22px}
+.sh.c h2::after{margin-inline:auto}
+/* ほんのり表示（動きは控えめに） */
+.js .rv{opacity:0!important;transition:opacity .9s ease!important}
+.js .rv.in{opacity:1!important}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1!important}}
+/* 主なボタンの細部 */
+.hx-cta,.btn-navy,.btn-blue{position:relative}
+.hx-cta::after,.btn-navy::after,.btn-blue::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--shu)}
+.hx-kick .seal{display:inline-grid!important;opacity:1!important}
+p.n{font-family:var(--fh)!important;color:var(--shu)!important;font-weight:600!important;letter-spacing:.08em!important}
+p.n::after{content:"";display:block;width:18px;height:1px;background:var(--shu);margin-top:8px}
+.hx-kick .seal{border-radius:2px!important;width:32px!important;height:32px!important;font-size:18px!important;border:0!important;background:var(--shu)!important;color:#fff!important}

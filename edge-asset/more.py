@@ -10,11 +10,12 @@ FV=f"""<section class="hx" aria-label="メインビジュアル">
   <div class="hx-slides">{fv_s}</div>
   <div class="hx-grid" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="hx-in">
-    <p class="hx-kick"><span>01</span>工務店・住宅会社の事業承継</p>
-    <h1 class="hx-h">{split_chars('地域の|工務店を、|つぎの|三十年へ。')}</h1>
+    <p class="hx-kick"><span class="seal" aria-hidden="true">継</span>工務店・住宅会社の事業承継</p>
+    <h1 class="hx-h">{split_chars('地域の|住宅会社を、|つぎの|三十年へ。')}</h1>
     {P('後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する。社名と社員、施主様へのアフターのお約束は、そのまま引き継ぎます。','hx-lead')}
     <div class="hx-act"><a class="hx-cta" href="contact.html"><span class="hc-t"><small>無料・秘密厳守</small>事業承継について相談する</span><span class="hc-ar" aria-hidden="true"></span></a><a class="hx-sub" href="partners.html"><span>仲介会社・金融機関の方へ</span><i aria-hidden="true"></i></a></div>
   </div>
+  <p class="hx-tate" aria-hidden="true">家を建てた会社が、<br>三十年後も、その家を守れるように。</p>
   <div class="hx-foot">
     <div class="hx-pager"><span id="cnt">01</span><span class="pager" id="pager"></span><span>04</span></div>
     <a class="hx-news" href="news.html"><b>NEWS</b><time datetime="2026-10-22">2026.10.22</time><span>コーポレートサイトを公開しました</span></a>

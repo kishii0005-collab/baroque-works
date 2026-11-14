@@ -954,7 +954,7 @@ fv_slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,24
 FV=f"""<section class="fv" aria-label="メインビジュアル">
   <div class="fv-copy">
     <p class="fv-kick">工務店・住宅会社の事業承継</p>
-    <h1>{W('地域の|工務店を、|つぎの|三十年へ。')}</h1>
+    <h1>{W('地域の|住宅会社を、|つぎの|三十年へ。')}</h1>
     {P('建てた家の点検に、三十年後も伺える会社であるために。エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営します。','fv-lead')}
     <div class="fv-act"><a class="btn btn-navy" href="contact.html">事業承継について相談する {AR}</a><a class="tl" href="partners.html">仲介会社・金融機関の方へ {AR}</a></div>
     <ul class="fv-pts">
