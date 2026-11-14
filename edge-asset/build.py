@@ -2,6 +2,8 @@ import sys
 U=lambda i,w=0:f'https://unsplash.com/photos/{i}/download?force=true&amp;w=1800'  # one size per photo so the browser fetches it only once
 SAFE=U('Q6sCJFHCubc',2000)
 import os
+# form recipients: the company address, plus any extra addresses set in FORM_CC (comma separated) at build time
+FORM_TO=','.join(a for a in ['y-tanioka@edge-asset.jp']+os.environ.get('FORM_CC','').split(',') if a.strip())
 IMG_DIR=os.path.join(os.path.dirname(os.path.abspath(sys.argv[1])),'img')
 BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
 def src_list(i):
@@ -470,7 +472,7 @@ section{position:relative}
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
 AR='<span class="ar"></span>'
 
-hero_slides=[('Q6sCJFHCubc','東京の住宅街',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True),('pcYN7Pi8_BQ','夕暮れの東京の住宅街',True)]
+hero_slides=[('Q6sCJFHCubc','東京の住宅街',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True),('q1tyQip5AQQ','夕暮れの東京の住宅街',True)]
 slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
 
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'viz.py')).read())
@@ -479,7 +481,7 @@ SUPPORT_MORE={'MARKETING':['反響数・来場数・成約率を、グループ�
  'FINANCE':['月次決算と、翌月10日までの数字の共有','13週の資金繰り表で、資金不足を事前に防ぐ','金融機関との借入条件の交渉と、社長の個人保証の解除','モデルハウス・分譲用地など、大きな投資の判断をグループで行う'],
  'OPERATIONS':['住設・建材・構造材の共同購買と、仕入れ値の見直し','見積・実行予算・工程・顧客管理のシステム統一','定期点検の履歴をデータ化し、アフターの抜け漏れを防ぐ','省エネ基準の義務化など、法改正への対応をグループで準備']}
 support=[
- ('集客','MARKETING','q1tyQip5AQQ','大阪の住宅の外観','集客は、すべてグループで一括して担います。広告の運用からホームページ、Googleマップの整備、見学会の集客まで、本部がまとめて引き受けます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
+ ('集客','MARKETING','q1tyQip5AQQ','住宅の外観','集客は、すべてグループで一括して担います。広告の運用からホームページ、Googleマップの整備、見学会の集客まで、本部がまとめて引き受けます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
  ('採用','RECRUITING','4UVtFIfK1eo','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
  ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も、グループで行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
  ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様・設計の判断、施主様との打ち合わせ、現場での判断'),
@@ -525,7 +527,7 @@ HTML=f'''<!doctype html>
 <meta name="description" content="株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 
 </head>
@@ -591,7 +593,7 @@ HTML=f'''<!doctype html>
       <div class="num"><span class="donut" style="--v:50.1"><span>全国</span></span><strong>50.1<small>%</small></strong><div><h3>{W('全国企業の|後継者不在率')}</h3>{P('いまも2社に1社は、後継者が決まっていません。')}</div></div>
       <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
     </div>
-    <div class="frame l"><div class="ph mask">{img('pcYN7Pi8_BQ','夜の東京の住宅街',1200)}</div></div>
+    <div class="frame l"><div class="ph mask">{img('q1tyQip5AQQ','夜の東京の住宅街',1200)}</div></div>
   </div>
 </section>
 
@@ -636,7 +638,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cta">
-  <div class="ph">{img('pcYN7Pi8_BQ','',2000)}</div>
+  <div class="ph">{img('q1tyQip5AQQ','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-6823-1499</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#faq">よくある質問を見る {AR}</a></div>
@@ -738,7 +740,7 @@ HTML=f'''<!doctype html>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
     <div class="telrow"><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
-    <form id="cf" novalidate data-endpoint="" data-mailto="y-tanioka@edge-asset.jp,k.ishii0005@gmail.com">
+    <form id="cf" novalidate data-endpoint="" data-mailto="{FORM_TO}">
       <label for="f-topic">ご相談の種類</label>
       <select id="f-topic" name="ご相談の種類"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
       <div class="r2"><div><label for="f-name">お名前</label><input id="f-name" name="お名前" autocomplete="name"></div><div><label for="f-co">会社名</label><input id="f-co" name="会社名" autocomplete="organization"></div></div>

@@ -2068,3 +2068,50 @@ footer .fh{font-family:var(--fh);font-size:13px;letter-spacing:.06em}
 .pf-en,.tm-en{display:none}
 .en-name{display:none}
 .fs-en{display:none}
+/* ===== DE-AI PASS 4: 老舗の会社案内に寄せる ===== */
+html:root{
+  --bg:#fbfaf7;--mist:#f2efe8;--line:#ddd8cd;--ink:#1e1e1e;--ink-2:#444;--mute:#6f6a60;
+  --navy:#1d2a3a;--blue:#1d2a3a;
+  --en:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  --fh:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+body{letter-spacing:.03em}
+h1,h2,h3,.sh h2,.big,.catch,.lede{font-family:var(--fh)!important;font-weight:600!important;letter-spacing:.04em!important}
+.sh-ja{display:none!important}
+.sh{margin-bottom:44px}
+.js .rv,.js .rv.in{opacity:1!important;transform:none!important;transition:none!important}
+.mask::after{display:none!important}
+.fcta,.prog,.rail,.sbar{display:none!important}
+.burger{border-radius:0;background:var(--navy);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border-color:transparent}
+.btn{padding:16px 28px!important;gap:0!important;justify-content:center;box-shadow:none!important;transform:none!important;font-family:var(--f)!important;font-weight:500!important}
+.btn .ar,.hc-ar,.sb-b i,.fc-b i,.m3-b i,.cl-b .ar{display:none!important}
+.btn:hover{opacity:.85}
+[class]{box-shadow:none!important}
+.ph.noimg{background:var(--navy)}
+.market .num strong,.pi .n,.cs-big,.kpi b{font-family:var(--f)!important;font-weight:500!important;letter-spacing:0!important}
+.market .num .donut{display:none!important}
+.logo b{font-family:var(--fh)!important;letter-spacing:.12em!important;font-weight:600}
+/* hero: 写真1枚に固定、スライドの番号・ニュース帯・試作表示をやめる */
+.hero .slide:not(:first-child){display:none!important}
+.hero .slide:first-child{opacity:1!important}
+.hero .slide img{animation:none!important;transform:none!important}
+#pager,.pager,.hero .news,.proto{display:none!important}
+/* スクロール時のすりガラス調ヘッダーを、ふつうの白地に */
+header.site{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+header.site.scrolled,header.site.on,.scrolled header.site{background:var(--bg)!important}
+/* 紺地の装飾の円弧・背景文字 */
+.bgword,.market::before,.market::after{display:none!important}
+.hx-foot,.hx-marq,.hx-scroll,.hx-sub i{display:none!important}
+.hx .ch,h1 .ch{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+.hx-cta{padding:16px 28px!important}
+.hx .slide:not(:first-child){display:none!important}
+.hx .slide:first-child{opacity:1!important;visibility:visible!important}
+.hx .slide img{animation:none!important;transform:none!important}
+.pb-bar i{transition:none!important}
+.js .pbars:not(.in) .pb-bar i{transform:none!important}
+.js .market:not(.in) .num .donut{--v:initial}
+.hx .slide{position:absolute!important;inset:0!important;width:auto!important;height:auto!important}
+.hx .slide img{width:100%!important;height:100%!important;object-fit:cover}
+.hd-s header.site{background:var(--bg)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.menu-open.hd-s header.site{background:transparent!important}
+header.site,header.site .w{transition:none!important}

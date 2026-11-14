@@ -1,5 +1,5 @@
 # ===== expanded content + new hero (exec'd from build.py after the base sections) =====
-FV_SLIDES=[('GpJ9p1QH7O4','大阪の夜景'),('q1tyQip5AQQ','大阪の住宅の外観'),('a8A-z_ZPEC0','横浜の建築'),('rD28m9BmXVs','東京のビル街')]
+FV_SLIDES=[('4UVtFIfK1eo','建築中の木造住宅'),('q1tyQip5AQQ','住宅の外観'),('TJ4CndIc9z8','横浜の建築'),('rD28m9BmXVs','東京のビル街')]
 fv_s=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,i>0)}</div>' for i,(pid,alt) in enumerate(FV_SLIDES))
 def split_chars(t):
     out=[];k=0
@@ -224,7 +224,7 @@ ARTICLES=[
    ('p','<a href="valuation.html">譲渡価格のかんたん試算</a>で、純資産と営業利益から目安の幅を確認できます。'),
    ('box','譲渡価格は、交渉の結果だけで決まるものではありません。数字が整理され、利益の理由を説明できる会社ほど、引き継ぐ側は安心して評価できます。エッジアセットでは、初回面談の段階で決算書がなくても、考え方と準備の進め方をご説明しています。'),
   ]),
- dict(slug='column-5.html',date='2026.10.23',cat='原価管理',pid='pcYN7Pi8_BQ',
+ dict(slug='column-5.html',date='2026.10.23',cat='原価管理',pid='q1tyQip5AQQ',
   title='工務店の利益を残す原価管理。実行予算のつくり方',
   lead='受注は取れているのに、決算をしてみると思ったほど利益が残っていない。工務店でよく聞くこの悩みの多くは、原価の管理方法に原因があります。利益を残すための実行予算の考え方と、仕入れ値の見直しの進め方を解説します。',
   blocks=[
