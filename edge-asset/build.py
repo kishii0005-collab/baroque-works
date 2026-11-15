@@ -892,7 +892,7 @@ def nav():
     </nav>
   </div>
 </header>
-<button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span class="bl"><i></i><i></i></span><em class="b-o">MENU</em><em class="b-c">CLOSE</em></button>
+<button class="burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span class="bl"><i></i><i></i></span><em class="b-o">Menu</em><em class="b-c">Close</em></button>
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu-in">
     <div class="menu-l">

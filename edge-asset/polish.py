@@ -48,7 +48,7 @@ def chapterize(html):
 b,d=bodies['index.html']; bodies['index.html']=(chapterize(b),d)
 
 # ---------- menu v3: Japanese first, grouped, current page marked, contact always in view ----------
-MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('results.html','実績・事例','Results','再建・立ち上げ4社とモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
+MENU_MAIN=[('company.html','私たちについて','About','考え方・代表・会社概要'),('service.html','グループの支援','Support','集客・採用・財務・原価の改善'),('results.html','実績・事例','Results','再建・立ち上げ5社とモデルケース'),('flow.html','ご相談の流れ','Flow','初回面談から引き継ぎまで')]
 MENU_SUB=[('index.html','トップ'),('valuation.html','譲渡価格のかんたん試算'),('partners.html','仲介会社・金融機関の方へ'),('column.html','コラム'),('faq.html','よくあるご質問'),('news.html','お知らせ'),('contact.html','お問い合わせ')]
 CUR=''
 _nav_v2=nav
@@ -56,20 +56,25 @@ def nav():
     html=_nav_v2()
     cur=CUR if not (CUR.startswith('case-') or CUR=='cases.html') else 'results.html'
     cur='column.html' if cur.startswith('column-') else cur
-    main=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}><span class="m3-en">{e}</span><span class="m3-ja">{j}</span><span class="m3-d">{d}</span><i aria-hidden="true"></i></a></li>' for h,j,e,d in MENU_MAIN)
+    main=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}><span class="mn-n">{k+1:02d}</span><span class="mn-ja">{j}</span><span class="mn-en">{e}</span><span class="mn-d">{d}</span></a></li>' for k,(h,j,e,d) in enumerate(MENU_MAIN))
     sub=''.join(f'<li><a href="{h}"{NT}{" aria-current=\"page\"" if h==cur else ""}>{j}</a></li>' for h,j in MENU_SUB)
-    inner=f"""<div class="menu-in m3">
-    <nav class="m3-l" aria-label="サイトメニュー">
-      <p class="m3-k">事業承継をお考えの方へ</p>
-      <ul class="m3-main">{main}</ul>
-      <ul class="m3-sub">{sub}</ul>
-    </nav>
-    <div class="m3-r">
-      <p class="m3-k">ご相談窓口</p>
-      <p class="m3-lead">{W('ご相談は|無料です。|社名を|伏せたままでも|構いません。')}</p>
-      <a class="m3-b" href="contact.html"{NT}><small>24時間受付</small><span>フォームで相談する</span><i aria-hidden="true"></i></a>
-      <a class="m3-b tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small><span>03-6823-1499</span><i aria-hidden="true"></i></a>
-      <p class="m3-addr">株式会社エッジアセット<br>〒105-0022 東京都港区海岸2丁目5-1-1702</p>
+    # 2026-11-16 menu v4: paper page like a brochure contents page, photo on the left
+    inner=f"""<div class="menu-in mn">
+    <div class="mn-ph" aria-hidden="true">{img('ai-interior','',1200)}<p>地域の住宅会社を、<br>つぎの三十年へ。</p></div>
+    <div class="mn-body">
+      <nav class="mn-nav" aria-label="サイトメニュー">
+        <p class="mn-k">Contents</p>
+        <ol class="mn-main">{main}</ol>
+        <ul class="mn-sub">{sub}</ul>
+      </nav>
+      <div class="mn-ct">
+        <p class="mn-ck">ご相談窓口<span>無料・社名を伏せたままでも構いません</span></p>
+        <div class="mn-cb">
+          <a class="mn-form" href="contact.html"{NT}><small>24時間受付</small>フォームで相談する</a>
+          <a class="mn-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a>
+        </div>
+        <p class="mn-addr">株式会社エッジアセット　〒105-0022 東京都港区海岸2丁目5-1-1702</p>
+      </div>
     </div>
   </div>"""
     return re.sub(r'<div class="menu-in">.*?</div>\s*</div>\s*$',inner+'\n</div>',html,flags=re.S)
