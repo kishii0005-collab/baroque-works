@@ -2457,3 +2457,6 @@ footer .fcx{border-left:3px solid #e3a28f}
 /* "規模やエリアだけで" list: a short vermilion dash before each item */
 .open .tx li{position:relative;padding-left:22px!important}
 .open .tx li::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:#e3a28f}
+/* 2026-11-16: "売らない" removed, the value list has 3 items */
+@media (min-width:901px){.val{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:561px) and (max-width:900px){.val{grid-template-columns:1fr}.val li,.val li+li{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--line)}}
