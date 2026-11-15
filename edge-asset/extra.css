@@ -1880,3 +1880,48 @@ body{line-break:strict}
 .fs-m li{padding-left:0!important}
 .pp-facts dd small{white-space:normal}
 @media (max-width:600px){.pp-facts{grid-template-columns:1fr}.pp-facts div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}.pp-facts div{padding:16px 0}}
+/* ===== PASS 8 ===== */
+/* 章扉：第◯章（会社案内の目次・章扉のあしらい） */
+.chap{display:flex!important;align-items:center;gap:22px;margin:0 0 56px!important}
+.chap b{font-family:var(--fh)!important;font-weight:600!important;font-size:14px!important;letter-spacing:.42em!important;color:var(--shu)!important;border:0!important;padding:0 22px 0 0!important;text-transform:none!important;position:relative}
+.chap b::after{content:"";position:absolute;right:0;top:50%;width:1px;height:22px;background:var(--shu);transform:translateY(-50%)}
+.chap span{font-family:var(--fh)!important;font-size:14px!important;letter-spacing:.2em;color:var(--ink)!important}
+.chap::after{content:"";flex:1;height:1px;background:var(--ink)!important;opacity:.35}
+.dark .chap b,.stance .chap b,.market .chap b,.tcost .chap b,.model .chap b{color:#e3a28f!important}
+.dark .chap b::after,.stance .chap b::after,.market .chap b::after,.tcost .chap b::after,.model .chap b::after{background:#e3a28f}
+.dark .chap span,.stance .chap span,.market .chap span,.tcost .chap span,.model .chap span{color:#f1ece4!important}
+.dark .chap::after,.stance .chap::after,.market .chap::after,.tcost .chap::after,.model .chap::after{background:#fff!important}
+
+/* 5つのお約束：白い四角の番号 → 漢数字と縦の細線 */
+.plist{counter-reset:pi;border-top:3px double var(--ink)}
+.plist .pi:not(.ask){counter-increment:pi;display:grid!important;grid-template-columns:96px minmax(0,1fr)!important;column-gap:36px!important;row-gap:10px;align-items:start;padding:34px 0!important;border-bottom:1px solid var(--line)!important;background:transparent!important}
+.plist .pi:not(.ask) .n{grid-row:span 2;font-size:0!important;background:none!important;width:auto!important;height:100%!important;min-height:72px;display:flex!important;align-items:flex-start;justify-content:center;border:0!important;border-right:1px solid var(--shu)!important;padding:0!important;box-shadow:none!important}
+.plist .pi:not(.ask) .n::before{content:counter(pi,cjk-decimal);font-family:var(--fh);font-weight:500;font-size:46px;line-height:1;color:var(--shu)}
+.plist .pi h3{font-size:21px!important;margin:2px 0 0!important;letter-spacing:.08em}
+.plist .pi:not(.ask) p{font-size:15px!important;line-height:2!important;color:var(--ink-2);margin:0!important}
+.pi.ask{background:transparent!important;border:1px solid var(--ink)!important;padding:36px 40px!important;margin-top:44px!important;position:relative}
+.pi.ask::before{content:"お願い";position:absolute;top:-13px;left:32px;background:var(--mist);padding:0 14px;font-family:var(--fh);font-weight:600;font-size:13px;letter-spacing:.3em;color:var(--shu)}
+.pi.ask h3{font-size:19px!important;margin:0 0 14px!important}
+.pi.ask li{font-size:15px;padding:10px 0;border-bottom:1px dotted var(--line);list-style:none}
+.pi.ask ul{padding:0;margin:0}
+@media (max-width:760px){.plist .pi:not(.ask){grid-template-columns:56px minmax(0,1fr)!important;column-gap:20px!important}.plist .pi:not(.ask) .n::before{font-size:32px}.pi.ask{padding:28px 22px!important}}
+
+/* トップの実績：5枚の細いカード → 実績の一覧表（台帳） */
+.treal .tr-h{display:flex;align-items:baseline;gap:18px;font-family:var(--fh);font-weight:600;font-size:20px;letter-spacing:.14em;color:var(--ink);margin:0 0 22px}
+.treal .tr-h .rc-badge{display:none!important}
+.treal .rgrid{display:block!important;border-top:3px double var(--ink);border-bottom:1px solid var(--ink)}
+.treal .rcard{display:grid!important;grid-template-columns:150px 230px minmax(0,1fr) 150px;grid-template-areas:"since name lead st" "since tag lead st";column-gap:36px;row-gap:4px;align-items:start;padding:30px 0!important;background:transparent!important;border-top:0!important;outline:0!important;border-bottom:1px solid var(--line)}
+.treal .rcard:last-child{border-bottom:0}
+.treal .rc-top{grid-area:st;margin:0!important;justify-self:end;padding-top:6px}
+.treal .rc-since{grid-area:since;font-size:30px!important;margin:0!important}
+.treal .rc-since span{font-size:12px!important;margin-bottom:8px!important}
+.treal .rc-nm{grid-area:name;margin:0!important;padding-top:20px}
+.treal .rc-name{font-size:23px!important;white-space:nowrap}
+.treal .rc-anon{display:block;margin-top:2px}
+.treal .rc-tag{grid-area:tag;margin:0!important;font-size:14px!important}
+.treal .rc-lead{grid-area:lead;margin:0!important;padding-top:20px;font-size:15px!important;line-height:2!important}
+.treal .rc-steps,.treal .rc-pt{display:none!important}
+@media (max-width:960px){.treal .rcard{grid-template-columns:1fr;grid-template-areas:"st" "since" "name" "tag" "lead";row-gap:6px}.treal .rc-top{justify-self:start}.treal .rc-nm,.treal .rc-lead{padding-top:4px}}
+@media (min-width:1000px){.promise .sh{align-self:start;position:sticky;top:120px}}
+.treal{margin-bottom:64px}
+.market .num strong{font-family:var(--fh)!important;font-weight:500!important}

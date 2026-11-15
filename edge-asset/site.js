@@ -131,7 +131,7 @@
     up(); addEventListener('scroll', up, { passive: true }); addEventListener('resize', up);
   }
   const market = $('.market');
-  if (market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (false && market && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const nums = $$('.num strong', market).map(el => ({ el, node: el.firstChild, to: parseFloat(el.firstChild.textContent), dec: (el.firstChild.textContent.split('.')[1] || '').length }));
     const io2 = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return; io2.disconnect(); market.classList.add('in');
