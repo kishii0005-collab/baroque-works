@@ -2021,7 +2021,7 @@ footer .fcx{border-left:3px solid #e3a28f}
 @media (max-width:900px){.topfaq .tf-fig{display:none}}
 /* "規模やエリアだけで" list: a short vermilion dash before each item */
 .open .tx li{position:relative;padding-left:22px!important}
-.open .tx li::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:#e3a28f}
+.open .tx li::before{content:"";position:absolute;left:0;top:1.05em;width:12px;height:1px;background:#e3a28f}
 /* 2026-11-16: "売らない" removed, the value list has 3 items */
 @media (min-width:901px){.val{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:561px) and (max-width:900px){.val{grid-template-columns:1fr}.val li,.val li+li{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--line)}}
@@ -2068,3 +2068,31 @@ footer .fcx{border-left:3px solid #e3a28f}
 .sh .sh-en{max-width:calc(100vw - 2 * var(--gut,20px));overflow:hidden}
 .home .issues .sh .sh-en,.sh.c .sh-en{left:50%!important;transform:translateX(-50%)}
 .home .issues .sh h2::after{margin-inline:auto}
+
+/* ===== PASS 12 (2026-11-16): stronger editorial look ===== */
+/* FV: thin inner frame, slow settle of the photo, vermilion rule before the kicker */
+.hx::after{content:"";position:absolute;inset:104px 28px 28px;border:1px solid rgba(255,255,255,.22);z-index:3;pointer-events:none}
+.hx .slide.on img{animation:hxsettle 14s ease-out both}
+@keyframes hxsettle{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hx-kick{display:flex;align-items:center;gap:14px;letter-spacing:.18em!important}
+.hx-kick::before{content:"";width:36px;height:1px;background:#e3a28f}
+.hx-since{display:block;font-family:var(--num);font-style:italic;font-size:17px;letter-spacing:.08em;color:#e3a28f;margin:0 0 10px}
+@media (max-width:900px){.hx::after{inset:78px 12px 12px}.hx-tate{display:none}}
+@media (prefers-reduced-motion:reduce){.hx .slide.on img{animation:none}}
+
+/* Issues: paper cards on a slightly deeper ground, big faint numeral behind each */
+.home .issues{background:#f3efe7}
+.home .issues .is4{border-top:0!important;gap:20px!important}
+.home .issues .is4 article{position:relative;overflow:hidden;background:#fff;border:1px solid #e6dfd3!important;border-top:2px solid var(--shu)!important;padding:34px 28px 32px!important;box-shadow:8px 8px 0 rgba(29,42,58,.05);transition:transform .35s ease,box-shadow .35s ease}
+.home .issues .is4 article:hover{transform:translateY(-4px);box-shadow:12px 14px 0 rgba(29,42,58,.07)}
+.home .issues .is4 .n{position:relative;z-index:1}
+.home .issues .is4 article::after{content:attr(data-n);position:absolute;right:-6px;bottom:-34px;font-family:var(--num);font-style:italic;font-size:150px;line-height:1;color:rgba(168,67,42,.06);pointer-events:none}
+.home .issues .is4 article>*{position:relative;z-index:1}
+@media (max-width:900px){.home .issues .is4{gap:14px!important}.home .issues .is4 article{padding:26px 22px!important}}
+
+/* Flow: larger serif numerals joined by a fine vermilion line */
+.steps::before{top:30px!important;background:linear-gradient(90deg,rgba(168,67,42,.5),rgba(168,67,42,.15))!important;opacity:1!important;height:1px}
+.steps li::before{width:60px!important;height:60px!important;border-radius:50%!important;background:var(--bg)!important;border:1px solid var(--shu)!important;color:var(--shu)!important;font-family:var(--num)!important;font-size:24px!important;font-style:italic;font-weight:500;margin-bottom:22px!important;box-shadow:0 0 0 6px var(--bg)}
+.steps li:hover::before{background:var(--shu)!important;color:#fff!important;transition:background .3s,color .3s}
+@media (max-width:640px){.steps li{grid-template-columns:60px 1fr!important}}
+.open .tx li{display:flex!important;align-items:center;gap:10px;padding-left:0!important}.open .tx li::before{position:static!important;flex:none}

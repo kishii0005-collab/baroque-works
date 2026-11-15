@@ -56,3 +56,12 @@ for f, marker, pid, alt, en, cap in [
 b, d = bodies['index.html']
 b = _sub_once(b, '<a class="tl" href="faq.html">', f'<figure class="tf-fig"><div class="ph">{img("ai-key","",900)}</div></figure><a class="tl" href="faq.html">', 'topfaq link')
 bodies['index.html'] = (b, d)
+
+# ---- PASS 12 (2026-11-16): FV small serif line above the right-hand phrase
+b, d = bodies['index.html']
+b = _sub_once(b, '<p class="hx-tate" aria-hidden="true">', '<p class="hx-tate" aria-hidden="true"><span class="hx-since">Since 2021 — Tokyo</span>', 'fv since')
+bodies['index.html'] = (b, d)
+b, d = bodies['index.html']
+i = b.index('class="is3 is4"'); j = b.index('</section>', i)
+b = b[:i] + re.sub(r'<article class="rv"><p class="n">(\d+)</p>', r'<article class="rv" data-n="\1"><p class="n">\1</p>', b[i:j]) + b[j:]
+bodies['index.html'] = (b, d)
