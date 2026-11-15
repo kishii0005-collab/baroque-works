@@ -6,10 +6,17 @@ import os
 FORM_TO=','.join(a for a in ['y-tanioka@edge-asset.jp']+os.environ.get('FORM_CC','').split(',') if a.strip())
 IMG_DIR=os.path.join(os.path.dirname(os.path.abspath(sys.argv[1])),'img')
 BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
+# generated photos dropped into edge-asset/img/ai/ replace the stock photo in the same slot, everywhere it is used
+AI_SWAP={'4UVtFIfK1eo':'ai-hero','Q6sCJFHCubc':'ai-stance','-MVSfkR4xz4':'ai-house','q1tyQip5AQQ':'ai-office',
+         'TJ4CndIc9z8':'ai-tools','4mEyvORkbN0':'ai-plan','rD28m9BmXVs':'ai-wood'}
+AI_EXTRA=['ai-renov']
 def src_list(i):
-    # a photo saved in edge-asset/img/ always wins; otherwise load it from Unsplash
+    # a generated photo in img/ai/ wins, then a photo saved in edge-asset/img/, then Unsplash
+    out=[]
+    a=AI_SWAP.get(i)
+    if a and os.path.exists(os.path.join(IMG_DIR,'ai',f'{a}.jpg')): out.append(f'img/ai/{a}.jpg')
     local=f'img/{i}.jpg'
-    out=[local] if os.path.exists(os.path.join(IMG_DIR,f'{i}.jpg')) else []
+    if os.path.exists(os.path.join(IMG_DIR,f'{i}.jpg')): out.append(local)
     # via the wsrv.nl image cache first (fetched once on their side, then served from cache), then Unsplash directly
     from urllib.parse import quote
     proxied='https://wsrv.nl/?url='+quote(f'unsplash.com/photos/{i}/download?force=true&w=1800',safe='')+'&amp;w=1800&amp;q=82&amp;output=jpg'
