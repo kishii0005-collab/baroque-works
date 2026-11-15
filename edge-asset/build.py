@@ -10,6 +10,10 @@ BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
 AI_SWAP={'4UVtFIfK1eo':'ai-hero','Q6sCJFHCubc':'ai-stance','-MVSfkR4xz4':'ai-house','q1tyQip5AQQ':'ai-office',
          'TJ4CndIc9z8':'ai-tools','4mEyvORkbN0':'ai-plan','rD28m9BmXVs':'ai-wood'}
 AI_EXTRA=['ai-renov']
+# what each generated photo actually shows; replaces the stock photo's alt when the swap applies (empty alt stays decorative)
+AI_ALT={'ai-hero':'上棟した木造住宅の骨組み','ai-stance':'瓦屋根の家が並ぶ住宅街','ai-house':'庭木に囲まれた木造住宅',
+        'ai-office':'無垢材のテーブルがある打ち合わせスペース','ai-tools':'作業台に置かれた大工道具',
+        'ai-plan':'机に広げた住宅の図面','ai-wood':'刻みを入れた杉・檜の構造材','ai-renov':'床を張り替えている改修中の室内'}
 def src_list(i):
     # a generated photo in img/ai/ wins, then a photo saved in edge-asset/img/, then Unsplash
     out=[]
@@ -25,6 +29,7 @@ def img(i,alt='',w=1400,lazy=True,fb=None):
     chain=[]
     for x in [i]+[y for y in (fb or [])+BACKUP if y!=i]:
         chain+=src_list(x)
+    if alt and chain[0].startswith('img/ai/'): alt=AI_ALT.get(chain[0][7:-4],alt)
     return (f'<img src="{chain[0]}" alt="{alt}"{" loading=\"lazy\"" if lazy else ""} data-fb="{"|".join(chain[1:5])}" onerror="var l=(this.dataset.fb||\'\').split(\'|\').filter(Boolean);if(l.length){{this.dataset.fb=l.slice(1).join(\'|\');this.src=l[0]}}else{{this.onerror=null;this.style.visibility=\'hidden\';this.parentNode.classList.add(\'noimg\')}}">')
 W=lambda t:t.replace('|','<wbr>')
 def nb(t,n=9):  # keep the last phrase together; the break lands right after a particle or comma
