@@ -1998,3 +1998,27 @@ section>.w{position:relative;z-index:1}
 .src,.tm-who small,.cnote,.rnote,.vl-disc,.vl-disc a,.f-trust li,.compare .w>p,.compare p.note{font-size:13.5px!important;line-height:1.9}
 .fc-b small{color:rgba(255,255,255,.72)!important}
 .treal .rc-since span,.prof dd small,.kpi small,.valu small,.vl-f small{font-size:13px!important}
+
+/* ===== PASS 10 (2026-11-16): group diagram, footer wordmark, FAQ photo, check list ===== */
+/* group diagram: paper HQ card, vermilion lines, the open seat drawn dashed */
+.model .md-hq{background:var(--bg)!important;color:var(--navy);padding:26px 56px!important;border-top:3px solid var(--shu);box-shadow:10px 10px 0 rgba(227,162,143,.18)}
+.model .md-hq .k{display:block!important;font-family:var(--num);font-style:italic;font-size:15px;letter-spacing:.12em;color:var(--shu);margin:0 0 4px;text-transform:none}
+.model .md-hq .t{color:var(--navy);font-size:24px}
+.model .md-hq .s{color:#5b6573}
+.model .md-fn li{border-radius:0;border-color:rgba(227,162,143,.55);color:#f3e7de;background:rgba(227,162,143,.06)}
+.model .md-co::before,.model .md-co::after{border-color:rgba(227,162,143,.6)!important}
+.model .md-co>div{border:1px solid rgba(255,255,255,.14);border-top:2px solid #e3a28f;background:rgba(255,255,255,.045)}
+.model .md-co>div:last-child{border:1px dashed rgba(227,162,143,.6);background:transparent}
+.model .md-co>div:last-child .t{color:#e3a28f}
+/* footer: a large faint wordmark along the bottom */
+footer{overflow:hidden}
+footer::after{content:"EDGE ASSET";position:absolute;left:50%;bottom:-.18em;transform:translateX(-50%);font-family:var(--num);font-weight:500;font-size:clamp(40px,13vw,230px);letter-spacing:.06em;line-height:1;white-space:nowrap;color:rgba(255,255,255,.035);pointer-events:none;z-index:0}
+footer .fcx{border-left:3px solid #e3a28f}
+/* top FAQ: photo under the heading */
+.topfaq .tf-fig{margin:28px 0 24px;max-width:340px}
+.topfaq .tf-fig .ph{aspect-ratio:4/3;overflow:hidden;box-shadow:12px 12px 0 rgba(168,67,42,.08)}
+.topfaq .tf-fig img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.topfaq .tf-fig{display:none}}
+/* "規模やエリアだけで" list: a short vermilion dash before each item */
+.open .tx li{position:relative;padding-left:22px!important}
+.open .tx li::before{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:#e3a28f}

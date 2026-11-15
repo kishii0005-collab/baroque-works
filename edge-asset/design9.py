@@ -51,3 +51,8 @@ for f, marker, pid, alt, en, cap in [
   ('flow.html',    '<section class="think"', 'ai-plan', '机に広げた住宅の図面', 'Before you decide', '決める前に、考えておくと良いこと。')]:
     bb, dd = bodies[f]
     if marker in bb: bodies[f] = (bb.replace(marker, pband(pid, alt, en, cap) + marker, 1), dd)
+
+# ---- PASS 10 (2026-11-16): top FAQ gets a photo under the left heading column
+b, d = bodies['index.html']
+b = _sub_once(b, '<a class="tl" href="faq.html">', f'<figure class="tf-fig"><div class="ph">{img("ai-key","",900)}</div></figure><a class="tl" href="faq.html">', 'topfaq link')
+bodies['index.html'] = (b, d)
