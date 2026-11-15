@@ -1,5 +1,5 @@
 # on-brand diagrams for the support rows (service page), drawn as inline SVG instead of stock photos
-NAVY,BLUE,SKY,LINE='#0c2747','#2268c8','#7fb0ff','rgba(255,255,255,.12)'
+NAVY,BLUE,SKY,LINE='#1d2a3a','#c0593d','#e3a28f','rgba(255,255,255,.12)'
 def _svg(label,ja,body,foot):
     grid=''.join(f'<line x1="{x}" y1="0" x2="{x}" y2="400" stroke="{LINE}"/>' for x in (150,300,450))
     return (f'<svg viewBox="0 0 600 400" role="img" aria-label="{ja}" xmlns="http://www.w3.org/2000/svg">'

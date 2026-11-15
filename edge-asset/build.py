@@ -43,7 +43,7 @@ CSS=r'''
   --mute:#6b778a;
   --line:#d9e0e8;
   --navy:#0c2747;
-  --blue:#2268c8;
+  --blue:#a8432a;
   --en:"Jost","Helvetica Neue",Arial,sans-serif;
   --fh:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
   --f:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
@@ -76,7 +76,7 @@ section{padding-block:140px}
 .sh h2{font-size:clamp(22px,2.3vw,30px);line-height:1.7;letter-spacing:.06em}
 .sh-lead p{margin:0;color:var(--ink-2)}
 .sh.c{grid-template-columns:1fr;text-align:center}.sh.c .sh-ja{justify-content:center}.sh.c .sh-lead{max-width:40em;margin:0 auto}
-.dark .sh-en{color:#fff}.dark .sh-ja{color:#8fb6ec}.dark .sh-ja::before{background:#8fb6ec}.dark .sh-lead p{color:#b6c3d4}
+.dark .sh-en{color:#fff}.dark .sh-ja{color:#e3a28f}.dark .sh-ja::before{background:#e3a28f}.dark .sh-lead p{color:#b6c3d4}
 /* heads placed inside a column take the full column */
 .grid .sh{grid-template-columns:1fr;margin-bottom:36px}
 .grid .sh .sh-lead{margin-top:-8px}
@@ -414,7 +414,7 @@ footer{position:relative}
 .vt::after{content:"";width:1px;height:80px;background:currentColor;opacity:.5}
 .vt.r{right:max(18px,env(safe-area-inset-right,0px))}
 .vt.l{left:max(18px,env(safe-area-inset-left,0px))}
-.dark .vt,.stance .vt{color:#8fb6ec}
+.dark .vt,.stance .vt{color:#e3a28f}
 section{position:relative}
 @media (max-width:1100px){.vt{display:none}}
 /* hero: vertical copy + rotating badge */
@@ -432,7 +432,7 @@ section{position:relative}
 /* market: donut charts */
 .market .num .donut{flex:none;width:118px;height:118px;border-radius:50%;background:conic-gradient(#5ea2ff calc(var(--v)*1%),rgba(255,255,255,.12) 0);display:grid;place-items:center;position:relative}
 .market .num .donut::after{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--navy)}
-.market .num .donut span{position:relative;z-index:1;font-family:var(--en);font-size:13px;letter-spacing:.1em;color:#8fb6ec}
+.market .num .donut span{position:relative;z-index:1;font-family:var(--en);font-size:13px;letter-spacing:.1em;color:#e3a28f}
 .market::before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 60px rgba(255,255,255,.02),0 0 0 120px rgba(255,255,255,.015)}
 @media (max-width:560px){.market .num .donut{width:92px;height:92px}}
 /* promise numbers in circles */
@@ -976,7 +976,7 @@ TEAM=f"""<section class="team" id="team">
     {head('Team','メンバー','住宅業界の|実務を|知る人間が、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバーをご紹介します。')}
     <div class="tg">
       <article class="tm lead rv"><div class="ph tph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('中小企業経営コンサルティング会社にて、全社で2位の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
-      <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3>{TBD}</h3>{P('集客・採用・財務の実務を担当します。')}</div></article>
+      <article class="tm rv"><div class="ph tph"><img src="img/ishii.jpg" alt="取締役 石井 健太" width="324" height="394" loading="lazy" decoding="async"></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3>石井 健太</h3>{P('住宅業界に特化したコンサルタントとして、全国の工務店・リフォーム会社100社以上の経営に携わる。集客・採用・財務の実務を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（税理士）</p><h3>{TBD}</h3>{P('事業承継税制・株価算定を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（弁護士）</p><h3>{TBD}</h3>{P('株式譲渡契約・許認可を担当します。')}</div></article>
     </div>
