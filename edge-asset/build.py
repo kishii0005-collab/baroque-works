@@ -550,7 +550,7 @@ HTML=f'''<!doctype html>
 
 <header class="site">
   <div class="w">
-    <a class="logo" href="#top"><span class="lg-seal" aria-hidden="true">継</span><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a>
+    <a class="logo" href="#top"><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">
       <a class="nl" href="#about">私たちについて</a>
       <a class="nl" href="#promise">お約束</a>
@@ -775,7 +775,7 @@ HTML=f'''<!doctype html>
   <a class="pagetop" href="#top" aria-label="ページの先頭へ"></a>
   <div class="w">
     <div class="fg">
-      <div><a class="logo" href="#top" style="color:#fff"><span class="lg-seal" aria-hidden="true">継</span><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
+      <div><a class="logo" href="#top" style="color:#fff"><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a><address>〒105-0022<br>東京都港区海岸2丁目5-1-1702</address></div>
       <div><p class="fh">会社について</p><ul><li><a href="#about">私たちについて</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#compare">他の選択肢との比較</a></li><li><a href="#company">会社概要</a></li></ul></div>
       <div><p class="fh">事業承継のご相談</p><ul><li><a href="#promise">5つのお約束</a></li><li><a href="#support">グループの支援</a></li><li><a href="results.html">実績・事例</a></li><li><a href="#flow">ご相談の流れ</a></li><li><a href="#faq">よくあるご質問</a></li></ul></div>
       <div class="ftel"><p class="fh">お問い合わせ</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
@@ -886,7 +886,7 @@ def nav():
     mlinks=''.join(f'<li><a href="{h}"{NT}><span class="mn">{i+1:02d}</span><span class="mt"><span class="me">{e}</span><span class="mj">{j}</span></span><span class="mx" aria-hidden="true"></span></a></li>' for i,(h,j,e) in enumerate(menu))
     return f"""<header class="site">
   <div class="w">
-    <a class="logo" href="index.html"><span class="lg-seal" aria-hidden="true">継</span><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a>
+    <a class="logo" href="index.html"><span><b>エッジアセット</b><small>EDGE ASSET Inc.</small></span></a>
     <nav class="gnav" aria-label="メインメニュー">{links}
       <span class="tel">03-6823-1499<small>年中無休 9:00–18:00</small></span>
     </nav>
@@ -1141,6 +1141,6 @@ for fname,title in PAGES:
 open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{'' if f=='index.html' else f}</loc></url>\n' for f,_ in PAGES if f!='404.html')+'</urlset>\n')
 open(os.path.join(OUT,'site.css'),'w').write(STYLE)
 open(os.path.join(OUT,'robots.txt'),'w').write('User-agent: *\nAllow: /\nSitemap: '+SITE+'sitemap.xml\n')
-open(os.path.join(OUT,'favicon.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="4" fill="#a8432a"/><rect x="5" y="5" width="54" height="54" rx="2" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/><text x="32" y="45" text-anchor="middle" font-family="Hiragino Mincho ProN,Yu Mincho,serif" font-size="36" font-weight="700" fill="#fff">継</text></svg>\n')
+open(os.path.join(OUT,'favicon.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#1d2a3a"/><text x="32" y="45" text-anchor="middle" font-family="Georgia,Times New Roman,serif" font-size="38" fill="#fff">E</text><rect x="20" y="51" width="24" height="2" fill="#a8432a"/></svg>\n')
 
 print('pages written')
