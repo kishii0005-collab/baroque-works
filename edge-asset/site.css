@@ -2460,3 +2460,46 @@ footer .fcx{border-left:3px solid #e3a28f}
 /* 2026-11-16: "売らない" removed, the value list has 3 items */
 @media (min-width:901px){.val{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:561px) and (max-width:900px){.val{grid-template-columns:1fr}.val li,.val li+li{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--line)}}
+
+/* ===== 2026-11-16: contact form — boxed fields that read as tappable ===== */
+#cf{background:#fff;border:1px solid var(--line);padding:40px 44px 36px;position:relative}
+#cf::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:3px;background:var(--shu)}
+#cf label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink);margin:0 0 8px}
+#cf label em,#cf label .opt{font-style:normal;font-size:12px!important;font-weight:700;line-height:1;padding:4px 7px;letter-spacing:.06em}
+#cf label em{background:var(--shu);color:#fff}
+#cf label .opt{border:1px solid #c9c2b6;color:#7a7368;font-weight:500}
+#cf input:not([type=checkbox]):not(.hp),#cf select,#cf textarea{width:100%;min-height:54px;padding:14px 16px;margin:0 0 24px;font-size:16px;background:#fbfaf7;border:1px solid #cfc8bc!important;box-shadow:none!important;border-radius:2px;transition:border-color .2s,background .2s}
+#cf textarea{min-height:150px;line-height:1.8;resize:vertical}
+#cf select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;cursor:pointer}
+#cf input:hover,#cf select:hover,#cf textarea:hover{border-color:#a99f90!important}
+#cf input:focus,#cf select:focus,#cf textarea:focus{outline:none;background:#fff;border-color:var(--shu)!important;box-shadow:0 0 0 3px rgba(168,67,42,.12)!important}
+#cf ::placeholder{color:#a8a196}
+#cf .r2{gap:0 20px}
+#cf .chk{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--bg);border:1px solid var(--line);font-weight:500;cursor:pointer;margin:4px 0 8px}
+#cf .chk input{width:22px;height:22px;margin:0;accent-color:var(--shu);flex:none}
+#cf .f-err{color:var(--shu);font-size:13px;margin:-16px 0 18px}
+#cf button[type=submit]{width:100%;min-height:62px;justify-content:center;font-size:16px;margin-top:20px}
+#cf .f-trust{justify-content:center}
+@media (max-width:640px){#cf{padding:28px 18px 26px;margin-inline:calc(var(--gut) * -.5)}}
+
+/* ===== PASS 11 (2026-11-16): more ornaments — faint serif watermark behind section headings, corner marks on photos ===== */
+.sh .sh-t{position:relative}
+.sh .sh-t>*:not(.sh-en){position:relative;z-index:1}
+.sh .sh-en{display:block!important;position:absolute;left:-.06em;top:-.62em;margin:0!important;font-family:var(--num)!important;font-style:italic;font-weight:500;font-size:clamp(56px,8.4vw,128px)!important;line-height:1;letter-spacing:.01em!important;text-transform:none!important;white-space:nowrap;color:rgba(168,67,42,.075)!important;pointer-events:none;z-index:0;user-select:none}
+.dark .sh .sh-en,.model .sh .sh-en,.market .sh .sh-en,.cmp .sh .sh-en,section[class*=dark] .sh .sh-en{color:rgba(227,162,143,.09)!important}
+.phero .sh-en,.chero .sh-en{display:none!important}
+@media (max-width:640px){.sh .sh-en{font-size:clamp(44px,15vw,64px)!important;top:-.5em}}
+/* corner marks inside photos, like a camera frame */
+:is(.pr-fig,.tf-fig,.open,.people,.ccase,.cc,.mk-ph,.market) .ph::before{content:"";position:absolute;inset:14px;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(#fff,#fff) left top/22px 1px no-repeat,linear-gradient(#fff,#fff) left top/1px 22px no-repeat,
+    linear-gradient(#fff,#fff) right top/22px 1px no-repeat,linear-gradient(#fff,#fff) right top/1px 22px no-repeat,
+    linear-gradient(#fff,#fff) left bottom/22px 1px no-repeat,linear-gradient(#fff,#fff) left bottom/1px 22px no-repeat,
+    linear-gradient(#fff,#fff) right bottom/22px 1px no-repeat,linear-gradient(#fff,#fff) right bottom/1px 22px no-repeat;opacity:.85}
+:is(.pr-fig,.tf-fig,.open,.people,.ccase,.cc,.mk-ph,.market) .ph{position:relative}
+/* a small vermilion diamond on the short rule under headings */
+.sh h2::after{box-shadow:none}
+.sh .sh-ja::after{content:"";display:inline-block;width:5px;height:5px;margin-left:10px;background:var(--shu);transform:rotate(45deg) translateY(-2px);vertical-align:middle}
+.sh .sh-en{max-width:calc(100vw - 2 * var(--gut,20px));overflow:hidden}
+.home .issues .sh .sh-en,.sh.c .sh-en{left:50%!important;transform:translateX(-50%)}
+.home .issues .sh h2::after{margin-inline:auto}
