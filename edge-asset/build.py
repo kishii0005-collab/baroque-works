@@ -9,13 +9,14 @@ BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
 # generated photos dropped into edge-asset/img/ai/ replace the stock photo in the same slot, everywhere it is used
 AI_SWAP={'4UVtFIfK1eo':'ai-hero','Q6sCJFHCubc':'ai-stance','-MVSfkR4xz4':'ai-house','q1tyQip5AQQ':'ai-office',
          'TJ4CndIc9z8':'ai-tools','4mEyvORkbN0':'ai-plan','rD28m9BmXVs':'ai-wood',
-         **{k:k for k in ('ai-hero','ai-stance','ai-house','ai-office','ai-tools','ai-plan','ai-wood','ai-town','ai-interior','ai-dusk','ai-renov')}}
+         **{k:k for k in ('ai-hero','ai-stance','ai-house','ai-office','ai-tools','ai-plan','ai-wood','ai-town','ai-interior','ai-dusk','ai-renov','ai-workshop','ai-engawa','ai-docs','ai-key','ai-site')}}
 AI_EXTRA=['ai-renov']
 # what each generated photo actually shows; replaces the stock photo's alt when the swap applies (empty alt stays decorative)
 AI_ALT={'ai-hero':'上棟した木造住宅の骨組み','ai-stance':'瓦屋根の家が並ぶ住宅街','ai-house':'庭木に囲まれた木造住宅',
         'ai-office':'無垢材のテーブルがある打ち合わせスペース','ai-tools':'作業台に置かれた大工道具',
         'ai-plan':'机に広げた住宅の図面','ai-wood':'刻みを入れた杉・檜の構造材','ai-renov':'床を張り替えている改修中の室内',
-        'ai-town':'丘から見た地方都市の住宅地','ai-interior':'完成した木造住宅のリビング','ai-dusk':'夕暮れに明かりが灯る木造住宅'}
+        'ai-town':'丘から見た地方都市の住宅地','ai-interior':'完成した木造住宅のリビング','ai-dusk':'夕暮れに明かりが灯る木造住宅',
+        'ai-workshop':'地方の工務店の作業場','ai-engawa':'庭に面した縁側','ai-docs':'机の上の書類と電卓','ai-key':'木のテーブルに置かれた新しい家の鍵','ai-site':'基礎の配筋工事の現場'}
 def src_list(i):
     # a generated photo in img/ai/ wins, then a photo saved in edge-asset/img/, then Unsplash
     out=[]
@@ -486,7 +487,7 @@ section{position:relative}
 LOGO='<svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 17 L17 9 L26 17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 15 V25 H23 V15" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
 AR='<span class="ar"></span>'
 
-hero_slides=[('Q6sCJFHCubc','東京の住宅街',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True),('q1tyQip5AQQ','夕暮れの東京の住宅街',True)]
+hero_slides=[('Q6sCJFHCubc','東京の住宅街',False),('-MVSfkR4xz4','緑に囲まれた東京の住宅',True),('TJ4CndIc9z8','山梨の住宅街',True),('ai-dusk','夕暮れの木造住宅',True)]
 slides=''.join(f'<div class="slide ph{" on" if i==0 else ""}">{img(pid,alt,2400,lazy)}</div>' for i,(pid,alt,lazy) in enumerate(hero_slides))
 
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'viz.py')).read())
@@ -495,9 +496,9 @@ SUPPORT_MORE={'MARKETING':['反響数・来場数・成約率を、グループ�
  'FINANCE':['月次決算と、翌月10日までの数字の共有','13週の資金繰り表で、資金不足を事前に防ぐ','金融機関との借入条件の交渉と、社長の個人保証の解除','モデルハウス・分譲用地など、大きな投資の判断をグループで行う'],
  'OPERATIONS':['住設・建材・構造材の共同購買と、仕入れ値の見直し','見積・実行予算・工程・顧客管理のシステム統一','定期点検の履歴をデータ化し、アフターの抜け漏れを防ぐ','省エネ基準の義務化など、法改正への対応をグループで準備']}
 support=[
- ('集客','MARKETING','q1tyQip5AQQ','住宅の外観','集客は、すべてグループで一括して担います。広告の運用からホームページ、Googleマップの整備、見学会の集客まで、本部がまとめて引き受けます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
+ ('集客','MARKETING','ai-house','庭木に囲まれた木造住宅','集客は、すべてグループで一括して担います。広告の運用からホームページ、Googleマップの整備、見学会の集客まで、本部がまとめて引き受けます。','Google・Meta広告の運用、SEO・Googleマップ対策、反響の集計','見学会の企画、施主様からの紹介づくり'),
  ('採用','RECRUITING','4UVtFIfK1eo','建築中の住宅','一社では出せない規模の求人を、グループとして出します。設計・現場監督・大工の採用と、入社後の研修までを引き受けます。','新卒・中途の合同採用、求人媒体の一括契約、入社時研修','配属後の育成、現場での指導'),
- ('財務・資金','FINANCE','4mEyvORkbN0','契約の握手','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も、グループで行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
+ ('財務・資金','FINANCE','ai-docs','机の上の書類と電卓','月次決算と予実管理で、利益が手元に残る構造をつくります。金融機関との交渉や、モデルハウス・用地への投資判断も、グループで行います。','月次決算、資金繰り表、金融機関との交渉','個別案件の見積と受注判断'),
  ('仕入・業務','OPERATIONS','4UVtFIfK1eo','足場のかかった建物','グループの発注量をまとめて建材・設備の原価を下げ、見積・工程・顧客管理を仕組みにして事務作業の時間を減らします。','共同購買、管理システムの統一、点検履歴のデータ化','仕様・設計の判断、施主様との打ち合わせ、現場での判断'),
 ]
 rows=''.join(f'''<article class="row"><div class="frame{' l' if k%2 else ''}">{('<div class="ph mask">'+img(pid,alt,1400)+'</div>') if en in ('MARKETING','FINANCE') else ('<div class="ph mask viz">'+VIZ[en]+'</div>')}</div><div class="tx rv" data-no="0{k+1}"><h3>{ja}</h3>{P(desc)}<ul class="rw-l">{''.join(f'<li>{x}</li>' for x in SUPPORT_MORE[en])}</ul></div></article>''' for k,(ja,en,pid,alt,desc,g,kk) in enumerate(support))
@@ -517,7 +518,7 @@ pg=''.join(f'<article class="rv"><p class="who">{w}</p><h3>{W(h)}</h3>{P(t)}</ar
 
 cases=[('後継者不在','TJ4CndIc9z8','沖縄の住宅','子どもは|別の道へ。|社員に|継がせるには|資金が|足りない。','地方都市','年商 約8億円・年間引き渡し25棟','68歳・創業者','株式を引き受け、社長は2年間会長として残留。番頭格の社員を次期社長として育成し、個人保証はクロージング時に解除しました。'),
  ('成長の壁','4UVtFIfK1eo','木造の骨組み','受注は|あるのに、|人が|採れず|年20棟から|伸びない。','首都圏郊外','年商 約6億円・年間引き渡し20棟','55歳・二代目','社長は続投。グループの合同採用で設計・現場監督を確保し、集客と管理部門をグループに移して、社長が営業と現場に集中できるようにしました。'),
- ('廃業の検討','q1tyQip5AQQ','大きな窓のある室内','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
+ ('廃業の検討','ai-engawa','縁側と庭','体力的に|限界。|でも|施主様の|アフターだけは|残したい。','地方の郡部','年商 約3億円・リフォーム中心','72歳・創業者','近隣のグループ会社と管理部門を共通化。社名とアフター窓口を残したまま、社長は半年で引退しました。')]
 cs=''.join(f'''<article class="case"><div class="ph mask">{img(pid,alt,1200)}</div><div class="tx rv"><p class="no">CASE {i+1:02d}</p><p class="tag">{tag}</p><h3>{W(h)}</h3><dl><div><dt>エリア</dt><dd>{a}</dd></div><div><dt>規模</dt><dd>{sz}</dd></div><div><dt>社長</dt><dd>{ceo}</dd></div></dl>{P(t)}</div></article>''' for i,(tag,pid,alt,h,a,sz,ceo,t) in enumerate(cases))
 
 steps=[('初回面談','1〜2時間','会社とご家族、ご自身の今後について伺います。決算書は不要です。'),('秘密保持契約・|資料のご提供','2〜4週間','決算書・受注残・社員構成などを拝見します。'),('条件の|ご提示','2〜3週間','譲渡価格の考え方、雇用、引き継ぎ期間を書面でお示しします。'),('詳細調査','1〜2ヶ月','財務・法務・労務、施工中物件、保証履歴、建設業許可を確認します。'),('最終契約・|お支払い','約1ヶ月','株式譲渡契約を結び、個人保証の解除に向けて金融機関と協議します。'),('ご説明と|引き継ぎ','6ヶ月〜','社員・施主様への説明に、私たちも同席します。')]
@@ -594,7 +595,7 @@ HTML=f'''<!doctype html>
     </div>
     <div class="pics">
       <div class="ph p1 mask">{img('4UVtFIfK1eo','木造の骨組み',1600,fb=['4UVtFIfK1eo'])}</div>
-      <div class="ph p2 mask">{img('q1tyQip5AQQ','大きな窓のある室内',900,fb=['q1tyQip5AQQ'])}</div>
+      <div class="ph p2 mask">{img('ai-interior','完成した木造住宅のリビング',900)}</div>
     </div>
   </div>
 </section>
@@ -607,13 +608,13 @@ HTML=f'''<!doctype html>
       <div class="num"><span class="donut" style="--v:50.1"><span>全国</span></span><strong>50.1<small>%</small></strong><div><h3>{W('全国企業の|後継者不在率')}</h3>{P('いまも2社に1社は、後継者が決まっていません。')}</div></div>
       <p class="src">出典：帝国データバンク「全国企業『後継者不在率』動向調査（2025年）」</p>
     </div>
-    <div class="frame l"><div class="ph mask">{img('q1tyQip5AQQ','夜の東京の住宅街',1200)}</div></div>
+    <div class="frame l"><div class="ph mask">{img('ai-workshop','地方の工務店の作業場',1200)}</div></div>
   </div>
 </section>
 
 <div class="strip" aria-hidden="true">
   <div class="ph">{img('4mEyvORkbN0','',1200)}</div>
-  <div class="ph">{img('q1tyQip5AQQ','',800)}</div>
+  <div class="ph">{img('ai-engawa','',800)}</div>
   <div class="ph">{img('TJ4CndIc9z8','',1000)}</div>
   <div class="ph">{img('-MVSfkR4xz4','',800)}</div>
 </div>
@@ -652,7 +653,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="cta">
-  <div class="ph">{img('q1tyQip5AQQ','',2000)}</div>
+  <div class="ph">{img('ai-dusk','',2000)}</div>
   <div class="w">
     <div class="rv"><h2>{W('まずは|30分、|オンラインで|話を|聞いて|みませんか。')}</h2>{P('ご相談は無料です。社名を伏せたままでも構いません。')}<p class="tel">お電話でのご相談<b>03-6823-1499</b></p></div>
     <div class="btns rv"><a class="btn btn-white" href="#contact">面談を予約する {AR}</a><a class="btn btn-ghost" href="#faq">よくある質問を見る {AR}</a></div>
@@ -744,7 +745,7 @@ HTML=f'''<!doctype html>
 </section>
 
 <section class="contact" id="contact">
-  <div class="ph side">{img('Q6sCJFHCubc','家の鍵を持つ手',1400,fb=['-MVSfkR4xz4'])}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
+  <div class="ph side">{img('ai-key','木のテーブルに置かれた新しい家の鍵',1400)}<p class="cap"><b>Contact</b>お問い合わせ</p></div>
   <div class="body">
     <h2>{W('まずは、|話を|聞いてみる|だけで|構いません')}</h2>
     {P('ご相談は無料です。お名前を伏せたままのご相談もお受けします。いただいた内容を、ご本人の同意なく第三者に伝えることはありません。','lead')}

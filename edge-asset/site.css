@@ -1706,9 +1706,9 @@ html{scroll-behavior:smooth}
 /* ===== audit pass: contrast, structure, small pages ===== */
 /* greys that carry meaning meet 4.5:1 on white and on navy */
 .rail a{color:#6b778a}
-.tr-k,.cc-tag,.cb-k,.nx-k,.pf-en,.ca-k,.fc-en,.cl-en,.m3-en,.cs-k,.fq-n,.cb-n,.cf-k{color:#1f5bb5}
+.tr-k,.cc-tag,.cb-k,.nx-k,.pf-en,.ca-k,.fc-en,.cl-en,.m3-en,.cs-k,.fq-n,.cb-n,.cf-k{color:var(--shu)}
 .dark .cs-k,.tcost .sh-ja,.fc-en,.cl-en,.m3-en,.ca-k,.nx-k,.sb-t span{color:#bcd3f5}
-.chap b{color:#1f5bb5}.chap span{color:#4a5565}
+.chap b{color:var(--shu)}.chap span{color:#4a5565}
 .dark .chap b,.stance .chap b{color:#bcd3f5}.dark .chap span,.stance .chap span{color:#f1ece4}
 .cc-m time,.cc-m span,.ccase dl,.ccase dt,.cnote,.tm-cap,.tm-who span,.fq-more,.art .anote,.sim-n,.pb-note,.tc-n,.m3-d,.m3-addr,.sb-t span,.fc-b small,.m3-b small,.cl-b small{color:#6f6a60}
 .dark .m3-d,.menu .m3-d,.menu .m3-addr,.dark .pb-note,.dark .tc-n,.sb-t span{color:#c9c2b6}
@@ -1745,7 +1745,7 @@ form .bad{border-bottom-color:#b3261e!important}
 .f-trust li::before{content:"";width:12px;height:7px;border-left:1.5px solid var(--blue);border-bottom:1.5px solid var(--blue);transform:translateY(-2px) rotate(-45deg)}
 form button[disabled]{opacity:.7;cursor:progress}
 .sent{padding:48px 44px;background:var(--mist);border-top:3px solid var(--blue)}
-.st-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:#1f5bb5;margin:0 0 14px;text-transform:uppercase}
+.st-k{font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--shu);margin:0 0 14px;text-transform:uppercase}
 .st-h{font-family:var(--fh);font-weight:700;font-size:24px;margin:0 0 14px}
 .st-p{color:var(--ink-2);margin:0 0 20px}
 .st-tel{font-family:var(--en);font-size:30px;color:var(--navy);letter-spacing:.04em}
@@ -1823,7 +1823,7 @@ details{background:var(--bg)}
 /* record: list of the four companies */
 .rec-l{list-style:none;margin:8px 0 28px;padding:0;border-top:1px solid var(--line)}
 .rec-l li{display:grid;grid-template-columns:64px 1fr;grid-template-areas:"y n" "y t";gap:2px 18px;padding:16px 0;border-bottom:1px solid var(--line)}
-.rl-y{grid-area:y;font-family:var(--en);font-size:15px;color:#1f5bb5;padding-top:2px}
+.rl-y{grid-area:y;font-family:var(--en);font-size:15px;color:var(--shu);padding-top:2px}
 .rec-l b{grid-area:n;font-family:var(--fh);font-size:16px}
 .rl-t{grid-area:t;font-size:13.5px;color:var(--ink-2)}
 .record .btns{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:8px}
@@ -1872,7 +1872,7 @@ details{background:var(--bg)}
 .wd-h>p:last-child{color:var(--ink-2);margin:0}
 .wd-chain{display:grid;grid-template-columns:1fr 48px 1.15fr 48px 1fr;align-items:center;gap:0;margin:0 auto 72px;max-width:1040px}
 .wc-i{border:1px solid var(--line);padding:28px 24px;text-align:center;background:#fff}
-.wc-i span{display:block;font-family:var(--en);font-size:12px;letter-spacing:.2em;color:#1f5bb5;margin-bottom:10px}
+.wc-i span{display:block;font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--shu);margin-bottom:10px}
 .wc-i b{display:block;font-family:var(--fh);font-size:19px;letter-spacing:.06em;margin-bottom:8px}
 .wc-i small{font-size:12.5px;color:var(--ink-2);line-height:1.8}
 .wc-i.us{background:var(--navy);border-color:var(--navy);color:#fff;padding:36px 24px}
@@ -1882,7 +1882,7 @@ details{background:var(--bg)}
 .wd-3{list-style:none;margin:0 0 56px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--navy)}
 .wd-3 li{padding:30px 28px 26px 0}
 .wd-3 li+li{padding-left:28px;border-left:1px solid var(--line)}
-.w3-k{font-size:12.5px;color:#1f5bb5;font-weight:500;letter-spacing:.08em;margin:0 0 10px}
+.w3-k{font-size:12.5px;color:var(--shu);font-weight:500;letter-spacing:.08em;margin:0 0 10px}
 .wd-3 h3{font-size:var(--t-h3);line-height:1.6;margin:0 0 12px}
 .wd-3 p:last-child{font-size:14px;color:var(--ink-2);margin:0}
 .wd-grp{background:var(--mist);padding:28px 32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
@@ -1898,7 +1898,7 @@ details{background:var(--bg)}
 .r4 .rc-st{font-size:11px;padding:2px 9px}
 .fcred{font-size:11px;color:#8ea3bd;margin-top:10px}.fcred a{color:#aab8cb;border-bottom:1px solid rgba(170,184,203,.4)}
 .credits{margin-top:72px;padding-top:32px;border-top:1px solid var(--line);scroll-margin-top:100px}
-.credits h2{font-size:15px;color:#1f5bb5;margin:0 0 10px}
+.credits h2{font-size:15px;color:var(--shu);margin:0 0 10px}
 .credits>p{font-size:13px;color:var(--ink-2);margin:0 0 16px}
 .credits ul{list-style:none;margin:0;padding:0;font-size:12.5px}
 .credits li{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 0;border-bottom:1px solid var(--line)}
@@ -1906,7 +1906,7 @@ details{background:var(--bg)}
 
 /* ===== ownership policy on results ===== */
 .rpolicy{margin:32px 0 0;padding:28px 32px;border-left:3px solid var(--blue);background:var(--mist)}
-.rp-k{font-size:12.5px;color:#1f5bb5;font-weight:500;letter-spacing:.08em;margin:0 0 8px}
+.rp-k{font-size:12.5px;color:var(--shu);font-weight:500;letter-spacing:.08em;margin:0 0 8px}
 .rp-t{font-family:var(--fh);font-weight:700;font-size:18px;line-height:1.7;margin:0 0 10px}
 .rpolicy>p:last-child{margin:0;font-size:14px;color:var(--ink-2)}
 .rgrid.r2s{grid-template-columns:1fr 1fr;margin-bottom:24px}
@@ -2427,3 +2427,9 @@ section>.w{position:relative;z-index:1}
 @media (max-width:760px){:is(.phero,.chero)~section::before{width:90px!important;height:64px!important;top:24px!important}.about .ph,.svint .ph,.support .row .ph,.cbody .ph,.artimg .ph,.prof .pf-ph,.real .ph,.clist .ph,.mcases .ph{box-shadow:9px 9px 0 var(--paper2)}}
 .wd-band .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,26,36,.66),rgba(18,26,36,.18) 45%,rgba(18,26,36,0) 70%);pointer-events:none}
 .wd-band figcaption{z-index:2}
+
+/* ===== PASS 9c: 13px未満の日本語をなくす・青を残さない ===== */
+.tel small,.hc-t small,.trust li small,.wc-i small,.w3-k,.wd-grp li span,.md-hq .s,.md-co .s,.pb-bar b,.pb-note,.pg .who,.tm-who span,.rc-since span,.rc-anon,.cc-model,.steps .t,.cc-m span,.nl-list .cat,.fc-b small,footer .fb a,.fcred,.fcred a,.bc a,.bc li,.ptabs a,.ptabs li,.prof dt,.vmv .k,.compare small,.compare .us small,.nx-k,.rp-k,.cc-tag span,.cc-tx dd,.cc-tx dt,.gm span,.ca-tel span,.ca-tel small,.way i,.contact em,.cprof dt,.cb-voice cite,.vl-note{font-size:13px!important}
+.src,.tm-who small,.cnote,.rnote,.vl-disc,.vl-disc a,.f-trust li,.compare .w>p,.compare p.note{font-size:13.5px!important;line-height:1.9}
+.fc-b small{color:rgba(255,255,255,.72)!important}
+.treal .rc-since span,.prof dd small,.kpi small,.valu small,.vl-f small{font-size:13px!important}
