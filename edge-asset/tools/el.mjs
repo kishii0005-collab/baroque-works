@@ -1,0 +1,13 @@
+import {execFileSync} from 'child_process';
+import pw from '/opt/node-tools/node_modules/playwright/index.js'; const { chromium } = pw;
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
+const [pg,w,sel,out]=process.argv.slice(2);
+const p=await b.newPage({viewport:{width:+w,height:900}});
+await p.route(/unsplash|wsrv/, r=>r.abort());
+await p.route(/fonts\.(googleapis|gstatic)\.com/, r=>{const u=r.request().url(); const body=execFileSync('curl',['-sS','-A','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36',u]); r.fulfill({status:200,body,headers:{'content-type':u.includes('css')?'text/css':'font/woff2','access-control-allow-origin':'*'}});});
+await p.goto(`file:///home/user/baroque-works/edge-asset/${pg}.html`,{waitUntil:'load'}); await p.waitForTimeout(1200);
+await p.evaluate(()=>document.querySelectorAll('.rv').forEach(e=>e.classList.add('in')));
+await p.addStyleTag({content:'header.site{position:absolute!important}'});
+const e=await p.$(sel); await e.scrollIntoViewIfNeeded(); await p.waitForTimeout(500);
+if(sel.includes('jmap')) console.log(await p.evaluate(()=>{const b=document.querySelector('.jm-hq').getBBox();return [b.x+b.width/2,b.y+b.height/2]}));
+await e.screenshot({path:out}); await b.close();
