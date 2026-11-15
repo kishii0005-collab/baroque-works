@@ -54,12 +54,19 @@
   3. 新しいセッションでは、最初に Artifact を `read` してから publish する（読まずに上書きすると拒否される）
 
 ## 6. 未完了・保留
-### 画像生成（進行中）
-- ChatGPT で8枚の写真風画像を作り、`edge-asset/img/ai/` に置く予定
-- 置けば自動で差し替わる（`build.py` の `AI_SWAP`）：ai-hero→FVの骨組み、ai-stance→住宅街、ai-wood/ai-plan→東京タワーの写真2種、ai-house/ai-office/ai-tools→残りの住宅・川沿い、ai-renov は予備
-- 置いたら `edge-asset/prep_ai.sh` → ビルド → 確認 → 公開
-- 生成はクラウドのセッションからはできない（ユーザーのブラウザに届かない）。デスクトップアプリのカード「Generate site images in ChatGPT via Chrome」を**ユーザーのPCで**開始してもらう。プロンプトと除外ルール（人・顔・手・文字・看板・海外風ツーバイフォーは不可）はそのカードに記載
+### 画像生成（2026-11-15 完了）
+- ChatGPT（ユーザーのChrome）で8枚を生成し `img/ai/` に配置・ビルド・公開済み（共有リンク Version 19）
+- 差し替え先は `build.py` の `AI_SWAP`。ai-renov は予備
+- 残り：写真の alt 文が旧写真の説明のまま（例：室内写真に「夜の東京の住宅街」）。`AI_SWAP` の対象になった画像の alt を直す
 - AI画像は雰囲気の場所だけ。実績・人物には使わない
+- 作り直すときの共通条件：写真風・横長3:2・くすんだ中間色・人物/手/文字/看板/ナンバー/北米風ツーバイフォー禁止
+- 生成はクラウドのセッションからはできない（ユーザーのブラウザに届かない）。ユーザーのPCのセッションで行う
+
+### Windows（ユーザーのPC）で作業するとき
+- リポジトリは `C:\Users\k-ish\baroque-works`。ビルドは `PYTHONUTF8=1 py build.py index.html`（`python3` 不可。UTF-8 指定が無いと cp932 で落ちる）
+- `prep_ai.sh` の `convert` は Windows の別コマンドなので使わない（PIL で変換する）
+- `tools/*.mjs` は Linux 用パスと Playwright 前提で動かない。表示確認はローカルの `py -m http.server` とブラウザで行う
+- `tools/publish_prep.py` は `PYTHONUTF8=1 py -I tools/publish_prep.py <出力先>` で動く。新しい画像は Artifact の `files` に `img/ai/…` も足す
 
 ### ユーザーの返事待ち
 - C社の受注棟数（年間◯棟→◯棟）
