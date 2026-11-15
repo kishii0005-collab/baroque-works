@@ -42,7 +42,7 @@ def chapterize(html):
         i=html.find(f'<section data-ch="{int(n)}" class="{cls}')
         if i<0: continue
         j=html.find('<div class="w',i); j=html.find('>',j)+1
-        html=html[:j]+f'<p class="chap rv" id="ch{n}"><b>第{'〇一二三四五六七八九'[int(n)]}章</b><span>{title}</span></p>'+html[j:]
+        html=html[:j]+f'<p class="chap rv" id="ch{n}"><b><small>Chapter</small>{n}</b><span>{title}</span></p>'+html[j:]
     rail=''.join(f'<li data-ch="{int(n)}"><a href="#ch{n}"><b>{n}</b><span>{s}</span></a></li>' for c,n,s,t in CHAPTERS)
     return f'<nav class="rail" aria-label="このページの章"><ol>{rail}</ol></nav>'+html
 b,d=bodies['index.html']; bodies['index.html']=(chapterize(b),d)

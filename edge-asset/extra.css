@@ -1763,18 +1763,6 @@ body{line-break:strict}
 .ph img,.hx .slide img{filter:saturate(.78) sepia(.08) contrast(1.03)!important}
 .rep img,.pf-ph img,.tm-ph img{filter:none!important}
 
-/* 代表メッセージを縦書きの手紙に（広い画面のみ） */
-@media (min-width:1100px){
-  .msg .letter{writing-mode:vertical-rl;text-orientation:mixed;height:620px;margin-inline:0;margin-left:auto;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:0 4px 8px 0;font-size:16px;line-height:2.25;letter-spacing:.12em}
-  .msg .letter .sh{display:block;margin:0 0 0 28px!important}
-  .msg .letter .sh-ja{writing-mode:vertical-rl;margin:0!important}
-  .msg .letter .sh-ja::before{width:1px!important;height:28px!important}
-  .msg .letter .lede{font-size:26px!important;line-height:1.9!important;margin:0 0 0 40px!important;letter-spacing:.14em!important}
-  .msg .letter p{margin:0 0 0 1.1em}
-  .msg .letter .sign{text-align:left;margin:0 0 0 0!important;padding-top:0;align-self:flex-end;font-size:15px}
-  .msg .w.grid{display:block!important}
-  .msg .letter{display:block}
-}
 /* ===== PASS 7: 制作会社品質へ。箱を減らし、文字を大きく、色は紺・紙・朱の三色に ===== */
 /* --- 代表・取締役プロフィール --- */
 .psn{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start;padding:80px 0;border-top:1px solid var(--line)}
@@ -1892,11 +1880,11 @@ body{line-break:strict}
 .dark .chap span,.stance .chap span,.market .chap span,.tcost .chap span,.model .chap span{color:#f1ece4!important}
 .dark .chap::after,.stance .chap::after,.market .chap::after,.tcost .chap::after,.model .chap::after{background:#fff!important}
 
-/* 5つのお約束：白い四角の番号 → 漢数字と縦の細線 */
+/* 5つのお約束：番号と縦の細線 */
 .plist{counter-reset:pi;border-top:3px double var(--ink)}
 .plist .pi:not(.ask){counter-increment:pi;display:grid!important;grid-template-columns:96px minmax(0,1fr)!important;column-gap:36px!important;row-gap:10px;align-items:start;padding:34px 0!important;border-bottom:1px solid var(--line)!important;background:transparent!important}
 .plist .pi:not(.ask) .n{grid-row:span 2;font-size:0!important;background:none!important;width:auto!important;height:100%!important;min-height:72px;display:flex!important;align-items:flex-start;justify-content:center;border:0!important;border-right:1px solid var(--shu)!important;padding:0!important;box-shadow:none!important}
-.plist .pi:not(.ask) .n::before{content:counter(pi,cjk-decimal);font-family:var(--fh);font-weight:500;font-size:46px;line-height:1;color:var(--shu)}
+.plist .pi:not(.ask) .n::before{content:counter(pi,decimal-leading-zero);font-family:var(--fh);font-weight:500;font-size:46px;line-height:1;color:var(--shu)}
 .plist .pi h3{font-size:21px!important;margin:2px 0 0!important;letter-spacing:.08em}
 .plist .pi:not(.ask) p{font-size:15px!important;line-height:2!important;color:var(--ink-2);margin:0!important}
 .pi.ask{background:transparent!important;border:1px solid var(--ink)!important;padding:36px 40px!important;margin-top:44px!important;position:relative}
@@ -1925,3 +1913,65 @@ body{line-break:strict}
 @media (min-width:1000px){.promise .sh{align-self:start;position:sticky;top:120px}}
 .treal{margin-bottom:64px}
 .market .num strong{font-family:var(--fh)!important;font-weight:500!important}
+
+/* ===== PASS 9 (2026-11-15): 漢数字・縦書きをやめ、算用数字と横書きに。写真とあしらいを足して誌面らしく ===== */
+html:root{--num:"Cormorant Garamond","Zen Old Mincho",serif;--paper2:#ece6da}
+
+/* 縦書きをすべて横書きへ */
+.hx-tate{writing-mode:horizontal-tb!important;top:auto!important;bottom:150px;right:max(56px,env(safe-area-inset-right,0px))!important;font-size:15px!important;line-height:2!important;letter-spacing:.16em!important;padding:16px 0 0!important;border-right:0!important;border-top:1px solid rgba(255,255,255,.45);text-align:right}
+.hx-scroll,.pscroll{writing-mode:horizontal-tb!important;padding-bottom:0!important}
+
+/* 数字は欧文のセリフ体で */
+.chap b{display:flex!important;align-items:baseline;gap:12px;font-family:var(--num)!important;font-size:34px!important;font-weight:500!important;letter-spacing:.02em!important;line-height:1}
+.chap b small{font-family:var(--num);font-style:italic;font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+.chap b::after{height:30px!important}
+.plist .pi:not(.ask) .n::before{font-family:var(--num)!important;font-size:54px!important;font-weight:500!important;letter-spacing:.02em}
+.plist .pi:not(.ask) .n{position:relative}
+.plist .pi:not(.ask) .n::after{content:"Promise";position:absolute;top:62px;left:0;right:0;text-align:center;font-family:var(--num);font-style:italic;font-size:13px;letter-spacing:.08em;color:var(--mute)}
+.is4 .n,.ts-n,.wc-i span,.rc-since,.market .num strong,.pb-big b{font-family:var(--num)!important;font-weight:500!important}
+.is4 .n,.ts-n{font-size:30px!important;letter-spacing:.04em;color:var(--shu)!important;line-height:1}
+.steps li::before{font-family:var(--num)!important;font-size:19px!important;background:transparent!important;color:var(--shu)!important;border:1px solid var(--shu)}
+@media (max-width:760px){.plist .pi:not(.ask) .n::before{font-size:38px!important}.plist .pi:not(.ask) .n::after{top:44px;font-size:11px}.chap b{font-size:28px!important}}
+
+/* 代表メッセージ：横書きの手紙 */
+.msg .w.grid{display:block!important}
+.msg .letter{position:relative;max-width:920px;margin:0 auto;padding:88px 96px 80px;background:#fff;border:1px solid var(--line);box-shadow:20px 20px 0 var(--paper2)}
+.msg .letter::before{content:"\201C";position:absolute;top:18px;left:46px;font-family:var(--num);font-size:150px;line-height:1;color:var(--shu);opacity:.25}
+.msg .letter .lede{font-size:clamp(24px,2.6vw,32px)!important;line-height:1.75!important;margin:6px 0 40px!important;letter-spacing:.1em!important}
+.msg .letter p{font-size:16px;line-height:2.2}
+.msg .letter .sign{text-align:right;margin-top:48px!important;padding-top:28px;border-top:1px solid var(--line);font-family:var(--fh);font-size:16px;letter-spacing:.12em}
+@media (max-width:760px){.msg .letter{padding:64px 24px 48px;box-shadow:10px 10px 0 var(--paper2)}.msg .letter::before{left:14px;top:6px;font-size:110px}}
+
+/* 写真の後ろに、ずらした紙色の面 */
+.frame .ph,.tm-ph .ph,.open>.ph,.row .frame .ph,.pr-fig .ph{box-shadow:22px 22px 0 var(--paper2)}
+.dark .frame .ph,.market .frame .ph{box-shadow:22px 22px 0 rgba(255,255,255,.07)}
+@media (max-width:760px){.frame .ph,.tm-ph .ph,.open>.ph,.row .frame .ph,.pr-fig .ph{box-shadow:10px 10px 0 var(--paper2)}}
+
+/* 朱の点の地紋（セクションの角に小さく） */
+.issues,.world,.people,.flow,.tseo,.promise,.topcol{position:relative}
+.issues::before,.world::before,.people::before,.flow::before,.tseo::before,.promise::before,.topcol::before{content:"";position:absolute;width:168px;height:120px;background-image:radial-gradient(var(--shu) 1.2px,transparent 1.4px);background-size:14px 14px;opacity:.28;pointer-events:none;z-index:0}
+.issues::before,.people::before,.tseo::before{top:56px;right:max(24px,4vw)}
+.world::before,.flow::before,.promise::before,.topcol::before{top:56px;left:max(24px,4vw)}
+section>.w{position:relative;z-index:1}
+@media (max-width:760px){.issues::before,.world::before,.people::before,.flow::before,.tseo::before,.promise::before,.topcol::before{width:96px;height:70px;top:28px}}
+
+/* お約束の見出し列に写真 */
+.pr-fig{margin:44px 0 0;max-width:420px}
+.pr-fig .ph{aspect-ratio:4/3}
+.pr-fig figcaption{margin-top:30px;font-family:var(--fh);font-size:14px;letter-spacing:.12em;color:var(--ink-2);display:flex;align-items:center;gap:14px}
+.pr-fig figcaption::before{content:"";width:28px;height:1px;background:var(--shu)}
+@media (max-width:999px){.pr-fig{max-width:none}}
+
+/* 目指す世界：横長の写真の帯 */
+.wd-band{position:relative;margin:0 calc(50% - 50vw) 88px;width:100vw}
+.wd-band .ph{aspect-ratio:21/8;max-height:520px;width:100%}
+.wd-band figcaption{position:absolute;left:max(48px,calc(50vw - 572px));bottom:40px;color:#fff;font-family:var(--fh);font-size:clamp(17px,1.8vw,22px);letter-spacing:.14em;text-shadow:0 1px 18px rgba(0,0,0,.35)}
+.wd-band figcaption span{display:block;font-family:var(--num);font-style:italic;font-size:15px;letter-spacing:.1em;margin-bottom:8px;opacity:.9}
+@media (max-width:760px){.wd-band{margin-bottom:56px}.wd-band .ph{aspect-ratio:4/3}.wd-band figcaption{left:22px;right:22px;bottom:22px}}
+
+/* それぞれの方へ：カードの頭に写真 */
+.people .pc-ph{height:auto!important;aspect-ratio:3/2;margin:0 0 22px!important;width:100%;max-width:100%}
+.pg article{border-top:0!important;padding-top:0!important}
+
+.chap b,.plist .n,.is4 .n,.ts-n,.wc-i span,.rc-since,.market .num strong,.pb-big b,.steps li{font-variant-numeric:lining-nums tabular-nums}
+.pg{min-width:0}.pg article{min-width:0}

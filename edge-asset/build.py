@@ -8,12 +8,14 @@ IMG_DIR=os.path.join(os.path.dirname(os.path.abspath(sys.argv[1])),'img')
 BACKUP=['Q6sCJFHCubc','rD28m9BmXVs','4UVtFIfK1eo']
 # generated photos dropped into edge-asset/img/ai/ replace the stock photo in the same slot, everywhere it is used
 AI_SWAP={'4UVtFIfK1eo':'ai-hero','Q6sCJFHCubc':'ai-stance','-MVSfkR4xz4':'ai-house','q1tyQip5AQQ':'ai-office',
-         'TJ4CndIc9z8':'ai-tools','4mEyvORkbN0':'ai-plan','rD28m9BmXVs':'ai-wood'}
+         'TJ4CndIc9z8':'ai-tools','4mEyvORkbN0':'ai-plan','rD28m9BmXVs':'ai-wood',
+         **{k:k for k in ('ai-hero','ai-stance','ai-house','ai-office','ai-tools','ai-plan','ai-wood','ai-town','ai-interior','ai-dusk','ai-renov')}}
 AI_EXTRA=['ai-renov']
 # what each generated photo actually shows; replaces the stock photo's alt when the swap applies (empty alt stays decorative)
 AI_ALT={'ai-hero':'上棟した木造住宅の骨組み','ai-stance':'瓦屋根の家が並ぶ住宅街','ai-house':'庭木に囲まれた木造住宅',
         'ai-office':'無垢材のテーブルがある打ち合わせスペース','ai-tools':'作業台に置かれた大工道具',
-        'ai-plan':'机に広げた住宅の図面','ai-wood':'刻みを入れた杉・檜の構造材','ai-renov':'床を張り替えている改修中の室内'}
+        'ai-plan':'机に広げた住宅の図面','ai-wood':'刻みを入れた杉・檜の構造材','ai-renov':'床を張り替えている改修中の室内',
+        'ai-town':'丘から見た地方都市の住宅地','ai-interior':'完成した木造住宅のリビング','ai-dusk':'夕暮れに明かりが灯る木造住宅'}
 def src_list(i):
     # a generated photo in img/ai/ wins, then a photo saved in edge-asset/img/, then Unsplash
     out=[]
@@ -539,7 +541,7 @@ HTML=f'''<!doctype html>
 <meta name="description" content="株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 
 </head>
@@ -1118,6 +1120,7 @@ bodies['privacy.html']=(PRIVACY,'株式会社エッジアセットのプライ�
 bodies['terms.html']=(TERMS,'株式会社エッジアセットのサイトのご利用について。')
 bodies['404.html']=(NOTFOUND,'お探しのページは見つかりませんでした。')
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'polish.py')).read())
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'design9.py'),encoding='utf-8').read())
 DARK_SURF={'market','model','tcost','secret','capital','pcon','stance','tmsg_x'}
 MIST_SURF={'promise','people','company','pp','links','ba','topfaq','gov','pfaq','topcol','artmore','kpi','tcases','clist','cother','think','record','tseo'}
 def surface(html):
