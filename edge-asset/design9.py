@@ -25,3 +25,29 @@ i = b.index('class="cta"'); j = b.index('<div class="ph">', i); k2 = b.index('</
 b = b[:j] + f'<div class="ph">{img("ai-dusk","",2000)}</div>' + b[k2 + 6:]
 
 bodies['index.html'] = (b, d)
+
+# ---- sub-pages: a full-width photo band before the closing section, on pages that had no photo between text blocks
+def pband(pid, alt, en, cap):
+    return f'<section class="pband"><figure class="wd-band rv"><div class="ph">{img(pid, alt, 2000)}</div><figcaption><span>{en}</span>{cap}</figcaption></figure></section>'
+BANDS = {
+  'partners.html': ('<section class="nextp"', 'ai-plan', '机に広げた住宅の図面', 'For partners', '案件のご紹介を、地域の住宅会社の次の三十年につなげます。'),
+  'faq.html':      ('<section class="nextp"', 'ai-interior', '完成した木造住宅のリビング', 'Ask us', 'ここにない疑問も、まずはお気軽にお尋ねください。'),
+  'news.html':     ('<section class="nextp"', 'ai-town', '丘から見た地方都市の住宅地', 'News', '地域の住宅会社とともに、一社ずつ歩んでいます。'),
+  'valuation.html':('<section class="nextp"', 'ai-wood', '刻みを入れた杉・檜の構造材', 'Beyond numbers', '数字の先にある、会社の中身まで見て判断します。'),
+  'contact.html':  ('<section class="faq"', 'ai-dusk', '夕暮れに明かりが灯る木造住宅', 'Contact', '社名を伏せたままでも、話を聞いてみるだけでも構いません。'),
+  'case-3.html':   ('<section class="nextp"', 'ai-house', '庭木に囲まれた木造住宅', 'Model case', '施主様との約束を、次の世代へ。'),
+  'case-4.html':   ('<section class="nextp"', 'ai-renov', '床を張り替えている改修中の室内', 'Model case', '利益が残る仕組みに、一つずつ直していく。'),
+  'case-5.html':   ('<section class="nextp"', 'ai-tools', '作業台に置かれた大工道具', 'Model case', '腕と信頼を、三代目へ。'),
+}
+for f, (marker, pid, alt, en, cap) in BANDS.items():
+    if f not in bodies: continue
+    bb, dd = bodies[f]
+    if marker in bb: bodies[f] = (bb.replace(marker, pband(pid, alt, en, cap) + marker, 1), dd)
+# second band on the long pages
+for f, marker, pid, alt, en, cap in [
+  ('company.html', '<section class="compare"', 'ai-town', '丘から見た地方都市の住宅地', 'Our way', '売らずに、長く。地域の会社として続けていく。'),
+  ('company.html', '<section class="hist"', 'ai-wood', '刻みを入れた杉・檜の構造材', 'History', '一社ずつ、時間をかけて積み上げてきました。'),
+  ('service.html', '<section class="d100"', 'ai-office', '無垢材のテーブルがある打ち合わせスペース', 'First 100 days', '引き継ぎの最初の百日を、一緒に設計します。'),
+  ('flow.html',    '<section class="think"', 'ai-plan', '机に広げた住宅の図面', 'Before you decide', '決める前に、考えておくと良いこと。')]:
+    bb, dd = bodies[f]
+    if marker in bb: bodies[f] = (bb.replace(marker, pband(pid, alt, en, cap) + marker, 1), dd)
