@@ -2205,3 +2205,28 @@ html body .burger .b-c{display:none!important}
 @media (hover:hover){.rcard:hover{transform:translateY(-4px);box-shadow:14px 14px 0 #e6ddcd}}
 .phero::after{height:auto!important;width:auto!important;background:none!important}
 .phero h1{flex-direction:column!important;align-items:flex-start!important}
+
+/* ===== PASS 14 (2026-11-16): company / partners / model cases ===== */
+/* vision & mission: paper cards instead of navy boxes, faint serif word behind */
+.vm2>div{background:#fff!important;color:var(--ink)!important;border-top:3px solid var(--shu);box-shadow:10px 10px 0 #ece5d8;position:relative;overflow:hidden}
+.vm2 p{color:var(--ink-2)!important}
+.vm2 h3{color:var(--navy)}
+.vm2 .k{color:var(--shu)!important}
+.vm2>div::after{position:absolute;right:20px;bottom:-14px;font-family:var(--num);font-style:italic;font-size:96px;line-height:1;color:rgba(168,67,42,.07);pointer-events:none}
+.vm2>div:nth-child(1)::after{content:"Vision"}
+.vm2>div:nth-child(2)::after{content:"Mission"}
+/* capital: the investment amount as a large serif figure */
+.cap3>div:first-child .v{font-family:var(--num)!important;font-size:clamp(48px,5vw,68px)!important;font-weight:500!important;line-height:1.1!important;color:#fff}
+/* partners info list: vermilion dash instead of a checkmark */
+.chk2 li{background:#fff!important;border-left:3px solid var(--shu)!important;padding-left:24px!important}
+.chk2 li::before{display:none!important}
+/* model case: issues with a vermilion bar instead of the round "!" icon */
+.cb-iss li{background:#fff!important;padding-left:28px!important;border-left:3px solid var(--shu)}
+.cb-iss li::before{display:none!important}
+/* model case section numbers 01-05: italic serif */
+.cb-n{font-family:var(--num)!important;font-style:italic!important;font-weight:400!important;font-size:46px!important;line-height:1!important;letter-spacing:0!important;color:var(--shu)!important}
+/* model case first-year timeline: same as the 100-day line */
+.cb-tl::before{background:var(--shu)!important;opacity:.55}
+.cb-tl li::before{width:14px!important;height:14px!important;background:var(--shu)!important;border:4px solid var(--bg)!important;box-shadow:0 0 0 1px var(--shu)}
+.cb-tl>li>span{font-family:var(--fh)!important;font-size:24px!important;font-weight:500!important;color:var(--shu)!important}
+.cap3 .v,.cb-n,.fs-n,.cs-sn,.vm2>div::after{font-variant-numeric:lining-nums!important;font-feature-settings:"lnum" 1!important}
