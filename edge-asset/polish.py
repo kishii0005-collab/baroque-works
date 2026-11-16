@@ -105,7 +105,7 @@ FAQ_LD={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type"
 def faq_page():
     navi=''.join(f'<li><a href="#{i}">{t}</a></li>' for i,t,_ in FAQ_CATS)
     cats=''.join(f'<div class="fq-cat" id="{i}"><div class="fq-h"><p class="fq-n">{k+1:02d}</p><h2>{t}</h2></div><div class="fq-l">'+''.join(f'<details><summary><span class="q">Q.</span><span>{nb(q,6)}</span><span class="pm"></span></summary><div class="a"><span>A.</span>{P(a)}</div></details>' for q,a in qs)+'</div></div>' for k,(i,t,qs) in enumerate(FAQ_CATS))
-    return (phero('FAQ','よくあるご質問','ご相談の前に、社長や仲介会社の方からよく伺う質問をまとめました。ここにない質問は、お問い合わせからお寄せください。','Q6sCJFHCubc')
+    return (phero('FAQ','よくあるご質問','ご相談の前に、社長や仲介会社の方からよく伺う質問をまとめました。ここにない質問は、お問い合わせからお寄せください。','ai-key')
       +f'<section class="faqp"><div class="w"><ul class="fq-nav">{navi}</ul>{cats}<p class="fq-more">{nb("ここにない質問は、お問い合わせフォームか電話でお寄せください。2日以内にお答えします。")}</p></div></section>'
       +'<script type="application/ld+json">'+_json.dumps(FAQ_LD,ensure_ascii=False)+'</script>'
       +nextlink('contact.html','Contact','ご相談・お問い合わせ'))

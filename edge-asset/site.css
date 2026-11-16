@@ -2665,3 +2665,9 @@ html body .burger .b-c{display:none!important}
 .cb-tl li::before{width:14px!important;height:14px!important;background:var(--shu)!important;border:4px solid var(--bg)!important;box-shadow:0 0 0 1px var(--shu)}
 .cb-tl>li>span{font-family:var(--fh)!important;font-size:24px!important;font-weight:500!important;color:var(--shu)!important}
 .cap3 .v,.cb-n,.fs-n,.cs-sn,.vm2>div::after{font-variant-numeric:lining-nums!important;font-feature-settings:"lnum" 1!important}
+
+/* ===== PASS 15 (2026-11-16): faq / contact ===== */
+.fq-n{font-family:var(--num)!important;font-style:italic!important;font-weight:400!important;font-size:46px!important;line-height:1!important;letter-spacing:0!important;color:var(--shu)!important;font-variant-numeric:lining-nums!important;font-feature-settings:"lnum" 1!important;margin-bottom:8px!important}
+.f-trust li::before{content:""!important;width:12px!important;height:0!important;border:0!important;border-top:1px solid var(--shu)!important;transform:none!important;background:none!important;display:inline-block!important;vertical-align:middle!important;margin-right:8px!important;position:static!important}
+@media (min-width:901px){.fq-h{position:sticky!important;top:120px;align-self:start}}
+.phero .pg-ph .ph::after{background:linear-gradient(90deg,rgba(29,42,58,.92),rgba(29,42,58,0) 40%)!important}@media (max-width:860px){.phero .pg-ph .ph::after{background:linear-gradient(180deg,rgba(29,42,58,.1),rgba(29,42,58,.92))!important}}
