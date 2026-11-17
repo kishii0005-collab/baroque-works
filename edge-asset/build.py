@@ -781,7 +781,7 @@ HTML=f'''<!doctype html>
       <div class="ftel"><p class="fh">お問い合わせ</p><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
     </div>
     <div class="fb"><span><a href="#top">プライバシーポリシー</a>　｜　<a href="#top">サイトのご利用について</a></span><span>© EDGE ASSET Inc.</span></div>
-    <p class="fcred">写真：Wikimedia Commons ほか（仮素材）　<a href="sitemap.html#credits">写真クレジット</a></p>
+    <p class="fcred">掲載している風景・建物・室内の写真はイメージです。</p>
   </div>
 </footer>
 
@@ -791,7 +791,6 @@ HTML=f'''<!doctype html>
   <button class="x" id="fx" aria-label="閉じる">×</button>
 </aside>
 <nav class="mbar" id="mbar" aria-label="ご相談"><a href="#contact">電話で相談</a><a href="#contact">無料で相談する</a></nav>
-<div class="proto">デザイン確認用｜文言・数値・写真は仮</div>
 
 <script>
 (() => {{
@@ -875,7 +874,7 @@ for key,pat in {
  'footer':r'<footer>.*?</footer>',
 }.items(): sec[key]=cut(pat)
 
-SITE='https://www.example.com/'  # 本番ドメインが決まったら差し替え
+SITE='https://edge-asset.jp/'  # 会社のメールドメインから仮置き。公開先が違えば差し替え
 JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社・リフォーム会社の事業承継とグループ経営（ロールアップ）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-6823-1499","foundingDate":"2021-03-01","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
@@ -937,9 +936,9 @@ def page(fname,title,body,desc):
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{SITE}img/tanioka-sq.jpg">
-<meta property="og:image:width" content="800">
-<meta property="og:image:height" content="800">
+<meta property="og:image" content="{SITE}img/ai/ai-hero.jpg">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 {JSONLD if fname=='index.html' else ''}
@@ -955,7 +954,6 @@ def page(fname,title,body,desc):
 </main>
 {'' if fname in ('contact.html','404.html') else SBAR}
 {footer().replace('<div class="w">','<i class="sf dk" aria-hidden="true"></i><div class="w">'+footer_cta(fname),1)}
-<div class="proto">デザイン確認用｜【 】内と写真は仮</div>
 <script>{PREVIEW_FIX}</script>
 <script>{SCRIPT}</script>
 </body>
