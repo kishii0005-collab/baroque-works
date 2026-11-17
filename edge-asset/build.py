@@ -874,7 +874,7 @@ for key,pat in {
  'footer':r'<footer>.*?</footer>',
 }.items(): sec[key]=cut(pat)
 
-SITE='https://edge-asset.jp/'  # 会社のメールドメインから仮置き。公開先が違えば差し替え
+SITE='https://edge-asset.web.app/'  # Firebase Hosting。edge-asset.jp をつないだら差し替え
 JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社・リフォーム会社の事業承継とグループ経営（ロールアップ）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-6823-1499","foundingDate":"2021-03-01","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():

@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="グループの支援｜株式会社エッジアセット">
 <meta property="og:description" content="エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。">
-<meta property="og:image" content="https://edge-asset.jp/img/ai/ai-hero.jpg">
+<meta property="og:image" content="https://edge-asset.web.app/img/ai/ai-hero.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
@@ -105,7 +105,7 @@ section{padding-block:140px}
   </div>
 </div>
 <main id="top">
-<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">グループの支援</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.jp/"}, {"@type": "ListItem", "position": 2, "name": "グループの支援", "item": "https://edge-asset.jp/service.html"}]}</script><section class="phero">
+<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">グループの支援</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.web.app/"}, {"@type": "ListItem", "position": 2, "name": "グループの支援", "item": "https://edge-asset.web.app/service.html"}]}</script><section class="phero">
   <div class="pg-ph"><div class="ph"><img src="img/ai/ai-hero.jpg" alt="" data-fb="img/4UVtFIfK1eo.jpg|https://unsplash.com/photos/4UVtFIfK1eo/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4UVtFIfK1eo%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|img/ai/ai-stance.jpg" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
   <div class="w"><p class="pen">Our support</p><h1>グループの支援</h1><p class="plead">家づくりの方針には、基本的に口を出しません。そのうえで、時流に合った売れる商品へ、少しずつ調整していきます。規模が小さいほど負担が重くなる仕事は、<span class="nb">グループで引き受けます。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
@@ -289,7 +289,8 @@ section{padding-block:140px}
       const ep = form.dataset.endpoint;
       if (ep) {
         const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
-        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        if (new URLSearchParams(location.search).has('test')) data.append('_test', '1');
+        try { const r = await fetch(ep, { method: 'POST', body: new URLSearchParams(data) }); if (!r.ok) throw 0; done(false); }
         catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
       } else {
         const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');

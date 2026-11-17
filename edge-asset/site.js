@@ -90,7 +90,8 @@
       const ep = form.dataset.endpoint;
       if (ep) {
         const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
-        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        if (new URLSearchParams(location.search).has('test')) data.append('_test', '1');
+        try { const r = await fetch(ep, { method: 'POST', body: new URLSearchParams(data) }); if (!r.ok) throw 0; done(false); }
         catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
       } else {
         const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');

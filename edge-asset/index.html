@@ -12,12 +12,12 @@
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="工務店・住宅会社のM&A・事業承継｜株式会社エッジアセット">
 <meta property="og:description" content="株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
-<meta property="og:image" content="https://edge-asset.jp/img/ai/ai-hero.jpg">
+<meta property="og:image" content="https://edge-asset.web.app/img/ai/ai-hero.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "株式会社エッジアセット", "alternateName": "EDGE ASSET Inc.", "description": "工務店・住宅会社・リフォーム会社の事業承継とグループ経営（ロールアップ）", "address": {"@type": "PostalAddress", "postalCode": "105-0022", "addressRegion": "東京都", "addressLocality": "港区", "streetAddress": "海岸2丁目5-1-1702", "addressCountry": "JP"}, "telephone": "03-6823-1499", "foundingDate": "2021-03-01", "founder": {"@type": "Person", "name": "谷岡佑亮", "jobTitle": "代表取締役", "image": "https://edge-asset.jp/img/tanioka-sq.jpg"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "株式会社エッジアセット", "alternateName": "EDGE ASSET Inc.", "description": "工務店・住宅会社・リフォーム会社の事業承継とグループ経営（ロールアップ）", "address": {"@type": "PostalAddress", "postalCode": "105-0022", "addressRegion": "東京都", "addressLocality": "港区", "streetAddress": "海岸2丁目5-1-1702", "addressCountry": "JP"}, "telephone": "03-6823-1499", "foundingDate": "2021-03-01", "founder": {"@type": "Person", "name": "谷岡佑亮", "jobTitle": "代表取締役", "image": "https://edge-asset.web.app/img/tanioka-sq.jpg"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
@@ -447,7 +447,8 @@ section{padding-block:140px}
       const ep = form.dataset.endpoint;
       if (ep) {
         const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
-        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        if (new URLSearchParams(location.search).has('test')) data.append('_test', '1');
+        try { const r = await fetch(ep, { method: 'POST', body: new URLSearchParams(data) }); if (!r.ok) throw 0; done(false); }
         catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
       } else {
         const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');

@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="私たちについて｜株式会社エッジアセット">
 <meta property="og:description" content="エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。">
-<meta property="og:image" content="https://edge-asset.jp/img/ai/ai-hero.jpg">
+<meta property="og:image" content="https://edge-asset.web.app/img/ai/ai-hero.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
@@ -105,7 +105,7 @@ section{padding-block:140px}
   </div>
 </div>
 <main id="top">
-<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">私たちについて</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.jp/"}, {"@type": "ListItem", "position": 2, "name": "私たちについて", "item": "https://edge-asset.jp/company.html"}]}</script><section class="phero">
+<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">私たちについて</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.web.app/"}, {"@type": "ListItem", "position": 2, "name": "私たちについて", "item": "https://edge-asset.web.app/company.html"}]}</script><section class="phero">
   <div class="pg-ph"><div class="ph"><img src="img/ai/ai-wood.jpg" alt="" data-fb="img/rD28m9BmXVs.jpg|https://unsplash.com/photos/rD28m9BmXVs/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2FrD28m9BmXVs%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|img/ai/ai-stance.jpg" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
   <div class="w"><p class="pen">About us</p><h1>私たちについて</h1><p class="plead">後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する。エッジアセットの考え方と、それを支える人・資金・体<span class="nb">制をご紹介します。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
@@ -344,7 +344,8 @@ section{padding-block:140px}
       const ep = form.dataset.endpoint;
       if (ep) {
         const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
-        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        if (new URLSearchParams(location.search).has('test')) data.append('_test', '1');
+        try { const r = await fetch(ep, { method: 'POST', body: new URLSearchParams(data) }); if (!r.ok) throw 0; done(false); }
         catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
       } else {
         const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');

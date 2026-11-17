@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="株式会社エッジアセット">
 <meta property="og:title" content="譲渡価格のかんたん試算｜株式会社エッジアセット">
 <meta property="og:description" content="工務店・住宅会社・リフォーム会社の譲渡価格の目安を、純資産と営業利益から試算できます。">
-<meta property="og:image" content="https://edge-asset.jp/img/ai/ai-hero.jpg">
+<meta property="og:image" content="https://edge-asset.web.app/img/ai/ai-hero.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
@@ -105,7 +105,7 @@ section{padding-block:140px}
   </div>
 </div>
 <main id="top">
-<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">譲渡価格のかんたん試算</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.jp/"}, {"@type": "ListItem", "position": 2, "name": "譲渡価格のかんたん試算", "item": "https://edge-asset.jp/valuation.html"}]}</script><section class="phero">
+<nav class="bc" aria-label="パンくずリスト"><ol class="w"><li><a href="index.html">トップ</a></li><li aria-current="page">譲渡価格のかんたん試算</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://edge-asset.web.app/"}, {"@type": "ListItem", "position": 2, "name": "譲渡価格のかんたん試算", "item": "https://edge-asset.web.app/valuation.html"}]}</script><section class="phero">
   <div class="pg-ph"><div class="ph"><img src="img/ai/ai-plan.jpg" alt="" data-fb="img/4mEyvORkbN0.jpg|https://unsplash.com/photos/4mEyvORkbN0/download?force=true&amp;w=1800|https://wsrv.nl/?url=unsplash.com%2Fphotos%2F4mEyvORkbN0%2Fdownload%3Fforce%3Dtrue%26w%3D1800&amp;w=1800&amp;q=82&amp;output=jpg|img/ai/ai-stance.jpg" onerror="var l=(this.dataset.fb||'').split('|').filter(Boolean);if(l.length){this.dataset.fb=l.slice(1).join('|');this.src=l[0]}else{this.onerror=null;this.style.visibility='hidden';this.parentNode.classList.add('noimg')}"></div><span class="pg-blk" aria-hidden="true"></span></div>
   <div class="w"><p class="pen">Estimate</p><h1>譲渡価格のかんたん試算</h1><p class="plead">純資産と営業利益を入れるだけで、譲渡価格の目安の幅がわかります。入力した数字<span class="nb">は送信されません。</span></p></div>
   <p class="pscroll" aria-hidden="true">Scroll</p>
@@ -266,7 +266,8 @@ section{padding-block:140px}
       const ep = form.dataset.endpoint;
       if (ep) {
         const btn = form.querySelector('button'); btn.disabled = true; $('.bt', btn).hidden = true; $('.bt-busy', btn).hidden = false;
-        try { const r = await fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }); if (!r.ok) throw 0; done(false); }
+        if (new URLSearchParams(location.search).has('test')) data.append('_test', '1');
+        try { const r = await fetch(ep, { method: 'POST', body: new URLSearchParams(data) }); if (!r.ok) throw 0; done(false); }
         catch { btn.disabled = false; $('.bt', btn).hidden = false; $('.bt-busy', btn).hidden = true; alert('送信できませんでした。お手数ですが、お電話かメールでご連絡ください。'); }
       } else {
         const lines = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => k + '：' + v).join('\n');
