@@ -755,7 +755,7 @@ HTML=f'''<!doctype html>
       <a class="way" href="#cf" data-topic="匿名での相談"><b>匿名で相談する</b><span>社名を出さずに、状況だけお聞かせください。</span><i>匿名で送る</i></a>
     </div>
     <div class="telrow"><b>03-6823-1499</b><span>年中無休 9:00–18:00</span></div>
-    <form id="cf" novalidate data-endpoint="" data-mailto="{FORM_TO}">
+    <form id="cf" novalidate data-endpoint="https://script.google.com/macros/s/AKfycbw5BjKJPP2O61X6pcNvwavsQosqHBMfpEaWhQSQ5VTZjL6P575EQyrc8hjDPh7C31rbDA/exec?authuser=0" data-mailto="{FORM_TO}">
       <label for="f-topic">ご相談の種類</label>
       <select id="f-topic" name="ご相談の種類"><option>面談の予約</option><option>電話での相談（折り返し希望）</option><option>匿名での相談</option><option>その他</option></select>
       <div class="r2"><div><label for="f-name">お名前<i class="opt">任意</i></label><input id="f-name" name="お名前" autocomplete="name" placeholder="例：山田 太郎"></div><div><label for="f-co">会社名<i class="opt">任意</i></label><input id="f-co" name="会社名" autocomplete="organization" placeholder="伏せたままでも構いません"></div></div>

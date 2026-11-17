@@ -26,7 +26,8 @@
 - 金額の単位は万円。原価率75%→68%、販管費率20%→17%など、改善は%で表記
 - 仲介会社の手数料：レーマン方式。最低報酬は仲介会社と協議
 - FVの見出し：「地域の住宅会社を、つぎの三十年へ。」
-- フォーム送信先：`y-tanioka@edge-asset.jp`。追加の宛先は環境変数 `FORM_CC` で渡す（個人アドレスはソースに書かない。書くとプライバシー保護の仕組みでビルドが止まる）
+- フォーム送信：Apps Script「EdgeAsset_HP_Inquiry」（k.ishii0005 のGoogleアカウント）に POST → `y-tanioka@edge-asset.jp` 宛・石井GmailへCC。宛先は GAS 側にだけ書く。exec URL は build.py の data-endpoint。`contact?test=1` から送ると件名に【テスト】。GASを書き換えたら「デプロイを管理」→新バージョン
+- 本番公開：Firebase Hosting https://edge-asset.web.app（プロジェクト gso-routemap のマルチサイト）。手順：`PYTHONUTF8=1 py build.py index.html` → `py tools/dist.py` → `firebase deploy --only hosting:edge-asset`。edge-asset.jp をつなぐなら DNS 設定後に build.py の SITE を差し替え
 
 ## 3. デザインの方針（「AI感をなくす」「制作会社品質」）
 方向性は「老舗の会社案内（紙のパンフレット）」。
