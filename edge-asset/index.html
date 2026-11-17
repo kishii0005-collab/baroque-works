@@ -334,7 +334,7 @@ section{padding-block:140px}
   </div>
 </section>
 </main>
-<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>
+<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>無料で相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>
 <footer>
   <a class="pagetop" href="index.html" aria-label="ページの先頭へ"></a>
   <i class="sf dk" aria-hidden="true"></i><div class="w"><div class="fcx">
@@ -501,14 +501,9 @@ section{padding-block:140px}
     io2.observe(market);
   } else if (market) market.classList.add('in');
 
-  // bottom consult bar: shows after the first screen, hides while the footer CTA is on screen
+  // bottom consult bar: always on screen
   const sbar = $('#sbar');
-  if (sbar) {
-    const fc = $('.fcx'); let fcIn = false;
-    if (fc && 'IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { fcIn = e.isIntersecting; upd(); }), { threshold: 0 }).observe(fc);
-    const upd = () => sbar.classList.toggle('on', scrollY > innerHeight * 0.8 && !fcIn);
-    upd(); addEventListener('scroll', upd, { passive: true });
-  }
+  if (sbar) sbar.classList.add('on');
 })();
 </script>
 </body>

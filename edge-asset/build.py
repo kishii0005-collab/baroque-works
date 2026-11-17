@@ -919,7 +919,7 @@ def footer():
     f=f.replace('<li><a href="contact.html#faq">よくあるご質問</a></li>','<li><a href="faq.html">よくあるご質問</a></li><li><a href="valuation.html">譲渡価格のかんたん試算</a></li><li><a href="partners.html">仲介会社・金融機関の方へ</a></li><li><a href="news.html">お知らせ</a></li><li><a href="column.html">コラム</a></li>')
     f=f.replace('<a href="index.html">プライバシーポリシー</a>','<a href="privacy.html">プライバシーポリシー</a>').replace('<a href="index.html">サイトのご利用について</a>','<a href="terms.html">サイトのご利用について</a>　｜　<a href="sitemap.html">サイトマップ</a>')
     return f
-SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>'
+SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>無料で相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>'
 def page(fname,title,body,desc):
     t='工務店・住宅会社のM&A・事業承継｜株式会社エッジアセット' if fname=='index.html' else f'{title}｜株式会社エッジアセット'
     return f"""<!doctype html>
@@ -989,7 +989,7 @@ TEAM=f"""<section class="team" id="team">
     {head('Team','メンバー','住宅業界の|実務を|知る人間が、|引き継ぎます','会社を託す相手は、ファンドの名前ではなく人です。グループ入り後に一緒に現場へ入るメンバーをご紹介します。')}
     <div class="tg">
       <article class="tm lead rv"><div class="ph tph rep"><img src="img/tanioka.jpg" srcset="img/tanioka-sm.jpg 480w, img/tanioka.jpg 1000w" sizes="(max-width:760px) 90vw, 420px" alt="代表取締役 谷岡 佑亮" width="1000" height="1250" decoding="async"></div><div class="tx"><p class="role">代表取締役</p><h3>谷岡 佑亮</h3><p class="en-name">Yusuke Tanioka</p>{P('中小企業経営コンサルティング会社にて、全社で2位の年間粗利獲得実績を複数年にわたり達成。経営再建・成長戦略の実行支援を経て、建築業界を中心に人材採用・営業体制の構築・業務改善を支援してきた。')}<a class="tl" href="#profile">プロフィールを見る {AR}</a></div></article>
-      <article class="tm rv"><div class="ph tph"><img src="img/ishii.jpg" alt="取締役 石井 健太" width="324" height="394" loading="lazy" decoding="async"></div><div class="tx"><p class="role">取締役／グループ経営支援</p><h3>石井 健太</h3>{P('住宅業界に特化したコンサルタントとして、全国の工務店・リフォーム会社100社以上の経営に携わる。集客・採用・財務の実務を担当します。')}</div></article>
+      <article class="tm rv"><div class="ph tph"><img src="img/ishii.jpg" alt="取締役 石井 健太" width="324" height="394" loading="lazy" decoding="async"></div><div class="tx"><p class="role">取締役／集客・原価改善</p><h3>石井 健太</h3>{P('住宅会社の業績を上げることに特化したコンサルタント。全国の工務店・リフォーム会社100社以上を支援し、集客と原価改善を得意とします。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（税理士）</p><h3>{TBD}</h3>{P('事業承継税制・株価算定を担当します。')}</div></article>
       <article class="tm rv"><div class="ph tph empty"><span>写真</span></div><div class="tx"><p class="role">顧問（弁護士）</p><h3>{TBD}</h3>{P('株式譲渡契約・許認可を担当します。')}</div></article>
     </div>
