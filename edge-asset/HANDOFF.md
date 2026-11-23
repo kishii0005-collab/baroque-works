@@ -97,3 +97,9 @@
 ## 7. 環境メモ
 - クラウド環境「baroque-works」（Wikimedia Commons の2ホストを許可）を作成済み。Wikimedia は利用回数制限で実用にならなかった。不要なら設定から削除可
 - 外部の画像生成サービスはネットワークで遮断されている
+
+## 更新のしかた（2026-11-23）
+1. 文章・写真の変更は build.py / more.py / pages2.py（本文）と extra.css（見た目）を直す
+2. `PYTHONUTF8=1 py build.py index.html` → `py tools/dist.py` → `firebase deploy --only hosting:edge-asset`
+3. llms.txt はページを増やしたら手で1行足す。サイトマップ・canonical は自動
+4. 独自ドメインにつないだら build.py の SITE と llms.txt のURLを差し替える
