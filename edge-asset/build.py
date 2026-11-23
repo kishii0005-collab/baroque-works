@@ -934,6 +934,7 @@ def page(fname,title,body,desc):
 <title>{t}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{U(fname)}">
+{'<meta name="google-site-verification" content="EzOLG1l0Jt0S5w-8dWAPG92-QYsWXLB1o-qdirZkCoM">' if fname=='index.html' else ''}
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0c2747">
