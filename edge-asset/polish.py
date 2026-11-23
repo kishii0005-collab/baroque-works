@@ -8,7 +8,7 @@ def crumbs(fname,title):
     if fname in CRUMB_PARENT: trail.append(CRUMB_PARENT[fname])
     trail.append((fname,CRUMB_LABEL.get(fname,title)))
     li=''.join((f'<li><a href="{h}">{t}</a></li>' if k<len(trail)-1 else f'<li aria-current="page">{t}</li>') for k,(h,t) in enumerate(trail))
-    ld={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":k+1,"name":t,"item":SITE+('' if h=='index.html' else h)} for k,(h,t) in enumerate(trail)]}
+    ld={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":k+1,"name":t,"item":U(h)} for k,(h,t) in enumerate(trail)]}
     return f'<nav class="bc" aria-label="パンくずリスト"><ol class="w">{li}</ol></nav><script type="application/ld+json">{_json.dumps(ld,ensure_ascii=False)}</script>'
 
 FOOT_COPY={'results.html':('似た状況でしたら、|そのまま|ご相談ください。','実績や事例と状況が違っていても構いません。会社の状況を伺い、取りうる形をご説明します。'),'service.html':('支援の中身を、|御社の|数字で|ご説明します。','どの支援から始めるかは、会社ごとに違います。現状を伺ったうえで、最初の100日の進め方をご提案します。'),

@@ -539,7 +539,7 @@ HTML=f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>株式会社エッジアセット｜工務店・住宅会社の事業承継</title>
-<meta name="description" content="株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
+<meta name="description" content="株式会社エッジアセット（EDGE ASSET）は、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
@@ -875,7 +875,11 @@ for key,pat in {
 }.items(): sec[key]=cut(pat)
 
 SITE='https://edge-asset.web.app/'  # Firebase Hosting。edge-asset.jp をつないだら差し替え
-JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@type":"Organization","name":"株式会社エッジアセット","alternateName":"EDGE ASSET Inc.","description":"工務店・住宅会社・リフォーム会社の事業承継とグループ経営（ロールアップ）","address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"03-6823-1499","foundingDate":"2021-03-01","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"}},ensure_ascii=False)+'</script>'
+TODAY=__import__('datetime').date.today().isoformat()
+def U(f): return SITE+('' if f=='index.html' else f.removesuffix('.html'))  # cleanUrls に合わせた正規URL
+ORG={"@type":"Organization","@id":SITE+"#org","name":"株式会社エッジアセット","alternateName":["エッジアセット","EDGE ASSET","EDGE ASSET Inc.","エッジ・アセット"],"url":SITE,"logo":SITE+"apple-touch-icon.png","image":SITE+"img/ai/ai-hero.jpg","description":"株式会社エッジアセット（EDGE ASSET）は、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。グループで集客・採用・財務・仕入れ・原価改善を支援します。","knowsAbout":["工務店のM&A","住宅会社の事業承継","リフォーム会社の事業承継","後継者不在","ロールアップ","工務店の集客","原価改善"],"areaServed":{"@type":"Country","name":"日本"},"address":{"@type":"PostalAddress","postalCode":"105-0022","addressRegion":"東京都","addressLocality":"港区","streetAddress":"海岸2丁目5-1-1702","addressCountry":"JP"},"telephone":"+81-3-6823-1499","foundingDate":"2021-03-01","founder":{"@type":"Person","name":"谷岡佑亮","jobTitle":"代表取締役","image":SITE+"img/tanioka-sq.jpg"},"contactPoint":{"@type":"ContactPoint","telephone":"+81-3-6823-1499","contactType":"customer service","availableLanguage":"Japanese","url":SITE+"contact"}}
+JSONLD='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org","@graph":[ORG,{"@type":"WebSite","@id":SITE+"#site","url":SITE,"name":"株式会社エッジアセット","alternateName":["エッジアセット","EDGE ASSET"],"inLanguage":"ja","publisher":{"@id":SITE+"#org"}}]},ensure_ascii=False)+'</script>'
+ORGREF='<script type="application/ld+json">'+__import__('json').dumps({"@context":"https://schema.org",**ORG},ensure_ascii=False)+'</script>'
 PAGES=[('index.html','トップ'),('service.html','グループの支援'),('company.html','私たちについて'),('partners.html','仲介会社・金融機関の皆さまへ'),('news.html','お知らせ'),('contact.html','ご相談・お問い合わせ')]
 def nav():
     items=[('company.html','私たちについて'),('service.html','グループの支援'),('results.html','実績・事例'),('flow.html','ご相談の流れ'),('partners.html','仲介会社・金融機関の方へ'),('faq.html','よくあるご質問')]
@@ -921,7 +925,7 @@ def footer():
     return f
 SBAR='<div class="sbar" id="sbar" aria-label="ご相談"><div class="sb-in"><p class="sb-t"><b>事業承継のご相談</b><span>無料・秘密厳守・2日以内にご連絡</span></p><a class="sb-b" href="contact.html"><span>無料で相談する</span><i aria-hidden="true"></i></a><a class="sb-tel" href="tel:0368231499"><small>年中無休 9:00–18:00</small>03-6823-1499</a></div></div>'
 def page(fname,title,body,desc):
-    t='工務店・住宅会社のM&A・事業承継｜株式会社エッジアセット' if fname=='index.html' else f'{title}｜株式会社エッジアセット'
+    t='株式会社エッジアセット（EDGE ASSET）｜工務店・住宅会社のM&A・事業承継' if fname=='index.html' else f'{title}｜株式会社エッジアセット'
     return f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -929,11 +933,13 @@ def page(fname,title,body,desc):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{t}</title>
 <meta name="description" content="{desc}">
+<link rel="canonical" href="{U(fname)}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0c2747">
 <meta property="og:type" content="{'website' if fname=='index.html' else 'article' if fname.startswith('column-') else 'website'}">
 <meta property="og:site_name" content="株式会社エッジアセット">
+<meta property="og:url" content="{U(fname)}">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{SITE}img/ai/ai-hero.jpg">
@@ -941,7 +947,7 @@ def page(fname,title,body,desc):
 <meta property="og:image:height" content="1024">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-{JSONLD if fname=='index.html' else ''}
+{JSONLD if fname=='index.html' else ORGREF if fname=='company.html' else ''}{'<meta name="robots" content="noindex">' if fname=='404.html' else ''}
 {head_links}
 <link rel="stylesheet" href="site.css">
 <style>{CRIT_CSS}</style>
@@ -1087,7 +1093,7 @@ partners=phero('For partners','仲介会社・金融機関の皆さまへ','住�
 news=phero('News','お知らせ','','ai-engawa')+NEWS+nextlink('company.html','About us','私たちについて')
 contact=phero('Contact','ご相談・お問い合わせ','ご相談は無料です。社名を伏せたままでも構いません。','ai-office')+re.sub(r'<div class="ph side">.*?</div>',CONTACT_ASIDE,sec['contact'],count=1,flags=re.S).replace('<div class="ways">','<p class="c-alt">仲介会社・金融機関の方は、<a href="partners.html">専用のご案内ページ</a>をご覧ください。</p><div class="ways">',1)+PREP+sec['faq'].replace('<div class="rv">'+head('FAQ','よくあるご質問','ご相談の|前に|よく|聞かれること')+'</div>','<div class="rv">'+head('FAQ','よくあるご質問','ご相談の|前に|よく|聞かれること')+'<a class="tl" href="faq.html">すべての質問を見る {AR}</a></div>')
 service=phero('Our support','グループの支援','家づくりの方針には、基本的に口を出しません。そのうえで、時流に合った売れる商品へ、少しずつ調整していきます。規模が小さいほど負担が重くなる仕事は、グループで引き受けます。','4UVtFIfK1eo')+subnav([('support','支援の内容'),('cost','原価の改善'),('model','グループの仕組み'),('before','グループ入りの前と後'),('d100','最初の100日'),('svcfaq','よくあるご質問')])+SERVICE_INTRO+tolinks(sec['support'])+COST+SERVICE_BAND+MODEL+BEFORE.replace('<section class="ba"','<section class="ba" id="before"',1)+re.sub(r'<section class="([^"]*)"',r'<section class="\1" id="d100"',D100,count=1)+SVCFAQ.replace('<section class="topfaq"','<section class="topfaq" id="svcfaq"',1)+nextlink('results.html','Track record','実績・事例')
-bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセットは、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
+bodies={'service.html':(service,'エッジアセットがグループで担う支援：集客・採用・財務・仕入・業務・人材。グループ入り後の100日。'),'index.html':(home,'株式会社エッジアセット（EDGE ASSET）は、後継者が決まっていない工務店・住宅会社・リフォーム会社を引き継ぎ、売らずに長く経営する事業承継の受け皿です。'),
  'company.html':(company,'エッジアセットの考え方、代表メッセージ、メンバー、資金と体制、実績、会社概要。'),
  'partners.html':(partners,'仲介会社・金融機関の皆さまへ。投資の目安、ご紹介の流れ、窓口。'),
  'news.html':(news,'エッジアセットからのお知らせ。'),
@@ -1136,7 +1142,7 @@ for fname,title in PAGES:
     b=re.sub(r'<p class="crumb">.*?</p>','',b,flags=re.S)
     b=surface(b)
     open(os.path.join(OUT,fname),'w').write(telify(page(fname,title,b,d)))
-open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{'' if f=='index.html' else f}</loc></url>\n' for f,_ in PAGES if f!='404.html')+'</urlset>\n')
+open(os.path.join(OUT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{U(f)}</loc><lastmod>{TODAY}</lastmod></url>\n' for f,_ in PAGES if f not in ('404.html','sitemap.html'))+'</urlset>\n')
 open(os.path.join(OUT,'site.css'),'w').write(STYLE)
 open(os.path.join(OUT,'robots.txt'),'w').write('User-agent: *\nAllow: /\nSitemap: '+SITE+'sitemap.xml\n')
 open(os.path.join(OUT,'favicon.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#1d2a3a"/><text x="32" y="45" text-anchor="middle" font-family="Georgia,Times New Roman,serif" font-size="38" fill="#fff">E</text><rect x="20" y="51" width="24" height="2" fill="#a8432a"/></svg>\n')
